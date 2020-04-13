@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,7 @@
 		707F38532445226200DCEBE6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 707F38512445226200DCEBE6 /* Main.storyboard */; };
 		707F38552445226400DCEBE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 707F38542445226400DCEBE6 /* Assets.xcassets */; };
 		707F38582445226400DCEBE6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 707F38562445226400DCEBE6 /* LaunchScreen.storyboard */; };
+		707F38602445290500DCEBE6 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 707F385F2445290500DCEBE6 /* GoogleService-Info.plist */; };
 		884CB0A1B1AC0B91E8E44827 /* Pods_ProjetoIdiomas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79ECD0B6CD99EC7D405938E3 /* Pods_ProjetoIdiomas.framework */; };
 /* End PBXBuildFile section */
 
@@ -25,6 +26,7 @@
 		707F38542445226400DCEBE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		707F38572445226400DCEBE6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		707F38592445226400DCEBE6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		707F385F2445290500DCEBE6 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		71029F17EEC3D02A947AEDF6 /* Pods-ProjetoIdiomas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjetoIdiomas.debug.xcconfig"; path = "Target Support Files/Pods-ProjetoIdiomas/Pods-ProjetoIdiomas.debug.xcconfig"; sourceTree = "<group>"; };
 		79ECD0B6CD99EC7D405938E3 /* Pods_ProjetoIdiomas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjetoIdiomas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCA2DBB3DE4935D89AAFEB56 /* Pods-ProjetoIdiomas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjetoIdiomas.release.xcconfig"; path = "Target Support Files/Pods-ProjetoIdiomas/Pods-ProjetoIdiomas.release.xcconfig"; sourceTree = "<group>"; };
@@ -48,7 +50,6 @@
 				71029F17EEC3D02A947AEDF6 /* Pods-ProjetoIdiomas.debug.xcconfig */,
 				BCA2DBB3DE4935D89AAFEB56 /* Pods-ProjetoIdiomas.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -79,6 +80,7 @@
 				707F38512445226200DCEBE6 /* Main.storyboard */,
 				707F38542445226400DCEBE6 /* Assets.xcassets */,
 				707F38562445226400DCEBE6 /* LaunchScreen.storyboard */,
+				707F385F2445290500DCEBE6 /* GoogleService-Info.plist */,
 				707F38592445226400DCEBE6 /* Info.plist */,
 			);
 			path = ProjetoIdiomas;
@@ -154,6 +156,7 @@
 			files = (
 				707F38582445226400DCEBE6 /* LaunchScreen.storyboard in Resources */,
 				707F38552445226400DCEBE6 /* Assets.xcassets in Resources */,
+				707F38602445290500DCEBE6 /* GoogleService-Info.plist in Resources */,
 				707F38532445226200DCEBE6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
