@@ -18,6 +18,7 @@ public class FeedPresenter : FeedViewToPresenter{
     
     
     
+    
     var view: FeedPresenterToView? = nil
     
     ///se eu coloco weak aqui ele morre
@@ -26,8 +27,8 @@ public class FeedPresenter : FeedViewToPresenter{
     
  
     
-    public func updateFeed(in languages: [Languages]){
-        interator?.fechePosts(in: languages)
+    public func updateFeed(in languages: [Languages], from date: Date){
+        interator?.fechePosts(in: languages, from: date)
     }
     
     
@@ -40,6 +41,11 @@ public class FeedPresenter : FeedViewToPresenter{
         interator?.cancelImageRequest(uuid: token)
     }
     
+    public func updateVotes(from: String, inPost: Post) {
+        interator?.requestUpdateVotes(from: from,inPost: inPost)
+    }
+    
+    
 }
 
 
@@ -50,6 +56,7 @@ extension FeedPresenter: FeedInteratorToPresenter{
     
     public func fechedPosts(posts: [Post]) {
         //aqui eu devo configurar o dado (exemplo: ordenar) para mandar a view apresentar
+        
         view?.showPosts(posts: posts)
     }
     
@@ -57,6 +64,8 @@ extension FeedPresenter: FeedInteratorToPresenter{
         //aqui eu falo pra view que deu error em carregar os dados e mostrar uma msg de erroo
         view?.showError()
     }
+    
+    
     
     
     

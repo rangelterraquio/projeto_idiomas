@@ -17,10 +17,14 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var reactionButton: UIButton!
     
+    @IBOutlet weak var upVoteLabel: UILabel!
+    @IBOutlet weak var downVoteLabel: UILabel!
     @IBOutlet weak var feedIndicator: UIActivityIndicatorView!
     @IBOutlet weak var profilePicIndicator: UIActivityIndicatorView!
     
     var onReuse: () -> () = {}
+    var upvoted: () -> () = {}
+    var downVoted: () -> () = {}
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,9 +42,24 @@ class FeedCell: UITableViewCell {
         userPictureView.contentMode = .scaleAspectFill
         
     }
-
+    @IBAction func upVoteButton(_ sender: Any) {
+        upvoted()
+        ///atualizo label dos numeros
+        if let tex = upVoteLabel.text, let num = Int16(tex){
+            upVoteLabel.text = "\(num + 1)"
+        }
+        
+    }
+    
+    @IBAction func downVoteButton(_ sender: Any) {
+        downVoted()
+        ///atualizo label dos numeros
+        if let tex = downVoteLabel.text, let num = Int16(tex){
+            downVoteLabel.text = "\(num + 1)"
+        }
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+        super.setSelected(false, animated: false)
 
         // Configure the view for the selected state
     }
@@ -49,6 +68,8 @@ class FeedCell: UITableViewCell {
         self.postText.text = post.message
         self.userNameLabel.text = post.author.name
         self.postTitleLabel.text = post.title
+        self.downVoteLabel.text = "\(post.downvote)"
+        self.upVoteLabel.text = "\(post.upvote)"
         self.feedIndicator.stopAnimating()
         
 //        if let photoURL = post.author.photoURL{

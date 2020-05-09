@@ -35,7 +35,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wKJ-tG-eyd">
-                        <rect key="frame" x="121" y="263" width="79" height="26"/>
+                        <rect key="frame" x="121" y="236" width="79" height="26"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="0.039780650289999997" green="0.1574569643" blue="0.2506598532" alpha="1" colorSpace="deviceRGB"/>
                         <state key="normal" title="Help"/>
@@ -49,11 +49,14 @@
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                     </textView>
-                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUs-Cy-mrW">
-                        <rect key="frame" x="267" y="248" width="37" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUs-Cy-mrW">
+                        <rect key="frame" x="262" y="255" width="25" height="25"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" red="0.039780650289999997" green="0.1574569643" blue="0.2506598532" alpha="1" colorSpace="deviceRGB"/>
-                        <state key="normal" title="Like"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" image="Icon awesome-arrow-alt-circle-up"/>
+                        <connections>
+                            <action selector="downVoteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="SSc-Rb-IsV"/>
+                        </connections>
                     </button>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="rZh-aN-H7h">
                         <rect key="frame" x="150" y="154" width="20" height="20"/>
@@ -63,20 +66,48 @@
                         <rect key="frame" x="31" y="23" width="20" height="20"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </activityIndicatorView>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AQX-Df-h5H">
+                        <rect key="frame" x="208" y="255" width="25" height="25"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" image="Icon awesome-arrow-alt-circle-up-1"/>
+                        <connections>
+                            <action selector="upVoteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="rYd-Ad-6rN"/>
+                        </connections>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9r-h5-fuH">
+                        <rect key="frame" x="290" y="255" width="27" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lf-XE-b10">
+                        <rect key="frame" x="233" y="255" width="27" height="21"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="commentButton" destination="wKJ-tG-eyd" id="6FJ-PN-Daw"/>
+                <outlet property="downVoteLabel" destination="Q9r-h5-fuH" id="1Sq-pk-HlS"/>
                 <outlet property="feedIndicator" destination="rZh-aN-H7h" id="Eog-Uy-FEw"/>
                 <outlet property="postText" destination="juZ-if-LP6" id="CJl-9k-ZXZ"/>
                 <outlet property="postTitleLabel" destination="bDw-oC-aO0" id="BMT-Tx-ssj"/>
                 <outlet property="profilePicIndicator" destination="eFt-6D-7qc" id="VMK-jS-Ahn"/>
                 <outlet property="reactionButton" destination="hUs-Cy-mrW" id="m4f-Xt-du5"/>
+                <outlet property="upVoteLabel" destination="0lf-XE-b10" id="epG-fI-PcS"/>
                 <outlet property="userNameLabel" destination="4sm-Fr-TSn" id="2At-wR-ml9"/>
                 <outlet property="userPictureView" destination="A1m-l4-rmp" id="QuY-ye-IuP"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="198.21428571428569"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Icon awesome-arrow-alt-circle-up" width="51.5" height="51.5"/>
+        <image name="Icon awesome-arrow-alt-circle-up-1" width="51.5" height="51.5"/>
+    </resources>
 </document>

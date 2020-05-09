@@ -56,13 +56,12 @@ extension UIImageView{
 
 class ImageLoader{
     private let imageCache = NSCache<NSString, AnyObject>()
-    private var runningRequest = [UUID: URLSessionDataTask]()
+    private var runningRequests = [UUID: URLSessionDataTask]()
     
     
     func loadImgage(url: String, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID?{
         
         if let imageCache = imageCache.object(forKey: url as NSString) as? UIImage {
-            //self.image = imageCache
             completion(.success(imageCache))
             return nil
         }
@@ -73,8 +72,8 @@ class ImageLoader{
         
         let taks = URLSession.shared.dataTask(with: urlPath!) { data, response, error in
             
-            //aqui eu garoto que vou remover a task do meu array antes dela terminar
-            defer {self.runningRequest.removeValue(forKey: uuid)}
+            //aqui eu garanto que vou remover a task do meu array antes dela terminar
+            defer {self.runningRequests.removeValue(forKey: uuid)}
             
             if error != nil {
                 print("deu ruim cuusao")
@@ -88,13 +87,13 @@ class ImageLoader{
         }
         taks.resume()
         ///add a taks no meu array de tasks rodando
-        runningRequest[uuid] = taks
+        runningRequests[uuid] = taks
         return uuid
         
     }
     
     func cancelLoadRequest(uuid: UUID){
-        runningRequest[uuid]?.cancel()
-        runningRequest.removeValue(forKey: uuid)
+        runningRequests[uuid]?.cancel()
+        runningRequests.removeValue(forKey: uuid)
     }
 }

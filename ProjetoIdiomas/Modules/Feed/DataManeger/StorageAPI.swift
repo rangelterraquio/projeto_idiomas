@@ -16,7 +16,7 @@ public class StoregeAPI{
     private var db = Firestore.firestore()
     
     private var snapshots: [QueryDocumentSnapshot]? = nil
-    func fechPosts(in languages: [Languages], completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
+    func fechPosts(in languages: [Languages], from date: Date,completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
         
         let num  = 50/languages.count
         
@@ -25,7 +25,7 @@ public class StoregeAPI{
         
         for language in languages{
             
-            documentRef.whereField("language", isEqualTo: language.rawValue).limit(to: num).getDocuments { (querySnapshot, error) in
+            documentRef.order(by: "publicationDate", descending: true).start(at: [date]).whereField("language", isEqualTo: language.rawValue).limit(to: num).getDocuments { (querySnapshot, error) in
                 
                 if error != nil {
                     print("Tratar error")
@@ -35,6 +35,19 @@ public class StoregeAPI{
                 }
             }
         }
+        
+    }
+    
+    
+    func updateVotes(from voteType: String, inPost: Post){
+        //quando a criação de post tiver ok deixa mudar o id
+        let documentRef = db.collection("Posts").document(inPost.id)
+        guard var num = inPost.dictionary[voteType] as? Int16 else {
+            print("error")
+            return
+        }
+        num += 1
+        documentRef.setData([voteType : num], merge: true)
         
     }
     
@@ -49,9 +62,9 @@ public class StoregeAPI{
         
         if let data = image.pngData(){
             let metadata = StorageMetadata()
-            let ref = imageRef.putData(data, metadata: metadata) { (metadata, erro) in
+            imageRef.putData(data, metadata: metadata) { (metadata, erro) in
                 if erro != nil{
-                    print(erro)
+                    print(erro as Any)
                 }else{
                     print("deu bommmmmm")
                 }
@@ -59,9 +72,9 @@ public class StoregeAPI{
                 
                 imageRef.downloadURL { (url, error) in
                      if erro != nil{
-                        print(erro)
+                        print(erro as Any)
                      }else{
-                        print(url?.absoluteString)
+//                        print(url?.absoluteString)
                     }
                 }
                 
@@ -77,3 +90,10 @@ public class StoregeAPI{
 //
 //
 //
+
+//MARK: -> User CRUD
+extension StoregeAPI{
+    
+    
+    
+}

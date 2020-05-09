@@ -44,7 +44,7 @@ class ViewController: UIViewController {
       //  db.collection("Posts").document("gAqKjMeQmgxGoRZqoC1Y").setData(["publicationDate" : Date()], merge: true)
 //        
 //        
-        let user = Profile(id: UUID().uuidString, name: "Joao", photoURL: "sadadad", score: 1, rating: 44, fluentLanguage: ["en","pt"], learningLanguage: ["fr","sp"], idPosts: ["dd","dsada"], idCommentedPosts: ["dd"])
+        let user = User(id: UUID().uuidString, name: "Joao", photoURL: "sadadad", score: 1, rating: 44, fluentLanguage: ["en","pt"], learningLanguage: ["fr","sp"], idPosts: ["dd","dsada"], idCommentedPosts: ["dd"])
         
 //        db.collection("Posts").document("ozE4mkvy97uwd4Oe1D9c").setData(["author" : user.dictionary], merge: true)
         
@@ -65,16 +65,27 @@ class ViewController: UIViewController {
 
     @IBAction func goToFeed(_ sender: Any) {
         
-        let stateController = StateController(storage: StoregeAPI())
-        let interator = FeedInterator(stateController: stateController)
-        let presenter = FeedPresenter()
+//        let stateController = StateController(storage: StoregeAPI())
+//        let interator = FeedInterator(stateController: stateController)
+//        let presenter = FeedPresenter()
+//        presenter.interator = interator
+//        interator.presenter = presenter
+//        let vc = FeedViewController(nibName: "FeedViewController", bundle: nil)
+//        vc.presenter = presenter
+//        vc.modalPresentationStyle = .fullScreen
+//        presenter.view = vc
+        let textInterator = TextFieldInterator()
+        let interator = SignUpInterator(textInterator: textInterator)
+        let presenter = SignUpPresenter()
         presenter.interator = interator
         interator.presenter = presenter
-        let vc = FeedViewController(nibName: "FeedViewController", bundle: nil)
-        vc.presenter = presenter
+        
+        let vc = SignUpViewController(nibName: "SignUpViewController", bundle: nil)
+         vc.modalPresentationStyle = .fullScreen //modo de apresentação
         presenter.view = vc
+        vc.presenter = presenter
         
-        
+//        let modal = UIModalPresentationStyle.fullScreen
         self.present(vc, animated: true, completion: nil)
         
 

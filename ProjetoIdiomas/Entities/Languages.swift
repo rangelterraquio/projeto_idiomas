@@ -8,11 +8,9 @@
 
 import Foundation
 
-
-public enum Language: String {
-    case english = "english"
-    case spanish = "spanish"
-    case italian = "italian"
-    case german = "german"
-    case portuguese = "portuguese"
+public enum Languages : String{
+    case portuguese = "pt"
+    case english = "en"
+    case spanish = "sp"
+    case french = "fr"
 }

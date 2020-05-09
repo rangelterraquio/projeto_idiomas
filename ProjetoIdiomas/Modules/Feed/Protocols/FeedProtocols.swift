@@ -15,9 +15,11 @@ public protocol FeedInteratorToPresenter: class {
     func fetchedImageProfile(image: UIImage)
 }
 public protocol FeedPresenterToInterator: class {
-    func fechePosts(in languages: [Languages])
+    func fechePosts(in languages: [Languages], from date: Date)
     func requestImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID?
     func cancelImageRequest(uuid token: UUID)
+    func requestUpdateVotes(from: String, inPost: Post)
+
 }
 public protocol FeedPresenterToView: class{
     func showPosts(posts: [Post])
@@ -25,9 +27,10 @@ public protocol FeedPresenterToView: class{
 }
 
 public protocol FeedViewToPresenter: class{
-    func updateFeed(in languages: [Languages])
+    func updateFeed(in languages: [Languages], from date: Date)
     func requestProfileImage(from url: String, completion:  @escaping  (Result<UIImage, Error>) -> Void) -> UUID?
     func cancelImageRequest(uuid token: UUID)
+    func updateVotes(from: String, inPost: Post)
 }
 /*
 

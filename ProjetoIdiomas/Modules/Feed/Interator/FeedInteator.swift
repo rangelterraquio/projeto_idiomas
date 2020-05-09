@@ -10,6 +10,8 @@ import Foundation
 import FirebaseFirestore
 
 public class FeedInterator: FeedPresenterToInterator{
+    
+    
    
     var posts: [Post] = [Post](){
         didSet{
@@ -22,7 +24,7 @@ public class FeedInterator: FeedPresenterToInterator{
             }
         }
     }
-    var profiles: [Profile]?
+    var profiles: [User]?
     var stateController: StateController!
      var presenter: FeedInteratorToPresenter? = nil
     init(stateController: StateController) {
@@ -32,9 +34,9 @@ public class FeedInterator: FeedPresenterToInterator{
     }
     
     
-    public func fechePosts(in languages: [Languages]) {
+    public func fechePosts(in languages: [Languages],from date: Date) {
         
-        stateController.fecthPosts(in: languages) {(snapshot) in
+        stateController.fecthPosts(in: languages, from: date) {(snapshot) in
 
             var data: [Post] = [Post]()
             
@@ -57,6 +59,10 @@ public class FeedInterator: FeedPresenterToInterator{
         stateController.imageLoader.cancelLoadRequest(uuid: token)
     }
     
+    
+    public func requestUpdateVotes(from: String, inPost: Post) {
+        stateController.updateVotes(from: from, inPost: inPost)
+    }
          
          
    

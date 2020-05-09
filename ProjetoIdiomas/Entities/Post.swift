@@ -16,49 +16,6 @@ protocol DocumentSerializable {
 
 }
 
-public struct Profile{
-    let id: String
-    let name: String
-    var photoURL: String?
-    var score: Int16?
-    var rating: Int16?
-    var fluentLanguage: [String]
-    var learningLanguage: [String]?
-    var idPosts : [String]?
-    var idCommentedPosts: [String]?
-    
-    
-    var dictionary : [String : Any]{
-        return [
-            "id" : id,
-            "name" : name,
-            "photoURL" : photoURL as Any,
-            "score" : score as Any,
-            "rating" : rating as Any,
-            "fluentLanguage" : fluentLanguage,
-            "learningLanguage" : learningLanguage as Any,
-            "idPosts" : idPosts as Any,
-            "idCommentedPosts" : idCommentedPosts as Any,
-        ]
-    }
-}
-
-extension Profile: DocumentSerializable{
-    init?(dictionary snapshot: QueryDocumentSnapshot) {
-        let data = snapshot.data()
-        
-        guard let snap = data["author"] as? [String : Any],
-            let name = snap["name"] as? String,
-            let fluentLanguage = snap["fluentLanguage"] as? [String]
-            else {return nil}
-        
-        self.init(id: snapshot.documentID, name: name, photoURL: snap["photoURL"] as? String, score: snap["score"] as? Int16, rating: snap["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: snap["learningLanguage"] as? [String], idPosts: snap["idPosts"] as? [String], idCommentedPosts: snap["idCommentedPosts"] as? [String])
-    }
-    
-    
-}
-
-
 public struct Post {
 //    struct ProfileFeed{
 //        let nome: String?
@@ -73,10 +30,10 @@ public struct Post {
     let id: String
     let title: String
     let message: String
-    let author: Profile
+    let author: User
     let language: String
-    var upvote: Int32
-    var downvote: Int32
+    var upvote: Int32 // 10 joao
+    var downvote: Int32 // 35
     let publicationDate: Date
    // var comments: [String]?
     
@@ -96,7 +53,7 @@ public struct Post {
     
     
 
-    init(id: String, title: String, message: String, language: String, upvote: Int32, downvote: Int32, publicationDate: Date, author: Profile) {
+    init(id: String, title: String, message: String, language: String, upvote: Int32, downvote: Int32, publicationDate: Date, author: User) {
            self.title = title
            self.message = message
            self.publicationDate = publicationDate
@@ -122,19 +79,14 @@ extension Post : DocumentSerializable{
             let language = snap["language"] as? String,
             let upvote = snap["upvote"] as? Int32,
             let downvote = snap["downvote"] as? Int32,
-            let author = Profile(dictionary: snapshot)
+            let author = User(dictionary: snapshot)
             else {return nil}
             
         self.init(id: snapshot.documentID, title: title, message: message, language: language, upvote: upvote, downvote: downvote, publicationDate: publicationDate.dateValue(),author: author)
         }
 
 }
-public enum Languages : String{
-    case portuguese = "pt"
-    case english = "en"
-    case spanish = "sp"
-    case french = "fr"
-}
+
 
 /*
  
