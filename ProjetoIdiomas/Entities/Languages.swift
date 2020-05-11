@@ -13,4 +13,22 @@ public enum Languages : String{
     case english = "en"
     case spanish = "sp"
     case french = "fr"
+    case chinese = "ch"
+    
+    var name: String {
+        switch self {
+        case .portuguese:
+            return  "Portuguese"
+        case .english:
+        return  "English"
+        case .spanish:
+        return  "Spanish"
+        case .french:
+        return  "Franch"
+        case .chinese:
+        return  "Chinese"
+        default:
+            break
+        }
+    }
 }

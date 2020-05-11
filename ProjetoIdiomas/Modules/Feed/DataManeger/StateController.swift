@@ -27,5 +27,7 @@ public class StateController{
     }
     
     
-    
+    func createPost(title: String, text: String, language: Languages,completion: @escaping (Result<Void, CustomError>) -> Void){
+        storage.createPost(title: title, text: text, language: language, completion: completion)
+    }
 }

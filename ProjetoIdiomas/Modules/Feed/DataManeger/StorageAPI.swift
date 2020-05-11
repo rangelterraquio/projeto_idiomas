@@ -9,6 +9,16 @@
 import Foundation
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseAuth
+import SystemConfiguration
+
+import SystemConfiguration.CaptiveNetwork
+
+
+//enum ComplationAddDataResult<Value>{
+//    case failure(String)
+//    case success(Void)
+//}
 
 public class StoregeAPI{
     
@@ -38,6 +48,33 @@ public class StoregeAPI{
         
     }
     
+    func createPost(title: String, text: String, language: Languages,completion: @escaping (Result<Void, CustomError>) -> Void){
+        //let user  = Auth.auth().currentUser!
+        
+        ///quado tiver tudo funcionado eu vou ter a referencia do user q estiver logado
+        
+        if !hasInternet(){
+            completion(.failure(.internetError))
+            return
+        }
+         let user = User(id: UUID().uuidString, name: "Joao", photoURL: "sadadad", score: 1, rating: 44, fluentLanguage: ["en","pt"], learningLanguage: ["fr","sp"], idPosts: ["dd","dsada"], idCommentedPosts: ["dd"])
+        
+        
+        let newPost = Post(id: UUID().uuidString, title: title, message: text, language: language.rawValue, upvote: 0, downvote: 0, publicationDate: Date(), author: user)
+        
+        db.collection("Posts").addDocument(data: newPost.dictionary) { (error) in
+            if error != nil{
+                completion(.failure(.operationFailed))
+            }else{
+                completion(.success(Void()))
+            }
+        }
+
+    }
+    
+    private func hasInternet() -> Bool{
+        return Reachability.isConnectedToNetwork()
+    }
     
     func updateVotes(from voteType: String, inPost: Post){
         //quando a criação de post tiver ok deixa mudar o id
@@ -96,4 +133,34 @@ extension StoregeAPI{
     
     
     
+}
+
+//MARK: -> Verify Internet
+public class Reachability {
+    public static func isConnectedToNetwork() -> Bool {
+        var zeroAddress = sockaddr_in()
+        zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
+        zeroAddress.sin_family = sa_family_t(AF_INET)
+
+        guard let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, {
+            $0.withMemoryRebound(to: sockaddr.self, capacity: 1) {
+                SCNetworkReachabilityCreateWithAddress(nil, $0)
+            }
+        }) else {
+            return false
+        }
+
+        var flags: SCNetworkReachabilityFlags = []
+        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) {
+            return false
+        }
+        if flags.isEmpty {
+            return false
+        }
+
+        let isReachable = flags.contains(.reachable)
+        let needsConnection = flags.contains(.connectionRequired)
+
+        return (isReachable && !needsConnection)
+    }
 }

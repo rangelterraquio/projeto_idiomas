@@ -80,10 +80,18 @@ class ViewController: UIViewController {
         presenter.interator = interator
         interator.presenter = presenter
         
-        let vc = SignUpViewController(nibName: "SignUpViewController", bundle: nil)
-         vc.modalPresentationStyle = .fullScreen //modo de apresentação
-        presenter.view = vc
-        vc.presenter = presenter
+        //let vc = SignUpViewController(nibName: "SignUpViewController", bundle: nil)
+//        let vc = SelectLanguageViewController(nibName: "SelectLanguageViewController", bundle: nil)
+        let vc = CreatePostViewController(nibName: "CreatePostViewController", bundle: nil)
+        let postPresente = CreatePostPresenter()
+        let postInterator = CreatePostInterator(stateController: StateController(storage: StoregeAPI()))
+        postPresente.interator = postInterator
+        postPresente.view = vc
+        vc.presenter = postPresente
+        postInterator.presenter = postPresente
+        vc.modalPresentationStyle = .fullScreen //modo de apresentação
+//        presenter.view = vc
+//        vc.presenter = presenter
         
 //        let modal = UIModalPresentationStyle.fullScreen
         self.present(vc, animated: true, completion: nil)
