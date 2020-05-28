@@ -26,6 +26,8 @@ public class StoregeAPI{
     private var db = Firestore.firestore()
     
     private var snapshots: [QueryDocumentSnapshot]? = nil
+    
+    var currentUser: User!
     func fechPosts(in languages: [Languages], from date: Date,completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
         
         let num  = 50/languages.count
@@ -72,19 +74,53 @@ public class StoregeAPI{
 
     }
     
+    
+    func createComment(text: String, postID: String, completion: @escaping (Result<Void, CustomError>) -> Void){
+        if !hasInternet(){
+            completion(.failure(.internetError))
+            return
+        }
+        
+        let comment = Comment(authorId: currentUser.id, upvote: 0, downvote: 0, commentText: text, id: UUID().uuidString, authorName: currentUser.name, authorPhotoURL: currentUser.photoURL)
+        
+            db.collection("Posts").document(postID).collection("Comments").addDocument(data: comment.dictionary) { (error) in
+            if error != nil{
+                completion(.failure(.operationFailed))
+            }else{
+                completion(.success(Void()))
+            }
+        }
+
+    }
+    
     private func hasInternet() -> Bool{
         return Reachability.isConnectedToNetwork()
     }
     
-    func updateVotes(from voteType: String, inPost: Post){
+    func updateVotes<T : DocumentSerializable >(from voteType: String, inDocument: T){
         //quando a criação de post tiver ok deixa mudar o id
-        let documentRef = db.collection("Posts").document(inPost.id)
-        guard var num = inPost.dictionary[voteType] as? Int16 else {
-            print("error")
-            return
+        let documentRef = db.collection("Posts").document(inDocument.id)
+        
+        if let document = inDocument as? Post, var num = document.dictionary[voteType] as? Int16 {
+            num += 1
+            documentRef.setData([voteType : num], merge: true)
         }
-        num += 1
-        documentRef.setData([voteType : num], merge: true)
+        if let document = inDocument as? Comment, var num = document.dictionary[voteType] as? Int16{
+            num += 1
+            documentRef.collection("Comments")
+            documentRef.setData([voteType : num], merge: true)
+        }
+        
+            
+            
+            
+        }
+        
+//        guard document = inDocument as? (Post || Comment), var num = inDocument.dictionary[voteType] as? Int16 else {
+//            print("error")
+//            return
+//        }
+        
         
     }
     
@@ -120,9 +156,8 @@ public class StoregeAPI{
         }
         
     }
-        
     
-}
+
 
 //
 //

@@ -11,10 +11,11 @@ import UIKit
 import FirebaseFirestore
 
 
-protocol DocumentSerializable {
+public protocol DocumentSerializable {
   init?(dictionary: QueryDocumentSnapshot)
-
+    var id: String { get set }
 }
+
 
 public struct Post {
 //    struct ProfileFeed{
@@ -22,12 +23,12 @@ public struct Post {
 //        let id: String
 //        let fotoURL: String?
 //        
-//        init(<#parameters#>) {
-//            <#statements#>
+//        init() {
+//
 //        }
 //    }
     
-    let id: String
+    public var id: String
     let title: String
     let message: String
     let author: User
@@ -35,7 +36,7 @@ public struct Post {
     var upvote: Int32 // 10 joao
     var downvote: Int32 // 35
     let publicationDate: Date
-   // var comments: [String]?
+//    var comments: [Comment]
     
     
     var dictionary : [String:Any] {
@@ -46,8 +47,8 @@ public struct Post {
                 "language": language,
                 "upvote": upvote,
                 "downvote": downvote,
-                "author" : author.dictionary
-               // "comments": comments  ?? "",
+                "author" : author.dictionary,
+//                "comments": comments
         ]
     }
     
@@ -62,6 +63,7 @@ public struct Post {
            self.downvote = downvote
            self.id = id
            self.author = author
+//           self.comments = comments
        }
        
 
@@ -71,7 +73,7 @@ extension Post : DocumentSerializable{
   
     
     
-    init?(dictionary snapshot: QueryDocumentSnapshot) {
+    public init?(dictionary snapshot: QueryDocumentSnapshot) {
         let snap = snapshot.data()
         guard let title = snap["title"] as? String,
             let message = snap["message"] as? String,
@@ -82,6 +84,14 @@ extension Post : DocumentSerializable{
             let author = User(dictionary: snapshot)
             else {return nil}
             
+//        var comments: [Comment] = [Comment]()
+//        if let snapComments = snap["comments"] as? [QueryDocumentSnapshot] {
+//            for snap  in snapComments {
+//                if let cm = Comment(dictionary: snap){
+//                    comments.append(cm)
+//                }
+//            }
+//        }
         self.init(id: snapshot.documentID, title: title, message: message, language: language, upvote: upvote, downvote: downvote, publicationDate: publicationDate.dateValue(),author: author)
         }
 

@@ -124,8 +124,8 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
                 }
             }
             
-            cell.upvoted = { self.presenter?.updateVotes(from: "upvote", inPost: post)}
-            cell.downVoted = {self.presenter?.updateVotes(from: "downvote", inPost: post)}
+            cell.upvoted = { self.presenter?.updateVotes(from: "upvote", inDocument: post)}
+            cell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: post)}
             return cell
         }
         

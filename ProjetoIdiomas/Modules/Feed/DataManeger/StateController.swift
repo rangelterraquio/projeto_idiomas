@@ -22,8 +22,8 @@ public class StateController{
         storage.fechPosts(in: languages, from: date, completion: completion)
     }
     
-    func updateVotes(from voteType: String, inPost: Post){
-        storage.updateVotes(from: voteType, inPost: inPost)
+    func updateVotes<T : DocumentSerializable >(from voteType: String, inDocument: T){
+        storage.updateVotes(from: voteType, inDocument: inDocument)
     }
     
     

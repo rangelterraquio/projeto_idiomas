@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewPostViewController" customModule="ProjetoIdiomas" customModuleProvider="target">
+            <connections>
+                <outlet property="commentButton" destination="y1a-4T-tZ9" id="SVo-6p-yO6"/>
+                <outlet property="commentTextField" destination="dIc-2B-5uP" id="TI2-Aw-CGd"/>
+                <outlet property="keyboardHeightLayoutConstraint" destination="yUm-DT-kL8" id="9vc-tu-FPW"/>
+                <outlet property="postTableView" destination="Mfq-5A-Oqc" id="5f3-Bj-FLp"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4i1-bo-TC0">
+                    <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                    <items>
+                        <navigationItem title="Title" id="FrV-m9-FsU">
+                            <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="F9R-BL-Am9">
+                                <connections>
+                                    <action selector="goBackToFeed:" destination="-1" id="JLH-mh-4PX"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Mfq-5A-Oqc">
+                    <rect key="frame" x="0.0" y="88" width="414" height="696"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </tableView>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dIc-2B-5uP" userLabel="commentTextField">
+                    <rect key="frame" x="20" y="792" width="353" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1a-4T-tZ9">
+                    <rect key="frame" x="375" y="792" width="20" height="34"/>
+                    <state key="normal" image="arrow.right.square.fill" catalog="system"/>
+                    <connections>
+                        <action selector="sendComment:" destination="-1" eventType="touchUpInside" id="6QA-2C-iak"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="y1a-4T-tZ9" firstAttribute="leading" secondItem="dIc-2B-5uP" secondAttribute="trailing" constant="2" id="HPY-lu-MAY"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="y1a-4T-tZ9" secondAttribute="bottom" constant="36" id="NDe-fM-cwh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="y1a-4T-tZ9" secondAttribute="trailing" constant="19" id="XBd-Zd-vOm"/>
+                <constraint firstItem="dIc-2B-5uP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="vr2-er-VmO"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dIc-2B-5uP" secondAttribute="bottom" constant="36" id="yUm-DT-kL8"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="137.68115942028987" y="89.732142857142847"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="arrow.right.square.fill" catalog="system" width="128" height="114"/>
+    </resources>
+</document>

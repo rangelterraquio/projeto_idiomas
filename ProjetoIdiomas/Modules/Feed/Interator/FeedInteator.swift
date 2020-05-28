@@ -12,6 +12,8 @@ import FirebaseFirestore
 public class FeedInterator: FeedPresenterToInterator{
     
     
+    
+    
    
     var posts: [Post] = [Post](){
         didSet{
@@ -60,11 +62,8 @@ public class FeedInterator: FeedPresenterToInterator{
     }
     
     
-    public func requestUpdateVotes(from: String, inPost: Post) {
-        stateController.updateVotes(from: from, inPost: inPost)
+    public func requestUpdateVotes<T : DocumentSerializable >(from: String, inDocument: T) {
+        stateController.updateVotes(from: from, inDocument: inDocument)
     }
-         
-         
-   
     
 }

@@ -11,6 +11,7 @@
 		7006EB7224678A1D0040F681 /* SelectLanguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7006EB7024678A1D0040F681 /* SelectLanguageViewController.xib */; };
 		7014F1692451EEBD00C3B78B /* TextInputValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7014F1682451EEBD00C3B78B /* TextInputValidation.swift */; };
 		7014F16B245201C200C3B78B /* StateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7014F16A245201C200C3B78B /* StateTextField.swift */; };
+		702CBD11247F37F20064AA21 /* ViewPostInterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702CBD10247F37F20064AA21 /* ViewPostInterator.swift */; };
 		7030EF54244BB78700093608 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030EF53244BB78700093608 /* ImageLoader.swift */; };
 		704F87542447CDD500C1C4D4 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704F87522447CDD500C1C4D4 /* FeedCell.swift */; };
 		704F87552447CDD500C1C4D4 /* FeedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 704F87532447CDD500C1C4D4 /* FeedCell.xib */; };
@@ -22,6 +23,8 @@
 		70698CF3246860AA00D2D744 /* LanguagePopoverController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70698CF1246860AA00D2D744 /* LanguagePopoverController.swift */; };
 		70698CF4246860AA00D2D744 /* LanguagePopoverController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70698CF2246860AA00D2D744 /* LanguagePopoverController.xib */; };
 		70698CF72468C3C000D2D744 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70698CF62468C3C000D2D744 /* Error.swift */; };
+		70698CFC2468DDC800D2D744 /* ViewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70698CFA2468DDC800D2D744 /* ViewPostViewController.swift */; };
+		70698CFD2468DDC800D2D744 /* ViewPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70698CFB2468DDC800D2D744 /* ViewPostViewController.xib */; };
 		707F384C2445226200DCEBE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F384B2445226200DCEBE6 /* AppDelegate.swift */; };
 		707F384E2445226200DCEBE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F384D2445226200DCEBE6 /* SceneDelegate.swift */; };
 		707F38502445226200DCEBE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F384F2445226200DCEBE6 /* ViewController.swift */; };
@@ -37,6 +40,7 @@
 		707F3872244546D500DCEBE6 /* StateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F3871244546D400DCEBE6 /* StateController.swift */; };
 		707F3874244548B200DCEBE6 /* FeedInteator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F3873244548B200DCEBE6 /* FeedInteator.swift */; };
 		707F387624454C0200DCEBE6 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F387524454C0200DCEBE6 /* FeedPresenter.swift */; };
+		708014C0246AE51D00D917A9 /* ViewPostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708014BF246AE51D00D917A9 /* ViewPostPresenter.swift */; };
 		70867F97244608F50064482E /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70867F96244608F50064482E /* FeedViewController.swift */; };
 		70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */; };
 		70B6391E246792B300966A56 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391C246792B300966A56 /* LanguageCell.swift */; };
@@ -52,6 +56,12 @@
 		70C1A069244D3014008F31DB /* SignUpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C1A068244D3014008F31DB /* SignUpAPI.swift */; };
 		70C1A06B244D33A0008F31DB /* TextFieldInterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C1A06A244D33A0008F31DB /* TextFieldInterator.swift */; };
 		70C1A06D244D4963008F31DB /* InputValidationServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C1A06C244D4963008F31DB /* InputValidationServiceAPI.swift */; };
+		70FB8B3C24698A900031DBFF /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FB8B3A24698A900031DBFF /* PostCell.swift */; };
+		70FB8B3D24698A900031DBFF /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70FB8B3B24698A900031DBFF /* PostCell.xib */; };
+		70FB8B4024698E100031DBFF /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FB8B3E24698E100031DBFF /* CommentCell.swift */; };
+		70FB8B4124698E100031DBFF /* CemmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70FB8B3F24698E100031DBFF /* CemmentCell.xib */; };
+		70FB8B432469915B0031DBFF /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FB8B422469915B0031DBFF /* Comment.swift */; };
+		70FB8B492469BC720031DBFF /* ViewPostProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FB8B482469BC720031DBFF /* ViewPostProtocols.swift */; };
 		884CB0A1B1AC0B91E8E44827 /* Pods_ProjetoIdiomas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79ECD0B6CD99EC7D405938E3 /* Pods_ProjetoIdiomas.framework */; };
 /* End PBXBuildFile section */
 
@@ -60,6 +70,7 @@
 		7006EB7024678A1D0040F681 /* SelectLanguageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectLanguageViewController.xib; sourceTree = "<group>"; };
 		7014F1682451EEBD00C3B78B /* TextInputValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputValidation.swift; sourceTree = "<group>"; };
 		7014F16A245201C200C3B78B /* StateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTextField.swift; sourceTree = "<group>"; };
+		702CBD10247F37F20064AA21 /* ViewPostInterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostInterator.swift; sourceTree = "<group>"; };
 		7030EF53244BB78700093608 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		704F87522447CDD500C1C4D4 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
 		704F87532447CDD500C1C4D4 /* FeedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeedCell.xib; sourceTree = "<group>"; };
@@ -71,6 +82,8 @@
 		70698CF1246860AA00D2D744 /* LanguagePopoverController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguagePopoverController.swift; sourceTree = "<group>"; };
 		70698CF2246860AA00D2D744 /* LanguagePopoverController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguagePopoverController.xib; sourceTree = "<group>"; };
 		70698CF62468C3C000D2D744 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
+		70698CFA2468DDC800D2D744 /* ViewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostViewController.swift; sourceTree = "<group>"; };
+		70698CFB2468DDC800D2D744 /* ViewPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewPostViewController.xib; sourceTree = "<group>"; };
 		707F38482445226200DCEBE6 /* ProjetoIdiomas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjetoIdiomas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		707F384B2445226200DCEBE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		707F384D2445226200DCEBE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +101,7 @@
 		707F3871244546D400DCEBE6 /* StateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateController.swift; sourceTree = "<group>"; };
 		707F3873244548B200DCEBE6 /* FeedInteator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInteator.swift; sourceTree = "<group>"; };
 		707F387524454C0200DCEBE6 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
+		708014BF246AE51D00D917A9 /* ViewPostPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostPresenter.swift; sourceTree = "<group>"; };
 		70867F96244608F50064482E /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesProtocols.swift; sourceTree = "<group>"; };
 		70B6391C246792B300966A56 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
@@ -103,6 +117,12 @@
 		70C1A068244D3014008F31DB /* SignUpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAPI.swift; sourceTree = "<group>"; };
 		70C1A06A244D33A0008F31DB /* TextFieldInterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInterator.swift; sourceTree = "<group>"; };
 		70C1A06C244D4963008F31DB /* InputValidationServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidationServiceAPI.swift; sourceTree = "<group>"; };
+		70FB8B3A24698A900031DBFF /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		70FB8B3B24698A900031DBFF /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
+		70FB8B3E24698E100031DBFF /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
+		70FB8B3F24698E100031DBFF /* CemmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CemmentCell.xib; sourceTree = "<group>"; };
+		70FB8B422469915B0031DBFF /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		70FB8B482469BC720031DBFF /* ViewPostProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostProtocols.swift; sourceTree = "<group>"; };
 		71029F17EEC3D02A947AEDF6 /* Pods-ProjetoIdiomas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjetoIdiomas.debug.xcconfig"; path = "Target Support Files/Pods-ProjetoIdiomas/Pods-ProjetoIdiomas.debug.xcconfig"; sourceTree = "<group>"; };
 		79ECD0B6CD99EC7D405938E3 /* Pods_ProjetoIdiomas.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProjetoIdiomas.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BCA2DBB3DE4935D89AAFEB56 /* Pods-ProjetoIdiomas.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjetoIdiomas.release.xcconfig"; path = "Target Support Files/Pods-ProjetoIdiomas/Pods-ProjetoIdiomas.release.xcconfig"; sourceTree = "<group>"; };
@@ -181,6 +201,31 @@
 				70698CF62468C3C000D2D744 /* Error.swift */,
 			);
 			path = Errors;
+			sourceTree = "<group>";
+		};
+		70698CF82468DD8F00D2D744 /* ViewPost */ = {
+			isa = PBXGroup;
+			children = (
+				70FB8B472469BC4B0031DBFF /* Protocols */,
+				70FB8B462469BC3F0031DBFF /* Router */,
+				70FB8B452469BC350031DBFF /* Interator */,
+				70FB8B442469BC2A0031DBFF /* Presenter */,
+				70698CF92468DDAF00D2D744 /* Views */,
+			);
+			path = ViewPost;
+			sourceTree = "<group>";
+		};
+		70698CF92468DDAF00D2D744 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				70698CFA2468DDC800D2D744 /* ViewPostViewController.swift */,
+				70698CFB2468DDC800D2D744 /* ViewPostViewController.xib */,
+				70FB8B3A24698A900031DBFF /* PostCell.swift */,
+				70FB8B3B24698A900031DBFF /* PostCell.xib */,
+				70FB8B3E24698E100031DBFF /* CommentCell.swift */,
+				70FB8B3F24698E100031DBFF /* CemmentCell.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		707F383F2445226200DCEBE6 = {
@@ -292,6 +337,7 @@
 				707F386B24452FE000DCEBE6 /* Languages.swift */,
 				707F386F2445383100DCEBE6 /* Post.swift */,
 				70C1A053244D2210008F31DB /* User.swift */,
+				70FB8B422469915B0031DBFF /* Comment.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -308,6 +354,7 @@
 		70C1A056244D2341008F31DB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				70698CF82468DD8F00D2D744 /* ViewPost */,
 				70698CE22468546200D2D744 /* CreatePost */,
 				70C1A055244D230F008F31DB /* WelcomeModule */,
 				707F386124452D5200DCEBE6 /* Feed */,
@@ -432,6 +479,37 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		70FB8B442469BC2A0031DBFF /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				708014BF246AE51D00D917A9 /* ViewPostPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		70FB8B452469BC350031DBFF /* Interator */ = {
+			isa = PBXGroup;
+			children = (
+				702CBD10247F37F20064AA21 /* ViewPostInterator.swift */,
+			);
+			path = Interator;
+			sourceTree = "<group>";
+		};
+		70FB8B462469BC3F0031DBFF /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		70FB8B472469BC4B0031DBFF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				70FB8B482469BC720031DBFF /* ViewPostProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		D9AFD30672D523069F4E9D0E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -504,15 +582,18 @@
 				707F38582445226400DCEBE6 /* LaunchScreen.storyboard in Resources */,
 				707F386824452DD800DCEBE6 /* FeedViewController.xib in Resources */,
 				707F38552445226400DCEBE6 /* Assets.xcassets in Resources */,
+				70FB8B3D24698A900031DBFF /* PostCell.xib in Resources */,
 				704F87552447CDD500C1C4D4 /* FeedCell.xib in Resources */,
 				70698CE7246854B700D2D744 /* CreatePostViewController.xib in Resources */,
 				707F38602445290500DCEBE6 /* GoogleService-Info.plist in Resources */,
 				70B6391F246792B300966A56 /* LanguageCell.xib in Resources */,
 				7006EB7224678A1D0040F681 /* SelectLanguageViewController.xib in Resources */,
 				707F38532445226200DCEBE6 /* Main.storyboard in Resources */,
+				70FB8B4124698E100031DBFF /* CemmentCell.xib in Resources */,
 				70698CF4246860AA00D2D744 /* LanguagePopoverController.xib in Resources */,
 				70C1A060244D2D02008F31DB /* SignUpViewController.xib in Resources */,
 				70C1A050244D0364008F31DB /* FilterCell.xib in Resources */,
+				70698CFD2468DDC800D2D744 /* ViewPostViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -583,22 +664,29 @@
 			buildActionMask = 2147483647;
 			files = (
 				707F387624454C0200DCEBE6 /* FeedPresenter.swift in Sources */,
+				708014C0246AE51D00D917A9 /* ViewPostPresenter.swift in Sources */,
 				7014F16B245201C200C3B78B /* StateTextField.swift in Sources */,
 				70C1A062244D2F66008F31DB /* SignUpPresenter.swift in Sources */,
 				70C1A054244D2210008F31DB /* User.swift in Sources */,
 				707F38702445383100DCEBE6 /* Post.swift in Sources */,
 				707F38502445226200DCEBE6 /* ViewController.swift in Sources */,
+				70FB8B492469BC720031DBFF /* ViewPostProtocols.swift in Sources */,
 				707F3874244548B200DCEBE6 /* FeedInteator.swift in Sources */,
 				70698CED2468592300D2D744 /* CreatePostProtocols.swift in Sources */,
 				70C1A066244D2FC9008F31DB /* SignUpProtocols.swift in Sources */,
 				707F384C2445226200DCEBE6 /* AppDelegate.swift in Sources */,
 				70C1A06D244D4963008F31DB /* InputValidationServiceAPI.swift in Sources */,
+				70698CFC2468DDC800D2D744 /* ViewPostViewController.swift in Sources */,
 				704F87542447CDD500C1C4D4 /* FeedCell.swift in Sources */,
+				70FB8B4024698E100031DBFF /* CommentCell.swift in Sources */,
 				7006EB7124678A1D0040F681 /* SelectLanguageViewController.swift in Sources */,
+				70FB8B3C24698A900031DBFF /* PostCell.swift in Sources */,
 				70698CF3246860AA00D2D744 /* LanguagePopoverController.swift in Sources */,
+				702CBD11247F37F20064AA21 /* ViewPostInterator.swift in Sources */,
 				70C1A064244D2F74008F31DB /* SignUpInterator.swift in Sources */,
 				707F386E2445349C00DCEBE6 /* FeedProtocols.swift in Sources */,
 				70698CEA246857E600D2D744 /* CreatePostPresenter.swift in Sources */,
+				70FB8B432469915B0031DBFF /* Comment.swift in Sources */,
 				70C1A04F244D0364008F31DB /* FilterCell.swift in Sources */,
 				707F386A24452ECA00DCEBE6 /* StorageAPI.swift in Sources */,
 				70C1A05F244D2D02008F31DB /* SignUpViewController.swift in Sources */,

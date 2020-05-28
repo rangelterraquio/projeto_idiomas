@@ -10,7 +10,7 @@ import Foundation
 import FirebaseFirestore
 
 public struct User{
-    let id: String
+    public var id: String
     let name: String
     var photoURL: String?
     var score: Int16?
@@ -37,7 +37,7 @@ public struct User{
 }
 
 extension User: DocumentSerializable{
-    init?(dictionary snapshot: QueryDocumentSnapshot) {
+    public init?(dictionary snapshot: QueryDocumentSnapshot) {
         let data = snapshot.data()
         
         guard let snap = data["author"] as? [String : Any],

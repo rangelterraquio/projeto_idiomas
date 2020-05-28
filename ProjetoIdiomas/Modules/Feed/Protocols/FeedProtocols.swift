@@ -18,7 +18,7 @@ public protocol FeedPresenterToInterator: class {
     func fechePosts(in languages: [Languages], from date: Date)
     func requestImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID?
     func cancelImageRequest(uuid token: UUID)
-    func requestUpdateVotes(from: String, inPost: Post)
+    func requestUpdateVotes<T: DocumentSerializable>(from: String, inDocument: T)
 
 }
 public protocol FeedPresenterToView: class{
@@ -30,7 +30,11 @@ public protocol FeedViewToPresenter: class{
     func updateFeed(in languages: [Languages], from date: Date)
     func requestProfileImage(from url: String, completion:  @escaping  (Result<UIImage, Error>) -> Void) -> UUID?
     func cancelImageRequest(uuid token: UUID)
-    func updateVotes(from: String, inPost: Post)
+    func updateVotes<T: DocumentSerializable>(from: String, inDocument: T)
+}
+
+extension FeedPresenterToInterator{
+    func fechePosts(in languages: [Languages], from date: Date){}
 }
 /*
 

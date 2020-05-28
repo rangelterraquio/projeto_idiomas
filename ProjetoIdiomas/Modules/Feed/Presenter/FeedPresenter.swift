@@ -41,8 +41,8 @@ public class FeedPresenter : FeedViewToPresenter{
         interator?.cancelImageRequest(uuid: token)
     }
     
-    public func updateVotes(from: String, inPost: Post) {
-        interator?.requestUpdateVotes(from: from,inPost: inPost)
+    public func updateVotes<T: DocumentSerializable>(from: String, inDocument: T) {
+        interator?.requestUpdateVotes(from: from,inDocument: inDocument)
     }
     
     
