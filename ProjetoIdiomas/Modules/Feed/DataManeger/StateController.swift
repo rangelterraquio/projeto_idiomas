@@ -13,6 +13,13 @@ public class StateController{
     
     private var storage: StoregeAPI!
     let imageLoader = ImageLoader()
+    
+    var user: User?{
+        didSet{
+            storage.currentUser = user
+        }
+    }
+    
     init(storage: StoregeAPI) {
         self.storage = storage
     }
@@ -29,5 +36,14 @@ public class StateController{
     
     func createPost(title: String, text: String, language: Languages,completion: @escaping (Result<Void, CustomError>) -> Void){
         storage.createPost(title: title, text: text, language: language, completion: completion)
+    }
+    
+    
+    func createComment(text: String, postID: String, completion: @escaping (Result<Comment, CustomError>) -> Void){
+        storage.createComment(text: text, postID: postID, completion: completion)
+    }
+    
+    func createUser(user: User, completion: @escaping (Result<Void, CustomError>) -> Void){
+        storage.createUser(user: user, completion: completion)
     }
 }

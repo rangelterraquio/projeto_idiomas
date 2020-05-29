@@ -66,7 +66,7 @@ extension SignUpViewController: SignUpPresenterToView{
         let alert = UIAlertController(title: "Operation Failed", message: msg, preferredStyle: .alert)
         alert.isSpringLoaded = true
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        self.show(alert, sender: nil)
+        self.present(alert, animated: true, completion: nil)
     }
     
     func updateView(text: String) {

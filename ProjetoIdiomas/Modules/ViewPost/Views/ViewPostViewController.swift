@@ -9,6 +9,8 @@
 import UIKit
 
 class ViewPostViewController: UIViewController, ViewPostPresenterToView {
+    
+    
    
     
 
@@ -50,7 +52,7 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     }
     
     @IBAction func sendComment(_ sender: Any) {
-        presenter?.createComent(comment: commentTextField.text!)
+        presenter?.createComent(comment: commentTextField.text!, postID: post.id)
     }
     
     
@@ -59,7 +61,15 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     }
        
     func showAlertError(error msg: String) {
-        print("")
+        let alert = UIAlertController(title: "Operation Failed", message: msg, preferredStyle: .alert)
+        alert.isSpringLoaded = true
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        self.show(alert, sender: nil)
+    }
+    
+    func commentCreated(comment: Comment) {
+        comments.append(comment)
+        postTableView.reloadData()
     }
     
 }

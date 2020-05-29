@@ -18,31 +18,28 @@ class SelectLanguageViewController: UIViewController {
     @IBOutlet weak var instructionLabel: UILabel!
     @IBOutlet weak var languagesTableView: UITableView!
     
-    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var canccelButton: UIBarButtonItem!
+    @IBOutlet weak var nextButton: UIBarButtonItem!
     let languages: [Languages] = [.english,.french,.portuguese,.spanish,.chinese,.english,.french,.portuguese,.spanish,.chinese,.english,.french,.portuguese,.spanish,.chinese,.english,.french,.portuguese,.spanish,.chinese,.english,.french,.portuguese,.spanish,.chinese]
     
     var fluentlyLanguages:[Languages] = [Languages](){
         didSet{
-            if !fluentlyLanguages.isEmpty{
-                doneButton.isEnabled = true
-                doneButton.backgroundColor = .blue
-            }
+            nextButton.isEnabled = !fluentlyLanguages.isEmpty
         }
     }
     var learningLanguages:[Languages] = [Languages](){
         didSet{
-            if !learningLanguages.isEmpty, viewState == .learningLanguagesSection{
-                doneButton.isEnabled = true
-                doneButton.backgroundColor = .blue
-            }
+             nextButton.isEnabled = !learningLanguages.isEmpty
+            
         }
     }
     
     var viewState: ViewState = .fluentlyLanguagesSection
-    
+    var router: SelectLanguagesToPresenter? = nil
+    var user: User!
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        nextButton.isEnabled = false
         // Do any additional setup after loading the view.
         let cellLanguage = UINib(nibName: "LanguageCell", bundle: nil)
         languagesTableView.register(cellLanguage, forCellReuseIdentifier: "LanguageCell")
@@ -53,10 +50,29 @@ class SelectLanguageViewController: UIViewController {
     }
 
     @IBAction func addLanguages(_ sender: Any) {
-        viewState = .learningLanguagesSection
-        instructionLabel.text = "Select the languages you are learning:"
-        
-        languagesTableView.reloadData()
+        if viewState == .learningLanguagesSection{
+            fluentlyLanguages.forEach { (lan) in
+                user.fluentLanguage.append(lan.rawValue)
+            }
+            learningLanguages.forEach { (lan) in
+                user.learningLanguage?.append(lan.rawValue)
+            }
+            router?.didSuccessfullyCreated(user: user)
+        }else{
+            viewState = .learningLanguagesSection
+            instructionLabel.text = "Select the languages you are learning:"
+            languagesTableView.reloadData()
+        }
+    }
+    @IBAction func cancel(_ sender: Any) {
+        if viewState == .fluentlyLanguagesSection{
+            router?.cancelUserCreation()
+        }else{
+            viewState = .fluentlyLanguagesSection
+            instructionLabel.text = "Select the languages you are able to help other people:"
+            fluentlyLanguages.removeAll()
+            languagesTableView.reloadData()
+        }
     }
     
 }

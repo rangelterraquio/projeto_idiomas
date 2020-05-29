@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public class FeedPresenter : FeedViewToPresenter{
-    
+   
     
     
     
@@ -20,7 +20,7 @@ public class FeedPresenter : FeedViewToPresenter{
     
     
     var view: FeedPresenterToView? = nil
-    
+    var router: FeedPresenterToRouter? = nil
     ///se eu coloco weak aqui ele morre
     var interator: FeedPresenterToInterator? = nil
     
@@ -45,7 +45,10 @@ public class FeedPresenter : FeedViewToPresenter{
         interator?.requestUpdateVotes(from: from,inDocument: inDocument)
     }
     
-    
+    public func goToAddPostView() {
+        router?.addPostView()
+    }
+          
 }
 
 
@@ -65,7 +68,8 @@ extension FeedPresenter: FeedInteratorToPresenter{
         view?.showError()
     }
     
-    
+   
+       
     
     
     

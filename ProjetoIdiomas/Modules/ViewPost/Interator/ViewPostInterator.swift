@@ -19,8 +19,22 @@ class ViewPostInterator: ViewPostPresenterToInterator {
     }
     
     
-    func createComent(comment: String) {
-        
+    func createComent(comment: String, postID: String) {
+        stateController.createComment(text: comment, postID: postID) { (result) in
+            
+            switch result {
+            case .failure(let error):
+                switch error {
+                case .internetError:
+                    self.presenter?.createCommentFailed(error: "The phone has no Internet connection")
+                case .operationFailed:
+                    self.presenter?.createCommentFailed(error: "Sorry, an error occurred.")
+                }
+            case .success(let com):
+                self.presenter?.createCommentSuccessefull(comment: com)
+            }
+            
+        }
     }
     
     
@@ -38,7 +52,8 @@ class ViewPostInterator: ViewPostPresenterToInterator {
     }
     
     func validadeComment(text: String?) {
-        presenter?.commentValidated(isValid: !text.isEmpty)
+        
+        presenter?.commentValidated(isValid: !(text?.isEmpty ?? true) )
     }
     
 }

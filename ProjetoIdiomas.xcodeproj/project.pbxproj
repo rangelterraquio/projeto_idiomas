@@ -41,6 +41,12 @@
 		707F3874244548B200DCEBE6 /* FeedInteator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F3873244548B200DCEBE6 /* FeedInteator.swift */; };
 		707F387624454C0200DCEBE6 /* FeedPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F387524454C0200DCEBE6 /* FeedPresenter.swift */; };
 		708014C0246AE51D00D917A9 /* ViewPostPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708014BF246AE51D00D917A9 /* ViewPostPresenter.swift */; };
+		7084A807247FF3EF0077284D /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7084A806247FF3EF0077284D /* AppCoordinator.swift */; };
+		7084A809247FFF7E0077284D /* SignUpCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7084A808247FFF7E0077284D /* SignUpCoordinator.swift */; };
+		7084A80B24800A350077284D /* SelectLanguagesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7084A80A24800A350077284D /* SelectLanguagesCoordinator.swift */; };
+		7084A80D24804C4F0077284D /* FeedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7084A80C24804C4F0077284D /* FeedCoordinator.swift */; };
+		7084A8102480561A0077284D /* CreatePostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7084A80F2480561A0077284D /* CreatePostCoordinator.swift */; };
+		7084A812248099850077284D /* ViewPostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7084A811248099850077284D /* ViewPostCoordinator.swift */; };
 		70867F97244608F50064482E /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70867F96244608F50064482E /* FeedViewController.swift */; };
 		70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */; };
 		70B6391E246792B300966A56 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391C246792B300966A56 /* LanguageCell.swift */; };
@@ -102,6 +108,12 @@
 		707F3873244548B200DCEBE6 /* FeedInteator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedInteator.swift; sourceTree = "<group>"; };
 		707F387524454C0200DCEBE6 /* FeedPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedPresenter.swift; sourceTree = "<group>"; };
 		708014BF246AE51D00D917A9 /* ViewPostPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostPresenter.swift; sourceTree = "<group>"; };
+		7084A806247FF3EF0077284D /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		7084A808247FFF7E0077284D /* SignUpCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpCoordinator.swift; sourceTree = "<group>"; };
+		7084A80A24800A350077284D /* SelectLanguagesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesCoordinator.swift; sourceTree = "<group>"; };
+		7084A80C24804C4F0077284D /* FeedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCoordinator.swift; sourceTree = "<group>"; };
+		7084A80F2480561A0077284D /* CreatePostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostCoordinator.swift; sourceTree = "<group>"; };
+		7084A811248099850077284D /* ViewPostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostCoordinator.swift; sourceTree = "<group>"; };
 		70867F96244608F50064482E /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
 		70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesProtocols.swift; sourceTree = "<group>"; };
 		70B6391C246792B300966A56 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
@@ -152,6 +164,7 @@
 		70698CE22468546200D2D744 /* CreatePost */ = {
 			isa = PBXGroup;
 			children = (
+				7084A80E248054DB0077284D /* Router */,
 				70698CEE24685AAC00D2D744 /* Interator */,
 				70698CEB246857FA00D2D744 /* Protocols */,
 				70698CE8246857C200D2D744 /* Presenter */,
@@ -249,6 +262,7 @@
 		707F384A2445226200DCEBE6 /* ProjetoIdiomas */ = {
 			isa = PBXGroup;
 			children = (
+				7084A805247FF3D60077284D /* AppRouter */,
 				70698CF52468C3AC00D2D744 /* Errors */,
 				70C1A056244D2341008F31DB /* Modules */,
 				70C1A052244D21CF008F31DB /* Entities */,
@@ -309,6 +323,7 @@
 		707F386524452D9C00DCEBE6 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				7084A80C24804C4F0077284D /* FeedCoordinator.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -319,6 +334,22 @@
 				707F386D2445349C00DCEBE6 /* FeedProtocols.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		7084A805247FF3D60077284D /* AppRouter */ = {
+			isa = PBXGroup;
+			children = (
+				7084A806247FF3EF0077284D /* AppCoordinator.swift */,
+			);
+			path = AppRouter;
+			sourceTree = "<group>";
+		};
+		7084A80E248054DB0077284D /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				7084A80F2480561A0077284D /* CreatePostCoordinator.swift */,
+			);
+			path = Router;
 			sourceTree = "<group>";
 		};
 		70C1A051244D21A5008F31DB /* DataManeger */ = {
@@ -405,6 +436,7 @@
 		70C1A05B244D2CCE008F31DB /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				7084A808247FFF7E0077284D /* SignUpCoordinator.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -450,6 +482,7 @@
 		70E71520246750E1008352E1 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				7084A80A24800A350077284D /* SelectLanguagesCoordinator.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -498,6 +531,7 @@
 		70FB8B462469BC3F0031DBFF /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				7084A811248099850077284D /* ViewPostCoordinator.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -671,6 +705,7 @@
 				707F38702445383100DCEBE6 /* Post.swift in Sources */,
 				707F38502445226200DCEBE6 /* ViewController.swift in Sources */,
 				70FB8B492469BC720031DBFF /* ViewPostProtocols.swift in Sources */,
+				7084A809247FFF7E0077284D /* SignUpCoordinator.swift in Sources */,
 				707F3874244548B200DCEBE6 /* FeedInteator.swift in Sources */,
 				70698CED2468592300D2D744 /* CreatePostProtocols.swift in Sources */,
 				70C1A066244D2FC9008F31DB /* SignUpProtocols.swift in Sources */,
@@ -678,6 +713,7 @@
 				70C1A06D244D4963008F31DB /* InputValidationServiceAPI.swift in Sources */,
 				70698CFC2468DDC800D2D744 /* ViewPostViewController.swift in Sources */,
 				704F87542447CDD500C1C4D4 /* FeedCell.swift in Sources */,
+				7084A807247FF3EF0077284D /* AppCoordinator.swift in Sources */,
 				70FB8B4024698E100031DBFF /* CommentCell.swift in Sources */,
 				7006EB7124678A1D0040F681 /* SelectLanguageViewController.swift in Sources */,
 				70FB8B3C24698A900031DBFF /* PostCell.swift in Sources */,
@@ -686,20 +722,24 @@
 				70C1A064244D2F74008F31DB /* SignUpInterator.swift in Sources */,
 				707F386E2445349C00DCEBE6 /* FeedProtocols.swift in Sources */,
 				70698CEA246857E600D2D744 /* CreatePostPresenter.swift in Sources */,
+				7084A812248099850077284D /* ViewPostCoordinator.swift in Sources */,
 				70FB8B432469915B0031DBFF /* Comment.swift in Sources */,
 				70C1A04F244D0364008F31DB /* FilterCell.swift in Sources */,
 				707F386A24452ECA00DCEBE6 /* StorageAPI.swift in Sources */,
 				70C1A05F244D2D02008F31DB /* SignUpViewController.swift in Sources */,
 				7014F1692451EEBD00C3B78B /* TextInputValidation.swift in Sources */,
 				70B6391E246792B300966A56 /* LanguageCell.swift in Sources */,
+				7084A8102480561A0077284D /* CreatePostCoordinator.swift in Sources */,
 				70867F97244608F50064482E /* FeedViewController.swift in Sources */,
 				70C1A06B244D33A0008F31DB /* TextFieldInterator.swift in Sources */,
 				707F3872244546D500DCEBE6 /* StateController.swift in Sources */,
 				70698CF72468C3C000D2D744 /* Error.swift in Sources */,
 				70698CE6246854B700D2D744 /* CreatePostViewController.swift in Sources */,
+				7084A80B24800A350077284D /* SelectLanguagesCoordinator.swift in Sources */,
 				70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */,
 				707F384E2445226200DCEBE6 /* SceneDelegate.swift in Sources */,
 				70698CF024685ABF00D2D744 /* CreatePostInterator.swift in Sources */,
+				7084A80D24804C4F0077284D /* FeedCoordinator.swift in Sources */,
 				707F386C24452FE000DCEBE6 /* Languages.swift in Sources */,
 				70C1A069244D3014008F31DB /* SignUpAPI.swift in Sources */,
 				7030EF54244BB78700093608 /* ImageLoader.swift in Sources */,

@@ -27,7 +27,7 @@ public class StoregeAPI{
     
     private var snapshots: [QueryDocumentSnapshot]? = nil
     
-    var currentUser: User!
+    var currentUser: User?
     func fechPosts(in languages: [Languages], from date: Date,completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
         
         let num  = 50/languages.count
@@ -50,6 +50,22 @@ public class StoregeAPI{
         
     }
     
+    func fechComments(in post: Post, completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
+        
+        let num = 20
+        
+        let documentRef = db.collection("Posts").document(post.id).collection("Comments")
+        
+        documentRef.limit(to: num).getDocuments { (snapshot, error) in
+            if error != nil {
+                print("Tratar error")
+            }else{
+                completion(snapshot?.documents)
+            }
+        }
+        
+    }
+    
     func createPost(title: String, text: String, language: Languages,completion: @escaping (Result<Void, CustomError>) -> Void){
         //let user  = Auth.auth().currentUser!
         
@@ -59,8 +75,7 @@ public class StoregeAPI{
             completion(.failure(.internetError))
             return
         }
-         let user = User(id: UUID().uuidString, name: "Joao", photoURL: "sadadad", score: 1, rating: 44, fluentLanguage: ["en","pt"], learningLanguage: ["fr","sp"], idPosts: ["dd","dsada"], idCommentedPosts: ["dd"])
-        
+        guard let user = currentUser else {return}
         
         let newPost = Post(id: UUID().uuidString, title: title, message: text, language: language.rawValue, upvote: 0, downvote: 0, publicationDate: Date(), author: user)
         
@@ -75,18 +90,35 @@ public class StoregeAPI{
     }
     
     
-    func createComment(text: String, postID: String, completion: @escaping (Result<Void, CustomError>) -> Void){
+    func createComment(text: String, postID: String, completion: @escaping (Result<Comment, CustomError>) -> Void){
         if !hasInternet(){
             completion(.failure(.internetError))
             return
         }
+        guard let user = currentUser else {return}
+
         
-        let comment = Comment(authorId: currentUser.id, upvote: 0, downvote: 0, commentText: text, id: UUID().uuidString, authorName: currentUser.name, authorPhotoURL: currentUser.photoURL)
+        let comment = Comment(authorId: user.id, upvote: 0, downvote: 0, commentText: text, id: UUID().uuidString, authorName: user.name, authorPhotoURL: user.photoURL)
         
             db.collection("Posts").document(postID).collection("Comments").addDocument(data: comment.dictionary) { (error) in
             if error != nil{
                 completion(.failure(.operationFailed))
             }else{
+                completion(.success(comment))
+            }
+        }
+
+    }
+    
+    func createUser(user: User, completion: @escaping (Result<Void, CustomError>) -> Void){
+        
+        
+       
+        db.collection("Users").document(user.id).setData(user.dictionary) { (error) in
+            if error != nil{
+                completion(.failure(.operationFailed))
+            }else{
+                self.currentUser = user
                 completion(.success(Void()))
             }
         }
@@ -107,14 +139,35 @@ public class StoregeAPI{
         }
         if let document = inDocument as? Comment, var num = document.dictionary[voteType] as? Int16{
             num += 1
-            documentRef.collection("Comments")
+            documentRef.collection("Comments").document(document.id)
             documentRef.setData([voteType : num], merge: true)
         }
         
+        
+        
+        
+    }
+    
+    func fetchUser(completion: @escaping ()->()){
+        if let user = Auth.auth().currentUser {
+            let documentRef = db.collection("Users")
             
-            
+            documentRef.whereField("id", isEqualTo: user.uid).getDocuments { [weak self] (query, error) in
+                if error != nil {
+                    print("error na hora de buscar o user")
+                    completion()
+                }else{
+                    if let document = query?.documents.first{
+                       let newUser = User(dictionary: document)
+                         self!.currentUser = newUser
+                    }
+                    completion()
+
+                }
+            }
             
         }
+    }
         
 //        guard document = inDocument as? (Post || Comment), var num = inDocument.dictionary[voteType] as? Int16 else {
 //            print("error")

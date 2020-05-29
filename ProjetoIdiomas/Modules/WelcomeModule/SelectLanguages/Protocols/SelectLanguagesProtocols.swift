@@ -27,3 +27,7 @@ public protocol SelectLanguagesViewToPresenter: class {
     
     
 }
+public protocol SelectLanguagesToPresenter{
+    func didSuccessfullyCreated(user: User)
+    func cancelUserCreation()
+}

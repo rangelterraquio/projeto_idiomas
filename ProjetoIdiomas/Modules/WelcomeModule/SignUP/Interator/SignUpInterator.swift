@@ -18,22 +18,25 @@ public class SignUpInterator{
     var textInterator: TextFieldInterator!
     var presenter: SignUpInteratorToPresenter? = nil
     
-    var signUpAPI = SignUpAPI()
+    var signUpAPI: SignUpAPI!
     
-    init(textInterator: TextFieldInterator) {
+    init(textInterator: TextFieldInterator, signUpAPI: SignUpAPI!) {
         self.textInterator = textInterator
+        self.signUpAPI = signUpAPI
         
-        
-        signUpAPI.signWithAppleSuccessful = { name, email in
+        signUpAPI.signWithAppleSuccessful = {[weak self] user in
             print("Login com sucesso , devo peform segue aqui")
+            self?.presenter?.userAuthenticated(user: self!.createUserFromFireBaseUser(from: user, name: nil))
+
         }
         
         signUpAPI.signWithAppleFailed = { [weak self] msg in
             self?.presenter?.userAuthenticationFailed(error: msg)
         }
         
-        signUpAPI.signWithGoogleSuccessful = {user in
+        signUpAPI.signWithGoogleSuccessful = { [weak self] user in
             print("Login com sucesso , devo peform segue aqui")
+            self?.presenter?.userAuthenticated(user: self!.createUserFromFireBaseUser(from: user, name: nil))
         }
         
         signUpAPI.signWithGoogleFailed = { [weak self] msg in
@@ -105,7 +108,7 @@ extension SignUpInterator: SignUpPresenterToInterator{
             case .failure(let error):
                 self?.presenter?.userAuthenticationFailed(error: error.errorMessage)
             case .success(let user):
-                let user = User(id: user.uid, name: name, photoURL: nil, score: 0, rating: 0, fluentLanguage: [String](), learningLanguage: [String](), idPosts: [String](), idCommentedPosts: [String]())
+                self?.presenter?.userAuthenticated(user: self!.createUserFromFireBaseUser(from: user,name: name))
                 // perform segue para as outras páginas
                 print("login com sucesso")
             }
@@ -124,7 +127,10 @@ extension SignUpInterator: SignUpPresenterToInterator{
         print("")
     }
    
-    
+    func createUserFromFireBaseUser(from user: FirebaseAuth.User, name: String?) -> User{
+        let newUser = User(id: user.uid, name:name ?? user.displayName!, photoURL: nil, score: 0, rating: 0, fluentLanguage: [String](), learningLanguage: [String](), idPosts: [String](), idCommentedPosts: [String]())
+        return newUser
+    }
     
 }
 

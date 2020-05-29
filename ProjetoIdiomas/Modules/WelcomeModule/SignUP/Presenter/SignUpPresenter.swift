@@ -13,7 +13,7 @@ class SignUpPresenter: SignUpViewToPresenter {
     
     var interator: SignUpPresenterToInterator? = nil
     var view: SignUpPresenterToView? = nil
-    
+    var router: SignUpRouterToPresenter? = nil
  
     
    func validateTextFields(name: String?, email: String?, password: String?) {
@@ -42,14 +42,13 @@ extension SignUpPresenter: SignUpInteratorToPresenter{
     
     
     
-    func userAuthenticated() {
-        print("kkfk")
-
-        return
+    func userAuthenticated(user: User) {
+        router?.didSuccessfullyLogin(user: user)
     }
     
     func userAuthenticationFailed(error msg: String) {
         view?.showAlertError(error: msg)
+//        router?.showErrorAlert(error: msg)
     }
     
     

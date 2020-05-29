@@ -31,5 +31,9 @@ public protocol CreatePostPresenterToInterator: class{
 public protocol CreatePostViewToPresenter: class {
     func createPost(title: String, text: String, language: Languages?) -> Void
     func validatePost(title: String, text: String, language: Languages?) -> Void
-    
+    func cancelCreatePost()
+}
+public protocol CreatePostPresenterToRouter: class{
+    func createPostFinished()
+    //func showErrorAlert(error: String)
 }

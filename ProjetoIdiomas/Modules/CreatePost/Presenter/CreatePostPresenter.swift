@@ -10,12 +10,10 @@ import Foundation
 
 class CreatePostPresenter: CreatePostViewToPresenter {
    
-    
-   
-    
+
     var interator: CreatePostPresenterToInterator!
     var view: CreatePostPresenterToView!
-    
+     var router: CreatePostPresenterToRouter? = nil
     func createPost(title: String, text: String, language: Languages?) {
         interator.createPost(title: title, text: text, language: language!)
     }
@@ -33,12 +31,15 @@ extension CreatePostPresenter: CreatePostInteratorToPresenter{
    
     func createPostSuccessefull() {
         //Chamar o router
-        print("Deu bom")
+        router?.createPostFinished()
     }
     
     func createPostFailed(error msg: String) {
         view.showAlertError(error: msg)
     }
     
+    func cancelCreatePost() {
+        router?.createPostFinished()
+    }
     
 }

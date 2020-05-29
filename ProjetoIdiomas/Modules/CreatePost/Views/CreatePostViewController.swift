@@ -45,6 +45,7 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
     
     @IBAction func cancel(_ sender: Any) {
         //router vai entrar aqui
+        presenter.cancelCreatePost()
     }
     
     @IBAction func selectLanguage(_ sender: Any) {
@@ -92,6 +93,8 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
         blurEffectView!.alpha = 0.5
         blurEffectView!.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         loadingIndicator = UIActivityIndicatorView(style: .large)
+        loadingIndicator?.layer.zPosition = 4
+        loadingIndicator?.color = .blue
         self.view.addSubview(blurEffectView!)
         self.view.addSubview(loadingIndicator!)
         loadingIndicator!.center = self.view.center

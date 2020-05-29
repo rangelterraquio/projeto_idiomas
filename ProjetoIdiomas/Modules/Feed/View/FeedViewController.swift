@@ -64,6 +64,9 @@ class FeedViewController: UIViewController {
 
     }
     
+    @IBAction func addPost(_ sender: Any) {
+        presenter?.goToAddPostView()
+    }
 }
 
 

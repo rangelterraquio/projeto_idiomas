@@ -11,7 +11,7 @@ import UIKit
 //  var presenter: FeedInteratorToPresenter
 public protocol SignUpInteratorToPresenter: class{
     
-    func userAuthenticated() -> Void
+    func userAuthenticated(user: User) -> Void
     func userAuthenticationFailed(error msg: String) -> Void
     func validateTextFieldFailed(error msg: String) -> Void
     func validateTextsuccessful() -> Void
@@ -37,3 +37,8 @@ public protocol SignUpViewToPresenter: class {
     func authenticateWithApple(with view: UIViewController)
 }
 
+public protocol SignUpRouterToPresenter{
+    func didSuccessfullyLogin(user: User)
+    func chooseSignInWithEmail()
+    func showErrorAlert(error: String)
+}

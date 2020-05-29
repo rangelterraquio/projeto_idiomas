@@ -14,20 +14,20 @@ class ViewPostPresenter: ViewPostViewToPresenter{
     
     
     
-    
+    var router: ViewPostPresenterToRouter? = nil
     var interator: ViewPostPresenterToInterator? = nil
     var view: ViewPostPresenterToView? = nil
     
-    func createComent(comment: String) {
-        interator?.createComent(comment: comment)
+    func createComent(comment: String, postID: String) {
+        interator?.createComent(comment: comment, postID: postID)
     }
     
     func requestProfileImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID? {
-         return UUID()
+        interator?.requestImage(from: url, completion: completion)
     }
     
     func cancelImageRequest(uuid token: UUID) {
-         print("")
+        interator?.cancelImageRequest(uuid: token)
     }
     
     func validadeComment(text: String?) {
@@ -38,17 +38,21 @@ class ViewPostPresenter: ViewPostViewToPresenter{
     func updateVotes<T>(from: String, inDocument: T) where T : DocumentSerializable {
         interator?.requestUpdateVotes(from: from, inDocument: inDocument)
     }
+    
+    func finishViewPostSession() {
+        router?.finishedViewPostOperation()
+    }
 
     
 }
 
 extension ViewPostPresenter: ViewPostInteratorToPresenter{
-    func createPostSuccessefull() {
-        print("")
+    func createCommentSuccessefull(comment: Comment) {
+        view?.commentCreated(comment: comment)
     }
     
-    func feactPostFailed(error msg: String) {
-        print("")
+    func createCommentFailed(error msg: String) {
+        view?.showAlertError(error: msg)
     }
     
     func commentValidated(isValid: Bool)-> Void{

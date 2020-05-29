@@ -23,7 +23,7 @@ public class SignUpAPI: NSObject{
     var currentNonce: String?
     
     ///Sign with apple completions
-    var signWithAppleSuccessful: (String, String) -> () = {_ , _ in}
+    var signWithAppleSuccessful: (FirebaseAuth.User) -> () = { _ in}
     var signWithAppleFailed: (String) -> () = {_ in}
     
     
@@ -54,17 +54,10 @@ public class SignUpAPI: NSObject{
     
     
     func userHasAValidSession() -> Bool{
-        if Auth.auth().currentUser != nil {
-            print("Esta logado o fdp")
-            return true
-        }else{
-             print("ainda não está")
-            return false
-        }
+        return Auth.auth().currentUser != nil
     }
     
     func signOut() {
-        
         // Check provider ID to verify that the user has signed in with Apple
         if let providerId = Auth.auth().currentUser?.providerData.first?.providerID,
             providerId == "apple.com" {
@@ -78,6 +71,14 @@ public class SignUpAPI: NSObject{
             print(error.localizedDescription)
         }
        
+    }
+    
+    
+    func deleteCurrentUser(){
+        if let user = Auth.auth().currentUser{
+            user.delete(completion: nil)
+        }
+        
     }
 }
 
@@ -211,9 +212,9 @@ extension SignUpAPI:  ASAuthorizationControllerDelegate{
                             if let error = error {
                                 print(error.localizedDescription)
                             } else {
-                                
+                               
                                 ///logion sucesseful
-                                self.signWithAppleSuccessful(changeRequest?.displayName ?? "",appleIDCredential.email ?? "")
+                                self.signWithAppleSuccessful(authResult!.user)
                                 
                             }
                         })
@@ -311,7 +312,6 @@ extension SignUpAPI: GIDSignInDelegate {
                 self.signWithGoogleFailed(AuthErrorCode(rawValue: authError.code)?.errorMessage ?? "Validation Failed")
                 return
             }
-            
             self.signWithGoogleSuccessful(authResult!.user)
             
             
