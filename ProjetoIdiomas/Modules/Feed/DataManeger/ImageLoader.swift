@@ -59,29 +59,36 @@ class ImageLoader{
     private var runningRequests = [UUID: URLSessionDataTask]()
     
     
-    func loadImgage(url: String, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID?{
+    func loadImgage(url: String?, completion: @escaping (Result<UIImage, CustomError>) -> Void) -> UUID?{
+       
+        guard let newURL = url else {
+            completion(.failure(.operationFailed))
+            return nil
+        }
         
-        if let imageCache = imageCache.object(forKey: url as NSString) as? UIImage {
+        
+        if let imageCache = imageCache.object(forKey: newURL as NSString) as? UIImage {
             completion(.success(imageCache))
             return nil
         }
         
         let uuid = UUID()
         
-        let urlPath = URL(string: url)
+        let urlPath = URL(string: newURL)
         
         let taks = URLSession.shared.dataTask(with: urlPath!) { data, response, error in
-            
             //aqui eu garanto que vou remover a task do meu array antes dela terminar
             defer {self.runningRequests.removeValue(forKey: uuid)}
             
             if error != nil {
-                print("deu ruim cuusao")
-                completion(.failure(error!))
+                completion(.failure(.internetError))
                 return
             }
-            guard let data = data, let image = UIImage(data: data) else {return}
-            self.imageCache.setObject(image, forKey: url as NSString)
+            guard let data = data, let image = UIImage(data: data) else {
+                completion(.failure(.operationFailed))
+                return
+            }
+            self.imageCache.setObject(image, forKey: newURL as NSString)
             completion(.success(image))
             
         }

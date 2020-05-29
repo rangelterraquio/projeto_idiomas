@@ -16,9 +16,9 @@ public protocol FeedInteratorToPresenter: class {
 }
 public protocol FeedPresenterToInterator: class {
     func fechePosts(in languages: [Languages], from date: Date)
-    func requestImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID?
+    func requestImage(from url: String?, completion: @escaping (Result<UIImage, CustomError>) -> Void) -> UUID?
     func cancelImageRequest(uuid token: UUID)
-    func requestUpdateVotes<T: DocumentSerializable>(from: String, inDocument: T)
+    func requestUpdateVotes<T: DocumentSerializable>(from: String, inDocument: T, with comment: Comment?)
 
 }
 public protocol FeedPresenterToView: class{
@@ -28,15 +28,16 @@ public protocol FeedPresenterToView: class{
 
 public protocol FeedViewToPresenter: class{
     func updateFeed(in languages: [Languages], from date: Date)
-    func requestProfileImage(from url: String, completion:  @escaping  (Result<UIImage, Error>) -> Void) -> UUID?
+    func requestProfileImage(from url: String?, completion:  @escaping  (Result<UIImage, CustomError>) -> Void) -> UUID?
     func cancelImageRequest(uuid token: UUID)
-    func updateVotes<T: DocumentSerializable>(from: String, inDocument: T)
+    func updateVotes<T: DocumentSerializable>(from: String, inDocument: T, with comment: Comment?)
     func goToAddPostView()
+    func goToViewPostDetails(post: Post,imageProfile: UIImage?)
 }
 
 public protocol FeedPresenterToRouter{
     func addPostView()
-    func viewPostWithDetails(post: Post)
+    func viewPostWithDetails(post: Post,imageProfile: UIImage?)
     //func showErrorAlert(error: String)
 }
 

@@ -27,7 +27,7 @@ public struct Comment{
             "upvote" : upvote as Int32,
             "downvote" : downvote as Int32,
             "commentText" : commentText as String,
-            
+            "authorName" : authorName as String
         ]
     }
     
@@ -49,15 +49,15 @@ extension Comment: DocumentSerializable{
 //              let fluentLanguage = snap["fluentLanguage"] as? [String]
 //              else {return nil}
     public init?(dictionary snapshot: QueryDocumentSnapshot) {
-        let data = snapshot.data()
-        guard let snap = data["comment"] as? [String : Any],
-            let authorId = snap["authorId"] as? String,
+        let snap = snapshot.data()
+        //guard let snap = data["comment"] as? [String : Any],
+        guard let authorId = snap["authorId"] as? String,
             let upvote = snap["upvote"] as? Int32,
             let downvote = snap["downvote"] as? Int32,
             let commentText = snap["commentText"] as? String,
-            let authorName = snap["authorName"] as? String,
-            let authorPhotoURL = snap["authorPhotoURL"] as? String
+            let authorName = snap["authorName"] as? String
             else{return nil}
+            let authorPhotoURL = snap["authorPhotoURL"] as? String
         self.init(authorId: authorId, upvote: upvote, downvote: downvote, commentText: commentText, id: snapshot.documentID,authorName: authorName, authorPhotoURL: authorPhotoURL)
     }
     

@@ -14,6 +14,8 @@ class ViewPostPresenter: ViewPostViewToPresenter{
     
     
     
+    
+    
     var router: ViewPostPresenterToRouter? = nil
     var interator: ViewPostPresenterToInterator? = nil
     var view: ViewPostPresenterToView? = nil
@@ -22,7 +24,7 @@ class ViewPostPresenter: ViewPostViewToPresenter{
         interator?.createComent(comment: comment, postID: postID)
     }
     
-    func requestProfileImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID? {
+    func requestProfileImage(from url: String?, completion: @escaping (Result<UIImage, CustomError>) -> Void) -> UUID? {
         interator?.requestImage(from: url, completion: completion)
     }
     
@@ -35,18 +37,36 @@ class ViewPostPresenter: ViewPostViewToPresenter{
     }
     
    
-    func updateVotes<T>(from: String, inDocument: T) where T : DocumentSerializable {
-        interator?.requestUpdateVotes(from: from, inDocument: inDocument)
+    func updateVotes<T>(from: String, inDocument: T, with comment: Comment?) where T : DocumentSerializable {
+        interator?.requestUpdateVotes(from: from, inDocument: inDocument, with: comment)
     }
     
     func finishViewPostSession() {
         router?.finishedViewPostOperation()
     }
 
+    func updateFeed(from post: Post, startingBy votesNum: Int32) {
+        interator?.fetchCommments(in: post, startingBy: votesNum)
+    }
     
 }
 
 extension ViewPostPresenter: ViewPostInteratorToPresenter{
+    
+    
+    
+    
+    
+    
+    func fetchCommentSuccessefull(comments: [Comment]) {
+        view?.showComments(comments: comments)
+    }
+    
+    func fetcheCommentFailed(error msg: String) {
+        ///no futuro posso tratar algum erro aqui
+        print("Post sem comentários")
+    }
+    
     func createCommentSuccessefull(comment: Comment) {
         view?.commentCreated(comment: comment)
     }

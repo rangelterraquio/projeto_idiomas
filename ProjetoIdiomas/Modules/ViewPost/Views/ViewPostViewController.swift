@@ -11,6 +11,8 @@ import UIKit
 class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     
     
+    
+    
    
     
 
@@ -18,7 +20,7 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     @IBOutlet weak var commentTextField: UITextField!
     
     var post: Post!
-    var comments: [Comment]!
+    var comments: [Comment] = [Comment]()
     
     var presenter: ViewPostViewToPresenter? = nil
 
@@ -45,19 +47,26 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
         selector: #selector(self.keyboardNotification(notification:)),
         name: UIResponder.keyboardWillChangeFrameNotification,
         object: nil)
+        
+        presenter?.updateFeed(from: post, startingBy: 0)
     
     }
     @IBAction func goBackToFeed(_ sender: Any) {
-        
+        presenter?.finishViewPostSession()
     }
     
     @IBAction func sendComment(_ sender: Any) {
-        presenter?.createComent(comment: commentTextField.text!, postID: post.id)
+        presenter?.validadeComment(text: commentTextField.text ?? nil)
     }
     
     
     func commentValidated(isValid: Bool) {
-        commentButton.isEnabled = isValid
+        if isValid{
+             presenter?.createComent(comment: commentTextField.text!, postID: post.id)
+            commentTextField.text = ""
+        }
+       
+        //commentButton.isEnabled = isValid
     }
        
     func showAlertError(error msg: String) {
@@ -69,6 +78,11 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     
     func commentCreated(comment: Comment) {
         comments.append(comment)
+        postTableView.reloadData()
+    }
+    
+    func showComments(comments: [Comment]) {
+        self.comments = comments
         postTableView.reloadData()
     }
     
@@ -87,33 +101,32 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
                 if let image = imageAuthor{
                     postCell.populateImage(image: image)
                 }
-                postCell.upvoted = {self.presenter?.updateVotes(from: "upvote", inDocument: self.post)}
-                postCell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: self.post)}
+                postCell.upvoted = {self.presenter?.updateVotes(from: "upvote", inDocument: self.post, with: nil)}
+                postCell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: self.post, with: nil)}
                 return postCell
             }
         }else{
             if let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as? CommentCell{
                 let comment = comments[indexPath.row-1]
                 commentCell.poulate(from: comment)
-                if let url = comment.authorPhotoURL{
                     
-                    let uuid = presenter?.requestProfileImage(from: url, completion: { result in
-                        do{
-                            let image = try result.get()
-                            commentCell.populateImage(image: image)
-                        }catch{
-                            commentCell.populateImage(image: UIImage(named: "blankProfile")!)
-                            print(error as Any)
-                        }
-                    })
-                    commentCell.onReuse = {
-                        if let uuid = uuid{
-                            self.presenter?.cancelImageRequest(uuid: uuid)
-                        }
+                let uuid = presenter?.requestProfileImage(from: comment.authorPhotoURL, completion: { result in
+                    do{
+                        let image = try result.get()
+                        commentCell.populateImage(image: image)
+                    }catch{
+                        commentCell.populateImage(image: UIImage(named: "blankProfile")!)
+                        print(error as Any)
+                    }
+                })
+                commentCell.onReuse = {
+                    if let uuid = uuid{
+                        self.presenter?.cancelImageRequest(uuid: uuid)
                     }
                 }
-                commentCell.upvoted = {self.presenter?.updateVotes(from: "upvote", inDocument: comment)}
-                commentCell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: comment)}
+                
+                commentCell.upvoted = {self.presenter?.updateVotes(from: "upvote", inDocument: self.post, with: comment)}
+                commentCell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: self.post, with: comment)}
                 return commentCell
             
             }
@@ -121,10 +134,27 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
         return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+            let lastVisibleIndexPath = tableView.numberOfRows(inSection: 0)
+               print(lastVisibleIndexPath)
+           
+           ///aqui eu faço a requisição de mais posts, tenho que testar dps
+           if indexPath.row == lastVisibleIndexPath-1, !comments.isEmpty {
+//               presenter?.updateFeed(in: [.english], from: comments.last!.publicationDate)
+            guard let num = comments.last?.upvote else{return}
+//            presenter?.updateFeed(from: post, startingBy: num)
+           }
+           
+       }
     
     
-    
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == 0{
+            return 300
+        }else{
+            return 200
+        }
+    }
     
     private func setupCommentCell(with comment:String) {
         
@@ -147,6 +177,7 @@ extension ViewPostViewController: UITextFieldDelegate{
     func textFieldDidBeginEditing(_ textField: UITextField) {
         presenter?.validadeComment(text: textField.text)
     }
+    
     
     
     @objc func keyboardNotification(notification: NSNotification) {

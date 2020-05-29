@@ -50,15 +50,17 @@ public class StoregeAPI{
         
     }
     
-    func fechComments(in post: Post, completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
+    func fechComments(in post: Post,startingBy numOfVotes:Int32, completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
         
         let num = 20
         
         let documentRef = db.collection("Posts").document(post.id).collection("Comments")
         
-        documentRef.limit(to: num).getDocuments { (snapshot, error) in
+        
+        documentRef.order(by: "upvote", descending: true).start(at: [numOfVotes]).limit(to: num).getDocuments{ (snapshot, error) in
             if error != nil {
                 print("Tratar error")
+                completion(nil)
             }else{
                 completion(snapshot?.documents)
             }
@@ -129,18 +131,19 @@ public class StoregeAPI{
         return Reachability.isConnectedToNetwork()
     }
     
-    func updateVotes<T : DocumentSerializable >(from voteType: String, inDocument: T){
+    func updateVotes<T : DocumentSerializable >(from voteType: String, inDocument: T, with comment: Comment?){
         //quando a criação de post tiver ok deixa mudar o id
         let documentRef = db.collection("Posts").document(inDocument.id)
         
-        if let document = inDocument as? Post, var num = document.dictionary[voteType] as? Int16 {
+        if let document = inDocument as? Post, var num = document.dictionary[voteType] as? Int32 {
             num += 1
             documentRef.setData([voteType : num], merge: true)
         }
-        if let document = inDocument as? Comment, var num = document.dictionary[voteType] as? Int16{
+        if let comment = comment, var num = comment.dictionary[voteType] as? Int32{
             num += 1
-            documentRef.collection("Comments").document(document.id)
-            documentRef.setData([voteType : num], merge: true)
+           let newDoc = documentRef.collection("Comments").document(comment.id)
+            newDoc.setData([voteType : num], merge: true)
+            
         }
         
         

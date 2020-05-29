@@ -27,7 +27,7 @@ class ViewPostCoordinator: Coordinator {
     }
     
     
-    func start(post: Post){
+    func start(post: Post,imageProfile: UIImage?){
         let vc = ViewPostViewController(nibName: "ViewPostViewController", bundle: nil)
         let interator = ViewPostInterator(stateController: stateManeger)
         let presenter = ViewPostPresenter()
@@ -37,6 +37,7 @@ class ViewPostCoordinator: Coordinator {
         interator.presenter = presenter
         presenter.router = self
         vc.presenter = presenter
+        vc.imageAuthor = imageProfile
         
        
         vc.modalPresentationStyle = .fullScreen //modo de apresentação

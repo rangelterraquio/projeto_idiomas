@@ -25,6 +25,9 @@ class CommentCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        commentIndicator.startAnimating()
+        commentIndicator.hidesWhenStopped = true
+        imageIndicator.hidesWhenStopped = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,7 +38,7 @@ class CommentCell: UITableViewCell {
     @IBAction func upVote(_ sender: Any) {
         upvoted()
         ///atualizo label dos numeros
-        if let tex = upVoteLabel.text, let num = Int16(tex){
+        if let tex = upVoteLabel.text, let num = Int32(tex){
             upVoteLabel.text = "\(num + 1)"
         }
     }
@@ -43,7 +46,7 @@ class CommentCell: UITableViewCell {
     @IBAction func downVote(_ sender: Any) {
         downVoted()
         ///atualizo label dos numeros
-        if let tex = downVoteLabel.text, let num = Int16(tex){
+        if let tex = downVoteLabel.text, let num = Int32(tex){
             downVoteLabel.text = "\(num + 1)"
         }
     }
@@ -53,6 +56,8 @@ class CommentCell: UITableViewCell {
         commentText.text = comment.commentText
         upVoteLabel.text = "\(comment.upvote)"
         downVoteLabel.text = "\(comment.downvote)"
+        commentIndicator.stopAnimating()
+        
     }
     
     

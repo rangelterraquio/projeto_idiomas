@@ -65,7 +65,7 @@
 		70FB8B3C24698A900031DBFF /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FB8B3A24698A900031DBFF /* PostCell.swift */; };
 		70FB8B3D24698A900031DBFF /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70FB8B3B24698A900031DBFF /* PostCell.xib */; };
 		70FB8B4024698E100031DBFF /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FB8B3E24698E100031DBFF /* CommentCell.swift */; };
-		70FB8B4124698E100031DBFF /* CemmentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70FB8B3F24698E100031DBFF /* CemmentCell.xib */; };
+		70FB8B4124698E100031DBFF /* CommentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70FB8B3F24698E100031DBFF /* CommentCell.xib */; };
 		70FB8B432469915B0031DBFF /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FB8B422469915B0031DBFF /* Comment.swift */; };
 		70FB8B492469BC720031DBFF /* ViewPostProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FB8B482469BC720031DBFF /* ViewPostProtocols.swift */; };
 		884CB0A1B1AC0B91E8E44827 /* Pods_ProjetoIdiomas.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 79ECD0B6CD99EC7D405938E3 /* Pods_ProjetoIdiomas.framework */; };
@@ -132,7 +132,7 @@
 		70FB8B3A24698A900031DBFF /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		70FB8B3B24698A900031DBFF /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		70FB8B3E24698E100031DBFF /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
-		70FB8B3F24698E100031DBFF /* CemmentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CemmentCell.xib; sourceTree = "<group>"; };
+		70FB8B3F24698E100031DBFF /* CommentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CommentCell.xib; sourceTree = "<group>"; };
 		70FB8B422469915B0031DBFF /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		70FB8B482469BC720031DBFF /* ViewPostProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostProtocols.swift; sourceTree = "<group>"; };
 		71029F17EEC3D02A947AEDF6 /* Pods-ProjetoIdiomas.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProjetoIdiomas.debug.xcconfig"; path = "Target Support Files/Pods-ProjetoIdiomas/Pods-ProjetoIdiomas.debug.xcconfig"; sourceTree = "<group>"; };
@@ -236,7 +236,7 @@
 				70FB8B3A24698A900031DBFF /* PostCell.swift */,
 				70FB8B3B24698A900031DBFF /* PostCell.xib */,
 				70FB8B3E24698E100031DBFF /* CommentCell.swift */,
-				70FB8B3F24698E100031DBFF /* CemmentCell.xib */,
+				70FB8B3F24698E100031DBFF /* CommentCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -623,7 +623,7 @@
 				70B6391F246792B300966A56 /* LanguageCell.xib in Resources */,
 				7006EB7224678A1D0040F681 /* SelectLanguageViewController.xib in Resources */,
 				707F38532445226200DCEBE6 /* Main.storyboard in Resources */,
-				70FB8B4124698E100031DBFF /* CemmentCell.xib in Resources */,
+				70FB8B4124698E100031DBFF /* CommentCell.xib in Resources */,
 				70698CF4246860AA00D2D744 /* LanguagePopoverController.xib in Resources */,
 				70C1A060244D2D02008F31DB /* SignUpViewController.xib in Resources */,
 				70C1A050244D0364008F31DB /* FilterCell.xib in Resources */,

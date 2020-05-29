@@ -12,6 +12,16 @@ class ViewPostInterator: ViewPostPresenterToInterator {
    
     var stateController: StateController!
     var presenter: ViewPostInteratorToPresenter? = nil
+    
+    var comments: [Comment] = [Comment](){
+        didSet{
+            if comments.isEmpty{
+                presenter?.fetcheCommentFailed(error: "Não tem comentários")
+            }else{
+                presenter?.fetchCommentSuccessefull(comments: comments)
+            }
+        }
+    }
     init(stateController: StateController) {
         self.stateController = stateController
         
@@ -38,7 +48,25 @@ class ViewPostInterator: ViewPostPresenterToInterator {
     }
     
     
-    public func requestImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID? {
+    func fetchCommments(in post: Post, startingBy num: Int32){
+        
+        stateController.fetchComments(in: post, startingBy: num) { (snapshotQuery) in
+            
+            guard let snapshot = snapshotQuery else {return}
+            var data: [Comment] = [Comment]()
+            
+            for snap in snapshot{
+                if let comment = Comment(dictionary: snap){
+                    data.append(comment)
+                }
+            }
+            self.comments = data
+            
+        }
+    }
+    
+    
+    public func requestImage(from url: String?, completion: @escaping (Result<UIImage, CustomError>) -> Void) -> UUID? {
         stateController.imageLoader.loadImgage(url: url, completion: completion)
     }
     
@@ -47,8 +75,8 @@ class ViewPostInterator: ViewPostPresenterToInterator {
     }
     
     
-    public func requestUpdateVotes<T : DocumentSerializable >(from: String, inDocument: T) {
-        stateController.updateVotes(from: from, inDocument: inDocument)
+    public func requestUpdateVotes<T : DocumentSerializable >(from: String, inDocument: T, with comment: Comment?) {
+        stateController.updateVotes(from: from, inDocument: inDocument, with: comment)
     }
     
     func validadeComment(text: String?) {

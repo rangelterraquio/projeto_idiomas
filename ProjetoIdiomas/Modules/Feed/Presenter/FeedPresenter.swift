@@ -10,13 +10,7 @@ import Foundation
 import UIKit
 
 public class FeedPresenter : FeedViewToPresenter{
-   
-    
-    
-    
-    
-    
-    
+
     
     
     var view: FeedPresenterToView? = nil
@@ -33,7 +27,7 @@ public class FeedPresenter : FeedViewToPresenter{
     
     
     
-    public func requestProfileImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID? {
+    public func requestProfileImage(from url: String?, completion: @escaping (Result<UIImage, CustomError>) -> Void) -> UUID? {
         interator?.requestImage(from: url, completion: completion)
     }
     
@@ -41,14 +35,19 @@ public class FeedPresenter : FeedViewToPresenter{
         interator?.cancelImageRequest(uuid: token)
     }
     
-    public func updateVotes<T: DocumentSerializable>(from: String, inDocument: T) {
-        interator?.requestUpdateVotes(from: from,inDocument: inDocument)
+    public func updateVotes<T: DocumentSerializable>(from: String, inDocument: T, with comment: Comment?) {
+        interator?.requestUpdateVotes(from: from,inDocument: inDocument, with: comment)
     }
     
     public func goToAddPostView() {
         router?.addPostView()
     }
-          
+    
+    public func goToViewPostDetails(post: Post,imageProfile: UIImage?) {
+        router?.viewPostWithDetails(post: post, imageProfile: imageProfile)
+    }
+    
+             
 }
 
 

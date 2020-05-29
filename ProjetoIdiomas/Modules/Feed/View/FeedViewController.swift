@@ -110,31 +110,35 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
             let post = posts[indexPath.row-1] ///subtraio 1 por causa da celula statica
             print(post.publicationDate)
             cell.populate(post: post)
-            if let url = post.author.photoURL{
-                let uuid = presenter?.requestProfileImage(from: url, completion: { (result) in
-                    do{
-                        let image = try result.get()
-                        cell.populateImage(image: image)
-                    }catch{
-                        cell.populateImage(image: UIImage(named: "blankProfile")!)
-                        print(error as Any)
-                    }
-                })
-                cell.onReuse = {
-                    if let uuid = uuid{
-                        self.presenter?.cancelImageRequest(uuid: uuid)
-                    }
+            
+            let uuid = presenter?.requestProfileImage(from: post.author.photoURL, completion: { (result) in
+                do{
+                    let image = try result.get()
+                    cell.populateImage(image: image)
+                }catch{
+                    print(error as Any)
+                    cell.populateImage(image: UIImage(named: "blankProfile")!)
+                }
+            })
+            cell.onReuse = {
+                if let uuid = uuid{
+                    self.presenter?.cancelImageRequest(uuid: uuid)
                 }
             }
             
-            cell.upvoted = { self.presenter?.updateVotes(from: "upvote", inDocument: post)}
-            cell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: post)}
+            
+            cell.upvoted = { self.presenter?.updateVotes(from: "upvote", inDocument: post, with: nil)}
+            cell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: post, with: nil)}
             return cell
         }
         
         fatalError("deu ruim com a cell")
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cell =  tableView.cellForRow(at: indexPath) as?  FeedCell else {return}
+        presenter?.goToViewPostDetails(post: posts[indexPath.row-1], imageProfile: cell.userPictureView.image)
+    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0{

@@ -29,8 +29,12 @@ public class StateController{
         storage.fechPosts(in: languages, from: date, completion: completion)
     }
     
-    func updateVotes<T : DocumentSerializable >(from voteType: String, inDocument: T){
-        storage.updateVotes(from: voteType, inDocument: inDocument)
+    func fetchComments(in post: Post,startingBy num: Int32, completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
+        storage.fechComments(in: post, startingBy: num, completion: completion)
+    }
+    
+    func updateVotes<T : DocumentSerializable >(from voteType: String, inDocument: T,  with comment: Comment?){
+        storage.updateVotes(from: voteType, inDocument: inDocument, with: comment)
     }
     
     

@@ -53,7 +53,7 @@ public class FeedInterator: FeedPresenterToInterator{
 
     }
  
-    public func requestImage(from url: String, completion: @escaping (Result<UIImage, Error>) -> Void) -> UUID? {
+    public func requestImage(from url: String?, completion: @escaping (Result<UIImage, CustomError>) -> Void) -> UUID? {
         stateController.imageLoader.loadImgage(url: url, completion: completion)
     }
     
@@ -62,8 +62,8 @@ public class FeedInterator: FeedPresenterToInterator{
     }
     
     
-    public func requestUpdateVotes<T : DocumentSerializable >(from: String, inDocument: T) {
-        stateController.updateVotes(from: from, inDocument: inDocument)
+    public func requestUpdateVotes<T : DocumentSerializable >(from: String, inDocument: T, with comment: Comment?) {
+        stateController.updateVotes(from: from, inDocument: inDocument, with: comment)
     }
     
 }

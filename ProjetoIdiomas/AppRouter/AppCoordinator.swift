@@ -70,7 +70,11 @@ final class AppCoordinator: Coordinator{
         childCoordinators.append(coordinator)
     }
     
-    func showViewPostInDetails(post: Post){
+    func showViewPostInDetails(post: Post,imageProfile: UIImage?){
+         let coordinator = ViewPostCoordinator(stateController: stateManeger, navitagtion: navigationController)
+        coordinator.delegate = self
+        coordinator.start(post: post,imageProfile: imageProfile)
+        childCoordinators.append(coordinator)
         
     }
 }
@@ -143,12 +147,14 @@ extension AppCoordinator: CreatePostDelegate{
 
 //MARK: -> Create Post Delegate
 extension AppCoordinator: FeedCoordinatorDelegate{
+  
+    
     func chooseCreatePostView() {
         showCreatePost()
     }
     
-    func chooseViewPostDetails(post: Post) {
-        showViewPostInDetails(post: post)
+    func chooseViewPostDetails(post: Post,imageProfile: UIImage?) {
+        showViewPostInDetails(post: post,imageProfile: imageProfile)
     }
     
     
