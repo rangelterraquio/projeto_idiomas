@@ -10,24 +10,24 @@ import Foundation
 import UIKit
 public protocol FeedCoordinatorDelegate: class{
     func chooseCreatePostView()
-    func chooseViewPostDetails(post: Post,imageProfile: UIImage?)
+    func chooseViewPostDetails(post: Post,imageProfile: UIImage?,vc: UIViewController)
 }
 
 class FeedCoordinator: Coordinator {
     
     
     fileprivate var stateManeger: StateController!
-    fileprivate var navigationController: UINavigationController!
+    fileprivate var tabBarController: UITabBarController!
     
     weak var delegate: FeedCoordinatorDelegate? = nil
     
-    init(stateController: StateController, navitagtion: UINavigationController) {
-        self.navigationController = navitagtion
+    init(stateController: StateController, tabBarController: UITabBarController) {
+        self.tabBarController = tabBarController
         self.stateManeger = stateController
     }
     
     
-    func start(){
+    func start() -> UIViewController{
         let interator = FeedInterator(stateController: stateManeger)
         let presenter = FeedPresenter()
         presenter.interator = interator
@@ -38,14 +38,7 @@ class FeedCoordinator: Coordinator {
         presenter.view = vc
         presenter.router = self
         
-        guard let topViewController = navigationController.topViewController else {
-            return navigationController.setViewControllers([vc], animated: false)
-        }
-        
-        UIView.transition(from:topViewController.view, to: vc.view, duration: 0.50, options: .transitionCrossDissolve) {[unowned self] (_) in
-            self.navigationController.setViewControllers([vc], animated: false)
-           
-        }
+        return vc
         
     }
     
@@ -62,9 +55,9 @@ extension FeedCoordinator: FeedPresenterToRouter{
         delegate?.chooseCreatePostView()
     }
     
-    func viewPostWithDetails(post: Post,imageProfile: UIImage?) {
+    func viewPostWithDetails(post: Post,imageProfile: UIImage?,vc: UIViewController) {
         // criar o coordinator do
-        delegate?.chooseViewPostDetails(post: post, imageProfile: imageProfile)
+        delegate?.chooseViewPostDetails(post: post, imageProfile: imageProfile, vc: vc)
     }
     
     
@@ -72,3 +65,12 @@ extension FeedCoordinator: FeedPresenterToRouter{
 
 
 
+extension FeedCoordinator: UITabBarDelegate{
+   
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if item.tag == 1{
+            delegate?.chooseCreatePostView()
+        }
+    }
+    
+}

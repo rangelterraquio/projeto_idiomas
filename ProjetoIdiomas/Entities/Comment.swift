@@ -18,7 +18,8 @@ public struct Comment{
     var downvote: Int32
     var commentText: String
     public var id: String
-    
+    var fcmToken: String
+
     
     var dictionary : [String : Any]{
         return [
@@ -27,11 +28,12 @@ public struct Comment{
             "upvote" : upvote as Int32,
             "downvote" : downvote as Int32,
             "commentText" : commentText as String,
-            "authorName" : authorName as String
+            "authorName" : authorName as String,
+            "fcmToken" : fcmToken
         ]
     }
     
-    init(authorId: String,upvote: Int32, downvote: Int32, commentText: String, id: String, authorName: String, authorPhotoURL: String?){
+    init(authorId: String,upvote: Int32, downvote: Int32, commentText: String, id: String, authorName: String, authorPhotoURL: String?,fcmToken: String){
         self.authorId = authorId
         self.upvote = upvote
         self.downvote = downvote
@@ -39,6 +41,7 @@ public struct Comment{
         self.authorName = authorName
         self.authorPhotoURL = authorPhotoURL
         self.id = id
+        self.fcmToken = fcmToken
     }
 }
 extension Comment: DocumentSerializable{
@@ -55,10 +58,11 @@ extension Comment: DocumentSerializable{
             let upvote = snap["upvote"] as? Int32,
             let downvote = snap["downvote"] as? Int32,
             let commentText = snap["commentText"] as? String,
-            let authorName = snap["authorName"] as? String
+            let authorName = snap["authorName"] as? String,
+            let fcmToken = snap["fcmToken"] as? String
             else{return nil}
             let authorPhotoURL = snap["authorPhotoURL"] as? String
-        self.init(authorId: authorId, upvote: upvote, downvote: downvote, commentText: commentText, id: snapshot.documentID,authorName: authorName, authorPhotoURL: authorPhotoURL)
+        self.init(authorId: authorId, upvote: upvote, downvote: downvote, commentText: commentText, id: snapshot.documentID,authorName: authorName, authorPhotoURL: authorPhotoURL, fcmToken: fcmToken)
     }
     
     

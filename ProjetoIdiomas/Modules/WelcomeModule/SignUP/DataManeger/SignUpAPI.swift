@@ -18,6 +18,9 @@ public enum CompletinResult<Value> {
     case failure(AuthErrorCode)
 }
 
+public enum Completion<Value> {
+    case result(Bool)
+}
 public class SignUpAPI: NSObject{
     
     var currentNonce: String?
@@ -55,6 +58,17 @@ public class SignUpAPI: NSObject{
     
     func userHasAValidSession() -> Bool{
         return Auth.auth().currentUser != nil
+    }
+    
+    func verifyIfUserAlreadyExist(id: String, completion: @escaping (Bool) -> Void){
+        let db = Firestore.firestore()
+        let ref = db.collection("Users").document(id)
+        ref.getDocument { (document, error) in
+            if let doc = document{
+                completion(doc.exists)
+            }
+             completion(false)
+        }
     }
     
     func signOut() {

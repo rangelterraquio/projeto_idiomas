@@ -10,7 +10,6 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreatePostViewController" customModule="ProjetoIdiomas" customModuleProvider="target">
             <connections>
                 <outlet property="languageSelectedImage" destination="yJ1-7H-Vvm" id="hWV-06-akE"/>
-                <outlet property="nextButton" destination="PgA-LR-xC3" id="UUT-hX-OuH"/>
                 <outlet property="postTitle" destination="LJV-GE-1xN" id="LMD-Ef-qVu"/>
                 <outlet property="selectLanguageButton" destination="ZyZ-2o-5Th" id="84S-Zz-DcS"/>
                 <outlet property="textPost" destination="QKV-NO-AeA" id="0en-SY-Uyr"/>
@@ -32,11 +31,7 @@
                                     <action selector="cancel:" destination="-1" id="Cgb-ak-x12"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" id="PgA-LR-xC3">
-                                <connections>
-                                    <action selector="createPost:" destination="-1" id="Zkr-I1-aFF"/>
-                                </connections>
-                            </barButtonItem>
+                            <barButtonItem key="rightBarButtonItem" enabled="NO" title="Next" id="PgA-LR-xC3"/>
                         </navigationItem>
                     </items>
                 </navigationBar>

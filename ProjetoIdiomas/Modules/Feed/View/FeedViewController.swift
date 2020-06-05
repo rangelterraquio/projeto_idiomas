@@ -21,6 +21,7 @@ class FeedViewController: UIViewController {
     
     var section: SectionSelected = .teachingSection
     
+    
     @IBOutlet weak var feedTableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
@@ -28,7 +29,7 @@ class FeedViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-       
+        self.navigationController?.navigationBar.isHidden = true
         ///setup tableView
         let cellXib = UINib.init(nibName: "FeedCell", bundle: nil)
         let filterCellXib = UINib.init(nibName: "FilterCell", bundle: nil)
@@ -66,6 +67,10 @@ class FeedViewController: UIViewController {
     
     @IBAction func addPost(_ sender: Any) {
         presenter?.goToAddPostView()
+    }
+    
+    @IBAction func teste(_ sendr: Any){
+        
     }
 }
 
@@ -137,7 +142,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell =  tableView.cellForRow(at: indexPath) as?  FeedCell else {return}
-        presenter?.goToViewPostDetails(post: posts[indexPath.row-1], imageProfile: cell.userPictureView.image)
+        presenter?.goToViewPostDetails(post: posts[indexPath.row-1], imageProfile: cell.userPictureView.image, vc: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -160,4 +165,14 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     
+}
+
+
+extension FeedViewController: UITabBarDelegate{
+     
+    func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+        if item.tag == 1 {
+            presenter?.goToAddPostView()
+        }
+    }
 }

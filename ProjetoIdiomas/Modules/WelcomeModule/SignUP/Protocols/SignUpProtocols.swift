@@ -12,6 +12,7 @@ import UIKit
 public protocol SignUpInteratorToPresenter: class{
     
     func userAuthenticated(user: User) -> Void
+    func userAlreadyExist() -> Void
     func userAuthenticationFailed(error msg: String) -> Void
     func validateTextFieldFailed(error msg: String) -> Void
     func validateTextsuccessful() -> Void
@@ -41,4 +42,5 @@ public protocol SignUpRouterToPresenter{
     func didSuccessfullyLogin(user: User)
     func chooseSignInWithEmail()
     func showErrorAlert(error: String)
+    func userAlreadyUser()
 }

@@ -22,12 +22,12 @@ import SystemConfiguration.CaptiveNetwork
 
 public class StoregeAPI{
     
-    
+   
     private var db = Firestore.firestore()
     
     private var snapshots: [QueryDocumentSnapshot]? = nil
     
-    var currentUser: User?
+    static var currentUser: User?
     func fechPosts(in languages: [Languages], from date: Date,completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
         
         let num  = 50/languages.count
@@ -42,12 +42,24 @@ public class StoregeAPI{
                 if error != nil {
                     print("Tratar error")
                 }else{
+                    querySnapshot
                   completion(querySnapshot?.documents)
 
                 }
             }
         }
         
+    }
+    
+    func fetchPostBy(id: String,completion: @escaping (DocumentSnapshot?) -> ()) {
+        let documentRef = db.collection("Posts").document(id)
+        documentRef.getDocument { (querySnapshot, error) in
+            if error != nil {
+                print("Tratar error")
+            }else{
+                completion(querySnapshot)
+            }
+        }
     }
     
     func fechComments(in post: Post,startingBy numOfVotes:Int32, completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
@@ -68,6 +80,51 @@ public class StoregeAPI{
         
     }
     
+    
+    func fetchActivities(completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
+        
+        guard let user = StoregeAPI.currentUser else{return}
+        let documentRef = db.collection("Users").document(user.id).collection("Notifications")
+
+        documentRef.getDocuments { (snapshot, error) in
+            if error != nil {
+                completion(nil)
+            }else{
+                completion(snapshot?.documents)
+            }
+        }
+    }
+    
+    func createActivity(post: Post, msg: String,completion: @escaping (Result<Void, CustomError>) -> Void){
+        if !hasInternet(){
+            completion(.failure(.internetError))
+            return
+        }
+        guard let user = StoregeAPI.currentUser else {return}
+        
+        let notif = Notifaction(id: UUID().uuidString, postID: post.id, authorID: post.author.id, msg: msg, date: Date(), authorImageURL: user.photoURL, isViewed: false)
+        let docRef = db.collection("Users").document(post.author.id).collection("Notifications")
+        
+        docRef.addDocument(data: notif.dictionary) { (error) in
+            if error != nil{
+                completion(.failure(.operationFailed))
+            }else{
+                completion(.success(Void()))
+            }
+        }
+    }
+    
+    func uodateActivityStatus(id: String) -> Void {
+        guard let user = StoregeAPI.currentUser else{return}
+
+        let documentRef = db.collection("Users").document(user.id).collection("Notifications").document(id)
+        
+        documentRef.setData(["isViewed" : true], merge: true)
+        
+    }
+    
+    
+    
     func createPost(title: String, text: String, language: Languages,completion: @escaping (Result<Void, CustomError>) -> Void){
         //let user  = Auth.auth().currentUser!
         
@@ -77,7 +134,7 @@ public class StoregeAPI{
             completion(.failure(.internetError))
             return
         }
-        guard let user = currentUser else {return}
+        guard let user = StoregeAPI.currentUser else {return}
         
         let newPost = Post(id: UUID().uuidString, title: title, message: text, language: language.rawValue, upvote: 0, downvote: 0, publicationDate: Date(), author: user)
         
@@ -92,21 +149,25 @@ public class StoregeAPI{
     }
     
     
-    func createComment(text: String, postID: String, completion: @escaping (Result<Comment, CustomError>) -> Void){
+    func createComment(text: String, post: Post, completion: @escaping (Result<Comment, CustomError>) -> Void){
         if !hasInternet(){
             completion(.failure(.internetError))
             return
         }
-        guard let user = currentUser else {return}
+        guard let user = StoregeAPI.currentUser else {return}
 
         
-        let comment = Comment(authorId: user.id, upvote: 0, downvote: 0, commentText: text, id: UUID().uuidString, authorName: user.name, authorPhotoURL: user.photoURL)
+        let comment = Comment(authorId: user.id, upvote: 0, downvote: 0, commentText: text, id: UUID().uuidString, authorName: user.name, authorPhotoURL: user.photoURL, fcmToken: user.fcmToken)
         
-            db.collection("Posts").document(postID).collection("Comments").addDocument(data: comment.dictionary) { (error) in
+        db.collection("Posts").document(post.id).collection("Comments").addDocument(data: comment.dictionary) { (error) in
             if error != nil{
                 completion(.failure(.operationFailed))
             }else{
                 completion(.success(comment))
+                
+                
+                
+                
             }
         }
 
@@ -120,7 +181,7 @@ public class StoregeAPI{
             if error != nil{
                 completion(.failure(.operationFailed))
             }else{
-                self.currentUser = user
+                StoregeAPI.currentUser = user
                 completion(.success(Void()))
             }
         }
@@ -134,7 +195,6 @@ public class StoregeAPI{
     func updateVotes<T : DocumentSerializable >(from voteType: String, inDocument: T, with comment: Comment?){
         //quando a criação de post tiver ok deixa mudar o id
         let documentRef = db.collection("Posts").document(inDocument.id)
-        
         if let document = inDocument as? Post, var num = document.dictionary[voteType] as? Int32 {
             num += 1
             documentRef.setData([voteType : num], merge: true)
@@ -144,6 +204,7 @@ public class StoregeAPI{
            let newDoc = documentRef.collection("Comments").document(comment.id)
             newDoc.setData([voteType : num], merge: true)
             
+            
         }
         
         
@@ -151,20 +212,21 @@ public class StoregeAPI{
         
     }
     
-    func fetchUser(completion: @escaping ()->()){
+    func fetchUser(completion: @escaping (User?, Error?)->()){
         if let user = Auth.auth().currentUser {
             let documentRef = db.collection("Users")
             
             documentRef.whereField("id", isEqualTo: user.uid).getDocuments { [weak self] (query, error) in
                 if error != nil {
                     print("error na hora de buscar o user")
-                    completion()
+                    completion(nil,error)
                 }else{
                     if let document = query?.documents.first{
                        let newUser = User(dictionary: document)
-                         self!.currentUser = newUser
+                         StoregeAPI.currentUser = newUser
+                        completion(newUser,nil)
                     }
-                    completion()
+                    
 
                 }
             }

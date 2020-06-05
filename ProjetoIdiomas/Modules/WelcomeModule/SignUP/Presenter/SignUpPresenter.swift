@@ -30,6 +30,10 @@ class SignUpPresenter: SignUpViewToPresenter {
 
 
 extension SignUpPresenter: SignUpInteratorToPresenter{
+    func userAlreadyExist() {
+        router?.userAlreadyUser()
+    }
+    
     func validateTextsuccessful() {
         
     }

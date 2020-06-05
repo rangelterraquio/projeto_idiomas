@@ -10,9 +10,7 @@ import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
-    var window: UIWindow?
-
-    var appCoordinator: AppCoordinator?
+     var window: UIWindow?
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
@@ -22,15 +20,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         self.window = UIWindow(windowScene: windowScene)
         //self.window =  UIWindow(frame: UIScreen.main.bounds)
         
-        let rootNC = UINavigationController()//UINavigationController(rootViewController: xib)
-        self.window?.rootViewController = rootNC
-        rootNC.isNavigationBarHidden = true
+//        let rootNC = UINavigationController()//UINavigationController(rootViewController: xib)
+        self.window?.rootViewController = AppDelegate.rootNC
+//        AppDelegate.rootNC.isNavigationBarHidden = true
 
            // Initialise the first coordinator with the main navigation controller
-        appCoordinator = AppCoordinator(navigationController: rootNC)
-        
-           // The start method will actually display the main view
-        appCoordinator?.start()
+//        appCoordinator = AppCoordinator(navigationController: rootNC)
+//        AppDelegate.sharedCoordinator = appCoordinator
+//           // The start method will actually display the main view
+//        appCoordinator?.start()
         
         self.window?.makeKeyAndVisible()
         guard let _ = (scene as? UIWindowScene) else { return }

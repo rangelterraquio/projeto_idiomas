@@ -32,12 +32,12 @@ public protocol FeedViewToPresenter: class{
     func cancelImageRequest(uuid token: UUID)
     func updateVotes<T: DocumentSerializable>(from: String, inDocument: T, with comment: Comment?)
     func goToAddPostView()
-    func goToViewPostDetails(post: Post,imageProfile: UIImage?)
+    func goToViewPostDetails(post: Post,imageProfile: UIImage?,vc: UIViewController)
 }
 
 public protocol FeedPresenterToRouter{
     func addPostView()
-    func viewPostWithDetails(post: Post,imageProfile: UIImage?)
+    func viewPostWithDetails(post: Post,imageProfile: UIImage?,vc: UIViewController)
     //func showErrorAlert(error: String)
 }
 

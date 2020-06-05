@@ -43,13 +43,13 @@ class ViewController: UIViewController {
 //        db.collection("Posts").document("ozE4mkvy97uwd4Oe1D9c").setData(["publicationDate" : Date()], merge: true)
       //  db.collection("Posts").document("gAqKjMeQmgxGoRZqoC1Y").setData(["publicationDate" : Date()], merge: true)
 //        
+////        
+//        let user = User(id: UUID().uuidString, name: "Joao", photoURL: "sadadad", score: 1, rating: 44, fluentLanguage: ["en","pt"], learningLanguage: ["fr","sp"], idPosts: ["dd","dsada"], idCommentedPosts: ["dd"])
 //        
-        let user = User(id: UUID().uuidString, name: "Joao", photoURL: "sadadad", score: 1, rating: 44, fluentLanguage: ["en","pt"], learningLanguage: ["fr","sp"], idPosts: ["dd","dsada"], idCommentedPosts: ["dd"])
-        
 //        db.collection("Posts").document("ozE4mkvy97uwd4Oe1D9c").setData(["author" : user.dictionary], merge: true)
-        
-        let post2 = Post(id: UUID().uuidString, title: "Text review", message: "During development, you can use the public rules in place of the default rules to set your files publicly readable and writable. This is very useful for prototyping, as you can get started without setting up Firebase Authentication. However, because Cloud Storage shares a bucket with your default Google App Engine app, this rule also makes any data used by .", language: Languages.english.rawValue, upvote: 444, downvote: 35, publicationDate: Date(), author: user)
-        
+//        
+//        let post2 = Post(id: UUID().uuidString, title: "Text review", message: "During development, you can use the public rules in place of the default rules to set your files publicly readable and writable. This is very useful for prototyping, as you can get started without setting up Firebase Authentication. However, because Cloud Storage shares a bucket with your default Google App Engine app, this rule also makes any data used by .", language: Languages.english.rawValue, upvote: 444, downvote: 35, publicationDate: Date(), author: user)
+//        
       //  db.collection("Posts").addDocument(data: post2.dictionary)
 
         

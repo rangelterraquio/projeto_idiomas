@@ -30,13 +30,13 @@ public protocol ViewPostPresenterToInterator: class{
    func requestImage(from url: String?, completion: @escaping (Result<UIImage, CustomError>) -> Void) -> UUID?
    func cancelImageRequest(uuid token: UUID)
    func requestUpdateVotes<T: DocumentSerializable>(from: String, inDocument: T,  with comment: Comment?)
-   func createComent(comment: String, postID: String) -> Void
+   func createComent(comment: String, post: Post) -> Void
    func validadeComment(text: String?) ->Void
    func fetchCommments(in post: Post, startingBy num: Int32)
 }
 
 public protocol ViewPostViewToPresenter: class {
-    func createComent(comment: String, postID: String) -> Void
+    func createComent(comment: String, post: Post) -> Void
     func requestProfileImage(from url: String?, completion:  @escaping  (Result<UIImage, CustomError>) -> Void) -> UUID?
     func cancelImageRequest(uuid token: UUID)
     func validadeComment(text: String?) ->Void

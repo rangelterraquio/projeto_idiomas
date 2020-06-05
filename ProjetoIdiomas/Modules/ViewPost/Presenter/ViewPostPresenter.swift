@@ -20,8 +20,8 @@ class ViewPostPresenter: ViewPostViewToPresenter{
     var interator: ViewPostPresenterToInterator? = nil
     var view: ViewPostPresenterToView? = nil
     
-    func createComent(comment: String, postID: String) {
-        interator?.createComent(comment: comment, postID: postID)
+    func createComent(comment: String, post: Post) {
+        interator?.createComent(comment: comment, post: post)
     }
     
     func requestProfileImage(from url: String?, completion: @escaping (Result<UIImage, CustomError>) -> Void) -> UUID? {

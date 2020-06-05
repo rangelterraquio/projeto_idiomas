@@ -25,6 +25,12 @@
 		70698CF72468C3C000D2D744 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70698CF62468C3C000D2D744 /* Error.swift */; };
 		70698CFC2468DDC800D2D744 /* ViewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70698CFA2468DDC800D2D744 /* ViewPostViewController.swift */; };
 		70698CFD2468DDC800D2D744 /* ViewPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70698CFB2468DDC800D2D744 /* ViewPostViewController.xib */; };
+		7075F5242489A4C900851F28 /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075F5222489A4C900851F28 /* ActivityCell.swift */; };
+		7075F5252489A4C900851F28 /* ActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7075F5232489A4C900851F28 /* ActivityCell.xib */; };
+		7075F5272489A9CA00851F28 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075F5262489A9CA00851F28 /* Notification.swift */; };
+		7075F5292489D4F800851F28 /* ViewActivitiesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075F5282489D4F800851F28 /* ViewActivitiesProtocols.swift */; };
+		7075F52B2489DC2800851F28 /* ViewActivitiesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075F52A2489DC2800851F28 /* ViewActivitiesPresenter.swift */; };
+		7075F52D2489DF9A00851F28 /* ViewActivitiesInterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075F52C2489DF9A00851F28 /* ViewActivitiesInterator.swift */; };
 		707F384C2445226200DCEBE6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F384B2445226200DCEBE6 /* AppDelegate.swift */; };
 		707F384E2445226200DCEBE6 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F384D2445226200DCEBE6 /* SceneDelegate.swift */; };
 		707F38502445226200DCEBE6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 707F384F2445226200DCEBE6 /* ViewController.swift */; };
@@ -48,6 +54,15 @@
 		7084A8102480561A0077284D /* CreatePostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7084A80F2480561A0077284D /* CreatePostCoordinator.swift */; };
 		7084A812248099850077284D /* ViewPostCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7084A811248099850077284D /* ViewPostCoordinator.swift */; };
 		70867F97244608F50064482E /* FeedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70867F96244608F50064482E /* FeedViewController.swift */; };
+		708A29D6248A81E0009E93B3 /* ViewActivitiesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29D5248A81E0009E93B3 /* ViewActivitiesCoordinator.swift */; };
+		708A29DF248A8EF8009E93B3 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29DD248A8EF8009E93B3 /* ProfileViewController.swift */; };
+		708A29E0248A8EF8009E93B3 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708A29DE248A8EF8009E93B3 /* ProfileViewController.xib */; };
+		708A29E3248A967D009E93B3 /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29E1248A967D009E93B3 /* UserCell.swift */; };
+		708A29E4248A967D009E93B3 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708A29E2248A967D009E93B3 /* UserCell.xib */; };
+		708A29E7248A9962009E93B3 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29E5248A9962009E93B3 /* OptionCell.swift */; };
+		708A29E8248A9962009E93B3 /* OptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708A29E6248A9962009E93B3 /* OptionCell.xib */; };
+		709E7B482485FA2600274D33 /* ViewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E7B462485FA2600274D33 /* ViewActivityViewController.swift */; };
+		709E7B492485FA2600274D33 /* ViewActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709E7B472485FA2600274D33 /* ViewActivityViewController.xib */; };
 		70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */; };
 		70B6391E246792B300966A56 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391C246792B300966A56 /* LanguageCell.swift */; };
 		70B6391F246792B300966A56 /* LanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B6391D246792B300966A56 /* LanguageCell.xib */; };
@@ -62,6 +77,9 @@
 		70C1A069244D3014008F31DB /* SignUpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C1A068244D3014008F31DB /* SignUpAPI.swift */; };
 		70C1A06B244D33A0008F31DB /* TextFieldInterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C1A06A244D33A0008F31DB /* TextFieldInterator.swift */; };
 		70C1A06D244D4963008F31DB /* InputValidationServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C1A06C244D4963008F31DB /* InputValidationServiceAPI.swift */; };
+		70EE70FB2487E28000A9BDDE /* TabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EE70FA2487E28000A9BDDE /* TabNavigationController.swift */; };
+		70FABC632482A7FB00825EC9 /* PushNotificationManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FABC622482A7FB00825EC9 /* PushNotificationManeger.swift */; };
+		70FABC652482B02D00825EC9 /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FABC642482B02D00825EC9 /* PushNotificationSender.swift */; };
 		70FB8B3C24698A900031DBFF /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FB8B3A24698A900031DBFF /* PostCell.swift */; };
 		70FB8B3D24698A900031DBFF /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70FB8B3B24698A900031DBFF /* PostCell.xib */; };
 		70FB8B4024698E100031DBFF /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FB8B3E24698E100031DBFF /* CommentCell.swift */; };
@@ -90,6 +108,12 @@
 		70698CF62468C3C000D2D744 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		70698CFA2468DDC800D2D744 /* ViewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostViewController.swift; sourceTree = "<group>"; };
 		70698CFB2468DDC800D2D744 /* ViewPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewPostViewController.xib; sourceTree = "<group>"; };
+		7075F5222489A4C900851F28 /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
+		7075F5232489A4C900851F28 /* ActivityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityCell.xib; sourceTree = "<group>"; };
+		7075F5262489A9CA00851F28 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		7075F5282489D4F800851F28 /* ViewActivitiesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivitiesProtocols.swift; sourceTree = "<group>"; };
+		7075F52A2489DC2800851F28 /* ViewActivitiesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivitiesPresenter.swift; sourceTree = "<group>"; };
+		7075F52C2489DF9A00851F28 /* ViewActivitiesInterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivitiesInterator.swift; sourceTree = "<group>"; };
 		707F38482445226200DCEBE6 /* ProjetoIdiomas.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProjetoIdiomas.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		707F384B2445226200DCEBE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		707F384D2445226200DCEBE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -115,6 +139,15 @@
 		7084A80F2480561A0077284D /* CreatePostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreatePostCoordinator.swift; sourceTree = "<group>"; };
 		7084A811248099850077284D /* ViewPostCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostCoordinator.swift; sourceTree = "<group>"; };
 		70867F96244608F50064482E /* FeedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewController.swift; sourceTree = "<group>"; };
+		708A29D5248A81E0009E93B3 /* ViewActivitiesCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivitiesCoordinator.swift; sourceTree = "<group>"; };
+		708A29DD248A8EF8009E93B3 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		708A29DE248A8EF8009E93B3 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		708A29E1248A967D009E93B3 /* UserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
+		708A29E2248A967D009E93B3 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
+		708A29E5248A9962009E93B3 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
+		708A29E6248A9962009E93B3 /* OptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionCell.xib; sourceTree = "<group>"; };
+		709E7B462485FA2600274D33 /* ViewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivityViewController.swift; sourceTree = "<group>"; };
+		709E7B472485FA2600274D33 /* ViewActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewActivityViewController.xib; sourceTree = "<group>"; };
 		70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesProtocols.swift; sourceTree = "<group>"; };
 		70B6391C246792B300966A56 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		70B6391D246792B300966A56 /* LanguageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageCell.xib; sourceTree = "<group>"; };
@@ -129,6 +162,10 @@
 		70C1A068244D3014008F31DB /* SignUpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAPI.swift; sourceTree = "<group>"; };
 		70C1A06A244D33A0008F31DB /* TextFieldInterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInterator.swift; sourceTree = "<group>"; };
 		70C1A06C244D4963008F31DB /* InputValidationServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidationServiceAPI.swift; sourceTree = "<group>"; };
+		70EE70FA2487E28000A9BDDE /* TabNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationController.swift; sourceTree = "<group>"; };
+		70FABC602482A53700825EC9 /* ProjetoIdiomas.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProjetoIdiomas.entitlements; sourceTree = "<group>"; };
+		70FABC622482A7FB00825EC9 /* PushNotificationManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManeger.swift; sourceTree = "<group>"; };
+		70FABC642482B02D00825EC9 /* PushNotificationSender.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationSender.swift; sourceTree = "<group>"; };
 		70FB8B3A24698A900031DBFF /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		70FB8B3B24698A900031DBFF /* PostCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostCell.xib; sourceTree = "<group>"; };
 		70FB8B3E24698E100031DBFF /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
@@ -262,6 +299,8 @@
 		707F384A2445226200DCEBE6 /* ProjetoIdiomas */ = {
 			isa = PBXGroup;
 			children = (
+				70FABC612482A7DF00825EC9 /* Commons */,
+				70FABC602482A53700825EC9 /* ProjetoIdiomas.entitlements */,
 				7084A805247FF3D60077284D /* AppRouter */,
 				70698CF52468C3AC00D2D744 /* Errors */,
 				70C1A056244D2341008F31DB /* Modules */,
@@ -340,6 +379,7 @@
 			isa = PBXGroup;
 			children = (
 				7084A806247FF3EF0077284D /* AppCoordinator.swift */,
+				70EE70FA2487E28000A9BDDE /* TabNavigationController.swift */,
 			);
 			path = AppRouter;
 			sourceTree = "<group>";
@@ -350,6 +390,114 @@
 				7084A80F2480561A0077284D /* CreatePostCoordinator.swift */,
 			);
 			path = Router;
+			sourceTree = "<group>";
+		};
+		708A29D7248A8E75009E93B3 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				708A29DC248A8EB7009E93B3 /* Protocols */,
+				708A29DB248A8EAE009E93B3 /* Router */,
+				708A29DA248A8E97009E93B3 /* Interator */,
+				708A29D9248A8E89009E93B3 /* Presenter */,
+				708A29D8248A8E82009E93B3 /* View */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		708A29D8248A8E82009E93B3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				708A29DD248A8EF8009E93B3 /* ProfileViewController.swift */,
+				708A29DE248A8EF8009E93B3 /* ProfileViewController.xib */,
+				708A29E1248A967D009E93B3 /* UserCell.swift */,
+				708A29E2248A967D009E93B3 /* UserCell.xib */,
+				708A29E5248A9962009E93B3 /* OptionCell.swift */,
+				708A29E6248A9962009E93B3 /* OptionCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		708A29D9248A8E89009E93B3 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		708A29DA248A8E97009E93B3 /* Interator */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Interator;
+			sourceTree = "<group>";
+		};
+		708A29DB248A8EAE009E93B3 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		708A29DC248A8EB7009E93B3 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		709E7B402485F98F00274D33 /* ViewActivity */ = {
+			isa = PBXGroup;
+			children = (
+				709E7B452485F9DE00274D33 /* View */,
+				709E7B442485F9D700274D33 /* Interator */,
+				709E7B432485F9CD00274D33 /* Protocols */,
+				709E7B422485F9BF00274D33 /* Presenter */,
+				709E7B412485F9B700274D33 /* Router */,
+			);
+			path = ViewActivity;
+			sourceTree = "<group>";
+		};
+		709E7B412485F9B700274D33 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				708A29D5248A81E0009E93B3 /* ViewActivitiesCoordinator.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		709E7B422485F9BF00274D33 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				7075F52A2489DC2800851F28 /* ViewActivitiesPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		709E7B432485F9CD00274D33 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				7075F5282489D4F800851F28 /* ViewActivitiesProtocols.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		709E7B442485F9D700274D33 /* Interator */ = {
+			isa = PBXGroup;
+			children = (
+				7075F52C2489DF9A00851F28 /* ViewActivitiesInterator.swift */,
+			);
+			path = Interator;
+			sourceTree = "<group>";
+		};
+		709E7B452485F9DE00274D33 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				709E7B462485FA2600274D33 /* ViewActivityViewController.swift */,
+				709E7B472485FA2600274D33 /* ViewActivityViewController.xib */,
+				7075F5222489A4C900851F28 /* ActivityCell.swift */,
+				7075F5232489A4C900851F28 /* ActivityCell.xib */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		70C1A051244D21A5008F31DB /* DataManeger */ = {
@@ -369,6 +517,7 @@
 				707F386F2445383100DCEBE6 /* Post.swift */,
 				70C1A053244D2210008F31DB /* User.swift */,
 				70FB8B422469915B0031DBFF /* Comment.swift */,
+				7075F5262489A9CA00851F28 /* Notification.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -385,6 +534,8 @@
 		70C1A056244D2341008F31DB /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				708A29D7248A8E75009E93B3 /* Profile */,
+				709E7B402485F98F00274D33 /* ViewActivity */,
 				70698CF82468DD8F00D2D744 /* ViewPost */,
 				70698CE22468546200D2D744 /* CreatePost */,
 				70C1A055244D230F008F31DB /* WelcomeModule */,
@@ -512,6 +663,15 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		70FABC612482A7DF00825EC9 /* Commons */ = {
+			isa = PBXGroup;
+			children = (
+				70FABC622482A7FB00825EC9 /* PushNotificationManeger.swift */,
+				70FABC642482B02D00825EC9 /* PushNotificationSender.swift */,
+			);
+			path = Commons;
+			sourceTree = "<group>";
+		};
 		70FB8B442469BC2A0031DBFF /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -613,14 +773,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				708A29E0248A8EF8009E93B3 /* ProfileViewController.xib in Resources */,
 				707F38582445226400DCEBE6 /* LaunchScreen.storyboard in Resources */,
+				7075F5252489A4C900851F28 /* ActivityCell.xib in Resources */,
 				707F386824452DD800DCEBE6 /* FeedViewController.xib in Resources */,
 				707F38552445226400DCEBE6 /* Assets.xcassets in Resources */,
+				708A29E4248A967D009E93B3 /* UserCell.xib in Resources */,
 				70FB8B3D24698A900031DBFF /* PostCell.xib in Resources */,
 				704F87552447CDD500C1C4D4 /* FeedCell.xib in Resources */,
 				70698CE7246854B700D2D744 /* CreatePostViewController.xib in Resources */,
+				709E7B492485FA2600274D33 /* ViewActivityViewController.xib in Resources */,
 				707F38602445290500DCEBE6 /* GoogleService-Info.plist in Resources */,
 				70B6391F246792B300966A56 /* LanguageCell.xib in Resources */,
+				708A29E8248A9962009E93B3 /* OptionCell.xib in Resources */,
 				7006EB7224678A1D0040F681 /* SelectLanguageViewController.xib in Resources */,
 				707F38532445226200DCEBE6 /* Main.storyboard in Resources */,
 				70FB8B4124698E100031DBFF /* CommentCell.xib in Resources */,
@@ -700,14 +865,20 @@
 				707F387624454C0200DCEBE6 /* FeedPresenter.swift in Sources */,
 				708014C0246AE51D00D917A9 /* ViewPostPresenter.swift in Sources */,
 				7014F16B245201C200C3B78B /* StateTextField.swift in Sources */,
+				70FABC632482A7FB00825EC9 /* PushNotificationManeger.swift in Sources */,
 				70C1A062244D2F66008F31DB /* SignUpPresenter.swift in Sources */,
 				70C1A054244D2210008F31DB /* User.swift in Sources */,
+				708A29D6248A81E0009E93B3 /* ViewActivitiesCoordinator.swift in Sources */,
+				7075F5292489D4F800851F28 /* ViewActivitiesProtocols.swift in Sources */,
 				707F38702445383100DCEBE6 /* Post.swift in Sources */,
+				708A29DF248A8EF8009E93B3 /* ProfileViewController.swift in Sources */,
+				7075F5242489A4C900851F28 /* ActivityCell.swift in Sources */,
 				707F38502445226200DCEBE6 /* ViewController.swift in Sources */,
 				70FB8B492469BC720031DBFF /* ViewPostProtocols.swift in Sources */,
 				7084A809247FFF7E0077284D /* SignUpCoordinator.swift in Sources */,
 				707F3874244548B200DCEBE6 /* FeedInteator.swift in Sources */,
 				70698CED2468592300D2D744 /* CreatePostProtocols.swift in Sources */,
+				708A29E3248A967D009E93B3 /* UserCell.swift in Sources */,
 				70C1A066244D2FC9008F31DB /* SignUpProtocols.swift in Sources */,
 				707F384C2445226200DCEBE6 /* AppDelegate.swift in Sources */,
 				70C1A06D244D4963008F31DB /* InputValidationServiceAPI.swift in Sources */,
@@ -715,7 +886,11 @@
 				704F87542447CDD500C1C4D4 /* FeedCell.swift in Sources */,
 				7084A807247FF3EF0077284D /* AppCoordinator.swift in Sources */,
 				70FB8B4024698E100031DBFF /* CommentCell.swift in Sources */,
+				7075F5272489A9CA00851F28 /* Notification.swift in Sources */,
+				7075F52B2489DC2800851F28 /* ViewActivitiesPresenter.swift in Sources */,
+				708A29E7248A9962009E93B3 /* OptionCell.swift in Sources */,
 				7006EB7124678A1D0040F681 /* SelectLanguageViewController.swift in Sources */,
+				709E7B482485FA2600274D33 /* ViewActivityViewController.swift in Sources */,
 				70FB8B3C24698A900031DBFF /* PostCell.swift in Sources */,
 				70698CF3246860AA00D2D744 /* LanguagePopoverController.swift in Sources */,
 				702CBD11247F37F20064AA21 /* ViewPostInterator.swift in Sources */,
@@ -727,6 +902,7 @@
 				70C1A04F244D0364008F31DB /* FilterCell.swift in Sources */,
 				707F386A24452ECA00DCEBE6 /* StorageAPI.swift in Sources */,
 				70C1A05F244D2D02008F31DB /* SignUpViewController.swift in Sources */,
+				70FABC652482B02D00825EC9 /* PushNotificationSender.swift in Sources */,
 				7014F1692451EEBD00C3B78B /* TextInputValidation.swift in Sources */,
 				70B6391E246792B300966A56 /* LanguageCell.swift in Sources */,
 				7084A8102480561A0077284D /* CreatePostCoordinator.swift in Sources */,
@@ -737,6 +913,8 @@
 				70698CE6246854B700D2D744 /* CreatePostViewController.swift in Sources */,
 				7084A80B24800A350077284D /* SelectLanguagesCoordinator.swift in Sources */,
 				70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */,
+				70EE70FB2487E28000A9BDDE /* TabNavigationController.swift in Sources */,
+				7075F52D2489DF9A00851F28 /* ViewActivitiesInterator.swift in Sources */,
 				707F384E2445226200DCEBE6 /* SceneDelegate.swift in Sources */,
 				70698CF024685ABF00D2D744 /* CreatePostInterator.swift in Sources */,
 				7084A80D24804C4F0077284D /* FeedCoordinator.swift in Sources */,
@@ -887,6 +1065,7 @@
 			baseConfigurationReference = 71029F17EEC3D02A947AEDF6 /* Pods-ProjetoIdiomas.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ProjetoIdiomas/ProjetoIdiomas.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 536JJFH3JQ;
 				INFOPLIST_FILE = ProjetoIdiomas/Info.plist;
@@ -906,6 +1085,7 @@
 			baseConfigurationReference = BCA2DBB3DE4935D89AAFEB56 /* Pods-ProjetoIdiomas.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = ProjetoIdiomas/ProjetoIdiomas.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 536JJFH3JQ;
 				INFOPLIST_FILE = ProjetoIdiomas/Info.plist;

@@ -17,25 +17,33 @@ protocol SelectLanguagesCoordinatorDelegate:class {
 class SelectLanguagesCoordinator: Coordinator {
     
     var user: User!
-    var navigationController: UINavigationController
+    var tabBarController: UITabBarController!
     var delegate: SelectLanguagesCoordinatorDelegate? = nil
     
-    init(user: User, navigation: UINavigationController) {
+    init(user: User, tabBarController: UITabBarController) {
         self.user = user
-        self.navigationController = navigation
+        self.tabBarController = tabBarController
     }
     
     func stat(user: User) -> Void {
         let vc = SelectLanguageViewController(nibName: "SelectLanguageViewController", bundle: nil)
         vc.user = user
         vc.router = self
-       guard let topViewController = navigationController.topViewController else {
-           return navigationController.setViewControllers([vc], animated: false)
-       }
-       
-       UIView.transition(from:topViewController.view, to: vc.view, duration: 0.50, options: .transitionCrossDissolve) {[unowned self] (_) in
-           self.navigationController.setViewControllers([vc], animated: false)
-       }
+        
+        
+        vc.modalPresentationStyle = .overCurrentContext
+        if let oldVc = tabBarController.viewControllers?.first as? UINavigationController{
+            oldVc.definesPresentationContext = true
+            oldVc.title = "Post"
+            oldVc.pushViewController(vc, animated: true)
+        }
+//       guard let topViewController = navigationController.topViewController else {
+//           return navigationController.setViewControllers([vc], animated: false)
+//       }
+//
+//       UIView.transition(from:topViewController.view, to: vc.view, duration: 0.50, options: .transitionCrossDissolve) {[unowned self] (_) in
+//           self.navigationController.setViewControllers([vc], animated: false)
+//       }
     }
     
 }

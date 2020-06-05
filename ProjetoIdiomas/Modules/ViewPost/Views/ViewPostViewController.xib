@@ -13,6 +13,7 @@
                 <outlet property="commentTextField" destination="dIc-2B-5uP" id="TI2-Aw-CGd"/>
                 <outlet property="keyboardHeightLayoutConstraint" destination="yUm-DT-kL8" id="9vc-tu-FPW"/>
                 <outlet property="postTableView" destination="Mfq-5A-Oqc" id="5f3-Bj-FLp"/>
+                <outlet property="sendButtonYAnchor" destination="NDe-fM-cwh" id="IPy-Aj-MLU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

@@ -14,8 +14,10 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
 
     @IBOutlet weak var postTitle: UITextField!
     @IBOutlet weak var textPost: UITextView!
-    @IBOutlet weak var nextButton: UIBarButtonItem!
-    
+
+
+
+    var nextButton: UIBarButtonItem!
     @IBOutlet weak var selectLanguageButton: UIButton!
     @IBOutlet weak var languageSelectedImage: UIImageView!
     
@@ -32,17 +34,31 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.title = "Create Post"
         textPost.delegate = self
         postTitle.delegate = self
-    }
-
-    @IBAction func createPost(_ sender: Any) {
         
-        addBlurLoading()
-        presenter.createPost(title: postTitle.text!, text: textPost.text, language: languagePost)
+        
+         nextButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addPost))
+        self.navigationItem.setRightBarButton(nextButton, animated: true)
+        nextButton.isEnabled = false
     }
     
+    @objc func addPost(sender: UIButton){
+        addBlurLoading()
+        presenter.createPost(title: postTitle.text!, text: textPost.text, language: languagePost)
+        
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
+    }
+//    @IBAction func createPost(_ sender: Any) {
+//        
+//        addBlurLoading()
+//        presenter.createPost(title: postTitle.text!, text: textPost.text, language: languagePost)
+//    }
+//    
     @IBAction func cancel(_ sender: Any) {
         //router vai entrar aqui
         presenter.cancelCreatePost()
@@ -156,7 +172,7 @@ extension CreatePostViewController: UITextFieldDelegate{
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.becomeFirstResponder()
+        textField.resignFirstResponder()
     }
 }
 

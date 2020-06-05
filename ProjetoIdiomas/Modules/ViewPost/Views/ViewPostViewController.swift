@@ -15,24 +15,33 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     
    
     
-
+    @IBOutlet weak var sendButtonYAnchor: NSLayoutConstraint!
+    
     @IBOutlet weak var postTableView: UITableView!
     @IBOutlet weak var commentTextField: UITextField!
     
-    var post: Post!
+    var post: Post?{
+        didSet{
+            if let tableView = postTableView{
+                presenter?.updateFeed(from: post!, startingBy: 0)
+                tableView.reloadData()
+            }
+        }
+    }
     var comments: [Comment] = [Comment]()
     
     var presenter: ViewPostViewToPresenter? = nil
 
     var imageAuthor: UIImage?
-    
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.title = "Post"
         
         let postCell = UINib(nibName: "PostCell", bundle: nil)
+        
         let commentCell = UINib(nibName: "CommentCell", bundle: nil)
         
         postTableView.register(postCell, forCellReuseIdentifier: "PostCell")
@@ -48,8 +57,14 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
         name: UIResponder.keyboardWillChangeFrameNotification,
         object: nil)
         
-        presenter?.updateFeed(from: post, startingBy: 0)
+        if let post = post{
+            presenter?.updateFeed(from: post, startingBy: 0)
+        }
     
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = true
     }
     @IBAction func goBackToFeed(_ sender: Any) {
         presenter?.finishViewPostSession()
@@ -62,8 +77,10 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     
     func commentValidated(isValid: Bool) {
         if isValid{
-             presenter?.createComent(comment: commentTextField.text!, postID: post.id)
-            commentTextField.text = ""
+            if let post = post{
+                presenter?.createComent(comment: commentTextField.text!, post: post)
+                commentTextField.text = ""
+            }
         }
        
         //commentButton.isEnabled = isValid
@@ -84,6 +101,7 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     func showComments(comments: [Comment]) {
         self.comments = comments
         postTableView.reloadData()
+        
     }
     
 }
@@ -95,14 +113,15 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let post = post else{return UITableViewCell()}
         if indexPath.row == 0 {
             if let postCell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell{
                 postCell.populate(post: post)
                 if let image = imageAuthor{
                     postCell.populateImage(image: image)
                 }
-                postCell.upvoted = {self.presenter?.updateVotes(from: "upvote", inDocument: self.post, with: nil)}
-                postCell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: self.post, with: nil)}
+                postCell.upvoted = {self.presenter?.updateVotes(from: "upvote", inDocument: post, with: nil)}
+                postCell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: post, with: nil)}
                 return postCell
             }
         }else{
@@ -125,8 +144,8 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
                     }
                 }
                 
-                commentCell.upvoted = {self.presenter?.updateVotes(from: "upvote", inDocument: self.post, with: comment)}
-                commentCell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: self.post, with: comment)}
+                commentCell.upvoted = {self.presenter?.updateVotes(from: "upvote", inDocument: post, with: comment)}
+                commentCell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: post, with: comment)}
                 return commentCell
             
             }
@@ -190,8 +209,10 @@ extension ViewPostViewController: UITextFieldDelegate{
             let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
             if endFrameY >= UIScreen.main.bounds.size.height {
                 self.keyboardHeightLayoutConstraint.constant = 0.0
+                self.sendButtonYAnchor.constant = 0.0
             } else {
                 self.keyboardHeightLayoutConstraint.constant = endFrame?.size.height ?? 0.0
+                self.sendButtonYAnchor.constant = endFrame?.size.height ?? 0.0
             }
             UIView.animate(withDuration: duration,
                                        delay: TimeInterval(0),

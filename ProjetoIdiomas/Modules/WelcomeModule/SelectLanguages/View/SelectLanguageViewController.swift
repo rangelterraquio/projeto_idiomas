@@ -39,6 +39,10 @@ class SelectLanguageViewController: UIViewController {
     var user: User!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = true
+
         nextButton.isEnabled = false
         // Do any additional setup after loading the view.
         let cellLanguage = UINib(nibName: "LanguageCell", bundle: nil)
@@ -72,8 +76,24 @@ class SelectLanguageViewController: UIViewController {
             instructionLabel.text = "Select the languages you are able to help other people:"
             fluentlyLanguages.removeAll()
             languagesTableView.reloadData()
+           
         }
     }
+    
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+         if viewState == .fluentlyLanguagesSection{
+                   router?.cancelUserCreation()
+               }else{
+                   viewState = .fluentlyLanguagesSection
+                   instructionLabel.text = "Select the languages you are able to help other people:"
+                   fluentlyLanguages.removeAll()
+                   languagesTableView.reloadData()
+               }
+    }
+    
+    
+    
     
 }
 

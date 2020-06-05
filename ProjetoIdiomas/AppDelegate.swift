@@ -9,18 +9,90 @@
 import UIKit
 import Firebase
 import GoogleSignIn
-
+import FirebaseMessaging
+import FirebaseInstanceID
+import UserNotifications
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
-    
-
-
+    static let NOTIFICATION_URL = ""
+    static var rootNC: UITabBarController!
+    static var sharedCoordinator: AppCoordinator?
+ 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-      
+       
+    
+//        let windowScene:UIWindowScene = application.s as! UIWindowScene;
+//        let window = UIWindow(windowScene: windowScene)
+        //self.window =  UIWindow(frame: UIScreen.main.bounds)
+        let tab = UITabBarController()
+        
+         tab.hidesBottomBarWhenPushed = false
+        AppDelegate.rootNC = tab// UINavigationController(rootViewController: tab)//UINavigationController(rootViewController: xib)
+        AppDelegate.rootNC.hidesBottomBarWhenPushed = false
+//        AppDelegate.rootNC.isNavigationBarHidden = true
+    
+        let navigationController = UINavigationController()
+           // Initialise the first coordinator with the main navigation controller
+        let appCoordinator = AppCoordinator(tabBarController: tab)
+        AppDelegate.sharedCoordinator = appCoordinator
+           // The start method will actually display the main view
+        
+       
+//        window?.makeKeyAndVisible()
+//        if #available(iOS 10.0, *){
+//            UNUserNotificationCenter.current().delegate = self
+//
+//            //Peço autorização para notificação
+//            let options: UNAuthorizationOptions = [.alert,.badge,.sound]
+//            UNUserNotificationCenter.current().requestAuthorization(options: options, completionHandler: {bool , error in
+//
+//            })
+//        }else{
+//            let settings: UIUserNotificationSettings =  UIUserNotificationSettings(types: [.alert,.badge,.sound], categories: nil)
+//            application.registerUserNotificationSettings(settings)
+//        }
+        
 
+        let pushManager = PushNotificationManager(userID: Auth.auth().currentUser?.uid, coordinator: AppDelegate.sharedCoordinator)
+        pushManager.registerForPushNotifications()
+        
+        
+        if let notificationOption = launchOptions?[.remoteNotification]{
+            if let notification = notificationOption as? [String: AnyObject],
+              let aps = notification["userInfo"] as? [AnyHashable: Any] {
+              
+              // 2if
+                if let id = aps["category"] as? String{
+                    PushNotificationManager.flag = false
+                    appCoordinator.showViewPostInDetails(postID: id)
+                }
+              
+              
+            }
+        }else{
+            if  PushNotificationManager.flag{
+//                let controller = appCoordinator.showFeed()
+//                let controoler2 = appCoordinator.showCreatePost()
+//                controller!.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
+//                controller!.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
+//                let controllers = [controller!, controoler2].map { (viewController) -> UINavigationController in
+//                    UINavigationController(rootViewController: viewController)
+//                       }
+//
+//                navigationController.viewControllers = [controller!, controoler2]
+//                tab.navigationController
+//                tab.viewControllers = [controller!, controoler2]//controllers
+                appCoordinator.start()
+            }
+           
+
+        }
+        UIApplication.shared.applicationIconBadgeNumber = 0
+
+        
         
         return true
     }
@@ -47,3 +119,48 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 }
 
+extension AppDelegate: UNUserNotificationCenterDelegate{
+    
+    
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        //guard let newToken = InstanceID.instanceID().t else {return}
+        print("Firebase registration token: \(fcmToken)")
+//        let dataDict:[String: String] = ["token": fcmToken]
+//        NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        InstanceID.instanceID().instanceID { (tokenID, error) in
+            if error != nil {
+                print("error no token")
+            }else{
+//                AppDelegate.DEVICE_ID = tokenID!.instanceID
+//                print("O token do Devie é \(AppDelegate.DEVICE_ID )")
+
+                self.connectToFCN()
+            }
+        }
+    }
+    
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        let response = response.notification.request.content.body
+        
+        print("A notificaçao ")
+        print("Conteudo da notificacao \(response)")
+    }
+    
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        //o device id pego o device id do dispostivo
+        InstanceID.instanceID().instanceID { (tokenID, error) in
+            if error != nil {
+                print("error no token")
+            }else{
+//                AppDelegate.DEVICE_ID = tokenID!.instanceID
+//                print("O token do Devie é \(AppDelegate.DEVICE_ID )")
+//                self.connectToFCN()
+            }
+        }
+    }
+    
+    func connectToFCN(){
+    }
+}

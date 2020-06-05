@@ -16,12 +16,12 @@ class CreatePostCoordinator: Coordinator {
     
     
     fileprivate var stateManeger: StateController!
-    fileprivate var navigationController: UINavigationController!
+    fileprivate var tabBarController: UITabBarController!
     
     weak var delegate: CreatePostDelegate? = nil
     
-    init(stateController: StateController, navitagtion: UINavigationController) {
-        self.navigationController = navitagtion
+    init(stateController: StateController, tabBarController: UITabBarController) {
+        self.tabBarController = tabBarController
         self.stateManeger = stateController
     }
     
@@ -36,16 +36,21 @@ class CreatePostCoordinator: Coordinator {
         vc.presenter = postPresente
         postInterator.presenter = postPresente
        
-        vc.modalPresentationStyle = .fullScreen //modo de apresentação
-        
-        guard let topViewController = navigationController.topViewController else {
-            return navigationController.setViewControllers([vc], animated: false)
+                                                            //modo de apresentação
+         vc.modalPresentationStyle = .overCurrentContext
+        if let oldVc = tabBarController.viewControllers?.first as? UINavigationController{
+            oldVc.definesPresentationContext = true
+            oldVc.title = "Create Post"
+            oldVc.pushViewController(vc, animated: true)
         }
-        
-        UIView.transition(from:topViewController.view, to: vc.view, duration: 0.50, options: .transitionCrossDissolve) {[unowned self] (_) in
-            self.navigationController.setViewControllers([vc], animated: false)
-           
-        }
+//        guard let topViewController = navigationController.topViewController else {
+//            return navigationController.setViewControllers([vc], animated: false)
+//        }
+//
+//        UIView.transition(from:topViewController.view, to: vc.view, duration: 0.50, options: .transitionCrossDissolve) {[unowned self] (_) in
+//            self.navigationController.setViewControllers([vc], animated: false)
+//
+//        }
         
     }
     

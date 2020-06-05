@@ -11,5 +11,7 @@ target 'ProjetoIdiomas' do
   pod 'Firebase/Firestore'
   pod 'Firebase/Storage'
   pod 'GoogleSignIn'
+  pod 'Firebase/Core'
+  pod 'Firebase/Messaging'
 
 end

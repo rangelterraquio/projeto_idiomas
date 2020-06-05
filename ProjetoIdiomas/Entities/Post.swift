@@ -94,6 +94,29 @@ extension Post : DocumentSerializable{
 //        }
         self.init(id: snapshot.documentID, title: title, message: message, language: language, upvote: upvote, downvote: downvote, publicationDate: publicationDate.dateValue(),author: author)
         }
+    
+    
+    public init?(dictionary document: DocumentSnapshot) {
+        let snap = document.data()!
+            guard let title = snap["title"] as? String,
+                let message = snap["message"] as? String,
+                let publicationDate = snap["publicationDate"] as? Timestamp,
+                let language = snap["language"] as? String,
+                let upvote = snap["upvote"] as? Int32,
+                let downvote = snap["downvote"] as? Int32,
+                let author = User(dictionary: document)
+                else {return nil}
+                
+    //        var comments: [Comment] = [Comment]()
+    //        if let snapComments = snap["comments"] as? [QueryDocumentSnapshot] {
+    //            for snap  in snapComments {
+    //                if let cm = Comment(dictionary: snap){
+    //                    comments.append(cm)
+    //                }
+    //            }
+    //        }
+            self.init(id: document.documentID, title: title, message: message, language: language, upvote: upvote, downvote: downvote, publicationDate: publicationDate.dateValue(),author: author)
+            }
 
 }
 

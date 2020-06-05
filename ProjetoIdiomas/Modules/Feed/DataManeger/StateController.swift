@@ -13,10 +13,10 @@ public class StateController{
     
     private var storage: StoregeAPI!
     let imageLoader = ImageLoader()
-    
+    let notificationSender = PushNotificationSender()
     var user: User?{
         didSet{
-            storage.currentUser = user
+            StoregeAPI.currentUser = user
         }
     }
     
@@ -28,7 +28,9 @@ public class StateController{
     func fecthPosts(in languages: [Languages], from date: Date, completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
         storage.fechPosts(in: languages, from: date, completion: completion)
     }
-    
+    func fetchPostBy(id: String,completion: @escaping (DocumentSnapshot?) -> ()){
+        storage.fetchPostBy(id: id, completion: completion)
+    }
     func fetchComments(in post: Post,startingBy num: Int32, completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
         storage.fechComments(in: post, startingBy: num, completion: completion)
     }
@@ -38,16 +40,41 @@ public class StateController{
     }
     
     
+    func fetchActivites(completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
+        storage.fetchActivities(completion: completion)
+    }
+    
     func createPost(title: String, text: String, language: Languages,completion: @escaping (Result<Void, CustomError>) -> Void){
         storage.createPost(title: title, text: text, language: language, completion: completion)
     }
     
     
-    func createComment(text: String, postID: String, completion: @escaping (Result<Comment, CustomError>) -> Void){
-        storage.createComment(text: text, postID: postID, completion: completion)
+    func createComment(text: String, post: Post, completion: @escaping (Result<Comment, CustomError>) -> Void){
+        storage.createComment(text: text, post: post, completion: completion)
+        
     }
     
     func createUser(user: User, completion: @escaping (Result<Void, CustomError>) -> Void){
         storage.createUser(user: user, completion: completion)
     }
+    
+    func sendNotification(post: Post, comment: Comment){
+        notificationSender.sendPushNotification(to: post, title: "New Comment", body: "\(comment.authorName) commented on your post :D", complition: { isCompleted in
+            
+            if isCompleted{
+                self.storage.createActivity(post: post, msg: "\(comment.authorName) commented on your post :D") { (result) in
+                    
+                    //fazer algo
+                }
+            }
+            
+        })
+    }
+    
+    func upadteActivityStatus(id: String){
+        storage.uodateActivityStatus(id: id)
+    }
+    
+    
+    
 }

@@ -29,8 +29,8 @@ class ViewPostInterator: ViewPostPresenterToInterator {
     }
     
     
-    func createComent(comment: String, postID: String) {
-        stateController.createComment(text: comment, postID: postID) { (result) in
+    func createComent(comment: String, post: Post) {
+        stateController.createComment(text: comment, post: post) { (result) in
             
             switch result {
             case .failure(let error):
@@ -42,6 +42,7 @@ class ViewPostInterator: ViewPostPresenterToInterator {
                 }
             case .success(let com):
                 self.presenter?.createCommentSuccessefull(comment: com)
+                self.stateController.sendNotification(post: post, comment: com)
             }
             
         }

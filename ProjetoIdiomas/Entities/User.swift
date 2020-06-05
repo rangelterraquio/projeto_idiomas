@@ -19,7 +19,7 @@ public struct User{
     var learningLanguage: [String]?
     var idPosts : [String]?
     var idCommentedPosts: [String]?
-    
+    var fcmToken: String
     
     var dictionary : [String : Any]{
         return [
@@ -32,6 +32,7 @@ public struct User{
             "learningLanguage" : learningLanguage as Any,
             "idPosts" : idPosts as Any,
             "idCommentedPosts" : idCommentedPosts as Any,
+            "fcmToken" : fcmToken
         ]
     }
 }
@@ -42,18 +43,40 @@ extension User: DocumentSerializable{
         
         if let snap = data["author"] as? [String : Any]{
             guard let name = snap["name"] as? String,
+                let fcmToken = snap["fcmToken"] as? String,
                 let fluentLanguage = snap["fluentLanguage"] as? [String] else {return nil}
-             self.init(id: snapshot.documentID, name: name, photoURL: snap["photoURL"] as? String, score: snap["score"] as? Int16, rating: snap["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: snap["learningLanguage"] as? [String], idPosts: snap["idPosts"] as? [String], idCommentedPosts: snap["idCommentedPosts"] as? [String])
+            self.init(id: snapshot.documentID, name: name, photoURL: snap["photoURL"] as? String, score: snap["score"] as? Int16, rating: snap["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: snap["learningLanguage"] as? [String], idPosts: snap["idPosts"] as? [String], idCommentedPosts: snap["idCommentedPosts"] as? [String], fcmToken: fcmToken)
         }else{
             guard let name = data["name"] as? String,
+               let fcmToken = data["fcmToken"] as? String,
                let fluentLanguage = data["fluentLanguage"] as? [String] else {return nil}
-            self.init(id: snapshot.documentID, name: name, photoURL: data["photoURL"] as? String, score: data["score"] as? Int16, rating: data["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: data["learningLanguage"] as? [String], idPosts: data["idPosts"] as? [String], idCommentedPosts: data["idCommentedPosts"] as? [String])
+            self.init(id: snapshot.documentID, name: name, photoURL: data["photoURL"] as? String, score: data["score"] as? Int16, rating: data["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: data["learningLanguage"] as? [String], idPosts: data["idPosts"] as? [String], idCommentedPosts: data["idCommentedPosts"] as? [String], fcmToken: fcmToken)
         }
         
         
 //
 //        self.init(id: snapshot.documentID, name: name, photoURL: snap["photoURL"] as? String, score: snap["score"] as? Int16, rating: snap["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: snap["learningLanguage"] as? [String], idPosts: snap["idPosts"] as? [String], idCommentedPosts: snap["idCommentedPosts"] as? [String])
     }
+    
+    public init?(dictionary snapshot: DocumentSnapshot) {
+            let data = snapshot.data()!
+            
+            if let snap = data["author"] as? [String : Any]{
+                guard let name = snap["name"] as? String,
+                    let fcmToken = snap["fcmToken"] as? String,
+                    let fluentLanguage = snap["fluentLanguage"] as? [String] else {return nil}
+                self.init(id: snapshot.documentID, name: name, photoURL: snap["photoURL"] as? String, score: snap["score"] as? Int16, rating: snap["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: snap["learningLanguage"] as? [String], idPosts: snap["idPosts"] as? [String], idCommentedPosts: snap["idCommentedPosts"] as? [String], fcmToken: fcmToken)
+            }else{
+                guard let name = data["name"] as? String,
+                   let fcmToken = data["fcmToken"] as? String,
+                   let fluentLanguage = data["fluentLanguage"] as? [String] else {return nil}
+                self.init(id: snapshot.documentID, name: name, photoURL: data["photoURL"] as? String, score: data["score"] as? Int16, rating: data["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: data["learningLanguage"] as? [String], idPosts: data["idPosts"] as? [String], idCommentedPosts: data["idCommentedPosts"] as? [String], fcmToken: fcmToken)
+            }
+            
+            
+    //
+    //        self.init(id: snapshot.documentID, name: name, photoURL: snap["photoURL"] as? String, score: snap["score"] as? Int16, rating: snap["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: snap["learningLanguage"] as? [String], idPosts: snap["idPosts"] as? [String], idCommentedPosts: snap["idCommentedPosts"] as? [String])
+        }
     
     
 }

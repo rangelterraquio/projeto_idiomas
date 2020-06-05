@@ -34,7 +34,7 @@ class LanguagePopoverController: UIViewController, UITableViewDelegate, UITableV
         
         
         contentSizeObserver = tableView.observe(\.contentSize) { [weak self] tableView, _ in
-            let height = (self!.languages.count + 2) * Int(45) + Int((self?.doneButton.frame.height)!) + Int(self!.InstructionLabel.frame.height)
+            let height = (self!.languages.count + 2) * Int(75) + Int((self?.doneButton.frame.height)!) + Int(self!.InstructionLabel.frame.height)
                    let width = Int(tableView.frame.width)
             self?.preferredContentSize = CGSize(width: width, height: height)
         }
