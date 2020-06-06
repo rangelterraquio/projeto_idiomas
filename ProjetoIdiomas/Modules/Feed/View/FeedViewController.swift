@@ -61,7 +61,7 @@ class FeedViewController: UIViewController {
 
     @IBAction func reloadTB(_ sender: Any) {
         print(self.posts)
-                presenter?.updateFeed(in: [.english], from: Date())
+        presenter?.updateFeed(in: [.english], from: Date())
 
     }
     
@@ -78,7 +78,7 @@ class FeedViewController: UIViewController {
 extension FeedViewController: FeedPresenterToView{
     func showPosts(posts: [Post]) {
         self.feedTableView.refreshControl?.endRefreshing()
-        self.posts.append(contentsOf: posts)
+        self.posts = posts
         self.feedTableView.reloadData()
     }
     
@@ -112,6 +112,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
         }
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell") as? FeedCell{
+            if indexPath.row == 0 || indexPath.row > posts.count {return UITableViewCell()}
             let post = posts[indexPath.row-1] ///subtraio 1 por causa da celula statica
             print(post.publicationDate)
             cell.populate(post: post)

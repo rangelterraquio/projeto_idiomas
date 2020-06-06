@@ -7,19 +7,20 @@
 //
 
 import UIKit
-
+import FirebaseFirestore
 class ViewActivityViewController: UIViewController {
     
     var activities: [Notifaction] = [Notifaction]()
     
     var presenter: ViewActivitiesViewToPresenter? = nil
-    
+    var listener: ListenerRegistration!
     @IBOutlet weak var activitiesTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        self.tabBarItem.badgeValue = nil
         
         let cellXib = UINib.init(nibName: "ActivityCell", bundle: nil)
         activitiesTableView.register(cellXib, forCellReuseIdentifier: "ActivityCell")
@@ -41,6 +42,9 @@ class ViewActivityViewController: UIViewController {
         presenter?.finishedViewNotication()
     }
 
+    deinit {
+        self.listener.remove()
+    }
 
 }
 

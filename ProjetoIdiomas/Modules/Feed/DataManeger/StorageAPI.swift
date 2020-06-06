@@ -23,10 +23,10 @@ import SystemConfiguration.CaptiveNetwork
 public class StoregeAPI{
     
    
-    private var db = Firestore.firestore()
+    var db = Firestore.firestore()
     
     private var snapshots: [QueryDocumentSnapshot]? = nil
-    
+    let imageLoader = ImageLoader()
     static var currentUser: User?
     func fechPosts(in languages: [Languages], from date: Date,completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
         
@@ -211,12 +211,18 @@ public class StoregeAPI{
         
         
     }
+//    // Get new write batch
+//    let batch = db.batch()
+//
+//    // Set the value of 'NYC'
+//    let nycRef = db.collection("cities").document("NYC")
+//    batch.setData([:], forDocument: nycRef)
     
+   
     func fetchUser(completion: @escaping (User?, Error?)->()){
         if let user = Auth.auth().currentUser {
             let documentRef = db.collection("Users")
-            
-            documentRef.whereField("id", isEqualTo: user.uid).getDocuments { [weak self] (query, error) in
+            documentRef.whereField("id", isEqualTo: user.uid).getDocuments { (query, error) in
                 if error != nil {
                     print("error na hora de buscar o user")
                     completion(nil,error)
@@ -233,47 +239,45 @@ public class StoregeAPI{
             
         }
     }
+ 
         
-//        guard document = inDocument as? (Post || Comment), var num = inDocument.dictionary[voteType] as? Int16 else {
-//            print("error")
-//            return
-//        }
-        
-        
+     public func saveImage(userID: String, image: UIImage){
+            // Get a reference to the storage service using the default Firebase App
+            let storage = Storage.storage()
+
+            // Create a storage reference from our storage service
+            let storageRef = storage.reference()
+                
+            let imageRef = storageRef.child("Users").child(userID).child("profileImage")
+            
+            if let data = image.jpegData(compressionQuality: 0.2) {
+                let metadata = StorageMetadata()
+                imageRef.putData(data, metadata: metadata) { (metadata, erro) in
+                    if erro != nil{
+                        print(erro as Any)
+                    }else{
+                        print("deu bommmmmm")
+                    }
+                    
+                    
+                    imageRef.downloadURL { (url, error) in
+                         if erro != nil{
+                            print(erro as Any)
+                         }else{
+                            self.updateUserPhotoUrl(url: url!.absoluteString)
+                        }
+                    }
+                    
+                    
+                }
+            }
+            
+        }
+    
+    
     }
     
-    func saveImage(userID: String, image: UIImage){
-        // Get a reference to the storage service using the default Firebase App
-        let storage = Storage.storage()
-
-        // Create a storage reference from our storage service
-        let storageRef = storage.reference()
-            
-        let imageRef = storageRef.child("Users").child(userID).child("profileImage")
-        
-        if let data = image.pngData(){
-            let metadata = StorageMetadata()
-            imageRef.putData(data, metadata: metadata) { (metadata, erro) in
-                if erro != nil{
-                    print(erro as Any)
-                }else{
-                    print("deu bommmmmm")
-                }
-                
-                
-                imageRef.downloadURL { (url, error) in
-                     if erro != nil{
-                        print(erro as Any)
-                     }else{
-//                        print(url?.absoluteString)
-                    }
-                }
-                
-                
-            }
-        }
-        
-    }
+   
     
 
 
@@ -283,7 +287,9 @@ public class StoregeAPI{
 
 //MARK: -> User CRUD
 extension StoregeAPI{
-    
+    func teste(){
+       
+    }
     
     
 }
@@ -316,4 +322,149 @@ public class Reachability {
 
         return (isReachable && !needsConnection)
     }
+}
+
+
+//MARK: -> Update User data
+extension StoregeAPI{
+    private func updateUserPhotoUrl(url: String){
+           guard let user = StoregeAPI.currentUser else{return}
+
+           let batch : WriteBatch  = db.batch()
+
+           updatePosts(url: url, user: user, batch: batch) { (completed) in
+               if completed{
+                   batch.commit()
+                   self.updateComments(url: url, user: user, batch: self.db.batch()) { (completed) in
+                       
+                       if completed{
+                           self.updateUser(url: url, user: user, batch: self.db.batch()) { (completed) in
+                               if completed{
+                                   self.imageLoader.removeImagefromCache(url: user.photoURL ?? "")
+                               }
+                           }
+                       }
+                       
+                   }
+               }
+           }
+     
+       }
+       
+       
+       
+       private func updatePosts(url: String, user: User,batch : WriteBatch , completion: @escaping (Bool)->()){
+         
+                   
+                   let docRef01 = db.collection("Posts").whereField("author.id", isEqualTo: user.id)
+                   docRef01.getDocuments { (snapshot, error) in
+                       if error == nil {
+                   
+                           if let snap = snapshot{
+                               for doc in snap.documents{
+                                   batch.updateData(["photoURL" : url], forDocument: doc.reference)
+                               }
+                               completion(true)
+                           }
+                           
+                       }else{
+                           completion(false)
+                       }
+                   }
+       }
+       
+       
+       private func updateComments(url: String, user: User,batch: WriteBatch, completion: @escaping (Bool)->()){
+           let docRef03 = db.collection("Posts").document().collection("Comments").whereField("authorId", isEqualTo: user.id)
+           
+           docRef03.getDocuments { (snapshot, error) in
+               if error == nil {
+                   
+                   if let snap = snapshot{
+                       for doc in snap.documents{
+                           batch.updateData(["authorPhotoURL" : url], forDocument: doc.reference)
+                       }
+                       batch.commit()
+                      completion(true)
+                   }
+                   
+               }
+               completion(false)
+           }
+       }
+       
+       private func updateUser(url: String, user: User,batch: WriteBatch, completion: @escaping (Bool)->()){
+           let docRef02 = db.collection("Users").document(user.id)
+           docRef02.getDocument { (snapshot, error) in
+               if error == nil {
+                   
+                   if let snap = snapshot{
+                       batch.updateData(["photoURL" : url], forDocument: snap.reference)
+                       completion(true)
+                       batch.commit()
+                   }
+               
+               }
+               completion(false)
+           }
+           
+       }
+    
+    
+    
+    func updateUserName(newName: String, user: User){
+        let batch = db.batch()
+        let docRef01 = db.collection("Posts").whereField("author.id", isEqualTo: user.id)
+        docRef01.getDocuments { (snapshot, error) in
+            if error == nil {
+                
+                if let snap = snapshot{
+                    for doc in snap.documents{
+                        batch.updateData(["name" : newName], forDocument: doc.reference)
+                    }
+                    batch.commit()
+                    self.updateUserNameInComments(newName: newName, user: user)
+                }
+                
+            }
+        }
+        
+    }
+    
+    private func updateUserNameInComments(newName: String, user: User){
+        //segunda atualizacao
+        let batch = db.batch()
+        let docRef03 = self.db.collection("Posts").document().collection("Comments").whereField("authorId", isEqualTo: user.id)
+        
+        docRef03.getDocuments { (snapshot, error) in
+            if error == nil {
+                
+                if let snap = snapshot{
+                    for doc in snap.documents{
+                        batch.updateData(["authorName" : newName], forDocument: doc.reference)
+                    }
+                    batch.commit()
+                    self.updateNameInUser(newName: newName, user: user)
+                }
+                
+            }
+            
+        }
+    }
+    
+    func updateNameInUser(newName: String, user: User){
+        let batch = db.batch()
+        let docRef02 = db.collection("Users").document(user.id)
+        docRef02.getDocument { (snapshot, error) in
+            if error == nil {
+                if let snap = snapshot{
+                    batch.updateData(["name" : newName], forDocument: snap.reference)
+                    batch.commit()
+                }
+            
+            }
+        
+        }
+    }
+       
 }

@@ -12,8 +12,10 @@ import FirebaseFirestore
 public class StateController{
     
     private var storage: StoregeAPI!
-    let imageLoader = ImageLoader()
+    var imageLoader: ImageLoader!
     let notificationSender = PushNotificationSender()
+    let cameraHandler = CamereHandler()
+    
     var user: User?{
         didSet{
             StoregeAPI.currentUser = user
@@ -22,6 +24,7 @@ public class StateController{
     
     init(storage: StoregeAPI) {
         self.storage = storage
+        self.imageLoader = storage.imageLoader
     }
     
     
@@ -76,5 +79,26 @@ public class StateController{
     }
     
     
+    func saveImage(userID: String, image: UIImage){
+        storage.saveImage(userID: userID, image: image)
+    }
+    
+    
+    func addActivityListener(user: User, activitiesVC: UIViewController) -> ListenerRegistration{
+        return storage.db.collection("Users").document(user.id).collection("Notifications").addSnapshotListener { (snap, error) in
+            if error != nil {
+                return
+            }else{
+                snap?.documentChanges.forEach { diff in
+                          if (diff.type == .added) {
+                              activitiesVC.tabBarItem.badgeColor = .red
+                              activitiesVC.tabBarItem.badgeValue = ""
+                          }
+                }
+                
+            }
+        }
+
+    }
     
 }

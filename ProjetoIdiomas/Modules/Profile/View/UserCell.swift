@@ -15,6 +15,9 @@ class UserCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        imageProfile.layer.cornerRadius = 24
+        imageProfile.layer.masksToBounds = true
+        imageProfile.contentMode = .scaleAspectFill
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

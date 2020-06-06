@@ -32,7 +32,7 @@ public class ViewActivitiesCoordinator: Coordinator{
         }
         
         
-        func start() -> UIViewController{
+        func start(user: User) -> UIViewController{
             let vc = ViewActivityViewController(nibName: "ViewActivityViewController", bundle: nil)
             let presenter = ViewActivitiesPresenter()
             let interator = ViewActivitiesInterator(stateController: stateManeger)
@@ -41,6 +41,10 @@ public class ViewActivitiesCoordinator: Coordinator{
             presenter.router = self
             vc.presenter = presenter
             interator.presenter = presenter
+            
+            vc.listener = stateManeger.addActivityListener(user: user, activitiesVC: vc)
+            
+            
             return vc
             //modo de apresentação
             //             vc.modalPresentationStyle = .overCurrentContext

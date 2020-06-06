@@ -27,8 +27,8 @@ final class AppCoordinator: Coordinator{
     
     func start(){
         if signUpAPI.userHasAValidSession(){
-            storage.fetchUser { _,_ in
-                self.setupTabBar()
+            storage.fetchUser { user,Error in
+                self.setupTabBar(user: user!)
             }
             
         }else{
@@ -41,19 +41,21 @@ final class AppCoordinator: Coordinator{
     
     
     
-    private func setupTabBar(){
+    private func setupTabBar(user: User){
         
         
         
         if let feedControler = showFeed(){
             feedControler.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 0)
             
-            let activitiesVC = showActivities()
+            let activitiesVC = showActivities(user: user)
             
             activitiesVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
-
             
-            let controllers = [feedControler,activitiesVC].map { (viewController) -> UINavigationController in
+            let profileVC = showProfile(user: user)
+            profileVC.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
+            
+            let controllers = [feedControler,activitiesVC,profileVC].map { (viewController) -> UINavigationController in
                 UINavigationController(rootViewController: viewController)
             
         }
@@ -74,10 +76,10 @@ final class AppCoordinator: Coordinator{
     
     func showFeed() -> UIViewController?{
         //return
-        let newChild = childCoordinators.first(where: {$0 is ViewPostCoordinator})
-        if let _  = newChild {
-            return nil
-        }
+//        let newChild = childCoordinators.first(where: {$0 is ViewPostCoordinator})
+//        if let _  = newChild {
+//            return nil
+//        }
         let coordinator = FeedCoordinator(stateController: stateManeger, tabBarController: tabBarController)
         childCoordinators.append(coordinator)
         coordinator.delegate = self
@@ -127,12 +129,34 @@ final class AppCoordinator: Coordinator{
         
     }
     
-    func showActivities() -> UIViewController{
+    func showActivities(user: User) -> UIViewController{
         let coordinator = ViewActivitiesCoordinator(stateController: stateManeger, tabBarController: tabBarController)
         coordinator.delegate = self
         childCoordinators.append(coordinator)
-        return coordinator.start()
+        return coordinator.start(user: user)
     }
+    
+    func showProfile(user: User) -> UIViewController{
+         let coordinator = ProfileCoordinator(stateController: stateManeger, tabBarController: tabBarController)
+         coordinator.delegate = self
+         childCoordinators.append(coordinator)
+        return coordinator.start(user: user, image: UIImage(named: "joseph"))
+     }
+    
+    func showEditInfoView(user: User, image: UIImage?){
+        let vc = EditInformationViewController(nibName: "EditInformationViewController", bundle: nil)
+        vc.stateController = stateManeger
+        vc.user = user
+        vc.image = image
+        
+        vc.modalPresentationStyle = .overCurrentContext
+        if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
+            oldVc.definesPresentationContext = true
+          
+            oldVc.pushViewController(vc, animated: true)
+        }
+    }
+    
 }
 
 
@@ -140,7 +164,7 @@ final class AppCoordinator: Coordinator{
 extension AppCoordinator: AuthenticationCoordinatorDelegate{
     func coordinatorDidAuthenticateWithUser(coordinator: SignUpCoordinator) {
         removeCoordinator(coordinator: coordinator)
-        self.setupTabBar()
+        self.setupTabBar(user: StoregeAPI.currentUser!)
     }
     
     
@@ -263,6 +287,22 @@ extension AppCoordinator: ViewActivitiesDelegate{
     func goToPost(id: String) {
         showViewPostInDetails(postID: id)
     }
+    
+    
+}
+
+
+//MARK: -> View activities Delegate
+extension AppCoordinator: ProfileDelegate{
+    func goToEditInfoView(user: User, image: UIImage?) {
+        showEditInfoView(user: user, image: image)
+    }
+    
+    
+    
+    
+    
+    
     
     
 }

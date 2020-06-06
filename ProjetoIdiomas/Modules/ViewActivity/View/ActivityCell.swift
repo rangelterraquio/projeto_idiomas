@@ -35,7 +35,9 @@ class ActivityCell: UITableViewCell {
         }
     }
     func populateWith(image: UIImage){
-        imageProfile.image = image
+        DispatchQueue.main.async {
+            self.imageProfile.image = image
+        }
     }
     
     override func prepareForReuse() {

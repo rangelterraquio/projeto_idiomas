@@ -61,6 +61,13 @@
 		708A29E4248A967D009E93B3 /* UserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708A29E2248A967D009E93B3 /* UserCell.xib */; };
 		708A29E7248A9962009E93B3 /* OptionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29E5248A9962009E93B3 /* OptionCell.swift */; };
 		708A29E8248A9962009E93B3 /* OptionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708A29E6248A9962009E93B3 /* OptionCell.xib */; };
+		708A29EA248A9E56009E93B3 /* ProfileCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29E9248A9E56009E93B3 /* ProfileCoordinator.swift */; };
+		708A29EC248B2407009E93B3 /* ProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29EB248B2407009E93B3 /* ProfilePresenter.swift */; };
+		708A29EE248B242E009E93B3 /* ProfileProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29ED248B242E009E93B3 /* ProfileProtocols.swift */; };
+		708A29F2248B2ABB009E93B3 /* EditInformationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29F0248B2ABB009E93B3 /* EditInformationViewController.swift */; };
+		708A29F3248B2ABB009E93B3 /* EditInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708A29F1248B2ABB009E93B3 /* EditInformationViewController.xib */; };
+		708A29F5248B2D24009E93B3 /* CameraHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29F4248B2D24009E93B3 /* CameraHandler.swift */; };
+		708A29F7248B3794009E93B3 /* ProfileInterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29F6248B3794009E93B3 /* ProfileInterator.swift */; };
 		709E7B482485FA2600274D33 /* ViewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E7B462485FA2600274D33 /* ViewActivityViewController.swift */; };
 		709E7B492485FA2600274D33 /* ViewActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709E7B472485FA2600274D33 /* ViewActivityViewController.xib */; };
 		70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */; };
@@ -146,6 +153,13 @@
 		708A29E2248A967D009E93B3 /* UserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserCell.xib; sourceTree = "<group>"; };
 		708A29E5248A9962009E93B3 /* OptionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionCell.swift; sourceTree = "<group>"; };
 		708A29E6248A9962009E93B3 /* OptionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionCell.xib; sourceTree = "<group>"; };
+		708A29E9248A9E56009E93B3 /* ProfileCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileCoordinator.swift; sourceTree = "<group>"; };
+		708A29EB248B2407009E93B3 /* ProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePresenter.swift; sourceTree = "<group>"; };
+		708A29ED248B242E009E93B3 /* ProfileProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileProtocols.swift; sourceTree = "<group>"; };
+		708A29F0248B2ABB009E93B3 /* EditInformationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditInformationViewController.swift; sourceTree = "<group>"; };
+		708A29F1248B2ABB009E93B3 /* EditInformationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditInformationViewController.xib; sourceTree = "<group>"; };
+		708A29F4248B2D24009E93B3 /* CameraHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHandler.swift; sourceTree = "<group>"; };
+		708A29F6248B3794009E93B3 /* ProfileInterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInterator.swift; sourceTree = "<group>"; };
 		709E7B462485FA2600274D33 /* ViewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivityViewController.swift; sourceTree = "<group>"; };
 		709E7B472485FA2600274D33 /* ViewActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewActivityViewController.xib; sourceTree = "<group>"; };
 		70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesProtocols.swift; sourceTree = "<group>"; };
@@ -395,6 +409,7 @@
 		708A29D7248A8E75009E93B3 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				708A29EF248B2A93009E93B3 /* EditInformaion */,
 				708A29DC248A8EB7009E93B3 /* Protocols */,
 				708A29DB248A8EAE009E93B3 /* Router */,
 				708A29DA248A8E97009E93B3 /* Interator */,
@@ -420,6 +435,7 @@
 		708A29D9248A8E89009E93B3 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				708A29EB248B2407009E93B3 /* ProfilePresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -427,6 +443,7 @@
 		708A29DA248A8E97009E93B3 /* Interator */ = {
 			isa = PBXGroup;
 			children = (
+				708A29F6248B3794009E93B3 /* ProfileInterator.swift */,
 			);
 			path = Interator;
 			sourceTree = "<group>";
@@ -434,6 +451,7 @@
 		708A29DB248A8EAE009E93B3 /* Router */ = {
 			isa = PBXGroup;
 			children = (
+				708A29E9248A9E56009E93B3 /* ProfileCoordinator.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -441,8 +459,18 @@
 		708A29DC248A8EB7009E93B3 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				708A29ED248B242E009E93B3 /* ProfileProtocols.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		708A29EF248B2A93009E93B3 /* EditInformaion */ = {
+			isa = PBXGroup;
+			children = (
+				708A29F0248B2ABB009E93B3 /* EditInformationViewController.swift */,
+				708A29F1248B2ABB009E93B3 /* EditInformationViewController.xib */,
+			);
+			path = EditInformaion;
 			sourceTree = "<group>";
 		};
 		709E7B402485F98F00274D33 /* ViewActivity */ = {
@@ -668,6 +696,7 @@
 			children = (
 				70FABC622482A7FB00825EC9 /* PushNotificationManeger.swift */,
 				70FABC642482B02D00825EC9 /* PushNotificationSender.swift */,
+				708A29F4248B2D24009E93B3 /* CameraHandler.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -786,6 +815,7 @@
 				707F38602445290500DCEBE6 /* GoogleService-Info.plist in Resources */,
 				70B6391F246792B300966A56 /* LanguageCell.xib in Resources */,
 				708A29E8248A9962009E93B3 /* OptionCell.xib in Resources */,
+				708A29F3248B2ABB009E93B3 /* EditInformationViewController.xib in Resources */,
 				7006EB7224678A1D0040F681 /* SelectLanguageViewController.xib in Resources */,
 				707F38532445226200DCEBE6 /* Main.storyboard in Resources */,
 				70FB8B4124698E100031DBFF /* CommentCell.xib in Resources */,
@@ -869,6 +899,7 @@
 				70C1A062244D2F66008F31DB /* SignUpPresenter.swift in Sources */,
 				70C1A054244D2210008F31DB /* User.swift in Sources */,
 				708A29D6248A81E0009E93B3 /* ViewActivitiesCoordinator.swift in Sources */,
+				708A29F7248B3794009E93B3 /* ProfileInterator.swift in Sources */,
 				7075F5292489D4F800851F28 /* ViewActivitiesProtocols.swift in Sources */,
 				707F38702445383100DCEBE6 /* Post.swift in Sources */,
 				708A29DF248A8EF8009E93B3 /* ProfileViewController.swift in Sources */,
@@ -876,6 +907,7 @@
 				707F38502445226200DCEBE6 /* ViewController.swift in Sources */,
 				70FB8B492469BC720031DBFF /* ViewPostProtocols.swift in Sources */,
 				7084A809247FFF7E0077284D /* SignUpCoordinator.swift in Sources */,
+				708A29EC248B2407009E93B3 /* ProfilePresenter.swift in Sources */,
 				707F3874244548B200DCEBE6 /* FeedInteator.swift in Sources */,
 				70698CED2468592300D2D744 /* CreatePostProtocols.swift in Sources */,
 				708A29E3248A967D009E93B3 /* UserCell.swift in Sources */,
@@ -886,10 +918,12 @@
 				704F87542447CDD500C1C4D4 /* FeedCell.swift in Sources */,
 				7084A807247FF3EF0077284D /* AppCoordinator.swift in Sources */,
 				70FB8B4024698E100031DBFF /* CommentCell.swift in Sources */,
+				708A29F2248B2ABB009E93B3 /* EditInformationViewController.swift in Sources */,
 				7075F5272489A9CA00851F28 /* Notification.swift in Sources */,
 				7075F52B2489DC2800851F28 /* ViewActivitiesPresenter.swift in Sources */,
 				708A29E7248A9962009E93B3 /* OptionCell.swift in Sources */,
 				7006EB7124678A1D0040F681 /* SelectLanguageViewController.swift in Sources */,
+				708A29EA248A9E56009E93B3 /* ProfileCoordinator.swift in Sources */,
 				709E7B482485FA2600274D33 /* ViewActivityViewController.swift in Sources */,
 				70FB8B3C24698A900031DBFF /* PostCell.swift in Sources */,
 				70698CF3246860AA00D2D744 /* LanguagePopoverController.swift in Sources */,
@@ -912,11 +946,13 @@
 				70698CF72468C3C000D2D744 /* Error.swift in Sources */,
 				70698CE6246854B700D2D744 /* CreatePostViewController.swift in Sources */,
 				7084A80B24800A350077284D /* SelectLanguagesCoordinator.swift in Sources */,
+				708A29F5248B2D24009E93B3 /* CameraHandler.swift in Sources */,
 				70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */,
 				70EE70FB2487E28000A9BDDE /* TabNavigationController.swift in Sources */,
 				7075F52D2489DF9A00851F28 /* ViewActivitiesInterator.swift in Sources */,
 				707F384E2445226200DCEBE6 /* SceneDelegate.swift in Sources */,
 				70698CF024685ABF00D2D744 /* CreatePostInterator.swift in Sources */,
+				708A29EE248B242E009E93B3 /* ProfileProtocols.swift in Sources */,
 				7084A80D24804C4F0077284D /* FeedCoordinator.swift in Sources */,
 				707F386C24452FE000DCEBE6 /* Languages.swift in Sources */,
 				70C1A069244D3014008F31DB /* SignUpAPI.swift in Sources */,

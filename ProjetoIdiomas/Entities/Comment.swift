@@ -29,7 +29,8 @@ public struct Comment{
             "downvote" : downvote as Int32,
             "commentText" : commentText as String,
             "authorName" : authorName as String,
-            "fcmToken" : fcmToken
+            "fcmToken" : fcmToken as String,
+            "authorPhotoURL" : authorPhotoURL as? String
         ]
     }
     

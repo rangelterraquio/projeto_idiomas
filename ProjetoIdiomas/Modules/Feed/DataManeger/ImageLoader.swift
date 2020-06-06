@@ -9,48 +9,48 @@
 import Foundation
 import UIKit
 
-let imageCache = NSCache<NSString, AnyObject>()
+//let imageCache = NSCache<NSString, AnyObject>()
 
 
-extension UIImageView{
-    
-    func loadImagefromURL(from url: String, handler: @escaping () -> ()){
-        
-        self.image = nil
-        
-        if let cachedImage = imageCache.object(forKey: url as NSString) as? UIImage {
-            self.image = cachedImage
-            return
-        }
-        
-        
-        let urlPath = URL(string: url)
-        
-        URLSession.shared.dataTask(with: urlPath!) { (dataImage, response, error) in
-            if error != nil {
-                print(error as Any)
-                DispatchQueue.main.async {
-                        handler()
-                        self.image = UIImage(named: "blankProfile")
-                }
-                return
-            }
-            
-            DispatchQueue.main.async {
-                if let imageDownloaded = UIImage(data: dataImage!){
-                    handler()
-                    self.image = imageDownloaded
-                    imageCache.setObject(imageDownloaded, forKey: url as NSString)
-                }
-            }
-            
-            
-            
-        }.resume()
-        
-    }
-    
-}
+//extension UIImageView{
+//    
+//    func loadImagefromURL(from url: String, handler: @escaping () -> ()){
+//        
+//        self.image = nil
+//        
+//        if let cachedImage = imageCache.object(forKey: url as NSString) as? UIImage {
+//            self.image = cachedImage
+//            return
+//        }
+//        
+//        
+//        let urlPath = URL(string: url)
+//        
+//        URLSession.shared.dataTask(with: urlPath!) { (dataImage, response, error) in
+//            if error != nil {
+//                print(error as Any)
+//                DispatchQueue.main.async {
+//                        handler()
+//                        self.image = UIImage(named: "blankProfile")
+//                }
+//                return
+//            }
+//            
+//            DispatchQueue.main.async {
+//                if let imageDownloaded = UIImage(data: dataImage!){
+//                    handler()
+//                    self.image = imageDownloaded
+//                    imageCache.setObject(imageDownloaded, forKey: url as NSString)
+//                }
+//            }
+//            
+//            
+//            
+//        }.resume()
+//        
+//    }
+//    
+//}
 
 
 
@@ -97,6 +97,14 @@ class ImageLoader{
         runningRequests[uuid] = taks
         return uuid
         
+    }
+    
+    func removeImagefromCache(url: String){
+        print("A url do parametro : \(url)")
+        
+        
+        
+        imageCache.removeAllObjects()
     }
     
     func cancelLoadRequest(uuid: UUID){

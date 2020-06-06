@@ -29,12 +29,13 @@ class PushNotificationSender {
             if error != nil{
                 complition(false)
             }
+            complition(true)
             do {
                 if let jsonData = data {
                     if let jsonDataDict  = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] {
                         print("Received data:\n\(jsonDataDict))")
                     }
-                    complition(true)
+                   
                 }
             } catch let err as NSError {
                 print(err.debugDescription)
