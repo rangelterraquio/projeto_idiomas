@@ -20,8 +20,8 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var postText: UILabel!
     
     var onReuse: () -> () = {}
-    var upvoted: () -> () = {}
-    var downVoted: () -> () = {}
+    var upvoted: (Int32) -> () = {_ in}
+    var downVoted: (Int32) -> () = {_ in}
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,17 +47,19 @@ class PostCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func downVote(_ sender: Any) {
-        downVoted()
+        
         ///atualizo label dos numeros
         if let tex = downVoteLabel.text, let num = Int32(tex){
             downVoteLabel.text = "\(num + 1)"
+            downVoted(num + 1)
         }
     }
     @IBAction func upVote(_ sender: Any) {
-        upvoted()
+       
         ///atualizo label dos numeros
         if let tex = upVoteLabel.text, let num = Int32(tex){
             upVoteLabel.text = "\(num + 1)"
+             upvoted(num + 1)
         }
     }
     

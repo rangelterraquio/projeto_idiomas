@@ -26,18 +26,18 @@ public protocol FeedPresenterToView: class{
     func showError()
 }
 
-public protocol FeedViewToPresenter: class{
+ protocol FeedViewToPresenter: class{
     func updateFeed(in languages: [Languages], from date: Date)
     func requestProfileImage(from url: String?, completion:  @escaping  (Result<UIImage, CustomError>) -> Void) -> UUID?
     func cancelImageRequest(uuid token: UUID)
     func updateVotes<T: DocumentSerializable>(from: String, inDocument: T, with comment: Comment?)
     func goToAddPostView()
-    func goToViewPostDetails(post: Post,imageProfile: UIImage?,vc: UIViewController)
+    func goToViewPostDetails(post: Post,imageProfile: UIImage?,vc: FeedViewController?)
 }
 
-public protocol FeedPresenterToRouter{
+ protocol FeedPresenterToRouter{
     func addPostView()
-    func viewPostWithDetails(post: Post,imageProfile: UIImage?,vc: UIViewController)
+    func viewPostWithDetails(post: Post,imageProfile: UIImage?,vc: FeedViewController?)
     //func showErrorAlert(error: String)
 }
 

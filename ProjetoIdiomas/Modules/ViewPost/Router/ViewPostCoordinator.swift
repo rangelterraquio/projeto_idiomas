@@ -27,7 +27,7 @@ class ViewPostCoordinator: Coordinator {
     }
     
     
-    func start(post: Post,imageProfile: UIImage?){
+    func start(post: Post,imageProfile: UIImage?,feedVC: FeedViewController?){
         let vc = ViewPostViewController(nibName: "ViewPostViewController", bundle: nil)
         let interator = ViewPostInterator(stateController: stateManeger)
         let presenter = ViewPostPresenter()
@@ -38,7 +38,7 @@ class ViewPostCoordinator: Coordinator {
         presenter.router = self
         vc.presenter = presenter
         vc.imageAuthor = imageProfile
-        
+        vc.feedVC = feedVC
        
         vc.modalPresentationStyle = .overCurrentContext
         if let oldVc = tabBarController.viewControllers?.first as? UINavigationController{
@@ -56,49 +56,49 @@ class ViewPostCoordinator: Coordinator {
 //        }
         
     }
-    
-      func start(post: Post,imageProfile: UIImage?,currentView: UIViewController){
-            let vc = ViewPostViewController(nibName: "ViewPostViewController", bundle: nil)
-            let interator = ViewPostInterator(stateController: StateController(storage: StoregeAPI()))
-            let presenter = ViewPostPresenter()
-            vc.post = post
-            presenter.interator = interator
-            presenter.view = vc
-            interator.presenter = presenter
-            presenter.router = nil
-            vc.presenter = presenter
-            vc.imageAuthor = imageProfile
-            
-           
-//            vc.modalPresentationStyle = .overCurrentContext
-//        self.tabBarController.definesPresentationContext = true
-//        self.tabBarController.pushViewController(vc, animated: true)
-//        currentView.navigationController?.definesPresentationContext = true
-//        currentView.navigationController?.pushViewController(vc, animated: true)
-    //        vc.definesPresentationContext = true//modo de apresentação
-            
-//            guard let topViewController = navigationController.topViewController else {
-//                return navigationController.setViewControllers([vc], animated: false)
-//            }
-//    // self.definesPresentationContext = true
-//            UIView.transition(from:topViewController.view, to: vc.view, duration: 0.50, options: .transitionCrossDissolve) {[unowned self] (_) in
-//    //            self.navigationController.setViewControllers([vc], animated: false)
-//                self.navigationController.definesPresentationContext = true
-//                let tab = self.navigationController.viewControllers.first! as! UITabBarController
-//    //            let newVc = tab.viewControllers?.first
-//    //            newVc!.definesPresentationContext = true
-//    //            newVc?.present(vc, animated: true, completion: nil)
-//                tab.definesPresentationContext = true
-//                tab.hidesBottomBarWhenPushed = false
-//                vc.hidesBottomBarWhenPushed = false
+//    
+//      func start(post: Post,imageProfile: UIImage?,currentView: UIViewController){
+//            let vc = ViewPostViewController(nibName: "ViewPostViewController", bundle: nil)
+//            let interator = ViewPostInterator(stateController: StateController(storage: StoregeAPI()))
+//            let presenter = ViewPostPresenter()
+//            vc.post = post
+//            presenter.interator = interator
+//            presenter.view = vc
+//            interator.presenter = presenter
+//            presenter.router = nil
+//            vc.presenter = presenter
+//            vc.imageAuthor = imageProfile
 //            
-//                tab.present(vc, animated: true, completion: nil)
-//    //            self.navigationController.present(vc, animated: true, completion: nil)
-//    //            self.navigationController.pushViewController(vc, animated: true)
-//               
-//            }
-            
-        }
+//           
+////            vc.modalPresentationStyle = .overCurrentContext
+////        self.tabBarController.definesPresentationContext = true
+////        self.tabBarController.pushViewController(vc, animated: true)
+////        currentView.navigationController?.definesPresentationContext = true
+////        currentView.navigationController?.pushViewController(vc, animated: true)
+//    //        vc.definesPresentationContext = true//modo de apresentação
+//            
+////            guard let topViewController = navigationController.topViewController else {
+////                return navigationController.setViewControllers([vc], animated: false)
+////            }
+////    // self.definesPresentationContext = true
+////            UIView.transition(from:topViewController.view, to: vc.view, duration: 0.50, options: .transitionCrossDissolve) {[unowned self] (_) in
+////    //            self.navigationController.setViewControllers([vc], animated: false)
+////                self.navigationController.definesPresentationContext = true
+////                let tab = self.navigationController.viewControllers.first! as! UITabBarController
+////    //            let newVc = tab.viewControllers?.first
+////    //            newVc!.definesPresentationContext = true
+////    //            newVc?.present(vc, animated: true, completion: nil)
+////                tab.definesPresentationContext = true
+////                tab.hidesBottomBarWhenPushed = false
+////                vc.hidesBottomBarWhenPushed = false
+////            
+////                tab.present(vc, animated: true, completion: nil)
+////    //            self.navigationController.present(vc, animated: true, completion: nil)
+////    //            self.navigationController.pushViewController(vc, animated: true)
+////               
+////            }
+//            
+//        }
     func start(postID: String){
         let vc = ViewPostViewController(nibName: "ViewPostViewController", bundle: nil)
         let interator = ViewPostInterator(stateController: stateManeger)

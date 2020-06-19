@@ -8,9 +8,9 @@
 
 import Foundation
 import UIKit
-public protocol FeedCoordinatorDelegate: class{
+ protocol FeedCoordinatorDelegate: class{
     func chooseCreatePostView()
-    func chooseViewPostDetails(post: Post,imageProfile: UIImage?,vc: UIViewController)
+    func chooseViewPostDetails(post: Post,imageProfile: UIImage?,vc: FeedViewController?)
 }
 
 class FeedCoordinator: Coordinator {
@@ -55,7 +55,7 @@ extension FeedCoordinator: FeedPresenterToRouter{
         delegate?.chooseCreatePostView()
     }
     
-    func viewPostWithDetails(post: Post,imageProfile: UIImage?,vc: UIViewController) {
+    func viewPostWithDetails(post: Post,imageProfile: UIImage?,vc: FeedViewController?) {
         // criar o coordinator do
         delegate?.chooseViewPostDetails(post: post, imageProfile: imageProfile, vc: vc)
     }

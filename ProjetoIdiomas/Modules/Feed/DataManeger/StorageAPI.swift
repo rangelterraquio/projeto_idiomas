@@ -69,7 +69,7 @@ public class StoregeAPI{
         let documentRef = db.collection("Posts").document(post.id).collection("Comments")
         
         
-        documentRef.order(by: "upvote", descending: true).start(at: [numOfVotes]).limit(to: num).getDocuments{ (snapshot, error) in
+        documentRef.order(by: "upvote", descending: true).limit(to: num).getDocuments{ (snapshot, error) in
             if error != nil {
                 print("Tratar error")
                 completion(nil)
@@ -193,31 +193,55 @@ public class StoregeAPI{
     }
     
     func updateVotes<T : DocumentSerializable >(from voteType: String, inDocument: T, with comment: Comment?){
-        //quando a criação de post tiver ok deixa mudar o id
+       
         let documentRef = db.collection("Posts").document(inDocument.id)
-        if let document = inDocument as? Post, var num = document.dictionary[voteType] as? Int32 {
-            num += 1
-            documentRef.setData([voteType : num], merge: true)
-        }
-        if let comment = comment, var num = comment.dictionary[voteType] as? Int32{
-            num += 1
-           let newDoc = documentRef.collection("Comments").document(comment.id)
-            newDoc.setData([voteType : num], merge: true)
-            
-            
+        var newDoc: DocumentReference?
+       if let comment = comment{
+           let auxDoc = documentRef.collection("Comments").document(comment.id)
+            newDoc = auxDoc
+       }else{
+            newDoc = documentRef
         }
         
+        
+        guard let sfReference = newDoc else {return}
+        db.runTransaction({ (transaction, errorPointer) -> Any? in
+            let sfDocument: DocumentSnapshot
+            do {
+                try sfDocument = transaction.getDocument(sfReference)
+            } catch let fetchError as NSError {
+                errorPointer?.pointee = fetchError
+                return nil
+            }
+
+            guard let oldVotes = sfDocument.data()?[voteType] as? Int32 else {
+                let error = NSError(
+                    domain: "AppErrorDomain",
+                    code: -1,
+                    userInfo: [
+                        NSLocalizedDescriptionKey: "Unable to retrieve votes from snapshot \(sfDocument)"
+                    ]
+                )
+                errorPointer?.pointee = error
+                return nil
+            }
+
+            // Note: this could be done without a transaction
+            //       by updating the population using FieldValue.increment()
+            transaction.updateData([voteType: oldVotes + 1], forDocument: sfReference)
+            return nil
+        }) { (object, error) in
+            if let error = error {
+                print("Transaction failed: \(error)")
+            } else {
+                print("Transaction successfully committed!")
+            }
+        }
         
         
         
     }
-//    // Get new write batch
-//    let batch = db.batch()
-//
-//    // Set the value of 'NYC'
-//    let nycRef = db.collection("cities").document("NYC")
-//    batch.setData([:], forDocument: nycRef)
-    
+
    
     func fetchUser(completion: @escaping (User?, Error?)->()){
         if let user = Auth.auth().currentUser {

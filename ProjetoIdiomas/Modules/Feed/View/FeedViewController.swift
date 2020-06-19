@@ -12,6 +12,14 @@ public enum SectionSelected{
     case teachingSection
     case learningSection
 }
+
+
+public enum VoteType{
+    case upVote
+    case downVote
+}
+
+
 class FeedViewController: UIViewController {
 
 
@@ -21,10 +29,13 @@ class FeedViewController: UIViewController {
     
     var section: SectionSelected = .teachingSection
     
+    var updateVotesView: (VoteType, Int32) -> () = {_, _ in}
     
     @IBOutlet weak var feedTableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
+        feedTableView.reloadData()
+
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +49,6 @@ class FeedViewController: UIViewController {
         
         feedTableView.delegate = self
         feedTableView.dataSource = self
-        
         
         presenter?.updateFeed(in: [.english], from: Date())
         
@@ -143,7 +153,21 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell =  tableView.cellForRow(at: indexPath) as?  FeedCell else {return}
-        presenter?.goToViewPostDetails(post: posts[indexPath.row-1], imageProfile: cell.userPictureView.image, vc: self)
+        var post = posts[indexPath.row-1]
+        post.downvote = Int32(cell.downVoteLabel.text!)!
+        post.upvote = Int32(cell.upVoteLabel.text!)!
+        
+        updateVotesView = {voteType, num in
+            if voteType == .upVote{
+                post.upvote = num
+                cell.upVoteLabel.text = "\(num)"
+            }else{
+                post.downvote = num
+                cell.downVoteLabel.text = "\(num)"
+            }
+            tableView.reloadData()
+        }
+        presenter?.goToViewPostDetails(post: post, imageProfile: cell.userPictureView.image, vc: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

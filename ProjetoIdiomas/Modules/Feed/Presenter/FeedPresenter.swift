@@ -43,7 +43,7 @@ public class FeedPresenter : FeedViewToPresenter{
         router?.addPostView()
     }
     
-    public func goToViewPostDetails(post: Post,imageProfile: UIImage?,vc: UIViewController) {
+    func goToViewPostDetails(post: Post,imageProfile: UIImage?,vc: FeedViewController?) {
         router?.viewPostWithDetails(post: post, imageProfile: imageProfile, vc: vc)
     }
     

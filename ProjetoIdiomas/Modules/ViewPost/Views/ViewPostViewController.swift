@@ -33,6 +33,8 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     var presenter: ViewPostViewToPresenter? = nil
 
     var imageAuthor: UIImage?
+    
+    weak var feedVC: FeedViewController? = nil
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
     override func viewDidLoad() {
@@ -65,6 +67,7 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     
     override func viewWillDisappear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        self.feedVC?.feedTableView.reloadData()
     }
     @IBAction func goBackToFeed(_ sender: Any) {
         presenter?.finishViewPostSession()
@@ -120,8 +123,14 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
                 if let image = imageAuthor{
                     postCell.populateImage(image: image)
                 }
-                postCell.upvoted = {self.presenter?.updateVotes(from: "upvote", inDocument: post, with: nil)}
-                postCell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: post, with: nil)}
+                postCell.upvoted = { num in
+                    self.presenter?.updateVotes(from: "upvote", inDocument: post, with: nil)
+                    self.feedVC?.updateVotesView(VoteType.upVote,num)
+                }
+                postCell.downVoted = { num in
+                    self.feedVC?.updateVotesView(VoteType.upVote,num)
+                    self.presenter?.updateVotes(from: "downvote", inDocument: post, with: nil)
+                }
                 return postCell
             }
         }else{
