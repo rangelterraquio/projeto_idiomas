@@ -28,11 +28,19 @@ class EditInformationViewController: UIViewController {
     
     lazy var languageController = ChangeLAnguageViewController(nibName: "ChangeLAnguageViewController", bundle: nil)
     
+    var manegeButton: UIBarButtonItem!
     
+    
+    lazy var loadIndicator = UIActivityIndicatorView(style: .large)
+    
+    
+    weak var manegeAccountelegate: ManegeAccountDelegate? = nil
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
     }
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +48,12 @@ class EditInformationViewController: UIViewController {
 
         UserDefaults.standard.register(defaults: ["hasChangedName": false])
 
+        
+        
+        manegeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(manegeAccount))
+        self.navigationItem.setRightBarButton(manegeButton, animated: true)
+        manegeButton.isEnabled = true
+        
         if let image = image{
             imageProfile.image = image
         }
@@ -78,6 +92,11 @@ class EditInformationViewController: UIViewController {
         self.navigationController?.pushViewController(languageController, animated: true)
     }
     
+    @objc func manegeAccount(_ sender: Any){
+        actionSheet()
+    }
+    
+    
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         self.navigationController?.viewControllers.forEach({ (vc) in
             if let profileVc = vc as? ProfileViewController{
@@ -85,6 +104,52 @@ class EditInformationViewController: UIViewController {
             }
         })
         super.dismiss(animated: true, completion: completion)
+    }
+    
+    
+    private func actionSheet(){
+        let actionSheet = UIAlertController(title: "", message: "Manege Account", preferredStyle: .actionSheet)
+        
+        let action1 = UIAlertAction(title: "Sign Out", style: .destructive) { (_) in
+            self.manegeAccountelegate?.signOut()
+            
+        }
+       
+        
+        let action2 = UIAlertAction(title: "Delete Account", style: .destructive) { (_) in
+            self.deleteAccount()
+        }
+           
+        let action3 = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+            actionSheet.dismiss(animated: true, completion: nil)
+        }
+        
+        actionSheet.addAction(action1)
+        actionSheet.addAction(action2)
+        actionSheet.addAction(action3)
+        
+        self.present(actionSheet, animated: true, completion: nil)
+        
+    }
+    
+    
+    private func deleteAccount(){
+        self.view.addSubview(loadIndicator)
+        loadIndicator.startAnimating()
+        stateController.deleteUserAccount { (error) in
+            DispatchQueue.main.async {
+                self.loadIndicator.stopAnimating()
+                self.loadIndicator.removeFromSuperview()
+            }
+            switch error{
+            case .internetError:
+                self.showAlertError(error: "Verify your internet connection", title: "Operation failed")
+            case .operationFailed:
+                self.showAlertError(error: "Something went wrong, try it again!", title: "Operation failed")
+            case .none:
+                self.manegeAccountelegate?.deleteAccount()
+            }
+        }
     }
 
 }

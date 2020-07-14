@@ -79,6 +79,7 @@
 		708AC21E249CFDD3002E460C /* UserPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708AC21C249CFDD2002E460C /* UserPostsViewController.xib */; };
 		709E7B482485FA2600274D33 /* ViewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E7B462485FA2600274D33 /* ViewActivityViewController.swift */; };
 		709E7B492485FA2600274D33 /* ViewActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709E7B472485FA2600274D33 /* ViewActivityViewController.xib */; };
+		709FB1FE24BDF7750010AFDC /* ManegeAccountDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FB1FD24BDF7740010AFDC /* ManegeAccountDelegate.swift */; };
 		70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */; };
 		70B6391E246792B300966A56 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391C246792B300966A56 /* LanguageCell.swift */; };
 		70B6391F246792B300966A56 /* LanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B6391D246792B300966A56 /* LanguageCell.xib */; };
@@ -180,6 +181,7 @@
 		708AC21C249CFDD2002E460C /* UserPostsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPostsViewController.xib; sourceTree = "<group>"; };
 		709E7B462485FA2600274D33 /* ViewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivityViewController.swift; sourceTree = "<group>"; };
 		709E7B472485FA2600274D33 /* ViewActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewActivityViewController.xib; sourceTree = "<group>"; };
+		709FB1FD24BDF7740010AFDC /* ManegeAccountDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManegeAccountDelegate.swift; sourceTree = "<group>"; };
 		70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesProtocols.swift; sourceTree = "<group>"; };
 		70B6391C246792B300966A56 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		70B6391D246792B300966A56 /* LanguageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageCell.xib; sourceTree = "<group>"; };
@@ -508,6 +510,7 @@
 				701F3FA624BD241E00A1CC78 /* ChangeLanguages */,
 				708A29F0248B2ABB009E93B3 /* EditInformationViewController.swift */,
 				708A29F1248B2ABB009E93B3 /* EditInformationViewController.xib */,
+				709FB1FD24BDF7740010AFDC /* ManegeAccountDelegate.swift */,
 			);
 			path = EditInformaion;
 			sourceTree = "<group>";
@@ -1007,6 +1010,7 @@
 				7014F1692451EEBD00C3B78B /* TextInputValidation.swift in Sources */,
 				70B6391E246792B300966A56 /* LanguageCell.swift in Sources */,
 				7084A8102480561A0077284D /* CreatePostCoordinator.swift in Sources */,
+				709FB1FE24BDF7750010AFDC /* ManegeAccountDelegate.swift in Sources */,
 				70867F97244608F50064482E /* FeedViewController.swift in Sources */,
 				70C1A06B244D33A0008F31DB /* TextFieldInterator.swift in Sources */,
 				707F3872244546D500DCEBE6 /* StateController.swift in Sources */,

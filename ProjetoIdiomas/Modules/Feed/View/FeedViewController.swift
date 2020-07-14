@@ -35,7 +35,8 @@ class FeedViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         feedTableView.reloadData()
-
+        self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
     }
     override func viewDidLoad() {
         super.viewDidLoad()

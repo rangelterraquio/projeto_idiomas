@@ -149,6 +149,7 @@ final class AppCoordinator: Coordinator{
         vc.stateController = stateManeger
         vc.user = user
         vc.image = image
+        vc.manegeAccountelegate = self
         
         vc.modalPresentationStyle = .overCurrentContext
         if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
@@ -332,8 +333,19 @@ extension AppCoordinator: ProfileDelegate{
         showSettingsView()
     }
     
+}
+
+
+//MARK: -> Manege Account Delegate
+extension AppCoordinator: ManegeAccountDelegate{
+    func signOut() {
+        signUpAPI.signOut()
+        start()
+    }
     
-    
+    func deleteAccount() {
+        start()
+    }
     
     
 }

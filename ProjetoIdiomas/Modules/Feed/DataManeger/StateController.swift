@@ -113,4 +113,7 @@ public class StateController{
         storage.removePost(post: post)
     }
     
+    func deleteUserAccount(completion: @escaping (CustomError?)->()){
+        storage.deleteUserAccount(completion: completion)
+    }
 }

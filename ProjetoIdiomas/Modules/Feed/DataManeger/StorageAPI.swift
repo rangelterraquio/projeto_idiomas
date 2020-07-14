@@ -539,3 +539,105 @@ extension StoregeAPI{
     }
        
 }
+
+
+
+//MARK: -> Delete User data
+extension StoregeAPI{
+    func deleteUserAccount(completion: @escaping (CustomError?)->()){
+        guard let user = StoregeAPI.currentUser else{
+            completion(.operationFailed)
+            return
+        }
+        
+        if !hasInternet(){
+            completion(.internetError)
+            return
+        }
+        
+        deleteUserPhoto(user: user) { [weak self](completed) in
+            guard let self = self else {return}
+            if completed{
+                let batch : WriteBatch  = self.db.batch()
+                
+                self.deletePosts(user: user, batch: batch) { (completed) in
+                    if completed{
+                        batch.commit()
+                        self.deleteUser(user: user, batch: self.db.batch()) { (completed) in
+                            if completed{
+                                completion(.none)
+                            }
+                        }
+                    }
+                }
+            }else{
+                completion(.operationFailed)
+            }
+        }
+        
+    }
+       
+       
+       
+       private func deletePosts(user: User,batch : WriteBatch , completion: @escaping (Bool)->()){
+         
+                   
+                   let docRef01 = db.collection("Posts").whereField("author.id", isEqualTo: user.id)
+                   docRef01.getDocuments { (snapshot, error) in
+                       if error == nil {
+                   
+                           if let snap = snapshot{
+                               for doc in snap.documents{
+                                   batch.deleteDocument(doc.reference)
+                               }
+                               completion(true)
+                           }
+                           
+                       }else{
+                           completion(false)
+                       }
+                   }
+       }
+       
+       
+    
+       
+       private func deleteUser(user: User,batch: WriteBatch, completion: @escaping (Bool)->()){
+           let docRef02 = db.collection("Users").document(user.id)
+           docRef02.getDocument { (snapshot, error) in
+               if error == nil {
+                   
+                   if let snap = snapshot{
+                       batch.deleteDocument(snap.reference)
+                       completion(true)
+                       batch.commit()
+                   }
+               
+               }
+               completion(false)
+           }
+           
+       }
+    
+    
+    private func deleteUserPhoto(user: User, completion: @escaping (Bool)->()){
+       
+        let storage = Storage.storage()
+        
+        // Create a storage reference from our storage service
+        let storageRef = storage.reference()
+        
+        let imageRef = storageRef.child("Users").child(user.id).child("profileImage")
+        
+        imageRef.delete { (error) in
+            if let _ = error{
+                completion(false)
+            }else{
+                completion(true)
+            }
+        }
+        
+    }
+         
+       
+}
