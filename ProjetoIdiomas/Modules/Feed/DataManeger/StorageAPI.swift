@@ -220,8 +220,10 @@ public class StoregeAPI{
                        batch.commit()
                    }
                
+               }else{
+                    completion(false)
                }
-               completion(false)
+               
            }
            
        }

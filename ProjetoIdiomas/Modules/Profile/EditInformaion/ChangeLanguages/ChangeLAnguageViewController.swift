@@ -12,14 +12,19 @@ class ChangeLAnguageViewController: SelectLanguageViewController {
                   
     var stateController: StateController!
 
-
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.nextB.isEnabled = true
+        
+        
     }
 
 
-    @IBAction override func addLanguages(_ sender: Any) {
+    @objc override func addPost(_ sender: Any){
         if viewState == .learningLanguagesSection{
             user.learningLanguage?.removeAll()
             fluentlyLanguages.forEach { (lan) in
@@ -33,22 +38,11 @@ class ChangeLAnguageViewController: SelectLanguageViewController {
             viewState = .learningLanguagesSection
             instructionLabel.text = "Select the languages you are learning:"
             languagesTableView.reloadData()
+            nextB.title = "Done"
         }
     }
     
-    @IBAction override func cancel(_ sender: Any){
-        if viewState == .fluentlyLanguagesSection{
-            self.dismiss(animated: true)
-        }else{
-            viewState = .fluentlyLanguagesSection
-            instructionLabel.text = "Select the languages you are able to help other people:"
-            fluentlyLanguages.removeAll()
-            languagesTableView.reloadData()
-           
-        }
-    }
-
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+    @objc override func cancelAction(_ sender: Any){
         if viewState == .fluentlyLanguagesSection{
             self.navigationController?.popViewController(animated: true)
         }else{
@@ -58,11 +52,13 @@ class ChangeLAnguageViewController: SelectLanguageViewController {
             languagesTableView.reloadData()
         }
     }
-
+    
+    
+    
     private func didComplete(){
         self.stateController.updateUser(user: self.user) { (completed) in
             if completed{
-                self.dismiss(animated: true)
+                self.navigationController?.popViewController(animated: true)
             }else{
                 self.showAlertError(error: "Try again, something went wrong", title: "Operation Failed")
             }

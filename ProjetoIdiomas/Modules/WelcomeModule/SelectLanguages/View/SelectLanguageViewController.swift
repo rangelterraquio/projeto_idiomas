@@ -24,12 +24,12 @@ class SelectLanguageViewController: UIViewController {
     
     var fluentlyLanguages:[Languages] = [Languages](){
         didSet{
-            nextButton.isEnabled = !fluentlyLanguages.isEmpty
+            nextB.isEnabled = !fluentlyLanguages.isEmpty
         }
     }
     var learningLanguages:[Languages] = [Languages](){
         didSet{
-             nextButton.isEnabled = !learningLanguages.isEmpty
+             nextB.isEnabled = !learningLanguages.isEmpty
             
         }
     }
@@ -37,13 +37,17 @@ class SelectLanguageViewController: UIViewController {
     var viewState: ViewState = .fluentlyLanguagesSection
     var router: SelectLanguagesToPresenter? = nil
     var user: User!
+    
+    
+    var nextB: UIBarButtonItem!
+    var cancelB: UIBarButtonItem!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.tabBarController?.tabBar.isHidden = true
         self.navigationController?.navigationBar.isHidden = true
 
-        nextButton.isEnabled = false
         // Do any additional setup after loading the view.
         let cellLanguage = UINib(nibName: "LanguageCell", bundle: nil)
         languagesTableView.register(cellLanguage, forCellReuseIdentifier: "LanguageCell")
@@ -51,24 +55,36 @@ class SelectLanguageViewController: UIViewController {
         languagesTableView.dataSource = self
         languagesTableView.allowsMultipleSelection = true
         
+        
+        nextB = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addPost))
+        self.navigationItem.setRightBarButton(nextB, animated: true)
+        nextB.title = "Next"
+        nextB.isEnabled = false
+
+        
+        cancelB = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
+        self.navigationItem.setLeftBarButton(cancelB, animated: true)
+        cancelB.isEnabled = true
+        
     }
 
-    @IBAction func addLanguages(_ sender: Any) {
+    @objc func addPost(_ sender: Any){
         if viewState == .learningLanguagesSection{
-            fluentlyLanguages.forEach { (lan) in
-                user.fluentLanguage.append(lan.rawValue)
-            }
-            learningLanguages.forEach { (lan) in
-                user.learningLanguage?.append(lan.rawValue)
-            }
-            router?.didSuccessfullyCreated(user: user)
-        }else{
-            viewState = .learningLanguagesSection
-            instructionLabel.text = "Select the languages you are learning:"
-            languagesTableView.reloadData()
-        }
+                  fluentlyLanguages.forEach { (lan) in
+                      user.fluentLanguage.append(lan.rawValue)
+                  }
+                  learningLanguages.forEach { (lan) in
+                      user.learningLanguage?.append(lan.rawValue)
+                  }
+                  router?.didSuccessfullyCreated(user: user)
+              }else{
+                  viewState = .learningLanguagesSection
+                  instructionLabel.text = "Select the languages you are learning:"
+                  languagesTableView.reloadData()
+              }
     }
-    @IBAction func cancel(_ sender: Any) {
+    
+    @objc func cancelAction(_ sender: Any){
         if viewState == .fluentlyLanguagesSection{
             router?.cancelUserCreation()
         }else{
@@ -76,9 +92,36 @@ class SelectLanguageViewController: UIViewController {
             instructionLabel.text = "Select the languages you are able to help other people:"
             fluentlyLanguages.removeAll()
             languagesTableView.reloadData()
-           
+            
         }
     }
+    
+//    @IBAction func addLanguages(_ sender: Any) {
+//        if viewState == .learningLanguagesSection{
+//            fluentlyLanguages.forEach { (lan) in
+//                user.fluentLanguage.append(lan.rawValue)
+//            }
+//            learningLanguages.forEach { (lan) in
+//                user.learningLanguage?.append(lan.rawValue)
+//            }
+//            router?.didSuccessfullyCreated(user: user)
+//        }else{
+//            viewState = .learningLanguagesSection
+//            instructionLabel.text = "Select the languages you are learning:"
+//            languagesTableView.reloadData()
+//        }
+//    }
+//    @IBAction func cancel(_ sender: Any) {
+//        if viewState == .fluentlyLanguagesSection{
+//            router?.cancelUserCreation()
+//        }else{
+//            viewState = .fluentlyLanguagesSection
+//            instructionLabel.text = "Select the languages you are able to help other people:"
+//            fluentlyLanguages.removeAll()
+//            languagesTableView.reloadData()
+//           
+//        }
+//    }
     
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {

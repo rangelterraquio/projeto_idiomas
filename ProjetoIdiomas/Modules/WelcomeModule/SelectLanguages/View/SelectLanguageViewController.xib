@@ -9,10 +9,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectLanguageViewController" customModule="ProjetoIdiomas" customModuleProvider="target">
             <connections>
-                <outlet property="canccelButton" destination="rVh-mj-U2V" id="RUJ-cQ-30c"/>
                 <outlet property="instructionLabel" destination="98w-Ss-VAK" id="D6a-u1-Zq2"/>
                 <outlet property="languagesTableView" destination="RTz-ss-pY4" id="F3c-7u-ewv"/>
-                <outlet property="nextButton" destination="bEY-ma-N5c" id="pBw-F0-YlU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,28 +20,11 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the languages you are able to help other people" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98w-Ss-VAK">
-                    <rect key="frame" x="25" y="94" width="364" height="41"/>
+                    <rect key="frame" x="25" y="54" width="364" height="41"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MsH-Nd-zPV">
-                    <rect key="frame" x="1" y="45" width="402" height="44"/>
-                    <items>
-                        <navigationItem title="Languages" id="AcR-bk-5m4">
-                            <barButtonItem key="leftBarButtonItem" title="Item" image="arrow.left" catalog="system" id="rVh-mj-U2V">
-                                <connections>
-                                    <action selector="cancel:" destination="-1" id="dYt-GS-P47"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem key="rightBarButtonItem" title="Next" style="plain" id="bEY-ma-N5c">
-                                <connections>
-                                    <action selector="addLanguages:" destination="-1" id="h6w-HM-6R0"/>
-                                </connections>
-                            </barButtonItem>
-                        </navigationItem>
-                    </items>
-                </navigationBar>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RTz-ss-pY4">
                     <rect key="frame" x="55" y="143" width="305" height="719"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -52,18 +33,12 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="MsH-Nd-zPV" secondAttribute="trailing" constant="11" id="2Ca-6F-GSz"/>
                 <constraint firstAttribute="trailing" secondItem="98w-Ss-VAK" secondAttribute="trailing" constant="25" id="7o0-KW-r80"/>
-                <constraint firstItem="98w-Ss-VAK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="50" id="eeR-OY-AmC"/>
-                <constraint firstItem="MsH-Nd-zPV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="1" id="lsD-ec-bNe"/>
-                <constraint firstItem="MsH-Nd-zPV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="1" id="xX4-w8-CI1"/>
+                <constraint firstItem="98w-Ss-VAK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="eeR-OY-AmC"/>
                 <constraint firstItem="98w-Ss-VAK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="xy5-v5-j1s"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="131.8840579710145" y="110.49107142857143"/>
         </view>
     </objects>
-    <resources>
-        <image name="arrow.left" catalog="system" width="128" height="98"/>
-    </resources>
 </document>
