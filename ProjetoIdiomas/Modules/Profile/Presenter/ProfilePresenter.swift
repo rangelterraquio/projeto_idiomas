@@ -10,6 +10,9 @@ import Foundation
 import  UIKit
 
 class ProfilePresenter: ProfileViewToPresenter{
+    
+    
+    
    
     var router: ProfilePresenterToRouter? = nil
     
@@ -18,8 +21,14 @@ class ProfilePresenter: ProfileViewToPresenter{
         router?.goToEditInfoView(user: user, image: image)
     }
     
+    func goToSettings() {
+        router?.goToSettings()
+    }
     
     
+    func goToUserActivities() {
+        router?.goToUserActivities()
+    }
     
     func requestProfileImage(from url: String?, completion: @escaping (Result<UIImage, CustomError>) -> Void) -> UUID? {
         interator?.requestImage(from: url, completion: completion)

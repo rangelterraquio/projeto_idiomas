@@ -13,6 +13,8 @@ import UIKit
 
 protocol ProfileDelegate:class {
     func goToEditInfoView(user: User, image: UIImage?)
+    func goToSettings()
+    func goToUserActivities()
 }
 
 
@@ -32,15 +34,15 @@ public class ProfileCoordinator: Coordinator{
         }
         
         
-       func start(user: User, image: UIImage?) -> UIViewController{
+        func start(user: User,notificationManeger: PushNotificationManager) -> UIViewController{
             let vc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-            vc.imageProfile = image
             vc.user = user
             let presenter = ProfilePresenter()
             presenter.router = self
             let interator = ProfileInterator(stateController: stateManeger)
             presenter.interator = interator
             vc.presenter = presenter
+            vc.notificationManeger = notificationManeger
             return vc
         
         }
@@ -52,6 +54,15 @@ public class ProfileCoordinator: Coordinator{
 
 
 extension ProfileCoordinator: ProfilePresenterToRouter{
+    public func goToUserActivities() {
+        delegate?.goToUserActivities()
+    }
+    
+    
+    public func goToSettings() {
+        delegate?.goToSettings()
+    }
+    
    
     
     public func goToEditInfoView(user: User, image: UIImage?) {

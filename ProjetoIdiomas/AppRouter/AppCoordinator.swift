@@ -17,6 +17,7 @@ final class AppCoordinator: Coordinator{
     fileprivate let storage = StoregeAPI()
     fileprivate var stateManeger: StateController!
     fileprivate let signUpAPI = SignUpAPI()
+    var pushNotificationManeger: PushNotificationManager!
     
     init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
@@ -112,7 +113,7 @@ final class AppCoordinator: Coordinator{
 
     }
     
-    func showViewPostInDetails(post: Post,imageProfile: UIImage?,vc: FeedViewController?){
+    func showViewPostInDetails(post: Post,imageProfile: UIImage?,vc: UIViewController?){
          let coordinator = ViewPostCoordinator(stateController: stateManeger, tabBarController: tabBarController)
         coordinator.delegate = self
 //        coordinator.start(post: post,imageProfile: imageProfile)
@@ -140,7 +141,7 @@ final class AppCoordinator: Coordinator{
          let coordinator = ProfileCoordinator(stateController: stateManeger, tabBarController: tabBarController)
          coordinator.delegate = self
          childCoordinators.append(coordinator)
-        return coordinator.start(user: user, image: UIImage(named: "joseph"))
+        return coordinator.start(user: user, notificationManeger: pushNotificationManeger)
      }
     
     func showEditInfoView(user: User, image: UIImage?){
@@ -157,6 +158,29 @@ final class AppCoordinator: Coordinator{
         }
     }
     
+    
+    func showSettingsView(){
+           let vc = SettingsViewController(nibName: "SettingsViewController", bundle: nil)
+           vc.notificationManeger = pushNotificationManeger
+           vc.modalPresentationStyle = .overCurrentContext
+           if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
+               oldVc.definesPresentationContext = true
+             
+               oldVc.pushViewController(vc, animated: true)
+           }
+       }
+    
+    func showUserPostsView(){
+        let vc = UserPostsViewController(nibName: "UserPostsViewController", bundle: nil)
+        vc.stateController = stateManeger
+        vc.delegate = self
+        vc.modalPresentationStyle = .overCurrentContext
+        if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
+            oldVc.definesPresentationContext = true
+          
+            oldVc.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 
@@ -243,7 +267,7 @@ extension AppCoordinator: FeedCoordinatorDelegate{
         showCreatePost()
     }
     
-    func chooseViewPostDetails(post: Post,imageProfile: UIImage?, vc: FeedViewController?) {
+    func chooseViewPostDetails(post: Post,imageProfile: UIImage?, vc: UIViewController?) {
         showViewPostInDetails(post: post,imageProfile: imageProfile, vc: vc)
     }
     
@@ -292,14 +316,21 @@ extension AppCoordinator: ViewActivitiesDelegate{
 }
 
 
-//MARK: -> View activities Delegate
+//MARK: -> Profile Delegate
 extension AppCoordinator: ProfileDelegate{
+    
+    func goToUserActivities() {
+        showUserPostsView()
+    }
+    
     func goToEditInfoView(user: User, image: UIImage?) {
         showEditInfoView(user: user, image: image)
     }
     
     
-    
+    func goToSettings() {
+        showSettingsView()
+    }
     
     
     

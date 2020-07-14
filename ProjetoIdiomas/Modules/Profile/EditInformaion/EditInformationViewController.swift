@@ -26,9 +26,12 @@ class EditInformationViewController: UIViewController {
     }
     let hasChangeNameKey = "hasChangedName"
     
+    lazy var languageController = ChangeLAnguageViewController(nibName: "ChangeLAnguageViewController", bundle: nil)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationController?.navigationBar.isHidden = false
+
         UserDefaults.standard.register(defaults: ["hasChangedName": false])
 
         if let image = image{
@@ -63,6 +66,11 @@ class EditInformationViewController: UIViewController {
        
     }
     
+    @IBAction func changeLanguages(_ sender: Any) {
+        languageController.user = self.user
+        languageController.stateController = self.stateController
+        self.navigationController?.pushViewController(languageController, animated: true)
+    }
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
         self.navigationController?.viewControllers.forEach({ (vc) in

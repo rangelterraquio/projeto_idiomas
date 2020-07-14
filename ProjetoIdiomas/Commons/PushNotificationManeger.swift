@@ -14,7 +14,7 @@ import FirebaseMessaging
 import UIKit
 import UserNotifications
 
-class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenterDelegate {
+public class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenterDelegate {
     let userID: String?
     var coordinator: AppCoordinator?
     static var flag = true
@@ -45,6 +45,10 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
         
         updateFirestorePushTokenIfNeeded()
     }
+    
+    func unregisterNotification(){
+        UIApplication.shared.unregisterForRemoteNotifications()
+    }
 
     func updateFirestorePushTokenIfNeeded() {
         if let token = Messaging.messaging().fcmToken, let id = userID {
@@ -57,7 +61,7 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
 //        print(remoteMessage.appData)
 //    }
 
-    func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
+    public func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         updateFirestorePushTokenIfNeeded()
         
         InstanceID.instanceID().instanceID { (result, error) in
@@ -71,7 +75,7 @@ class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCe
        
     }
 
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+    public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         let userInfo = response.notification.request.content.categoryIdentifier
          coordinator?.showViewPostInDetails(postID: userInfo)

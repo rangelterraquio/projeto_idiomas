@@ -10,7 +10,8 @@ import Foundation
 import UIKit
  protocol FeedCoordinatorDelegate: class{
     func chooseCreatePostView()
-    func chooseViewPostDetails(post: Post,imageProfile: UIImage?,vc: FeedViewController?)
+    func chooseViewPostDetails(post: Post,imageProfile: UIImage?,vc: UIViewController?)
+    
 }
 
 class FeedCoordinator: Coordinator {

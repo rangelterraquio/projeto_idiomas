@@ -34,11 +34,13 @@ public protocol ProfileViewToPresenter: class {
     func requestProfileImage(from url: String?, completion:  @escaping  (Result<UIImage, CustomError>) -> Void) -> UUID?
     func cancelImageRequest(uuid token: UUID)
     func goToEditInfoView(user: User, image: UIImage?)
-
+    func goToSettings()
+    func goToUserActivities()
 }
 
 
 public protocol ProfilePresenterToRouter: class{
     func goToEditInfoView(user: User, image: UIImage?)
-    //func showErrorAlert(error: String)
+    func goToSettings()
+    func goToUserActivities()
 }

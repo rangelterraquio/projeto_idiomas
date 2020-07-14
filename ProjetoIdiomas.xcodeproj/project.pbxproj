@@ -11,6 +11,9 @@
 		7006EB7224678A1D0040F681 /* SelectLanguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7006EB7024678A1D0040F681 /* SelectLanguageViewController.xib */; };
 		7014F1692451EEBD00C3B78B /* TextInputValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7014F1682451EEBD00C3B78B /* TextInputValidation.swift */; };
 		7014F16B245201C200C3B78B /* StateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7014F16A245201C200C3B78B /* StateTextField.swift */; };
+		701F3FA924BD24BB00A1CC78 /* ChangeLAnguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701F3FA724BD24BB00A1CC78 /* ChangeLAnguageViewController.swift */; };
+		701F3FAA24BD24BB00A1CC78 /* ChangeLAnguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 701F3FA824BD24BB00A1CC78 /* ChangeLAnguageViewController.xib */; };
+		701F3FAD24BD349C00A1CC78 /* Extension-UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701F3FAC24BD349C00A1CC78 /* Extension-UIViewController.swift */; };
 		702CBD11247F37F20064AA21 /* ViewPostInterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 702CBD10247F37F20064AA21 /* ViewPostInterator.swift */; };
 		7030EF54244BB78700093608 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7030EF53244BB78700093608 /* ImageLoader.swift */; };
 		704F87542447CDD500C1C4D4 /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 704F87522447CDD500C1C4D4 /* FeedCell.swift */; };
@@ -68,6 +71,12 @@
 		708A29F3248B2ABB009E93B3 /* EditInformationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708A29F1248B2ABB009E93B3 /* EditInformationViewController.xib */; };
 		708A29F5248B2D24009E93B3 /* CameraHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29F4248B2D24009E93B3 /* CameraHandler.swift */; };
 		708A29F7248B3794009E93B3 /* ProfileInterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708A29F6248B3794009E93B3 /* ProfileInterator.swift */; };
+		708AC214249CF575002E460C /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708AC212249CF575002E460C /* SettingsViewController.swift */; };
+		708AC215249CF575002E460C /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708AC213249CF575002E460C /* SettingsViewController.xib */; };
+		708AC218249CF5CF002E460C /* SettingViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708AC216249CF5CF002E460C /* SettingViewCell.swift */; };
+		708AC219249CF5CF002E460C /* SettingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708AC217249CF5CF002E460C /* SettingViewCell.xib */; };
+		708AC21D249CFDD2002E460C /* UserPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708AC21B249CFDD2002E460C /* UserPostsViewController.swift */; };
+		708AC21E249CFDD3002E460C /* UserPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708AC21C249CFDD2002E460C /* UserPostsViewController.xib */; };
 		709E7B482485FA2600274D33 /* ViewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E7B462485FA2600274D33 /* ViewActivityViewController.swift */; };
 		709E7B492485FA2600274D33 /* ViewActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709E7B472485FA2600274D33 /* ViewActivityViewController.xib */; };
 		70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */; };
@@ -101,6 +110,9 @@
 		7006EB7024678A1D0040F681 /* SelectLanguageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectLanguageViewController.xib; sourceTree = "<group>"; };
 		7014F1682451EEBD00C3B78B /* TextInputValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputValidation.swift; sourceTree = "<group>"; };
 		7014F16A245201C200C3B78B /* StateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTextField.swift; sourceTree = "<group>"; };
+		701F3FA724BD24BB00A1CC78 /* ChangeLAnguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLAnguageViewController.swift; sourceTree = "<group>"; };
+		701F3FA824BD24BB00A1CC78 /* ChangeLAnguageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChangeLAnguageViewController.xib; sourceTree = "<group>"; };
+		701F3FAC24BD349C00A1CC78 /* Extension-UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-UIViewController.swift"; sourceTree = "<group>"; };
 		702CBD10247F37F20064AA21 /* ViewPostInterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostInterator.swift; sourceTree = "<group>"; };
 		7030EF53244BB78700093608 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 		704F87522447CDD500C1C4D4 /* FeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -160,6 +172,12 @@
 		708A29F1248B2ABB009E93B3 /* EditInformationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditInformationViewController.xib; sourceTree = "<group>"; };
 		708A29F4248B2D24009E93B3 /* CameraHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraHandler.swift; sourceTree = "<group>"; };
 		708A29F6248B3794009E93B3 /* ProfileInterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileInterator.swift; sourceTree = "<group>"; };
+		708AC212249CF575002E460C /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		708AC213249CF575002E460C /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		708AC216249CF5CF002E460C /* SettingViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewCell.swift; sourceTree = "<group>"; };
+		708AC217249CF5CF002E460C /* SettingViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewCell.xib; sourceTree = "<group>"; };
+		708AC21B249CFDD2002E460C /* UserPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostsViewController.swift; sourceTree = "<group>"; };
+		708AC21C249CFDD2002E460C /* UserPostsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPostsViewController.xib; sourceTree = "<group>"; };
 		709E7B462485FA2600274D33 /* ViewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivityViewController.swift; sourceTree = "<group>"; };
 		709E7B472485FA2600274D33 /* ViewActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewActivityViewController.xib; sourceTree = "<group>"; };
 		70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesProtocols.swift; sourceTree = "<group>"; };
@@ -210,6 +228,23 @@
 				BCA2DBB3DE4935D89AAFEB56 /* Pods-ProjetoIdiomas.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		701F3FA624BD241E00A1CC78 /* ChangeLanguages */ = {
+			isa = PBXGroup;
+			children = (
+				701F3FA724BD24BB00A1CC78 /* ChangeLAnguageViewController.swift */,
+				701F3FA824BD24BB00A1CC78 /* ChangeLAnguageViewController.xib */,
+			);
+			path = ChangeLanguages;
+			sourceTree = "<group>";
+		};
+		701F3FAB24BD347A00A1CC78 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				701F3FAC24BD349C00A1CC78 /* Extension-UIViewController.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		70698CE22468546200D2D744 /* CreatePost */ = {
@@ -313,6 +348,7 @@
 		707F384A2445226200DCEBE6 /* ProjetoIdiomas */ = {
 			isa = PBXGroup;
 			children = (
+				701F3FAB24BD347A00A1CC78 /* Extensions */,
 				70FABC612482A7DF00825EC9 /* Commons */,
 				70FABC602482A53700825EC9 /* ProjetoIdiomas.entitlements */,
 				7084A805247FF3D60077284D /* AppRouter */,
@@ -409,6 +445,8 @@
 		708A29D7248A8E75009E93B3 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				708AC21A249CFD88002E460C /* UserActivities */,
+				708AC20D249CF508002E460C /* Configs */,
 				708A29EF248B2A93009E93B3 /* EditInformaion */,
 				708A29DC248A8EB7009E93B3 /* Protocols */,
 				708A29DB248A8EAE009E93B3 /* Router */,
@@ -467,10 +505,31 @@
 		708A29EF248B2A93009E93B3 /* EditInformaion */ = {
 			isa = PBXGroup;
 			children = (
+				701F3FA624BD241E00A1CC78 /* ChangeLanguages */,
 				708A29F0248B2ABB009E93B3 /* EditInformationViewController.swift */,
 				708A29F1248B2ABB009E93B3 /* EditInformationViewController.xib */,
 			);
 			path = EditInformaion;
+			sourceTree = "<group>";
+		};
+		708AC20D249CF508002E460C /* Configs */ = {
+			isa = PBXGroup;
+			children = (
+				708AC212249CF575002E460C /* SettingsViewController.swift */,
+				708AC216249CF5CF002E460C /* SettingViewCell.swift */,
+				708AC217249CF5CF002E460C /* SettingViewCell.xib */,
+				708AC213249CF575002E460C /* SettingsViewController.xib */,
+			);
+			path = Configs;
+			sourceTree = "<group>";
+		};
+		708AC21A249CFD88002E460C /* UserActivities */ = {
+			isa = PBXGroup;
+			children = (
+				708AC21B249CFDD2002E460C /* UserPostsViewController.swift */,
+				708AC21C249CFDD2002E460C /* UserPostsViewController.xib */,
+			);
+			path = UserActivities;
 			sourceTree = "<group>";
 		};
 		709E7B402485F98F00274D33 /* ViewActivity */ = {
@@ -805,6 +864,8 @@
 				708A29E0248A8EF8009E93B3 /* ProfileViewController.xib in Resources */,
 				707F38582445226400DCEBE6 /* LaunchScreen.storyboard in Resources */,
 				7075F5252489A4C900851F28 /* ActivityCell.xib in Resources */,
+				701F3FAA24BD24BB00A1CC78 /* ChangeLAnguageViewController.xib in Resources */,
+				708AC21E249CFDD3002E460C /* UserPostsViewController.xib in Resources */,
 				707F386824452DD800DCEBE6 /* FeedViewController.xib in Resources */,
 				707F38552445226400DCEBE6 /* Assets.xcassets in Resources */,
 				708A29E4248A967D009E93B3 /* UserCell.xib in Resources */,
@@ -814,7 +875,9 @@
 				709E7B492485FA2600274D33 /* ViewActivityViewController.xib in Resources */,
 				707F38602445290500DCEBE6 /* GoogleService-Info.plist in Resources */,
 				70B6391F246792B300966A56 /* LanguageCell.xib in Resources */,
+				708AC219249CF5CF002E460C /* SettingViewCell.xib in Resources */,
 				708A29E8248A9962009E93B3 /* OptionCell.xib in Resources */,
+				708AC215249CF575002E460C /* SettingsViewController.xib in Resources */,
 				708A29F3248B2ABB009E93B3 /* EditInformationViewController.xib in Resources */,
 				7006EB7224678A1D0040F681 /* SelectLanguageViewController.xib in Resources */,
 				707F38532445226200DCEBE6 /* Main.storyboard in Resources */,
@@ -899,6 +962,7 @@
 				70C1A062244D2F66008F31DB /* SignUpPresenter.swift in Sources */,
 				70C1A054244D2210008F31DB /* User.swift in Sources */,
 				708A29D6248A81E0009E93B3 /* ViewActivitiesCoordinator.swift in Sources */,
+				708AC21D249CFDD2002E460C /* UserPostsViewController.swift in Sources */,
 				708A29F7248B3794009E93B3 /* ProfileInterator.swift in Sources */,
 				7075F5292489D4F800851F28 /* ViewActivitiesProtocols.swift in Sources */,
 				707F38702445383100DCEBE6 /* Post.swift in Sources */,
@@ -913,6 +977,7 @@
 				708A29E3248A967D009E93B3 /* UserCell.swift in Sources */,
 				70C1A066244D2FC9008F31DB /* SignUpProtocols.swift in Sources */,
 				707F384C2445226200DCEBE6 /* AppDelegate.swift in Sources */,
+				701F3FAD24BD349C00A1CC78 /* Extension-UIViewController.swift in Sources */,
 				70C1A06D244D4963008F31DB /* InputValidationServiceAPI.swift in Sources */,
 				70698CFC2468DDC800D2D744 /* ViewPostViewController.swift in Sources */,
 				704F87542447CDD500C1C4D4 /* FeedCell.swift in Sources */,
@@ -927,6 +992,7 @@
 				709E7B482485FA2600274D33 /* ViewActivityViewController.swift in Sources */,
 				70FB8B3C24698A900031DBFF /* PostCell.swift in Sources */,
 				70698CF3246860AA00D2D744 /* LanguagePopoverController.swift in Sources */,
+				708AC214249CF575002E460C /* SettingsViewController.swift in Sources */,
 				702CBD11247F37F20064AA21 /* ViewPostInterator.swift in Sources */,
 				70C1A064244D2F74008F31DB /* SignUpInterator.swift in Sources */,
 				707F386E2445349C00DCEBE6 /* FeedProtocols.swift in Sources */,
@@ -936,6 +1002,7 @@
 				70C1A04F244D0364008F31DB /* FilterCell.swift in Sources */,
 				707F386A24452ECA00DCEBE6 /* StorageAPI.swift in Sources */,
 				70C1A05F244D2D02008F31DB /* SignUpViewController.swift in Sources */,
+				708AC218249CF5CF002E460C /* SettingViewCell.swift in Sources */,
 				70FABC652482B02D00825EC9 /* PushNotificationSender.swift in Sources */,
 				7014F1692451EEBD00C3B78B /* TextInputValidation.swift in Sources */,
 				70B6391E246792B300966A56 /* LanguageCell.swift in Sources */,
@@ -957,6 +1024,7 @@
 				707F386C24452FE000DCEBE6 /* Languages.swift in Sources */,
 				70C1A069244D3014008F31DB /* SignUpAPI.swift in Sources */,
 				7030EF54244BB78700093608 /* ImageLoader.swift in Sources */,
+				701F3FA924BD24BB00A1CC78 /* ChangeLAnguageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

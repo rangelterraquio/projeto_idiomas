@@ -27,7 +27,7 @@ class ViewPostCoordinator: Coordinator {
     }
     
     
-    func start(post: Post,imageProfile: UIImage?,feedVC: FeedViewController?){
+    func start(post: Post,imageProfile: UIImage?,feedVC: UIViewController?){
         let vc = ViewPostViewController(nibName: "ViewPostViewController", bundle: nil)
         let interator = ViewPostInterator(stateController: stateManeger)
         let presenter = ViewPostPresenter()
@@ -38,14 +38,25 @@ class ViewPostCoordinator: Coordinator {
         presenter.router = self
         vc.presenter = presenter
         vc.imageAuthor = imageProfile
-        vc.feedVC = feedVC
-       
         vc.modalPresentationStyle = .overCurrentContext
-        if let oldVc = tabBarController.viewControllers?.first as? UINavigationController{
-            oldVc.definesPresentationContext = true
-            oldVc.title = "Post"
-            oldVc.pushViewController(vc, animated: true)
+       
+        
+        
+        if let feedView = feedVC as? FeedViewController{
+             vc.feedVC = feedView
+           
+            if let oldVc = tabBarController.viewControllers?.first as? UINavigationController{
+                oldVc.definesPresentationContext = true
+                oldVc.title = "Post"
+                oldVc.pushViewController(vc, animated: true)
+            }
+        }else{
+            feedVC?.definesPresentationContext = true
+            feedVC?.title = "Post"
+            feedVC?.navigationController?.pushViewController(vc, animated: true)
         }
+        
+       
 //        guard let topViewController = tabBarController.topViewController else {
 //            return tabBarController.setViewControllers([vc], animated: false)
 //        }

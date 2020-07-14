@@ -111,11 +111,33 @@ extension SelectLanguageViewController: UITableViewDelegate,UITableViewDataSourc
         if let cell = tableView.dequeueReusableCell(withIdentifier: "LanguageCell") as? LanguageCell{
             let language = languages[indexPath.row]
             cell.populeCell(with: language)
+//
+            //cell.setSelected(true, animated: true)
+            
             return cell
         }
        return UITableViewCell()
     }
     
+    
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+         let language = languages[indexPath.row]
+        if viewState == .fluentlyLanguagesSection{
+            if user.fluentLanguage.contains(language.rawValue){
+                cell.setSelected(true, animated: true)
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                fluentlyLanguages.append(languages[indexPath.row])
+            }
+            
+        }else{
+            if user.learningLanguage?.contains(language.rawValue) ?? false{
+                cell.setSelected(true, animated: true)
+                tableView.selectRow(at: indexPath, animated: false, scrollPosition: .none)
+                learningLanguages.append(languages[indexPath.row])
+            }
+        }
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if viewState == .fluentlyLanguagesSection{
             fluentlyLanguages.append(languages[indexPath.row])

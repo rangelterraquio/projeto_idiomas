@@ -15,6 +15,7 @@ class ProfileViewController: UIViewController {
     var user: User!
     var imageProfile: UIImage?
     var presenter: ProfileViewToPresenter? = nil
+    var notificationManeger: PushNotificationManager!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -48,13 +49,15 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource{
               case 0:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell") as? UserCell{
                     if let url = user.photoURL{
-                        let _ = presenter?.requestProfileImage(from: user.photoURL, completion: { (result) in
+                        let _ = presenter?.requestProfileImage(from: url, completion: { (result) in
                             DispatchQueue.main.async {
                                 do{
                                     let image = try result.get()
                                     cell.imageProfile.image = image
+                                    self.imageProfile = image
                                 }catch{
                                     cell.imageProfile.image = UIImage(named: "blankProfile")!
+                                    self.imageProfile = cell.imageProfile.image
                                 }
                             }
                         
@@ -94,9 +97,15 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if indexPath.row != 0 {
+        if indexPath.row == 2 {
              presenter?.goToEditInfoView(user: user, image: imageProfile)
+            
+        }else if indexPath.row == 3{
+            presenter?.goToUserActivities()
+        }else if indexPath.row ==  4{
+            presenter?.goToSettings()
         }
+        tableView.cellForRow(at: indexPath)?.isSelected = false
     }
     
 

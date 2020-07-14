@@ -42,13 +42,30 @@ public class StoregeAPI{
                 if error != nil {
                     print("Tratar error")
                 }else{
-                    querySnapshot
                   completion(querySnapshot?.documents)
 
                 }
             }
         }
         
+    }
+    
+    func fechUserPosts(from date: Date, completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
+        
+        
+        let documentRef = db.collection("Posts")
+        
+        guard let user = StoregeAPI.currentUser else{return}
+
+        documentRef.order(by: "publicationDate", descending: true).start(at: [date]).whereField("author.id", isEqualTo: user.id).limit(to: 50).getDocuments { (querySnapshot, error) in
+                
+                if error != nil {
+                    print("Tratar error")
+                }else{
+                  completion(querySnapshot?.documents)
+
+                }
+            }
     }
     
     func fetchPostBy(id: String,completion: @escaping (DocumentSnapshot?) -> ()) {
@@ -188,6 +205,28 @@ public class StoregeAPI{
 
     }
     
+    
+    func updateUser(user: User, completion: @escaping (Bool)->()){
+        
+        let batch : WriteBatch  = db.batch()
+
+           let docRef02 = db.collection("Users").document(user.id)
+           docRef02.getDocument { (snapshot, error) in
+               if error == nil {
+                   
+                   if let snap = snapshot{
+                    batch.updateData(["fluentLanguage" : user.fluentLanguage, "learningLanguage" : user.learningLanguage as Any], forDocument: snap.reference)
+                       completion(true)
+                       batch.commit()
+                   }
+               
+               }
+               completion(false)
+           }
+           
+       }
+    
+       
     private func hasInternet() -> Bool{
         return Reachability.isConnectedToNetwork()
     }
@@ -240,6 +279,12 @@ public class StoregeAPI{
         
         
         
+    }
+    
+    
+    func removePost(post: Post){
+        let documentRef = db.collection("Posts")
+        documentRef.document(post.id).delete()
     }
 
    

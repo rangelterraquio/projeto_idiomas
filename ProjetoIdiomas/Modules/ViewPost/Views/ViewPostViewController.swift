@@ -40,6 +40,8 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.isHidden = false
+        //navigationController?.setNavigationBarHidden(false, animated: true)
+
         self.navigationItem.title = "Post"
         
         let postCell = UINib(nibName: "PostCell", bundle: nil)
@@ -66,7 +68,8 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = true
+     //   self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.title = ""
         self.feedVC?.feedTableView.reloadData()
     }
     @IBAction func goBackToFeed(_ sender: Any) {

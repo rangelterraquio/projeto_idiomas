@@ -83,6 +83,9 @@ public class StateController{
         storage.saveImage(userID: userID, image: image)
     }
     
+    func updateUser(user: User,completion: @escaping (Bool)->()){
+        storage.updateUser(user: user, completion: completion)
+    }
     
     func addActivityListener(user: User, activitiesVC: UIViewController) -> ListenerRegistration{
         return storage.db.collection("Users").document(user.id).collection("Notifications").addSnapshotListener { (snap, error) in
@@ -99,6 +102,15 @@ public class StateController{
             }
         }
 
+    }
+    
+    
+    func fetchUserPosts(from date: Date, completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
+        storage.fechUserPosts(from: date, completion: completion)
+    }
+    
+    func removePost(post: Post){
+        storage.removePost(post: post)
     }
     
 }
