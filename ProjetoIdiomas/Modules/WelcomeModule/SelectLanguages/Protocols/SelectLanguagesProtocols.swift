@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 //  var presenter: FeedInteratorToPresenter
 public protocol SelectLanguagesInteratorToPresenter: class{
     
@@ -30,4 +30,15 @@ public protocol SelectLanguagesViewToPresenter: class {
 public protocol SelectLanguagesToPresenter{
     func didSuccessfullyCreated(user: User)
     func cancelUserCreation()
+    func didSelectTeachingLanguages(user: User, state: ViewState,languagesVC: SelectLanguageViewController)
+}
+
+public protocol WalkThroughOnBoardDelegate: class{
+    func goNextPage(fowardTo page: PageOnBoarding)
+    func goBeforePage(reverseTo page: PageOnBoarding)
+}
+
+
+public protocol OnBoardingPage: UIViewController{
+    var pageDelegate: WalkThroughOnBoardDelegate? { get set }
 }

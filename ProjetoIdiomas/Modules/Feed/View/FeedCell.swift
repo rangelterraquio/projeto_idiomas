@@ -13,18 +13,26 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var userPictureView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var postTitleLabel: UILabel!
-    @IBOutlet weak var postText: UITextView!
+    @IBOutlet weak var postText: UILabel!
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var reactionButton: UIButton!
     
     @IBOutlet weak var upVoteLabel: UILabel!
     @IBOutlet weak var downVoteLabel: UILabel!
     @IBOutlet weak var feedIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var languageImage: UIImageView!
     @IBOutlet weak var profilePicIndicator: UIActivityIndicatorView!
     
     var onReuse: () -> () = {}
     var upvoted: () -> () = {}
     var downVoted: () -> () = {}
+
+    
+//    override func viewWillLayoutSubviews() {
+//          sampleLabel.sizeToFit()
+//      }
+    
+    
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -40,6 +48,8 @@ class FeedCell: UITableViewCell {
         userPictureView.layer.cornerRadius = 24
         userPictureView.layer.masksToBounds = true
         userPictureView.contentMode = .scaleAspectFill
+        
+        postText.sizeToFit()
         
     }
     @IBAction func upVoteButton(_ sender: Any) {
@@ -71,6 +81,10 @@ class FeedCell: UITableViewCell {
         self.downVoteLabel.text = "\(post.downvote)"
         self.upVoteLabel.text = "\(post.upvote)"
         self.feedIndicator.stopAnimating()
+        if let imageName =  Languages.init(rawValue: post.language)?.name{
+            self.languageImage.image = UIImage(named: imageName)
+        }
+        
         
 //        if let photoURL = post.author.photoURL{
 //            self.userPictureView.loadImagefromURL(from: photoURL) {

@@ -13,6 +13,8 @@ import UIKit
 protocol SelectLanguagesCoordinatorDelegate:class {
     func coordinatorDidCreate(coordinator: Coordinator, user: User)
     func coordinatorDidCancel(coordinator: Coordinator)
+    func didSelectTeachingLanguages(user: User, state: ViewState, languagesVC: SelectLanguageViewController)
+
 }
 class SelectLanguagesCoordinator: Coordinator {
     
@@ -25,18 +27,18 @@ class SelectLanguagesCoordinator: Coordinator {
         self.tabBarController = tabBarController
     }
     
-    func stat(user: User) -> Void {
+    func stat(user: User) -> SelectLanguageViewController {
         let vc = SelectLanguageViewController(nibName: "SelectLanguageViewController", bundle: nil)
         vc.user = user
         vc.router = self
         
-        
-        vc.modalPresentationStyle = .overCurrentContext
-        if let oldVc = tabBarController.viewControllers?.first as? UINavigationController{
-            oldVc.definesPresentationContext = true
-            oldVc.title = "Post"
-            oldVc.pushViewController(vc, animated: true)
-        }
+        return vc
+//        vc.modalPresentationStyle = .overCurrentContext
+//        if let oldVc = tabBarController.viewControllers?.first as? UINavigationController{
+//            oldVc.definesPresentationContext = true
+//            oldVc.title = "Sign In"
+//            oldVc.pushViewController(vc, animated: true)
+//        }
 //       guard let topViewController = navigationController.topViewController else {
 //           return navigationController.setViewControllers([vc], animated: false)
 //       }
@@ -49,6 +51,10 @@ class SelectLanguagesCoordinator: Coordinator {
 }
 
 extension SelectLanguagesCoordinator: SelectLanguagesToPresenter{
+    func didSelectTeachingLanguages(user: User, state: ViewState,languagesVC: SelectLanguageViewController) {
+        delegate?.didSelectTeachingLanguages(user: user, state: state, languagesVC: languagesVC)
+    }
+    
     func didSuccessfullyCreated(user: User) {
         delegate?.coordinatorDidCreate(coordinator: self, user: user)
         

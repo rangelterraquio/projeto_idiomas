@@ -99,6 +99,8 @@ class ImageLoader{
         
     }
     
+   
+    
     func removeImagefromCache(url: String){
         print("A url do parametro : \(url)")
         

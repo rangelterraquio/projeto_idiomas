@@ -13,6 +13,9 @@ import GoogleSignIn
 import FirebaseAuth
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var signUPButton: UIButton!
+    @IBOutlet weak var logInButton: UIButton!
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -26,9 +29,12 @@ class SignUpViewController: UIViewController {
     
     var presenter: SignUpViewToPresenter? = nil
     
+    var loadScreen: LoadingScreen!
+    
     override func viewWillAppear(_ animated: Bool) {
         
         NotificationCenter.default.addObserver(self, selector: #selector(appleIDStateDidRevoked), name: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil)
+        self.navigationController?.navigationBar.isHidden = true
 
     }
     
@@ -39,7 +45,8 @@ class SignUpViewController: UIViewController {
         
         setupSIWAButton()
         setupGoogleSignIn()
-        
+//        setupButtons()
+       
     }
     
     
@@ -50,12 +57,15 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func signUp(_ sender: Any) {
+        loadScreen = LoadingScreen(frame: CGRect(origin: self.view.frame.origin, size: self.view.frame.size))
+        self.view.addSubview(loadScreen)
         errorLabel.isHidden = true
         presenter?.validateTextFields(name: nameTextField.text, email: emailTextField.text, password: passwordTextField.text)
     }
     
 
     @IBAction func singInWithEmail(_ sender: Any) {
+        presenter?.signInWithEmail()
     }
 }
 
@@ -65,10 +75,16 @@ extension SignUpViewController: SignUpPresenterToView{
     
     
     func showAlertError(error msg: String) {
+        if let lScreen = loadScreen{
+            lScreen.removeFromSuperview()
+        }
         self.showAlertError(error: msg, title: "Operation Failed")
     }
     
     func updateView(text: String) {
+        if let lScreen = loadScreen{
+            lScreen.removeFromSuperview()
+        }
         errorLabel.text = text
         errorLabel.isHidden = false
     }
@@ -93,16 +109,22 @@ extension SignUpViewController: ASAuthorizationControllerPresentationContextProv
         
         /// set this so the button will use auto layout constraint
         siwaButton.translatesAutoresizingMaskIntoConstraints = false
-
+        siwaButton.cornerRadius = 20
         /// add the button to the view controller root view
         self.view.addSubview(siwaButton)
 
         /// set constraint
         NSLayoutConstraint.activate([
-            siwaButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50.0),
-            siwaButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50.0),
-            siwaButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -70.0),
-            siwaButton.heightAnchor.constraint(equalToConstant: 50.0)
+            siwaButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.view.centerXAnchor, multiplier: 1),
+            siwaButton.centerYAnchor.constraint(equalTo: signUPButton.bottomAnchor, constant: 30),
+            
+            siwaButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.724638),// 0.0390625
+            siwaButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.045)
+//            siwaButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50.0),
+//            siwaButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50.0),
+//            siwaButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -70.0),
+//            siwaButton.heightAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.724638),
+//            siwaButton.widthAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.0390625)
         ])
 
         /// the function that will be executed when user tap the button
@@ -158,6 +180,13 @@ extension SignUpViewController: ASAuthorizationControllerPresentationContextProv
 
 extension SignUpViewController{
     
+    func setupButtons(){
+//        let width = (siwaButton.frame.size.width) * siwaButton.contentScaleFactor
+//        let height = (siwaButton.frame.size.height) * UIScreen.main.scale
+//        signUPButton.frame.size = CGSize(width: width, height: height)
+//        logInButton.frame.size = CGSize(width: width, height: height)
+    }
+    
     func setupGoogleSignIn(){
         
         
@@ -165,16 +194,17 @@ extension SignUpViewController{
 
         /// set this so the button will use auto layout constraint
         signInGoogleButton.translatesAutoresizingMaskIntoConstraints = false
-
+        
         /// add the button to the view controller root view
         self.view.addSubview(signInGoogleButton)
 
         /// set constraint
         NSLayoutConstraint.activate([
-            signInGoogleButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50.0),
-            signInGoogleButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50.0),
-            signInGoogleButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -120.0),
-            signInGoogleButton.heightAnchor.constraint(equalToConstant: 50.0)
+            signInGoogleButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.view.centerXAnchor, multiplier: 1),
+            signInGoogleButton.centerYAnchor.constraint(equalTo: siwaButton.bottomAnchor, constant: 30),
+            
+            signInGoogleButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.724638),// 0.0390625
+            signInGoogleButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.045)
         ])
     }
     

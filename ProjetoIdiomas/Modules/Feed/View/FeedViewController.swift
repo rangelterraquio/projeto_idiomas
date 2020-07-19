@@ -30,14 +30,17 @@ class FeedViewController: UIViewController {
     var section: SectionSelected = .teachingSection
     
     var updateVotesView: (VoteType, Int32) -> () = {_, _ in}
-    
+    var profileButton: UIBarButtonItem!
     @IBOutlet weak var feedTableView: UITableView!
     
     override func viewWillAppear(_ animated: Bool) {
         feedTableView.reloadData()
-        self.navigationController?.navigationBar.isHidden = true
+        self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
     }
+    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -51,6 +54,9 @@ class FeedViewController: UIViewController {
         feedTableView.delegate = self
         feedTableView.dataSource = self
         
+        feedTableView.separatorColor = .clear
+        feedTableView.separatorStyle = .none
+
         presenter?.updateFeed(in: [.english], from: Date())
         
 //        let refresh = UIRefreshControl()
@@ -59,6 +65,16 @@ class FeedViewController: UIViewController {
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector((reloadFeed)), for: .valueChanged)
         feedTableView.refreshControl = refresh
+        
+        
+        
+        profileButton = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(goToProfile))//UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(goToProfile))
+        self.navigationItem.setRightBarButton(profileButton, animated: true)
+        profileButton.isEnabled = true
+    }
+    
+    @objc func goToProfile(){
+        presenter?.goToProfile()
     }
     
     @objc func reloadFeed(){
@@ -70,19 +86,8 @@ class FeedViewController: UIViewController {
         }
     }
 
-    @IBAction func reloadTB(_ sender: Any) {
-        print(self.posts)
-        presenter?.updateFeed(in: [.english], from: Date())
-
-    }
-    
-    @IBAction func addPost(_ sender: Any) {
-        presenter?.goToAddPostView()
-    }
-    
-    @IBAction func teste(_ sendr: Any){
-        
-    }
+   
+   
 }
 
 
@@ -173,7 +178,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == 0{
-            return 44
+            return 60
         }else{
             return 300
         }

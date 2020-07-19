@@ -16,6 +16,12 @@ class ProfileViewController: UIViewController {
     var imageProfile: UIImage?
     var presenter: ProfileViewToPresenter? = nil
     var notificationManeger: PushNotificationManager!
+    
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

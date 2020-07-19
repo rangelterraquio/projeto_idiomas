@@ -6,11 +6,21 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFCompactDisplay-Regular.otf">
+            <string>SFCompactDisplay-Regular</string>
+        </array>
+        <array key="SFCompactDisplay-Semibold.otf">
+            <string>SFCompactDisplay-Semibold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectLanguageViewController" customModule="ProjetoIdiomas" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundImage" destination="PMp-gl-lvl" id="HSP-YI-Xma"/>
                 <outlet property="instructionLabel" destination="98w-Ss-VAK" id="D6a-u1-Zq2"/>
                 <outlet property="languagesTableView" destination="RTz-ss-pY4" id="F3c-7u-ewv"/>
+                <outlet property="nextButton" destination="tOK-od-Jyt" id="hGO-Jp-WgD"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -19,26 +29,82 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the languages you are able to help other people" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98w-Ss-VAK">
-                    <rect key="frame" x="25" y="54" width="364" height="41"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="fundoOnboard1" translatesAutoresizingMaskIntoConstraints="NO" id="PMp-gl-lvl">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select the languages you are able to help other people" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="98w-Ss-VAK">
+                    <rect key="frame" x="25" y="75" width="364" height="81"/>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="25"/>
+                    <color key="textColor" red="0.1137254902" green="0.1450980392" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RTz-ss-pY4">
-                    <rect key="frame" x="55" y="143" width="305" height="719"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="RTz-ss-pY4">
+                    <rect key="frame" x="54.5" y="164" width="305" height="594"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="sectionIndexColor" red="0.1137254902" green="0.1450980392" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <color key="sectionIndexBackgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8sQ-n2-RRx">
+                    <rect key="frame" x="55" y="781" width="140" height="40"/>
+                    <color key="backgroundColor" red="0.43529411759999997" green="0.36078431370000003" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
+                    <state key="normal" title="Back">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="backButton:" destination="-1" eventType="touchUpInside" id="YOj-kt-uwK"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tOK-od-Jyt">
+                    <rect key="frame" x="220" y="780" width="140" height="40"/>
+                    <color key="backgroundColor" red="0.43529411759999997" green="0.36078431370000003" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
+                    <state key="normal" title="Next">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="addLanguage:" destination="-1" eventType="touchUpInside" id="XXt-Tp-0Jn"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="98w-Ss-VAK" secondAttribute="trailing" constant="25" id="7o0-KW-r80"/>
-                <constraint firstItem="98w-Ss-VAK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="eeR-OY-AmC"/>
-                <constraint firstItem="98w-Ss-VAK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="25" id="xy5-v5-j1s"/>
+                <constraint firstItem="tOK-od-Jyt" firstAttribute="leading" secondItem="8sQ-n2-RRx" secondAttribute="trailing" constant="25" id="1op-MQ-eWj"/>
+                <constraint firstItem="PMp-gl-lvl" firstAttribute="top" secondItem="98w-Ss-VAK" secondAttribute="bottom" constant="-156" id="2eI-4Z-JqW"/>
+                <constraint firstItem="tOK-od-Jyt" firstAttribute="width" secondItem="PMp-gl-lvl" secondAttribute="width" multiplier="0.338164" id="4iF-Bw-BAN"/>
+                <constraint firstItem="RTz-ss-pY4" firstAttribute="height" secondItem="PMp-gl-lvl" secondAttribute="height" multiplier="0.662946" id="5Wf-43-DC7"/>
+                <constraint firstItem="tOK-od-Jyt" firstAttribute="top" secondItem="RTz-ss-pY4" secondAttribute="bottom" constant="22" id="6Wl-x7-suv"/>
+                <constraint firstItem="PMp-gl-lvl" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Lic-Zb-A4K"/>
+                <constraint firstAttribute="bottom" secondItem="PMp-gl-lvl" secondAttribute="bottom" id="Qav-dh-yPm"/>
+                <constraint firstItem="RTz-ss-pY4" firstAttribute="top" secondItem="98w-Ss-VAK" secondAttribute="bottom" constant="8" id="TzX-Br-5dL"/>
+                <constraint firstItem="98w-Ss-VAK" firstAttribute="height" secondItem="PMp-gl-lvl" secondAttribute="height" multiplier="0.0904018" id="Wen-e0-bjh"/>
+                <constraint firstItem="PMp-gl-lvl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Zie-JR-fQg"/>
+                <constraint firstItem="RTz-ss-pY4" firstAttribute="width" secondItem="PMp-gl-lvl" secondAttribute="width" multiplier="0.736715" id="arG-Vb-A4r"/>
+                <constraint firstItem="8sQ-n2-RRx" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="55" id="dpL-2j-3Re"/>
+                <constraint firstItem="8sQ-n2-RRx" firstAttribute="top" secondItem="RTz-ss-pY4" secondAttribute="bottom" constant="23" id="f7a-gU-fDG"/>
+                <constraint firstItem="8sQ-n2-RRx" firstAttribute="width" secondItem="PMp-gl-lvl" secondAttribute="width" multiplier="0.338164" id="fy0-a5-OLk"/>
+                <constraint firstItem="RTz-ss-pY4" firstAttribute="centerX" secondItem="PMp-gl-lvl" secondAttribute="centerX" id="gbx-cG-gq5"/>
+                <constraint firstItem="tOK-od-Jyt" firstAttribute="height" secondItem="PMp-gl-lvl" secondAttribute="height" multiplier="0.0446429" id="lAA-Nc-2y4"/>
+                <constraint firstItem="8sQ-n2-RRx" firstAttribute="height" secondItem="PMp-gl-lvl" secondAttribute="height" multiplier="0.0446429" id="pGU-vI-H7J"/>
+                <constraint firstItem="98w-Ss-VAK" firstAttribute="width" secondItem="PMp-gl-lvl" secondAttribute="width" multiplier="0.879227" id="u34-X0-HWH"/>
+                <constraint firstItem="98w-Ss-VAK" firstAttribute="centerX" secondItem="PMp-gl-lvl" secondAttribute="centerX" id="vAM-mc-sHX"/>
+                <constraint firstItem="PMp-gl-lvl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="vPV-bL-I9b"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="131.8840579710145" y="110.49107142857143"/>
         </view>
     </objects>
+    <resources>
+        <image name="fundoOnboard1" width="375.5" height="812"/>
+    </resources>
 </document>

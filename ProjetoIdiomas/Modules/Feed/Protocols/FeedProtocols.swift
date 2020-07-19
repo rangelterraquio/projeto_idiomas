@@ -33,12 +33,14 @@ public protocol FeedPresenterToView: class{
     func updateVotes<T: DocumentSerializable>(from: String, inDocument: T, with comment: Comment?)
     func goToAddPostView()
     func goToViewPostDetails(post: Post,imageProfile: UIImage?,vc: FeedViewController?)
+    func goToProfile()
 }
 
  protocol FeedPresenterToRouter{
     func addPostView()
     func viewPostWithDetails(post: Post,imageProfile: UIImage?,vc: FeedViewController?)
     //func showErrorAlert(error: String)
+    func goToProfile()
 }
 
 

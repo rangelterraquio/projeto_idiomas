@@ -17,11 +17,12 @@ final class AppCoordinator: Coordinator{
     fileprivate let storage = StoregeAPI()
     fileprivate var stateManeger: StateController!
     fileprivate let signUpAPI = SignUpAPI()
+    fileprivate var user: User!
     var pushNotificationManeger: PushNotificationManager!
     
     init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
-//        signUpAPI.signOut()
+     //   signUpAPI.signOut()
         stateManeger = StateController(storage:storage)
     }
     
@@ -30,6 +31,7 @@ final class AppCoordinator: Coordinator{
         if signUpAPI.userHasAValidSession(){
             storage.fetchUser { user,Error in
                 self.setupTabBar(user: user!)
+                self.user = user!
             }
             
         }else{
@@ -47,15 +49,17 @@ final class AppCoordinator: Coordinator{
         
         
         if let feedControler = showFeed(){
-            feedControler.tabBarItem = UITabBarItem(tabBarSystemItem: .mostViewed, tag: 0)
+            feedControler.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(named: "feedIcon"), tag: 0)
             
-            let activitiesVC = showActivities(user: user)
+            let activitiesVC =  showCreatePost()//showActivities(user: user)
             
-            activitiesVC.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
+            activitiesVC.tabBarItem = UITabBarItem(title: "Add Post", image: UIImage(named: "addPost"), tag: 1)//UITabBarItem(tabBarSystemItem: .history, tag: 1)
             
-            let profileVC = showProfile(user: user)
-            profileVC.tabBarItem = UITabBarItem(tabBarSystemItem: .contacts, tag: 2)
+            let profileVC = showActivities(user: user)//showProfile(user: user)
+            profileVC.tabBarItem = UITabBarItem(title: "Notifications", image: UIImage(named: "Notification"), tag: 2)
             
+            
+           
             let controllers = [feedControler,activitiesVC,profileVC].map { (viewController) -> UINavigationController in
                 UINavigationController(rootViewController: viewController)
             
@@ -65,7 +69,8 @@ final class AppCoordinator: Coordinator{
             tabBarController.viewControllers = controllers
             
             //Appearence
-            tabBarController.tabBar.barTintColor = .green
+            tabBarController.tabBar.barTintColor = .white
+            tabBarController.tabBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
 
             
         }
@@ -98,18 +103,35 @@ final class AppCoordinator: Coordinator{
          return signUpCoordinator.start()
     }
     
-    func showSelectLanguage(with user: User){
-        let coordinator = SelectLanguagesCoordinator(user: user, tabBarController: tabBarController)
-        coordinator.delegate = self
-        coordinator.stat(user: user)
-        childCoordinators.append(coordinator)
+    func showOnBoard(with user: User, state: ViewState, languagesVC: SelectLanguageViewController?){
+        let vc = state == .learningLanguagesSection ? LearningOnBoardViewController(nibName: "LearningOnBoardViewController", bundle: nil) : TeachingOnBoardViewController(nibName: "TeachingOnBoardViewController", bundle: nil)
+        vc.user = user
+        vc.languagesVC = languagesVC
+//        let coordinator = SelectLanguagesCoordinator(user: user, tabBarController: tabBarController)
+//        coordinator.delegate = self
+//        coordinator.stat(user: user)
+//        childCoordinators.append(coordinator)
+//
+        vc.delegate = self
+        vc.modalPresentationStyle = .overCurrentContext
+        if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
+            oldVc.definesPresentationContext = true
+            
+            oldVc.pushViewController(vc, animated: true)
+        }
     }
     
-    func showCreatePost(){
+    func showSignInWithEmail(){
+        let coordinator = SignInEmailPasswordCoordinator(signUpAPI: signUpAPI, storage: storage, tabBarController: tabBarController)
+        coordinator.delegate = self
+        coordinator.start()
+        childCoordinators.append(coordinator)
+    }
+    func showCreatePost() -> UIViewController{
         let coordinator = CreatePostCoordinator(stateController: stateManeger, tabBarController: tabBarController)
         coordinator.delegate = self
         childCoordinators.append(coordinator)
-        coordinator.start()
+        return coordinator.start()
 
     }
     
@@ -137,11 +159,11 @@ final class AppCoordinator: Coordinator{
         return coordinator.start(user: user)
     }
     
-    func showProfile(user: User) -> UIViewController{
+    func showProfile(user: User){
          let coordinator = ProfileCoordinator(stateController: stateManeger, tabBarController: tabBarController)
          coordinator.delegate = self
          childCoordinators.append(coordinator)
-        return coordinator.start(user: user, notificationManeger: pushNotificationManeger)
+         coordinator.start(user: user, notificationManeger: pushNotificationManeger)
      }
     
     func showEditInfoView(user: User, image: UIImage?){
@@ -187,7 +209,11 @@ final class AppCoordinator: Coordinator{
 
 //MARK: -> Authetication Delegate
 extension AppCoordinator: AuthenticationCoordinatorDelegate{
-    func coordinatorDidAuthenticateWithUser(coordinator: SignUpCoordinator) {
+    func didChooseSignWithEmail() {
+        showSignInWithEmail()
+    }
+    
+    func coordinatorDidAuthenticateWithUser(coordinator: Coordinator) {
         removeCoordinator(coordinator: coordinator)
         self.setupTabBar(user: StoregeAPI.currentUser!)
     }
@@ -196,8 +222,31 @@ extension AppCoordinator: AuthenticationCoordinatorDelegate{
     
     func coordinatorDidAuthenticate(coordinator: SignUpCoordinator,user: User) {
         //chamar selecte language
-//        removeCoordinator(coordinator: coordinator)
-        showSelectLanguage(with: user)
+//       removeCoordinator(coordinator: coordinator)
+//        showOnBoard(with: user, state:  .learningLanguagesSection, languagesVC: nil)
+        
+        let pageViewController = PageViewController()
+        let teachOnBoard = TeachingOnBoardViewController(nibName: "TeachingOnBoardViewController", bundle: nil)
+        teachOnBoard.pageDelegate = pageViewController
+        let learnOnBoard = LearningOnBoardViewController(nibName: "LearningOnBoardViewController", bundle: nil)
+         learnOnBoard.pageDelegate = pageViewController
+        let coordinator = SelectLanguagesCoordinator(user: user, tabBarController: tabBarController)
+        coordinator.delegate = self
+        let selectLanguage = coordinator.stat(user: user)
+        childCoordinators.append(coordinator)
+        selectLanguage.pageDelegate = pageViewController
+        let pageModel = PageOnBoardingModel(user: user, learningOnBoard: learnOnBoard, selectLanguageVC: selectLanguage, teachingOnBoard: teachOnBoard)
+        
+        pageViewController.pageModel = pageModel
+        
+        pageViewController.modalPresentationStyle = .overCurrentContext
+        if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
+            oldVc.definesPresentationContext = true
+            
+            oldVc.pushViewController(pageViewController, animated: true)
+        }
+        
+        
     }
     
     
@@ -206,6 +255,35 @@ extension AppCoordinator: AuthenticationCoordinatorDelegate{
         childCoordinators = newArray
         
     }
+    
+}
+
+//MARK: -> Authetication Delegate
+extension AppCoordinator: OnBoardCoordinatorDelegate{
+    
+    
+    
+    
+    func showSelectLanguages(user: User) {
+       let coordinator = SelectLanguagesCoordinator(user: user, tabBarController: tabBarController)
+       coordinator.delegate = self
+       coordinator.stat(user: user)
+       childCoordinators.append(coordinator)
+    }
+    
+    func showSelectLanguages(user: User,languagesVC: SelectLanguageViewController){
+//        languagesVC.modalPresentationStyle = .overCurrentContext
+//        if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
+//            oldVc.definesPresentationContext = true
+//
+//            oldVc.pushViewController(languagesVC, animated: true)
+//        }
+        let coordinator = SelectLanguagesCoordinator(user: user, tabBarController: tabBarController)
+        coordinator.delegate = self
+        coordinator.stat(user: user)
+        childCoordinators.append(coordinator)
+    }
+    
     
 }
 //MARK: -> Select Language Delegate
@@ -227,7 +305,7 @@ extension AppCoordinator: SelectLanguagesCoordinatorDelegate{
     
     func coordinatorDidCancel(coordinator: Coordinator) {
         signUpAPI.deleteCurrentUser()
-        removeCoordinator(coordinator: coordinator)
+        
         
        
         childCoordinators.forEach { (coordinator) in
@@ -237,13 +315,18 @@ extension AppCoordinator: SelectLanguagesCoordinatorDelegate{
                     vc.modalPresentationStyle = .overCurrentContext
                     if let oldVc = self.tabBarController.viewControllers?.first as? UINavigationController{
                         oldVc.definesPresentationContext = true
-                        oldVc.title = "Create Post"
                         oldVc.pushViewController(vc, animated: true)
+                        self.removeCoordinator(coordinator: coordinator)
                     }
                 }
             }
         }
     }
+    
+    func didSelectTeachingLanguages(user: User, state: ViewState, languagesVC: SelectLanguageViewController){
+        showOnBoard(with: user, state: state,languagesVC: languagesVC)
+    }
+
     
     
 }
@@ -254,14 +337,24 @@ extension AppCoordinator: CreatePostDelegate{
     func createPostFinished(coordinator: Coordinator) {
         removeCoordinator(coordinator: coordinator)
 //        navigationController.popViewController(animated: true)
-        if let nav = tabBarController.viewControllers?.first as? UINavigationController{
-            nav.popViewController(animated: true)
-        }
+        self.tabBarController.selectedIndex = 0
+//        if let nav = tabBarController.viewControllers?.first as? UINavigationController{
+//
+//            tabBarController.show(<#T##vc: UIViewController##UIViewController#>, sender: <#T##Any?#>)
+//            nav.popViewController(animated: true)
+//        }
     }
 }
 
 //MARK: -> Create Post Delegate
 extension AppCoordinator: FeedCoordinatorDelegate{
+    
+    
+    
+    func chooseProfile() {
+        showProfile(user: self.user)
+    }
+    
   
     
     func chooseCreatePostView() {

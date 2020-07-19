@@ -27,7 +27,7 @@ public protocol SignUpPresenterToView: class{
 public protocol SignUpPresenterToInterator: class{
     
     func authenticateWithApple(with view: UIViewController)
-    func signUpUser(name: String, email: String, password: String)->Void
+    func signUpUser(name: String, email: String, password: String,completion: @escaping (CompletinResult<User>) -> Void )->Void
     func authenticateWithGoogle()
     func validateTextFields(name: String?, email: String?, password: String?)
 }
@@ -36,6 +36,7 @@ public protocol SignUpViewToPresenter: class {
     
     func validateTextFields(name: String?, email: String?, password: String?)
     func authenticateWithApple(with view: UIViewController)
+    func signInWithEmail()
 }
 
 public protocol SignUpRouterToPresenter{

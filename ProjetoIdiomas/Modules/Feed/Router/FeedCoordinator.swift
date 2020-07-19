@@ -11,6 +11,7 @@ import UIKit
  protocol FeedCoordinatorDelegate: class{
     func chooseCreatePostView()
     func chooseViewPostDetails(post: Post,imageProfile: UIImage?,vc: UIViewController?)
+    func chooseProfile()
     
 }
 
@@ -49,6 +50,10 @@ class FeedCoordinator: Coordinator {
 
 
 extension FeedCoordinator: FeedPresenterToRouter{
+    func goToProfile() {
+        delegate?.chooseProfile()
+    }
+    
     
     
     func addPostView() {

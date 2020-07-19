@@ -77,9 +77,26 @@
 		708AC219249CF5CF002E460C /* SettingViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708AC217249CF5CF002E460C /* SettingViewCell.xib */; };
 		708AC21D249CFDD2002E460C /* UserPostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708AC21B249CFDD2002E460C /* UserPostsViewController.swift */; };
 		708AC21E249CFDD3002E460C /* UserPostsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 708AC21C249CFDD2002E460C /* UserPostsViewController.xib */; };
+		708E000D24C1E3EF00F28A75 /* SFCompactDisplay-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708E000424C1E3EE00F28A75 /* SFCompactDisplay-Thin.otf */; };
+		708E000E24C1E3EF00F28A75 /* SFCompactDisplay-Heavy.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708E000524C1E3EE00F28A75 /* SFCompactDisplay-Heavy.otf */; };
+		708E000F24C1E3EF00F28A75 /* SFCompactDisplay-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708E000624C1E3EE00F28A75 /* SFCompactDisplay-Ultralight.otf */; };
+		708E001024C1E3EF00F28A75 /* SFCompactDisplay-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708E000724C1E3EE00F28A75 /* SFCompactDisplay-Bold.otf */; };
+		708E001124C1E3EF00F28A75 /* SFCompactDisplay-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708E000824C1E3EE00F28A75 /* SFCompactDisplay-Medium.otf */; };
+		708E001224C1E3EF00F28A75 /* SFCompactDisplay-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708E000924C1E3EE00F28A75 /* SFCompactDisplay-Regular.otf */; };
+		708E001324C1E3EF00F28A75 /* SFCompactDisplay-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708E000A24C1E3EE00F28A75 /* SFCompactDisplay-Light.otf */; };
+		708E001424C1E3EF00F28A75 /* SFCompactDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708E000B24C1E3EE00F28A75 /* SFCompactDisplay-Black.otf */; };
+		708E001524C1E3EF00F28A75 /* SFCompactDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708E000C24C1E3EF00F28A75 /* SFCompactDisplay-Semibold.otf */; };
+		70918CC824C0AF4C005B4749 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CC724C0AF4C005B4749 /* LoadingScreen.swift */; };
 		709E7B482485FA2600274D33 /* ViewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E7B462485FA2600274D33 /* ViewActivityViewController.swift */; };
 		709E7B492485FA2600274D33 /* ViewActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709E7B472485FA2600274D33 /* ViewActivityViewController.xib */; };
 		709FB1FE24BDF7750010AFDC /* ManegeAccountDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FB1FD24BDF7740010AFDC /* ManegeAccountDelegate.swift */; };
+		709FB20224BE07970010AFDC /* SignInEmailPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FB20024BE07970010AFDC /* SignInEmailPasswordViewController.swift */; };
+		709FB20324BE07970010AFDC /* SignInEmailPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709FB20124BE07970010AFDC /* SignInEmailPasswordViewController.xib */; };
+		70AF712324C3408E0080A3C2 /* LearningOnBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AF712124C3408E0080A3C2 /* LearningOnBoardViewController.swift */; };
+		70AF712424C3408E0080A3C2 /* LearningOnBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AF712224C3408E0080A3C2 /* LearningOnBoardViewController.xib */; };
+		70AF712724C346180080A3C2 /* TeachingOnBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AF712524C346180080A3C2 /* TeachingOnBoardViewController.swift */; };
+		70AF712824C346180080A3C2 /* TeachingOnBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AF712624C346180080A3C2 /* TeachingOnBoardViewController.xib */; };
+		70AF712A24C355200080A3C2 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AF712924C355200080A3C2 /* PageViewController.swift */; };
 		70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */; };
 		70B6391E246792B300966A56 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391C246792B300966A56 /* LanguageCell.swift */; };
 		70B6391F246792B300966A56 /* LanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B6391D246792B300966A56 /* LanguageCell.xib */; };
@@ -94,6 +111,11 @@
 		70C1A069244D3014008F31DB /* SignUpAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C1A068244D3014008F31DB /* SignUpAPI.swift */; };
 		70C1A06B244D33A0008F31DB /* TextFieldInterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C1A06A244D33A0008F31DB /* TextFieldInterator.swift */; };
 		70C1A06D244D4963008F31DB /* InputValidationServiceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70C1A06C244D4963008F31DB /* InputValidationServiceAPI.swift */; };
+		70DD9FFA24C4989E00BB6BCD /* PostLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70DD9FF924C4989E00BB6BCD /* PostLabel.swift */; };
+		70E8495B24BE307600FD3250 /* SignInEmailPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E8495A24BE307600FD3250 /* SignInEmailPasswordPresenter.swift */; };
+		70E8495D24BE308700FD3250 /* SignInEmailPasswordInterator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E8495C24BE308700FD3250 /* SignInEmailPasswordInterator.swift */; };
+		70E8495F24BE309500FD3250 /* SignInEmailPasswordRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E8495E24BE309500FD3250 /* SignInEmailPasswordRouter.swift */; };
+		70E8496224BE30B900FD3250 /* SignInEmailPasswordProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70E8496124BE30B900FD3250 /* SignInEmailPasswordProtocols.swift */; };
 		70EE70FB2487E28000A9BDDE /* TabNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70EE70FA2487E28000A9BDDE /* TabNavigationController.swift */; };
 		70FABC632482A7FB00825EC9 /* PushNotificationManeger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FABC622482A7FB00825EC9 /* PushNotificationManeger.swift */; };
 		70FABC652482B02D00825EC9 /* PushNotificationSender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70FABC642482B02D00825EC9 /* PushNotificationSender.swift */; };
@@ -179,9 +201,26 @@
 		708AC217249CF5CF002E460C /* SettingViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewCell.xib; sourceTree = "<group>"; };
 		708AC21B249CFDD2002E460C /* UserPostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostsViewController.swift; sourceTree = "<group>"; };
 		708AC21C249CFDD2002E460C /* UserPostsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserPostsViewController.xib; sourceTree = "<group>"; };
+		708E000424C1E3EE00F28A75 /* SFCompactDisplay-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Thin.otf"; sourceTree = "<group>"; };
+		708E000524C1E3EE00F28A75 /* SFCompactDisplay-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Heavy.otf"; sourceTree = "<group>"; };
+		708E000624C1E3EE00F28A75 /* SFCompactDisplay-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Ultralight.otf"; sourceTree = "<group>"; };
+		708E000724C1E3EE00F28A75 /* SFCompactDisplay-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Bold.otf"; sourceTree = "<group>"; };
+		708E000824C1E3EE00F28A75 /* SFCompactDisplay-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Medium.otf"; sourceTree = "<group>"; };
+		708E000924C1E3EE00F28A75 /* SFCompactDisplay-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Regular.otf"; sourceTree = "<group>"; };
+		708E000A24C1E3EE00F28A75 /* SFCompactDisplay-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Light.otf"; sourceTree = "<group>"; };
+		708E000B24C1E3EE00F28A75 /* SFCompactDisplay-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Black.otf"; sourceTree = "<group>"; };
+		708E000C24C1E3EF00F28A75 /* SFCompactDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Semibold.otf"; sourceTree = "<group>"; };
+		70918CC724C0AF4C005B4749 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
 		709E7B462485FA2600274D33 /* ViewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivityViewController.swift; sourceTree = "<group>"; };
 		709E7B472485FA2600274D33 /* ViewActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewActivityViewController.xib; sourceTree = "<group>"; };
 		709FB1FD24BDF7740010AFDC /* ManegeAccountDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManegeAccountDelegate.swift; sourceTree = "<group>"; };
+		709FB20024BE07970010AFDC /* SignInEmailPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailPasswordViewController.swift; sourceTree = "<group>"; };
+		709FB20124BE07970010AFDC /* SignInEmailPasswordViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInEmailPasswordViewController.xib; sourceTree = "<group>"; };
+		70AF712124C3408E0080A3C2 /* LearningOnBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LearningOnBoardViewController.swift; sourceTree = "<group>"; };
+		70AF712224C3408E0080A3C2 /* LearningOnBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LearningOnBoardViewController.xib; sourceTree = "<group>"; };
+		70AF712524C346180080A3C2 /* TeachingOnBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachingOnBoardViewController.swift; sourceTree = "<group>"; };
+		70AF712624C346180080A3C2 /* TeachingOnBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeachingOnBoardViewController.xib; sourceTree = "<group>"; };
+		70AF712924C355200080A3C2 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesProtocols.swift; sourceTree = "<group>"; };
 		70B6391C246792B300966A56 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		70B6391D246792B300966A56 /* LanguageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageCell.xib; sourceTree = "<group>"; };
@@ -196,6 +235,11 @@
 		70C1A068244D3014008F31DB /* SignUpAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpAPI.swift; sourceTree = "<group>"; };
 		70C1A06A244D33A0008F31DB /* TextFieldInterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFieldInterator.swift; sourceTree = "<group>"; };
 		70C1A06C244D4963008F31DB /* InputValidationServiceAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputValidationServiceAPI.swift; sourceTree = "<group>"; };
+		70DD9FF924C4989E00BB6BCD /* PostLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLabel.swift; sourceTree = "<group>"; };
+		70E8495A24BE307600FD3250 /* SignInEmailPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailPasswordPresenter.swift; sourceTree = "<group>"; };
+		70E8495C24BE308700FD3250 /* SignInEmailPasswordInterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailPasswordInterator.swift; sourceTree = "<group>"; };
+		70E8495E24BE309500FD3250 /* SignInEmailPasswordRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailPasswordRouter.swift; sourceTree = "<group>"; };
+		70E8496124BE30B900FD3250 /* SignInEmailPasswordProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEmailPasswordProtocols.swift; sourceTree = "<group>"; };
 		70EE70FA2487E28000A9BDDE /* TabNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabNavigationController.swift; sourceTree = "<group>"; };
 		70FABC602482A53700825EC9 /* ProjetoIdiomas.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProjetoIdiomas.entitlements; sourceTree = "<group>"; };
 		70FABC622482A7FB00825EC9 /* PushNotificationManeger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushNotificationManeger.swift; sourceTree = "<group>"; };
@@ -350,6 +394,7 @@
 		707F384A2445226200DCEBE6 /* ProjetoIdiomas */ = {
 			isa = PBXGroup;
 			children = (
+				708E000324C1E3C600F28A75 /* Fontes */,
 				701F3FAB24BD347A00A1CC78 /* Extensions */,
 				70FABC612482A7DF00825EC9 /* Commons */,
 				70FABC602482A53700825EC9 /* ProjetoIdiomas.entitlements */,
@@ -407,6 +452,7 @@
 				704F87532447CDD500C1C4D4 /* FeedCell.xib */,
 				70C1A04D244D0364008F31DB /* FilterCell.swift */,
 				70C1A04E244D0364008F31DB /* FilterCell.xib */,
+				70DD9FF924C4989E00BB6BCD /* PostLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -535,6 +581,22 @@
 			path = UserActivities;
 			sourceTree = "<group>";
 		};
+		708E000324C1E3C600F28A75 /* Fontes */ = {
+			isa = PBXGroup;
+			children = (
+				708E000B24C1E3EE00F28A75 /* SFCompactDisplay-Black.otf */,
+				708E000724C1E3EE00F28A75 /* SFCompactDisplay-Bold.otf */,
+				708E000524C1E3EE00F28A75 /* SFCompactDisplay-Heavy.otf */,
+				708E000A24C1E3EE00F28A75 /* SFCompactDisplay-Light.otf */,
+				708E000824C1E3EE00F28A75 /* SFCompactDisplay-Medium.otf */,
+				708E000924C1E3EE00F28A75 /* SFCompactDisplay-Regular.otf */,
+				708E000C24C1E3EF00F28A75 /* SFCompactDisplay-Semibold.otf */,
+				708E000424C1E3EE00F28A75 /* SFCompactDisplay-Thin.otf */,
+				708E000624C1E3EE00F28A75 /* SFCompactDisplay-Ultralight.otf */,
+			);
+			path = Fontes;
+			sourceTree = "<group>";
+		};
 		709E7B402485F98F00274D33 /* ViewActivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,6 +652,51 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		709FB1FF24BE07680010AFDC /* SignInEmailPassword */ = {
+			isa = PBXGroup;
+			children = (
+				70E8496024BE30A300FD3250 /* Protocols */,
+				709FB20724BE090C0010AFDC /* View */,
+				709FB20624BE08FD0010AFDC /* Router */,
+				709FB20524BE08EF0010AFDC /* Interator */,
+				709FB20424BE08E60010AFDC /* Presenter */,
+			);
+			path = SignInEmailPassword;
+			sourceTree = "<group>";
+		};
+		709FB20424BE08E60010AFDC /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				70E8495A24BE307600FD3250 /* SignInEmailPasswordPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		709FB20524BE08EF0010AFDC /* Interator */ = {
+			isa = PBXGroup;
+			children = (
+				70E8495C24BE308700FD3250 /* SignInEmailPasswordInterator.swift */,
+			);
+			path = Interator;
+			sourceTree = "<group>";
+		};
+		709FB20624BE08FD0010AFDC /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				70E8495E24BE309500FD3250 /* SignInEmailPasswordRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		709FB20724BE090C0010AFDC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				709FB20024BE07970010AFDC /* SignInEmailPasswordViewController.swift */,
+				709FB20124BE07970010AFDC /* SignInEmailPasswordViewController.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		70C1A051244D21A5008F31DB /* DataManeger */ = {
 			isa = PBXGroup;
 			children = (
@@ -615,6 +722,7 @@
 		70C1A055244D230F008F31DB /* WelcomeModule */ = {
 			isa = PBXGroup;
 			children = (
+				709FB1FF24BE07680010AFDC /* SignInEmailPassword */,
 				70E7151E24674FF7008352E1 /* SelectLanguages */,
 				70C1A057244D2C99008F31DB /* SignUP */,
 			);
@@ -749,8 +857,21 @@
 				7006EB7024678A1D0040F681 /* SelectLanguageViewController.xib */,
 				70B6391C246792B300966A56 /* LanguageCell.swift */,
 				70B6391D246792B300966A56 /* LanguageCell.xib */,
+				70AF712124C3408E0080A3C2 /* LearningOnBoardViewController.swift */,
+				70AF712224C3408E0080A3C2 /* LearningOnBoardViewController.xib */,
+				70AF712524C346180080A3C2 /* TeachingOnBoardViewController.swift */,
+				70AF712624C346180080A3C2 /* TeachingOnBoardViewController.xib */,
+				70AF712924C355200080A3C2 /* PageViewController.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		70E8496024BE30A300FD3250 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				70E8496124BE30B900FD3250 /* SignInEmailPasswordProtocols.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		70FABC612482A7DF00825EC9 /* Commons */ = {
@@ -759,6 +880,7 @@
 				70FABC622482A7FB00825EC9 /* PushNotificationManeger.swift */,
 				70FABC642482B02D00825EC9 /* PushNotificationSender.swift */,
 				708A29F4248B2D24009E93B3 /* CameraHandler.swift */,
+				70918CC724C0AF4C005B4749 /* LoadingScreen.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -864,31 +986,43 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				70AF712824C346180080A3C2 /* TeachingOnBoardViewController.xib in Resources */,
 				708A29E0248A8EF8009E93B3 /* ProfileViewController.xib in Resources */,
+				708E001324C1E3EF00F28A75 /* SFCompactDisplay-Light.otf in Resources */,
+				70AF712424C3408E0080A3C2 /* LearningOnBoardViewController.xib in Resources */,
 				707F38582445226400DCEBE6 /* LaunchScreen.storyboard in Resources */,
 				7075F5252489A4C900851F28 /* ActivityCell.xib in Resources */,
 				701F3FAA24BD24BB00A1CC78 /* ChangeLAnguageViewController.xib in Resources */,
 				708AC21E249CFDD3002E460C /* UserPostsViewController.xib in Resources */,
 				707F386824452DD800DCEBE6 /* FeedViewController.xib in Resources */,
 				707F38552445226400DCEBE6 /* Assets.xcassets in Resources */,
+				708E001524C1E3EF00F28A75 /* SFCompactDisplay-Semibold.otf in Resources */,
 				708A29E4248A967D009E93B3 /* UserCell.xib in Resources */,
+				708E001224C1E3EF00F28A75 /* SFCompactDisplay-Regular.otf in Resources */,
 				70FB8B3D24698A900031DBFF /* PostCell.xib in Resources */,
+				708E000E24C1E3EF00F28A75 /* SFCompactDisplay-Heavy.otf in Resources */,
+				708E001124C1E3EF00F28A75 /* SFCompactDisplay-Medium.otf in Resources */,
 				704F87552447CDD500C1C4D4 /* FeedCell.xib in Resources */,
 				70698CE7246854B700D2D744 /* CreatePostViewController.xib in Resources */,
 				709E7B492485FA2600274D33 /* ViewActivityViewController.xib in Resources */,
 				707F38602445290500DCEBE6 /* GoogleService-Info.plist in Resources */,
+				708E000F24C1E3EF00F28A75 /* SFCompactDisplay-Ultralight.otf in Resources */,
 				70B6391F246792B300966A56 /* LanguageCell.xib in Resources */,
 				708AC219249CF5CF002E460C /* SettingViewCell.xib in Resources */,
 				708A29E8248A9962009E93B3 /* OptionCell.xib in Resources */,
 				708AC215249CF575002E460C /* SettingsViewController.xib in Resources */,
 				708A29F3248B2ABB009E93B3 /* EditInformationViewController.xib in Resources */,
+				708E001024C1E3EF00F28A75 /* SFCompactDisplay-Bold.otf in Resources */,
+				708E000D24C1E3EF00F28A75 /* SFCompactDisplay-Thin.otf in Resources */,
 				7006EB7224678A1D0040F681 /* SelectLanguageViewController.xib in Resources */,
 				707F38532445226200DCEBE6 /* Main.storyboard in Resources */,
 				70FB8B4124698E100031DBFF /* CommentCell.xib in Resources */,
 				70698CF4246860AA00D2D744 /* LanguagePopoverController.xib in Resources */,
 				70C1A060244D2D02008F31DB /* SignUpViewController.xib in Resources */,
 				70C1A050244D0364008F31DB /* FilterCell.xib in Resources */,
+				709FB20324BE07970010AFDC /* SignInEmailPasswordViewController.xib in Resources */,
 				70698CFD2468DDC800D2D744 /* ViewPostViewController.xib in Resources */,
+				708E001424C1E3EF00F28A75 /* SFCompactDisplay-Black.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -959,9 +1093,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				707F387624454C0200DCEBE6 /* FeedPresenter.swift in Sources */,
+				70918CC824C0AF4C005B4749 /* LoadingScreen.swift in Sources */,
 				708014C0246AE51D00D917A9 /* ViewPostPresenter.swift in Sources */,
 				7014F16B245201C200C3B78B /* StateTextField.swift in Sources */,
+				70E8495F24BE309500FD3250 /* SignInEmailPasswordRouter.swift in Sources */,
 				70FABC632482A7FB00825EC9 /* PushNotificationManeger.swift in Sources */,
+				70E8496224BE30B900FD3250 /* SignInEmailPasswordProtocols.swift in Sources */,
 				70C1A062244D2F66008F31DB /* SignUpPresenter.swift in Sources */,
 				70C1A054244D2210008F31DB /* User.swift in Sources */,
 				708A29D6248A81E0009E93B3 /* ViewActivitiesCoordinator.swift in Sources */,
@@ -986,6 +1123,7 @@
 				704F87542447CDD500C1C4D4 /* FeedCell.swift in Sources */,
 				7084A807247FF3EF0077284D /* AppCoordinator.swift in Sources */,
 				70FB8B4024698E100031DBFF /* CommentCell.swift in Sources */,
+				70AF712A24C355200080A3C2 /* PageViewController.swift in Sources */,
 				708A29F2248B2ABB009E93B3 /* EditInformationViewController.swift in Sources */,
 				7075F5272489A9CA00851F28 /* Notification.swift in Sources */,
 				7075F52B2489DC2800851F28 /* ViewActivitiesPresenter.swift in Sources */,
@@ -1002,6 +1140,8 @@
 				70698CEA246857E600D2D744 /* CreatePostPresenter.swift in Sources */,
 				7084A812248099850077284D /* ViewPostCoordinator.swift in Sources */,
 				70FB8B432469915B0031DBFF /* Comment.swift in Sources */,
+				709FB20224BE07970010AFDC /* SignInEmailPasswordViewController.swift in Sources */,
+				70AF712324C3408E0080A3C2 /* LearningOnBoardViewController.swift in Sources */,
 				70C1A04F244D0364008F31DB /* FilterCell.swift in Sources */,
 				707F386A24452ECA00DCEBE6 /* StorageAPI.swift in Sources */,
 				70C1A05F244D2D02008F31DB /* SignUpViewController.swift in Sources */,
@@ -1014,17 +1154,21 @@
 				70867F97244608F50064482E /* FeedViewController.swift in Sources */,
 				70C1A06B244D33A0008F31DB /* TextFieldInterator.swift in Sources */,
 				707F3872244546D500DCEBE6 /* StateController.swift in Sources */,
+				70AF712724C346180080A3C2 /* TeachingOnBoardViewController.swift in Sources */,
 				70698CF72468C3C000D2D744 /* Error.swift in Sources */,
 				70698CE6246854B700D2D744 /* CreatePostViewController.swift in Sources */,
 				7084A80B24800A350077284D /* SelectLanguagesCoordinator.swift in Sources */,
+				70E8495B24BE307600FD3250 /* SignInEmailPasswordPresenter.swift in Sources */,
 				708A29F5248B2D24009E93B3 /* CameraHandler.swift in Sources */,
 				70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */,
 				70EE70FB2487E28000A9BDDE /* TabNavigationController.swift in Sources */,
 				7075F52D2489DF9A00851F28 /* ViewActivitiesInterator.swift in Sources */,
 				707F384E2445226200DCEBE6 /* SceneDelegate.swift in Sources */,
+				70E8495D24BE308700FD3250 /* SignInEmailPasswordInterator.swift in Sources */,
 				70698CF024685ABF00D2D744 /* CreatePostInterator.swift in Sources */,
 				708A29EE248B242E009E93B3 /* ProfileProtocols.swift in Sources */,
 				7084A80D24804C4F0077284D /* FeedCoordinator.swift in Sources */,
+				70DD9FFA24C4989E00BB6BCD /* PostLabel.swift in Sources */,
 				707F386C24452FE000DCEBE6 /* Languages.swift in Sources */,
 				70C1A069244D3014008F31DB /* SignUpAPI.swift in Sources */,
 				7030EF54244BB78700093608 /* ImageLoader.swift in Sources */,

@@ -18,35 +18,21 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jEE-PN-Flq">
-                    <rect key="frame" x="0.0" y="136" width="414" height="655"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="jEE-PN-Flq">
+                    <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E0s-Ux-nFQ">
-                    <rect key="frame" x="145" y="79" width="121" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" title="reload"/>
-                    <connections>
-                        <action selector="reloadTB:" destination="-1" eventType="touchUpInside" id="cvh-pj-mAh"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wmT-vP-jCZ">
-                    <rect key="frame" x="350" y="761" width="44" height="42"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <state key="normal" image="plus" catalog="system"/>
-                    <connections>
-                        <action selector="addPost:" destination="-1" eventType="touchUpInside" id="mut-wa-NyO"/>
-                    </connections>
-                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="tintColor" red="0.1190174893" green="0.1341283023" blue="0.43139755730000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="jEE-PN-Flq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="UeJ-bv-fEz"/>
+                <constraint firstAttribute="bottom" secondItem="jEE-PN-Flq" secondAttribute="bottom" id="hHU-FD-hif"/>
+                <constraint firstItem="jEE-PN-Flq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="kGP-bH-bTj"/>
+                <constraint firstItem="jEE-PN-Flq" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ocg-0h-Doj"/>
+            </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="131.8840579710145" y="112.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="plus" catalog="system" width="128" height="113"/>
-    </resources>
 </document>

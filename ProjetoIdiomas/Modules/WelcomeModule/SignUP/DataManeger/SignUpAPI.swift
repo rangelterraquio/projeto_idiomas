@@ -58,6 +58,7 @@ public class SignUpAPI: NSObject{
     
     func userHasAValidSession() -> Bool{
         return Auth.auth().currentUser != nil
+    
     }
     
     func verifyIfUserAlreadyExist(id: String, completion: @escaping (Bool) -> Void){
@@ -94,6 +95,33 @@ public class SignUpAPI: NSObject{
         }
         
     }
+    
+    
+    func signWithEmail(email: String, password: String, completion: @escaping (CompletinResult<User>) -> Void){
+        
+        Auth.auth().signIn(withEmail: email, password: password) { (resultData, error) in
+            if let error = error as NSError?{
+                completion(.failure(AuthErrorCode(rawValue: error.code)!))
+            }else{
+                if let user = resultData?.user{
+                    completion(.success(user))
+                }
+            }
+        }
+    }
+    
+    
+    func resestPassword(email: String,completion: @escaping (AuthErrorCode?) -> Void){
+        Auth.auth().sendPasswordReset(withEmail: email) { (error) in
+            if let error = error as NSError?{
+                completion(AuthErrorCode(rawValue: error.code)!)
+            }else{
+                completion(nil)
+            }
+            
+        }
+    }
+    
 }
 
 extension AuthErrorCode {

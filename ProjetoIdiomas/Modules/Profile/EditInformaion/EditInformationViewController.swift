@@ -37,7 +37,7 @@ class EditInformationViewController: UIViewController {
     weak var manegeAccountelegate: ManegeAccountDelegate? = nil
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
-        self.tabBarController?.tabBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = true
     }
     
 

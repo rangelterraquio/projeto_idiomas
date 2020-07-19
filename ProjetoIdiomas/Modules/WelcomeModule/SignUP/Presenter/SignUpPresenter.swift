@@ -25,6 +25,10 @@ class SignUpPresenter: SignUpViewToPresenter {
     func authenticateWithApple(with view: UIViewController) {
         interator?.authenticateWithApple(with: view)
     }
+    
+    func signInWithEmail(){
+        router?.chooseSignInWithEmail()
+    }
 
 }
 

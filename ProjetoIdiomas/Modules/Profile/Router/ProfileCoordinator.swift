@@ -34,7 +34,7 @@ public class ProfileCoordinator: Coordinator{
         }
         
         
-        func start(user: User,notificationManeger: PushNotificationManager) -> UIViewController{
+        func start(user: User,notificationManeger: PushNotificationManager) {
             let vc = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
             vc.user = user
             let presenter = ProfilePresenter()
@@ -43,7 +43,13 @@ public class ProfileCoordinator: Coordinator{
             presenter.interator = interator
             vc.presenter = presenter
             vc.notificationManeger = notificationManeger
-            return vc
+            
+            vc.modalPresentationStyle = .overCurrentContext
+            if let oldVc = tabBarController.viewControllers?.first as? UINavigationController{
+                oldVc.definesPresentationContext = true
+                oldVc.title = "Profile"
+                oldVc.pushViewController(vc, animated: true)
+            }
         
         }
         

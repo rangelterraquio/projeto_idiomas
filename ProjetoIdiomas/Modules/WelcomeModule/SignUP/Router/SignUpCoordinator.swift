@@ -13,7 +13,8 @@ import UIKit
 
 protocol AuthenticationCoordinatorDelegate:class {
     func coordinatorDidAuthenticate(coordinator: SignUpCoordinator, user: User)
-    func coordinatorDidAuthenticateWithUser(coordinator: SignUpCoordinator)
+    func coordinatorDidAuthenticateWithUser(coordinator: Coordinator)
+    func didChooseSignWithEmail()
 }
 
 class SignUpCoordinator: Coordinator {
@@ -68,6 +69,7 @@ extension SignUpCoordinator: SignUpRouterToPresenter{
     
     func chooseSignInWithEmail() {
         ///mostrar a tela de login com email
+        delegate?.didChooseSignWithEmail()
     }
     
     

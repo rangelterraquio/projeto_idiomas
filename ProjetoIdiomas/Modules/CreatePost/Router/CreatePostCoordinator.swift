@@ -26,7 +26,7 @@ class CreatePostCoordinator: Coordinator {
     }
     
     
-    func start(){
+    func start() -> UIViewController{
         let vc = CreatePostViewController(nibName: "CreatePostViewController", bundle: nil)
         let postPresente = CreatePostPresenter()
         let postInterator = CreatePostInterator(stateController: stateManeger)
@@ -35,14 +35,14 @@ class CreatePostCoordinator: Coordinator {
         postPresente.router = self
         vc.presenter = postPresente
         postInterator.presenter = postPresente
-       
+       return vc
                                                             //modo de apresentação
-         vc.modalPresentationStyle = .overCurrentContext
-        if let oldVc = tabBarController.viewControllers?.first as? UINavigationController{
-            oldVc.definesPresentationContext = true
-            oldVc.title = "Create Post"
-            oldVc.pushViewController(vc, animated: true)
-        }
+//         vc.modalPresentationStyle = .overCurrentContext
+//        if let oldVc = tabBarController.viewControllers?.first as? UINavigationController{
+//            oldVc.definesPresentationContext = true
+//            oldVc.title = "Create Post"
+//            oldVc.pushViewController(vc, animated: true)
+//        }
 //        guard let topViewController = navigationController.topViewController else {
 //            return navigationController.setViewControllers([vc], animated: false)
 //        }

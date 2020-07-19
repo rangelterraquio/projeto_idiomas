@@ -290,18 +290,20 @@ public class StoregeAPI{
     }
 
    
-    func fetchUser(completion: @escaping (User?, Error?)->()){
+    func fetchUser(completion: @escaping (User?, CustomError?)->()){
         if let user = Auth.auth().currentUser {
             let documentRef = db.collection("Users")
             documentRef.whereField("id", isEqualTo: user.uid).getDocuments { (query, error) in
                 if error != nil {
                     print("error na hora de buscar o user")
-                    completion(nil,error)
+                    completion(nil,.operationFailed)
                 }else{
                     if let document = query?.documents.first{
                        let newUser = User(dictionary: document)
                          StoregeAPI.currentUser = newUser
                         completion(newUser,nil)
+                    }else{
+                        completion(nil, .operationFailed)
                     }
                     
 

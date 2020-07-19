@@ -17,7 +17,7 @@ public class SignUpInterator{
     }
     var textInterator: TextFieldInterator!
     var presenter: SignUpInteratorToPresenter? = nil
-    
+    var completionSignUp:(CompletinResult<User>, String) -> () = {_, _ in}
     var signUpAPI: SignUpAPI!
     var storageAPI = StoregeAPI()
     init(textInterator: TextFieldInterator, signUpAPI: SignUpAPI!) {
@@ -57,6 +57,26 @@ public class SignUpInterator{
         
         signUpAPI.signWithGoogleFailed = { [weak self] msg in
             self?.presenter?.userAuthenticationFailed(error: msg)
+        }
+        
+        completionSignUp = { result, name in
+            switch result{
+                case .failure(let error):
+                    print("krai menor")
+                    self.presenter?.userAuthenticationFailed(error: error.errorMessage)
+                case .success(let user):
+                    print("tomar no cu")
+                    self.storageAPI.fetchUser(completion: { (userOptional, error) in
+                        print("Aeeee deu bom")
+                        if error == nil{
+                            self.presenter?.userAuthenticated(user: self.createUserFromFireBaseUser(from: user,name: name))
+                        }else if let _  = userOptional{
+                            self.presenter?.userAlreadyExist()
+                        }
+                    })
+               
+               
+            }
         }
         
     }
@@ -111,33 +131,36 @@ extension SignUpInterator: SignUpPresenterToInterator{
             
         }
         
-        signUpUser(name: name!, email: email!, password: password!)
+        signUpUser(name: name!, email: email!, password: password!) {(result) in
+            switch result{
+                case .failure(let error):
+                    print("krai menor")
+                    self.presenter?.userAuthenticationFailed(error: error.errorMessage)
+                case .success(let user):
+                    print("tomar no cu")
+                    self.storageAPI.fetchUser(completion: { (userOptional, error) in
+                        print("Aeeee deu bom")
+                        if error != nil{
+                            self.presenter?.userAuthenticated(user: self.createUserFromFireBaseUser(from: user,name: name))
+                        }else if let _  = userOptional{
+                            self.presenter?.userAlreadyExist()
+                        }
+                    })
+               
+               
+            }
+        }
         
     }
+    func teste(result: CompletinResult<User>, name: String){
+         completionSignUp(result,name)
+    }
     
-    
-    public func signUpUser(name: String, email: String, password: String) {
+    public func signUpUser(name: String, email: String, password: String,completion: @escaping (CompletinResult<User>) -> Void ) {
         //fazer o login do usuário por firebase
         
-        signUpAPI.createUserWith(email: email, password: password) { [weak self] (result) in
-            switch result{
-            case .failure(let error):
-                self?.presenter?.userAuthenticationFailed(error: error.errorMessage)
-            case .success(let user):
-                
-                self?.storageAPI.fetchUser(completion: { (userOptional, error) in
-                    if error != nil{
-                        self?.presenter?.userAuthenticated(user: self!.createUserFromFireBaseUser(from: user,name: name))
-                    }else if let currentUser  = userOptional{
-                        self?.presenter?.userAlreadyExist()
-                    }
-                })
-                
-                
-                
-                // perform segue para as outras páginas
-                print("login com sucesso")
-            }
+        signUpAPI.createUserWith(email: email, password: password) { (result) in
+            completion(result)
         }
         
         
