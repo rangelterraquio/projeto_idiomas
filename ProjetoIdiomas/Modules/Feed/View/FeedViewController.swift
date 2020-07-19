@@ -71,6 +71,7 @@ class FeedViewController: UIViewController {
         profileButton = UIBarButtonItem(image: UIImage(named: "profile"), style: .plain, target: self, action: #selector(goToProfile))//UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(goToProfile))
         self.navigationItem.setRightBarButton(profileButton, animated: true)
         profileButton.isEnabled = true
+        profileButton.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
     }
     
     @objc func goToProfile(){
