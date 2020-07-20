@@ -31,6 +31,7 @@ extension CreatePostPresenter: CreatePostInteratorToPresenter{
    
     func createPostSuccessefull() {
         //Chamar o router
+        view.postCreated()
         router?.createPostFinished()
     }
     

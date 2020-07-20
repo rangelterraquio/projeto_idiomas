@@ -11,13 +11,25 @@ import UIKit
 class CreatePostViewController: UIViewController, CreatePostPresenterToView {
     
     
-
+    
+    
+    enum SelectLanguageViewState{
+        case colapsed
+        case moving
+        case expand
+    }
+    
+    
+    @IBOutlet weak var selectLanguageHeightConstraint: NSLayoutConstraint!
+    
     @IBOutlet weak var postTitle: UITextField!
     @IBOutlet weak var textPost: UITextView!
 
 
-
+    @IBOutlet weak var languagesTableView: UITableView!
+    
     var nextButton: UIBarButtonItem!
+    var cancelButton: UIBarButtonItem!
     @IBOutlet weak var selectLanguageButton: UIButton!
     @IBOutlet weak var languageSelectedImage: UIImageView!
     
@@ -28,14 +40,27 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
     let languages: [Languages] = [.english,.french,.portuguese,.spanish,.chinese]
     var languagePost: Languages? = nil{
         didSet{
-            languageSelectedImage.image = UIImage(named: languagePost!.name)
-            presenter.validatePost(title: postTitle.text ?? "", text: textPost.text, language: languagePost)
+            if languagePost != nil{
+                languageSelectedImage.image = UIImage(named: languagePost!.name)
+                presenter.validatePost(title: postTitle.text ?? "", text: textPost.text, language: languagePost)
+            }else{
+                languageSelectedImage.image = nil
+            }
+           
         }
+    }
+    
+    var selectedIndexPath: IndexPath?
+    var viewState: SelectLanguageViewState = .colapsed
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.title = "Create Post"
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationItem.title = "Create Post"
+        
         textPost.delegate = self
         postTitle.delegate = self
         
@@ -43,6 +68,30 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
          nextButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addPost))
         self.navigationItem.setRightBarButton(nextButton, animated: true)
         nextButton.isEnabled = false
+        
+        cancelButton = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelPost))
+        self.navigationItem.setLeftBarButton(cancelButton, animated: true)
+        
+        
+        
+        let cellLanguage = UINib(nibName: "LanguageCell", bundle: nil)
+        languagesTableView.register(cellLanguage, forCellReuseIdentifier: "LanguageCell")
+        languagesTableView.delegate = self
+        languagesTableView.dataSource = self
+        languagesTableView.separatorStyle = .none
+        languagesTableView.backgroundColor = UIColor(red: 246/255, green: 243/255, blue: 251/255, alpha: 1.0)
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        postTitle.text = ""
+        languagePost = nil
+        textPost.text = ""
+        nextButton.isEnabled = false
+        textPost.endEditing(true)
+        postTitle.endEditing(true)
+        if let index = selectedIndexPath{
+            languagesTableView.deselectRow(at: index, animated: false)
+        }
     }
     
     @objc func addPost(sender: UIButton){
@@ -58,7 +107,11 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
 //        addBlurLoading()
 //        presenter.createPost(title: postTitle.text!, text: textPost.text, language: languagePost)
 //    }
-//    
+//
+    
+    @objc func cancelPost(sender: UIButton){
+        presenter.cancelCreatePost()
+    }
     @IBAction func cancel(_ sender: Any) {
         //router vai entrar aqui
         presenter.cancelCreatePost()
@@ -66,25 +119,32 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
     
     @IBAction func selectLanguage(_ sender: Any) {
         //Configure the presentation controller
-        let popoverContentController = LanguagePopoverController(nibName: "LanguagePopoverController", bundle: nil)
-        popoverContentController.modalPresentationStyle = .popover
-        popoverContentController.languages = languages
-        popoverContentController.delegate = self
-        /* 3 */
-        if let popoverPresentationController = popoverContentController.popoverPresentationController {
-            popoverPresentationController.permittedArrowDirections = .up
-            popoverPresentationController.sourceView = self.view
-            popoverPresentationController.sourceRect =  CGRect(origin: selectLanguageButton.frame.origin, size: (sender as! UIView).bounds.size)
-            popoverPresentationController.delegate = self
-            
-            
-
-            present(popoverContentController, animated: true, completion: nil)
-            
+//        let popoverContentController = LanguagePopoverController(nibName: "LanguagePopoverController", bundle: nil)
+//        popoverContentController.modalPresentationStyle = .popover
+//        popoverContentController.languages = languages
+//        popoverContentController.delegate = self
+//        /* 3 */
+//        if let popoverPresentationController = popoverContentController.popoverPresentationController {
+//            popoverPresentationController.permittedArrowDirections = .up
+//            popoverPresentationController.sourceView = self.view
+//            popoverPresentationController.sourceRect =  CGRect(origin: selectLanguageButton.frame.origin, size: (sender as! UIView).bounds.size)
+//            popoverPresentationController.delegate = self
+//
+//
+//
+//            present(popoverContentController, animated: true, completion: nil)
+//
+//
+//        }
         
-        }
+        
+        animateSelectLanguageView()
+        
     }
     
+    @IBAction func didSelect(_ sender: Any) {
+        animateSelectLanguageView()
+    }
     func updateDoneStatus() {
         nextButton.style = .done
         nextButton.isEnabled = true
@@ -117,6 +177,11 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
         loadingIndicator!.startAnimating()
     }
     
+    
+    func postCreated() {
+        blurEffectView?.removeFromSuperview()
+        loadingIndicator?.removeFromSuperview()
+    }
 }
 
 //MARK: -> TextView
@@ -134,6 +199,18 @@ extension CreatePostViewController: UITextViewDelegate{
             textView.text = "What is yout doubt?"
             textView.textColor = .lightGray
         }
+    }
+    
+    func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        return true
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            textView.resignFirstResponder()
+            return false
+        }
+        return true
     }
 }
 
@@ -174,7 +251,73 @@ extension CreatePostViewController: UITextFieldDelegate{
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.resignFirstResponder()
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
 
 
+
+
+//MARK: -> Select Langague View
+extension CreatePostViewController: UITableViewDelegate, UITableViewDataSource{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return Languages.languages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+       if let cell = tableView.dequeueReusableCell(withIdentifier: "LanguageCell") as? LanguageCell{
+        let language = Languages.languages[indexPath.row]
+        cell.populeCell(with: language)
+       // cell.backgroundColor = UIColor(red: 246/255, green: 243/255, blue: 251/255, alpha: 1.0)
+        
+        return cell
+        }
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = UIColor(red: 246/255, green: 243/255, blue: 251/255, alpha: 1.0)
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 45
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let language = Languages.languages[indexPath.row]
+        languagePost = language
+        selectedIndexPath = indexPath
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.backgroundColor = UIColor(red: 246/255, green: 243/255, blue: 251/255, alpha: 1.0)
+    }
+    func animateSelectLanguageView(){
+        if viewState == .moving {return}
+        
+        if viewState == .colapsed{
+            selectLanguageHeightConstraint.constant = 400
+            UIView.animate(withDuration: 0.7, animations: {
+                self.view.layoutIfNeeded()
+                self.viewState = .moving
+            }) { (_) in
+                self.viewState = .expand
+            }
+        }else{
+            selectLanguageHeightConstraint.constant = 0
+            UIView.animate(withDuration: 0.7, animations: {
+                self.view.layoutIfNeeded()
+                self.viewState = .moving
+            }) { (_) in
+                self.viewState = .colapsed
+            }
+        }
+    }
+    
+    
+}

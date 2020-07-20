@@ -9,24 +9,7 @@
 import UIKit
 
 class FilterCell: UITableViewCell {
-    
-    enum ButtonColors{
-        case learning
-        case teaching
-        case unhighlited
-        
-        var color: UIColor{
-            switch self {
-            case .learning:
-                return UIColor(red: 148/255, green: 172/255, blue: 255/255, alpha: 0.3)
-            case .teaching:
-                return UIColor(red: 122/255, green: 84/255, blue: 194/251, alpha: 0.3)
-            case .unhighlited:
-                return UIColor(red: 245/255, green: 245/255, blue: 245/251, alpha: 1.0)
-            }
-        }
-    }
-    
+  
     var teachingSelect: () -> () = {}
     var section: SectionSelected = .teachingSection
     var learningSelect: () -> () = {}
@@ -81,8 +64,8 @@ class FilterCell: UITableViewCell {
 //            
 //            
             
-            teachingButton.backgroundColor = ButtonColors.unhighlited.color
-            learningButton.backgroundColor = ButtonColors.learning.color
+            teachingButton.backgroundColor = SectionColor.unhighlited.color
+            learningButton.backgroundColor = SectionColor.learning.color
         }else{
             
 //            let teachingFont = UIFont.init(name: "SF Compact Display-Bold", size: 17)
@@ -95,8 +78,8 @@ class FilterCell: UITableViewCell {
             
 //            teachingButton.titleLabel?.font = UIFont.init(name: "SF Compact Display-Bold", size: 17)
 //            learningButton.titleLabel?.font = UIFont.init(name: "SF Compact Display-Regular", size: 17)
-            learningButton.backgroundColor = ButtonColors.unhighlited.color
-            teachingButton.backgroundColor = ButtonColors.teaching.color
+            learningButton.backgroundColor = SectionColor.unhighlited.color
+            teachingButton.backgroundColor = SectionColor.teaching.color
         }
     }
 }

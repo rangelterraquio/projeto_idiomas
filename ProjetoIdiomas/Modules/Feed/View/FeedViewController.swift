@@ -33,9 +33,11 @@ class FeedViewController: UIViewController {
     var profileButton: UIBarButtonItem!
     @IBOutlet weak var feedTableView: UITableView!
     
+    @IBOutlet weak var errorLabel: UILabel!
     override func viewWillAppear(_ animated: Bool) {
         feedTableView.reloadData()
         self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.title = "Feed"
         self.tabBarController?.tabBar.isHidden = false
         self.tabBarController?.tabBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
     }
@@ -94,9 +96,14 @@ class FeedViewController: UIViewController {
 
 extension FeedViewController: FeedPresenterToView{
     func showPosts(posts: [Post]) {
-        self.feedTableView.refreshControl?.endRefreshing()
-        self.posts = posts
-        self.feedTableView.reloadData()
+        if !posts.isEmpty{
+            self.feedTableView.refreshControl?.endRefreshing()
+            self.posts = posts
+            self.feedTableView.reloadData()
+        }
+        
+   
+        errorLabel.isHidden = !posts.isEmpty
     }
     
     func showError() {
@@ -132,7 +139,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
             if indexPath.row == 0 || indexPath.row > posts.count {return UITableViewCell()}
             let post = posts[indexPath.row-1] ///subtraio 1 por causa da celula statica
             print(post.publicationDate)
-            cell.populate(post: post)
+            cell.populate(post: post, section: section)
             
             let uuid = presenter?.requestProfileImage(from: post.author.photoURL, completion: { (result) in
                 do{
@@ -152,6 +159,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
             
             cell.upvoted = { self.presenter?.updateVotes(from: "upvote", inDocument: post, with: nil)}
             cell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: post, with: nil)}
+            cell.readMoreClicked = {self.didReadMoreAction(cell: cell, index: indexPath.row)}
             return cell
         }
         
@@ -159,22 +167,22 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cell =  tableView.cellForRow(at: indexPath) as?  FeedCell else {return}
-        var post = posts[indexPath.row-1]
-        post.downvote = Int32(cell.downVoteLabel.text!)!
-        post.upvote = Int32(cell.upVoteLabel.text!)!
-        
-        updateVotesView = {voteType, num in
-            if voteType == .upVote{
-                post.upvote = num
-                cell.upVoteLabel.text = "\(num)"
-            }else{
-                post.downvote = num
-                cell.downVoteLabel.text = "\(num)"
-            }
-            tableView.reloadData()
-        }
-        presenter?.goToViewPostDetails(post: post, imageProfile: cell.userPictureView.image, vc: self)
+//        guard let cell =  tableView.cellForRow(at: indexPath) as?  FeedCell else {return}
+//        var post = posts[indexPath.row-1]
+//        post.downvote = Int32(cell.downVoteLabel.text!)!
+//        post.upvote = Int32(cell.upVoteLabel.text!)!
+//
+//        updateVotesView = {voteType, num in
+//            if voteType == .upVote{
+//                post.upvote = num
+//                cell.upVoteLabel.text = "\(num)"
+//            }else{
+//                post.downvote = num
+//                cell.downVoteLabel.text = "\(num)"
+//            }
+//            tableView.reloadData()
+//        }
+//        presenter?.goToViewPostDetails(post: post, imageProfile: cell.userPictureView.image, vc: self)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -195,6 +203,26 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
         }
         
     }
+    
+    func didReadMoreAction(cell: FeedCell, index: Int){
+     //   guard let cell =  tableView.cellForRow(at: indexPath) as?  FeedCell else {return}
+        var post = posts[index-1]
+        post.downvote = Int32(cell.downVoteLabel.text!)!
+        post.upvote = Int32(cell.upVoteLabel.text!)!
+        
+        updateVotesView = {voteType, num in
+            if voteType == .upVote{
+                post.upvote = num
+                cell.upVoteLabel.text = "\(num)"
+            }else{
+                post.downvote = num
+                cell.downVoteLabel.text = "\(num)"
+            }
+            self.feedTableView.reloadData()
+        }
+        presenter?.goToViewPostDetails(post: post, imageProfile: cell.userPictureView.image, vc: self)
+    }
+    
     
     
 }

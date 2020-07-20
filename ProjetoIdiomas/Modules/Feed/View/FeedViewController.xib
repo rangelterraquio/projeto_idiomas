@@ -1,14 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFCompactDisplay-Regular.otf">
+            <string>SFCompactDisplay-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedViewController" customModule="ProjetoIdiomas" customModuleProvider="target">
             <connections>
+                <outlet property="errorLabel" destination="sU3-Bk-uHA" id="NV9-7H-Y54"/>
                 <outlet property="feedTableView" destination="jEE-PN-Flq" id="Nzn-Uw-ntC"/>
                 <outlet property="view" destination="iN0-l3-epB" id="1PR-OX-rKO"/>
             </connections>
@@ -22,14 +28,24 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sorry, There is not posts on selected languages yet. Why not to be the first One :D" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sU3-Bk-uHA">
+                    <rect key="frame" x="48" y="340" width="318" height="129"/>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="22"/>
+                    <color key="textColor" red="0.094928743070000002" green="0.12389321690000001" blue="0.28689186459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <color key="tintColor" red="0.1190174893" green="0.1341283023" blue="0.43139755730000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstItem="sU3-Bk-uHA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="48" id="6ua-5D-IXp"/>
+                <constraint firstItem="sU3-Bk-uHA" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.768116" id="IaG-3R-0V1"/>
+                <constraint firstItem="sU3-Bk-uHA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="296" id="MtN-ZU-iSY"/>
                 <constraint firstItem="jEE-PN-Flq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="UeJ-bv-fEz"/>
                 <constraint firstAttribute="bottom" secondItem="jEE-PN-Flq" secondAttribute="bottom" id="hHU-FD-hif"/>
                 <constraint firstItem="jEE-PN-Flq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="kGP-bH-bTj"/>
                 <constraint firstItem="jEE-PN-Flq" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ocg-0h-Doj"/>
+                <constraint firstItem="sU3-Bk-uHA" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.143973" id="wne-d7-wrW"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="131.8840579710145" y="112.5"/>

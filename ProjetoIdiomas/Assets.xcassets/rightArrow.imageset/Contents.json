@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "UpVote.png",
+      "filename" : "rightArrow.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "UpVote@2x.png",
+      "filename" : "rightArrow@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "UpVote@3x.png",
+      "filename" : "rightArrow@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

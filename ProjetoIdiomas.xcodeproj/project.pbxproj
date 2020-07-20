@@ -28,6 +28,7 @@
 		70698CF72468C3C000D2D744 /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70698CF62468C3C000D2D744 /* Error.swift */; };
 		70698CFC2468DDC800D2D744 /* ViewPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70698CFA2468DDC800D2D744 /* ViewPostViewController.swift */; };
 		70698CFD2468DDC800D2D744 /* ViewPostViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70698CFB2468DDC800D2D744 /* ViewPostViewController.xib */; };
+		706E826A24C5E9AD00D87B78 /* SectionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 706E826924C5E9AD00D87B78 /* SectionColor.swift */; };
 		7075F5242489A4C900851F28 /* ActivityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075F5222489A4C900851F28 /* ActivityCell.swift */; };
 		7075F5252489A4C900851F28 /* ActivityCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7075F5232489A4C900851F28 /* ActivityCell.xib */; };
 		7075F5272489A9CA00851F28 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7075F5262489A9CA00851F28 /* Notification.swift */; };
@@ -97,6 +98,7 @@
 		70AF712724C346180080A3C2 /* TeachingOnBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AF712524C346180080A3C2 /* TeachingOnBoardViewController.swift */; };
 		70AF712824C346180080A3C2 /* TeachingOnBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AF712624C346180080A3C2 /* TeachingOnBoardViewController.xib */; };
 		70AF712A24C355200080A3C2 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AF712924C355200080A3C2 /* PageViewController.swift */; };
+		70AF88DD24C4CFEC002CB888 /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AF88DC24C4CFEC002CB888 /* UnderLineTextField.swift */; };
 		70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */; };
 		70B6391E246792B300966A56 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391C246792B300966A56 /* LanguageCell.swift */; };
 		70B6391F246792B300966A56 /* LanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B6391D246792B300966A56 /* LanguageCell.xib */; };
@@ -150,6 +152,7 @@
 		70698CF62468C3C000D2D744 /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		70698CFA2468DDC800D2D744 /* ViewPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPostViewController.swift; sourceTree = "<group>"; };
 		70698CFB2468DDC800D2D744 /* ViewPostViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewPostViewController.xib; sourceTree = "<group>"; };
+		706E826924C5E9AD00D87B78 /* SectionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionColor.swift; sourceTree = "<group>"; };
 		7075F5222489A4C900851F28 /* ActivityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCell.swift; sourceTree = "<group>"; };
 		7075F5232489A4C900851F28 /* ActivityCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActivityCell.xib; sourceTree = "<group>"; };
 		7075F5262489A9CA00851F28 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
@@ -221,6 +224,7 @@
 		70AF712524C346180080A3C2 /* TeachingOnBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeachingOnBoardViewController.swift; sourceTree = "<group>"; };
 		70AF712624C346180080A3C2 /* TeachingOnBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeachingOnBoardViewController.xib; sourceTree = "<group>"; };
 		70AF712924C355200080A3C2 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		70AF88DC24C4CFEC002CB888 /* UnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
 		70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesProtocols.swift; sourceTree = "<group>"; };
 		70B6391C246792B300966A56 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		70B6391D246792B300966A56 /* LanguageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageCell.xib; sourceTree = "<group>"; };
@@ -312,6 +316,7 @@
 				70698CE5246854B700D2D744 /* CreatePostViewController.xib */,
 				70698CF1246860AA00D2D744 /* LanguagePopoverController.swift */,
 				70698CF2246860AA00D2D744 /* LanguagePopoverController.xib */,
+				70AF88DC24C4CFEC002CB888 /* UnderLineTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -453,6 +458,7 @@
 				70C1A04D244D0364008F31DB /* FilterCell.swift */,
 				70C1A04E244D0364008F31DB /* FilterCell.xib */,
 				70DD9FF924C4989E00BB6BCD /* PostLabel.swift */,
+				706E826924C5E9AD00D87B78 /* SectionColor.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1092,6 +1098,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				706E826A24C5E9AD00D87B78 /* SectionColor.swift in Sources */,
 				707F387624454C0200DCEBE6 /* FeedPresenter.swift in Sources */,
 				70918CC824C0AF4C005B4749 /* LoadingScreen.swift in Sources */,
 				708014C0246AE51D00D917A9 /* ViewPostPresenter.swift in Sources */,
@@ -1140,6 +1147,7 @@
 				70698CEA246857E600D2D744 /* CreatePostPresenter.swift in Sources */,
 				7084A812248099850077284D /* ViewPostCoordinator.swift in Sources */,
 				70FB8B432469915B0031DBFF /* Comment.swift in Sources */,
+				70AF88DD24C4CFEC002CB888 /* UnderLineTextField.swift in Sources */,
 				709FB20224BE07970010AFDC /* SignInEmailPasswordViewController.swift in Sources */,
 				70AF712324C3408E0080A3C2 /* LearningOnBoardViewController.swift in Sources */,
 				70C1A04F244D0364008F31DB /* FilterCell.swift in Sources */,

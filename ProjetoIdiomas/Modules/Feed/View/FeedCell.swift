@@ -23,9 +23,11 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var languageImage: UIImageView!
     @IBOutlet weak var profilePicIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var backgroundCell: UIView!
     var onReuse: () -> () = {}
     var upvoted: () -> () = {}
     var downVoted: () -> () = {}
+    var readMoreClicked: () -> () = {}
 
     
 //    override func viewWillLayoutSubviews() {
@@ -68,6 +70,10 @@ class FeedCell: UITableViewCell {
             downVoteLabel.text = "\(num + 1)"
         }
     }
+    @IBAction func didTapReadMore(_ sender: Any) {
+        readMoreClicked()
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(false, animated: false)
 
@@ -92,6 +98,24 @@ class FeedCell: UITableViewCell {
 //            }
 //        }
     }
+    
+    func populate(post: Post, section: SectionSelected){
+            self.postText.text = post.message
+            self.userNameLabel.text = post.author.name
+            self.postTitleLabel.text = post.title
+            self.downVoteLabel.text = "\(post.downvote)"
+            self.upVoteLabel.text = "\(post.upvote)"
+            self.feedIndicator.stopAnimating()
+            if let imageName =  Languages.init(rawValue: post.language)?.name{
+                self.languageImage.image = UIImage(named: imageName)
+            }
+                
+            if section == .learningSection{
+                backgroundCell.backgroundColor = SectionColor.learning.color
+            }else {
+                backgroundCell.backgroundColor = SectionColor.teaching.color
+            }
+        }
     
     func populateImage(image: UIImage){
         DispatchQueue.main.async {
