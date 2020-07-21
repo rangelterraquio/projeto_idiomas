@@ -16,6 +16,13 @@ class ViewActivityViewController: UIViewController {
     var listener: ListenerRegistration!
     @IBOutlet weak var activitiesTableView: UITableView!
     
+    @IBOutlet weak var emptyNotificationsLabel: UILabel!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.title = "Notifications"
+        presenter?.updateActivities()
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -26,12 +33,14 @@ class ViewActivityViewController: UIViewController {
         activitiesTableView.register(cellXib, forCellReuseIdentifier: "ActivityCell")
         activitiesTableView.delegate = self
         activitiesTableView.dataSource = self
-        presenter?.updateActivities()
+      
         
         
         let refresh = UIRefreshControl()
         refresh.addTarget(self, action: #selector((reloadFeed)), for: .valueChanged)
         activitiesTableView.refreshControl = refresh
+        
+        activitiesTableView.separatorStyle = .none
     }
     
     @objc func reloadFeed(){
@@ -102,10 +111,13 @@ extension ViewActivityViewController: ViewActivitiesPresenterToView{
     func activitiesFetched(activities: [Notifaction]) {
         self.activities = activities
         self.activitiesTableView.reloadData()
+        self.emptyNotificationsLabel.isHidden = !activities.isEmpty
+        self.activitiesTableView.refreshControl?.endRefreshing()
     }
     
     func showAlertError(error msg: String) {
-        print("Error \(msg)")
+        self.emptyNotificationsLabel.isHidden = !activities.isEmpty
+        self.activitiesTableView.refreshControl?.endRefreshing()
     }
     
     

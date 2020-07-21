@@ -13,11 +13,16 @@ class ActivityCell: UITableViewCell {
     @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var msgLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var backgroundCell: UIView!
     
     var onReuse: () -> () = {}
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        imageProfile.layer.cornerRadius = 24
+        imageProfile.layer.masksToBounds = true
+        imageProfile.contentMode = .scaleAspectFill
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,9 +34,11 @@ class ActivityCell: UITableViewCell {
     
     func populate(notif: Notifaction){
         self.msgLabel.text = notif.msg
-        self.dateLabel.text = "\(notif.date)"
+        self.dateLabel.text = notif.date.convertToString()
         if !notif.isViewed {
-            self.backgroundColor = .lightGray
+            self.backgroundCell.backgroundColor = SectionColor.commonAreas.color
+        }else{
+             self.backgroundCell.backgroundColor = SectionColor.unhighlited.color
         }
     }
     func populateWith(image: UIImage){

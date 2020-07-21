@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SFCompactDisplay-Regular.otf">
+            <string>SFCompactDisplay-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewActivityViewController" customModule="ProjetoIdiomas" customModuleProvider="target">
             <connections>
                 <outlet property="activitiesTableView" destination="IFV-wK-qFM" id="XIp-wK-OZl"/>
+                <outlet property="emptyNotificationsLabel" destination="K0u-s9-V0Q" id="Snt-SL-jFY"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -22,13 +28,23 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
+                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You don't have notifications yet." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K0u-s9-V0Q">
+                    <rect key="frame" x="48" y="365" width="318" height="129"/>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="22"/>
+                    <color key="textColor" red="0.094928743070000002" green="0.12389321690000001" blue="0.28689186459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="K0u-s9-V0Q" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="5t6-RJ-LVU"/>
                 <constraint firstAttribute="bottom" secondItem="IFV-wK-qFM" secondAttribute="bottom" id="947-mE-gfe"/>
+                <constraint firstItem="K0u-s9-V0Q" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.768116" id="EJd-jQ-vIf"/>
                 <constraint firstItem="IFV-wK-qFM" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Put-q2-CLc"/>
                 <constraint firstItem="IFV-wK-qFM" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Udk-2g-AUA"/>
+                <constraint firstItem="K0u-s9-V0Q" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="321" id="Zht-k6-SNK"/>
                 <constraint firstItem="IFV-wK-qFM" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="kwA-JD-WKj"/>
+                <constraint firstItem="K0u-s9-V0Q" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.143973" id="vVa-Gy-A2u"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="98.4375"/>

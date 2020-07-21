@@ -280,7 +280,7 @@ extension CreatePostViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = UIColor(red: 246/255, green: 243/255, blue: 251/255, alpha: 1.0)
+        cell.backgroundColor = SectionColor.commonAreas.color
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

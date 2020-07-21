@@ -23,8 +23,9 @@ class UserPostsViewController: UITableViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
-        self.navigationController?.title = ""
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationItem.title = "My Posts"
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +40,7 @@ class UserPostsViewController: UITableViewController {
         let cellXib = UINib.init(nibName: "FeedCell", bundle: nil)
         self.tableView.register(cellXib, forCellReuseIdentifier: "feedCell")
         self.fetchPosts(from: Date())
+        self.tableView.separatorStyle = .none
     }
 
     // MARK: - Table view data source

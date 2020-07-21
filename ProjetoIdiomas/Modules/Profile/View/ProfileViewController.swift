@@ -20,6 +20,8 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = true
+        self.navigationItem.title = "Profile"
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
     }
     
     override func viewDidLoad() {
@@ -33,7 +35,7 @@ class ProfileViewController: UIViewController {
         profileTableView.delegate = self
         profileTableView.dataSource = self
         
-        
+        profileTableView.separatorStyle = .none
         profileTableView.reloadData()
     }
 
@@ -62,14 +64,19 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource{
                                     cell.imageProfile.image = image
                                     self.imageProfile = image
                                 }catch{
-                                    cell.imageProfile.image = UIImage(named: "blankProfile")!
+                                    let noImgage = UIImage(named: "blankProfile")!
+                                    cell.imageProfile.image = noImgage
                                     self.imageProfile = cell.imageProfile.image
+                                    self.imageProfile = noImgage
                                 }
                             }
                         
                         })
                     }else{
-                        cell.imageProfile.image = UIImage(named: "blankProfile")!
+                        let noImgage = UIImage(named: "blankProfile")!
+                        cell.imageProfile.image = noImgage
+                        self.imageProfile = noImgage
+
                     }
                     cell.imageProfile.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.goToEditInfo)))
                     cell.imageProfile.isUserInteractionEnabled = true
@@ -80,19 +87,19 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource{
                 }
               case 2:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell") as? OptionCell{
-                    cell.imageOption.image = UIImage(named: "joseph")
+                    cell.imageOption.image = UIImage(named: "aboutMe")
                     cell.titleLabel.text = "About me"
                     return cell
                 }
               case 3:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell") as? OptionCell{
-                    cell.imageOption.image = UIImage(named: "joseph")
-                    cell.titleLabel.text = "My Activities"
+                    cell.imageOption.image = UIImage(named: "myPosts")
+                    cell.titleLabel.text = "My Posts"
                     return cell
                 }
               case 4:
                 if let cell = tableView.dequeueReusableCell(withIdentifier: "OptionCell") as? OptionCell{
-                   cell.imageOption.image = UIImage(named: "joseph")
+                   cell.imageOption.image = UIImage(named: "settings")
                    cell.titleLabel.text = "Settings"
                     return cell
                 }
@@ -119,7 +126,7 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource{
         if indexPath.row == 0 {
             return  245
         }else{
-            return 80
+            return 100
         }
      }
     

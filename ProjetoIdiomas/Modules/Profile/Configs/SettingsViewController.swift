@@ -12,11 +12,18 @@ class SettingsViewController: UITableViewController {
         
     
     var notificationManeger : PushNotificationManager!
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationItem.title = "Settings"
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
           let cellXib = UINib.init(nibName: "SettingViewCell", bundle: nil)
         self.tableView.register(cellXib, forCellReuseIdentifier: "SettingCell")
+        self.tableView.separatorStyle = .none
     }
 
     // MARK: - Table view data source
@@ -52,7 +59,9 @@ class SettingsViewController: UITableViewController {
         return UITableViewCell()
     }
     
-
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100
+    }
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

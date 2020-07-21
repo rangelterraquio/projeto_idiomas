@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7006EB7124678A1D0040F681 /* SelectLanguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7006EB6F24678A1D0040F681 /* SelectLanguageViewController.swift */; };
 		7006EB7224678A1D0040F681 /* SelectLanguageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7006EB7024678A1D0040F681 /* SelectLanguageViewController.xib */; };
+		700C828524C5FDF600F3B43E /* Extension-Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 700C828424C5FDF600F3B43E /* Extension-Date.swift */; };
 		7014F1692451EEBD00C3B78B /* TextInputValidation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7014F1682451EEBD00C3B78B /* TextInputValidation.swift */; };
 		7014F16B245201C200C3B78B /* StateTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7014F16A245201C200C3B78B /* StateTextField.swift */; };
 		701F3FA924BD24BB00A1CC78 /* ChangeLAnguageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 701F3FA724BD24BB00A1CC78 /* ChangeLAnguageViewController.swift */; };
@@ -133,6 +134,7 @@
 /* Begin PBXFileReference section */
 		7006EB6F24678A1D0040F681 /* SelectLanguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguageViewController.swift; sourceTree = "<group>"; };
 		7006EB7024678A1D0040F681 /* SelectLanguageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectLanguageViewController.xib; sourceTree = "<group>"; };
+		700C828424C5FDF600F3B43E /* Extension-Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension-Date.swift"; sourceTree = "<group>"; };
 		7014F1682451EEBD00C3B78B /* TextInputValidation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputValidation.swift; sourceTree = "<group>"; };
 		7014F16A245201C200C3B78B /* StateTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateTextField.swift; sourceTree = "<group>"; };
 		701F3FA724BD24BB00A1CC78 /* ChangeLAnguageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeLAnguageViewController.swift; sourceTree = "<group>"; };
@@ -293,6 +295,7 @@
 			isa = PBXGroup;
 			children = (
 				701F3FAC24BD349C00A1CC78 /* Extension-UIViewController.swift */,
+				700C828424C5FDF600F3B43E /* Extension-Date.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -458,7 +461,6 @@
 				70C1A04D244D0364008F31DB /* FilterCell.swift */,
 				70C1A04E244D0364008F31DB /* FilterCell.xib */,
 				70DD9FF924C4989E00BB6BCD /* PostLabel.swift */,
-				706E826924C5E9AD00D87B78 /* SectionColor.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -883,6 +885,7 @@
 		70FABC612482A7DF00825EC9 /* Commons */ = {
 			isa = PBXGroup;
 			children = (
+				706E826924C5E9AD00D87B78 /* SectionColor.swift */,
 				70FABC622482A7FB00825EC9 /* PushNotificationManeger.swift */,
 				70FABC642482B02D00825EC9 /* PushNotificationSender.swift */,
 				708A29F4248B2D24009E93B3 /* CameraHandler.swift */,
@@ -1113,6 +1116,7 @@
 				708A29F7248B3794009E93B3 /* ProfileInterator.swift in Sources */,
 				7075F5292489D4F800851F28 /* ViewActivitiesProtocols.swift in Sources */,
 				707F38702445383100DCEBE6 /* Post.swift in Sources */,
+				700C828524C5FDF600F3B43E /* Extension-Date.swift in Sources */,
 				708A29DF248A8EF8009E93B3 /* ProfileViewController.swift in Sources */,
 				7075F5242489A4C900851F28 /* ActivityCell.swift in Sources */,
 				707F38502445226200DCEBE6 /* ViewController.swift in Sources */,

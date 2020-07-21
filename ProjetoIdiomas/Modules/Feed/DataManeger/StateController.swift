@@ -62,16 +62,18 @@ public class StateController{
     }
     
     func sendNotification(post: Post, comment: Comment){
-        notificationSender.sendPushNotification(to: post, title: "New Comment", body: "\(comment.authorName) commented on your post :D", complition: { isCompleted in
-            
-            if isCompleted{
-                self.storage.createActivity(post: post, msg: "\(comment.authorName) commented on your post :D") { (result) in
-                    
-                    //fazer algo
+        if comment.authorId != user?.id{
+            notificationSender.sendPushNotification(to: post, title: "New Comment", body: "\(comment.authorName) commented on your post :D", complition: { isCompleted in
+                
+                if isCompleted{
+                    self.storage.createActivity(post: post, msg: "\(comment.authorName) commented on your post.") { (result) in
+                        
+                        //fazer algo
+                    }
                 }
-            }
-            
-        })
+                
+            })
+        }
     }
     
     func upadteActivityStatus(id: String){
@@ -92,12 +94,23 @@ public class StateController{
             if error != nil {
                 return
             }else{
-                snap?.documentChanges.forEach { diff in
-                          if (diff.type == .added) {
-                              activitiesVC.tabBarItem.badgeColor = .red
-                              activitiesVC.tabBarItem.badgeValue = ""
-                          }
-                }
+//                snap?.documentChanges.forEach { diff in
+//                    Notifaction(dictionary: snap.)
+//                    if (diff.type == .added) {
+//                              activitiesVC.tabBarItem.badgeColor = .red
+//                              activitiesVC.tabBarItem.badgeValue = ""
+//                        }
+//                }
+                var num = 1
+                snap?.documents.forEach({ (doc) in
+                    if let notif = Notifaction(dictionary: doc){
+                        if !notif.isViewed{
+                            activitiesVC.tabBarItem.badgeColor = .red
+                            activitiesVC.tabBarItem.badgeValue = "\(num)"
+                            num+=1
+                        }
+                    }
+                })
                 
             }
         }
@@ -115,5 +128,9 @@ public class StateController{
     
     func deleteUserAccount(completion: @escaping (CustomError?)->()){
         storage.deleteUserAccount(completion: completion)
+    }
+    
+    func updateUserName(newName: String, user: User){
+        storage.updateUserName(newName: newName, user: user)
     }
 }

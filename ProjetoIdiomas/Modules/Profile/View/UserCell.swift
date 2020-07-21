@@ -15,7 +15,8 @@ class UserCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        imageProfile.layer.cornerRadius = 24
+        imageProfile.translatesAutoresizingMaskIntoConstraints = false
+        imageProfile.layer.cornerRadius = 90
         imageProfile.layer.masksToBounds = true
         imageProfile.contentMode = .scaleAspectFill
     }

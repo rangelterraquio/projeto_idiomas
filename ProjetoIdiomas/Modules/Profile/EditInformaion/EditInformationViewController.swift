@@ -38,6 +38,9 @@ class EditInformationViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
         self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+        self.navigationItem.title = "Edit Informations"
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
     }
     
 
@@ -58,6 +61,12 @@ class EditInformationViewController: UIViewController {
             imageProfile.image = image
         }
         self.textFieldName.delegate = self
+        self.labelName.text = user.name
+        
+        imageProfile.translatesAutoresizingMaskIntoConstraints = false
+        imageProfile.layer.cornerRadius = 90
+        imageProfile.layer.masksToBounds = true
+        imageProfile.contentMode = .scaleAspectFill
     }
 
     @IBAction func changePhoto(_ sender: Any) {
@@ -75,12 +84,10 @@ class EditInformationViewController: UIViewController {
         
         if let hasChangeTheName = UserDefaults.standard.value(forKey: hasChangeNameKey) as? Bool{
             if !hasChangeTheName{
-                bottomLabelName.constant = 435
-                UIView.animate(withDuration: 0.5) {
-                    self.view.layoutIfNeeded()
-                    self.textFieldName.isHidden = false
-                    self.textFieldName.becomeFirstResponder()
-                }
+                self.textFieldName.isHidden = false
+                self.textFieldName.becomeFirstResponder()
+                self.labelName.isHidden = true
+               
             }
         }
        
@@ -198,11 +205,11 @@ extension EditInformationViewController: UITextFieldDelegate{
             //chamar funcao de salvar
             UserDefaults.standard.set(true, forKey: self.hasChangeNameKey)
             self.textFieldName.resignFirstResponder()
-            self.bottomLabelName.constant = 403
-            UIView.animate(withDuration: 0.8) {
-                self.view.layoutIfNeeded()
-                self.textFieldName.isHidden = true
-            }
+            self.textFieldName.isHidden = true
+            self.stateController.updateUserName(newName: self.textFieldName.text ?? self.user.name, user: self.user)
+            self.labelName.text = self.textFieldName.text
+            self.labelName.isHidden = false
+            
         }
         
         let button2 = UIAlertAction(title: "No", style: .cancel) { [weak self] (_) in

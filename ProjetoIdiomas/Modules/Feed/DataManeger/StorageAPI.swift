@@ -493,7 +493,7 @@ extension StoregeAPI{
                 
                 if let snap = snapshot{
                     for doc in snap.documents{
-                        batch.updateData(["name" : newName], forDocument: doc.reference)
+                        batch.updateData(["author.name" : newName], forDocument: doc.reference)
                     }
                     batch.commit()
                     self.updateUserNameInComments(newName: newName, user: user)

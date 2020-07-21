@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -27,6 +27,10 @@
             <constraints>
                 <constraint firstItem="5ES-PY-Wxz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="4dN-pj-9if"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="5ES-PY-Wxz" secondAttribute="bottom" id="8a5-ig-70q"/>
+                <constraint firstItem="5ES-PY-Wxz" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="NbZ-Zs-152"/>
+                <constraint firstItem="5ES-PY-Wxz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Yry-xa-J2d"/>
+                <constraint firstItem="5ES-PY-Wxz" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="aqY-Xo-zVR"/>
+                <constraint firstItem="5ES-PY-Wxz" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="bVb-Tz-4JG"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5ES-PY-Wxz" secondAttribute="trailing" id="pum-Te-UM4"/>
                 <constraint firstItem="5ES-PY-Wxz" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="sYV-5f-DEc"/>
             </constraints>
