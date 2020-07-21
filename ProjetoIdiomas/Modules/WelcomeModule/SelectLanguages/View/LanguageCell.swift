@@ -22,6 +22,8 @@ class LanguageCell: UITableViewCell {
       super.setSelected(selected, animated: animated)
         if selected{
             self.backgroundColor = UIColor(red: 122/255, green: 84/255, blue: 194/255, alpha: 0.07)
+        }else{
+            self.backgroundColor = .white
         }
          isSelectedView.isHidden = !selected
         

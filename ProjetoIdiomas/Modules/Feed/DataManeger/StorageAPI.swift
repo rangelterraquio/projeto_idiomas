@@ -631,12 +631,8 @@ extension StoregeAPI{
         
         let imageRef = storageRef.child("Users").child(user.id).child("profileImage")
         
-        imageRef.delete { (error) in
-            if let _ = error{
-                completion(false)
-            }else{
-                completion(true)
-            }
+        imageRef.delete { (_) in
+           completion(true)
         }
         
     }

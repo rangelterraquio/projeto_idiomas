@@ -22,7 +22,7 @@ final class AppCoordinator: Coordinator{
     
     init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
-     //   signUpAPI.signOut()
+//        signUpAPI.signOut()
         stateManeger = StateController(storage:storage)
     }
     
@@ -437,6 +437,7 @@ extension AppCoordinator: ManegeAccountDelegate{
     }
     
     func deleteAccount() {
+        signUpAPI.signOut()
         start()
     }
     

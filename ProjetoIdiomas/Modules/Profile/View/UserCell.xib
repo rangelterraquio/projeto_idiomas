@@ -25,21 +25,28 @@
                         <rect key="frame" x="117" y="27" width="180" height="180"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="EKW-Uo-uFU">
-                        <rect key="frame" x="84" y="204" width="247" height="38"/>
+                        <rect key="frame" x="83.5" y="204" width="247" height="38"/>
                         <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="18"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="AL9-nG-jU6">
+                        <rect key="frame" x="197" y="109" width="20" height="18"/>
+                    </activityIndicatorView>
                 </subviews>
                 <constraints>
                     <constraint firstItem="dzV-Ue-iKj" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.582645" constant="38.99991" id="4iL-Up-ahE"/>
+                    <constraint firstItem="EKW-Uo-uFU" firstAttribute="top" secondItem="AL9-nG-jU6" secondAttribute="bottom" constant="77" id="6ht-Gw-ddo"/>
                     <constraint firstItem="dzV-Ue-iKj" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="9Dr-Uy-dx1"/>
                     <constraint firstItem="EKW-Uo-uFU" firstAttribute="top" secondItem="dzV-Ue-iKj" secondAttribute="bottom" constant="-3" id="AEZ-Ai-ew4"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="AL9-nG-jU6" secondAttribute="trailing" constant="177" id="Egx-xn-bFM"/>
                     <constraint firstItem="dzV-Ue-iKj" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="WGL-o8-ekh"/>
                     <constraint firstItem="EKW-Uo-uFU" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.157025" id="aeb-wQ-Z8R"/>
+                    <constraint firstItem="AL9-nG-jU6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="98" id="bmb-wK-DDf"/>
                     <constraint firstItem="dzV-Ue-iKj" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="117" id="qIV-Rs-cpp"/>
                     <constraint firstAttribute="trailing" secondItem="dzV-Ue-iKj" secondAttribute="trailing" constant="117" id="sgH-X3-Li7"/>
                     <constraint firstItem="EKW-Uo-uFU" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.596875" id="thF-Ws-zXF"/>
+                    <constraint firstItem="AL9-nG-jU6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="177" id="wbs-64-f0h"/>
                     <constraint firstItem="dzV-Ue-iKj" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="27" id="yA9-97-lXN"/>
                     <constraint firstItem="EKW-Uo-uFU" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="z4K-G3-OP7"/>
                 </constraints>
@@ -47,6 +54,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="imageProfile" destination="dzV-Ue-iKj" id="GQe-ei-Sol"/>
+                <outlet property="loadIndicator" destination="AL9-nG-jU6" id="WcO-jH-Zb9"/>
                 <outlet property="nameLabel" destination="EKW-Uo-uFU" id="iU5-EF-XLJ"/>
             </connections>
             <point key="canvasLocation" x="200.00000000000003" y="164.0625"/>

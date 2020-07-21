@@ -55,5 +55,8 @@ public enum Languages : String{
     }
     
      static let languages: [Languages] = [.english,.french,.portuguese,.portuguesePT,.spanish,.chinese,.korean,.dutch,.german,.italian,.japanese,.russian,.danish]
+    
+    
+   
 }
 

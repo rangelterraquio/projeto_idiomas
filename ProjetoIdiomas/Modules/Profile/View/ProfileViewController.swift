@@ -61,28 +61,27 @@ extension ProfileViewController: UITableViewDelegate, UITableViewDataSource{
                             DispatchQueue.main.async {
                                 do{
                                     let image = try result.get()
-                                    cell.imageProfile.image = image
                                     self.imageProfile = image
+                                    cell.populate(name: self.user.name, image: image)
                                 }catch{
                                     let noImgage = UIImage(named: "blankProfile")!
-                                    cell.imageProfile.image = noImgage
-                                    self.imageProfile = cell.imageProfile.image
                                     self.imageProfile = noImgage
+                                    cell.populate(name: self.user.name, image: noImgage)
                                 }
                             }
                         
                         })
                     }else{
                         let noImgage = UIImage(named: "blankProfile")!
-                        cell.imageProfile.image = noImgage
                         self.imageProfile = noImgage
+                        cell.populate(name: user.name, image: noImgage)
 
                     }
                     cell.imageProfile.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.goToEditInfo)))
                     cell.imageProfile.isUserInteractionEnabled = true
                     
                    //imageProfile
-                    cell.nameLabel.text = user.name
+                   // cell.nameLabel.text = user.name
                     return cell
                 }
               case 2:

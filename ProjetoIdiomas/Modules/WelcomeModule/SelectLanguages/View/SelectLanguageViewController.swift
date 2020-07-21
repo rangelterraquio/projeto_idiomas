@@ -89,16 +89,21 @@ public class SelectLanguageViewController: UIViewController,OnBoardingPage {
         self.navigationItem.setLeftBarButton(cancelB, animated: true)
         cancelB.isEnabled = true
         
+        
+        languagesTableView.layer.cornerRadius = 15
+        languagesTableView.layer.masksToBounds = true
+        
+        
     }
 
     
     func setupView(){
         nextButton.alpha = 0.6
         if viewState == .fluentlyLanguagesSection{
-            nextButton.titleLabel?.text = "Done"
+            nextButton.setTitle("Done", for: .normal)
             backgroundImage.image = UIImage(named: "fundoOnboard2")
         }else{
-            nextButton.titleLabel?.text = "Next"
+            nextButton.setTitle("Next", for: .normal)
             backgroundImage.image = UIImage(named: "fundoOnboard1")
         }
     }
@@ -113,12 +118,13 @@ public class SelectLanguageViewController: UIViewController,OnBoardingPage {
                   }
                   router?.didSuccessfullyCreated(user: user)
               }else{
-                  viewState = .learningLanguagesSection
-                  instructionLabel.text = "Select the languages you are learning:"
+                viewState = .fluentlyLanguagesSection
+                  instructionLabel.text = "Select the languages you are able to help someone else:"
                   //languagesTableView.reloadData()
                 router?.didSelectTeachingLanguages(user: user, state: .fluentlyLanguagesSection, languagesVC: self)
               }
     }
+   
     
     @objc func cancelAction(_ sender: Any){
         if viewState == .learningLanguagesSection{
@@ -143,8 +149,8 @@ public class SelectLanguageViewController: UIViewController,OnBoardingPage {
             }
             router?.didSuccessfullyCreated(user: user)
         }else{
-            viewState = .learningLanguagesSection
-            instructionLabel.text = "Select the languages you are learning:"
+            viewState = .fluentlyLanguagesSection
+            instructionLabel.text = "Select the languages you are able to help someone else:"
             languagesTableView.reloadData()
             pageDelegate?.goNextPage(fowardTo: .teachingOnBoard)
         }
@@ -156,7 +162,7 @@ public class SelectLanguageViewController: UIViewController,OnBoardingPage {
             router?.cancelUserCreation()
         }else{
             viewState = .learningLanguagesSection
-            instructionLabel.text = "Select the languages you are able to help someone else:"
+            instructionLabel.text = "Select the languages you are learning:"
             fluentlyLanguages.removeAll()
             languagesTableView.reloadData()
             pageDelegate?.goNextPage(fowardTo: .learningOnBoard)

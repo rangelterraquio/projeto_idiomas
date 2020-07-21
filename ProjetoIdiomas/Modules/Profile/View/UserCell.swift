@@ -12,6 +12,10 @@ class UserCell: UITableViewCell {
 
     @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var loadIndicator: UIActivityIndicatorView!
+    static let notificationName = "informationHasChanged"
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -19,8 +23,27 @@ class UserCell: UITableViewCell {
         imageProfile.layer.cornerRadius = 90
         imageProfile.layer.masksToBounds = true
         imageProfile.contentMode = .scaleAspectFill
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(onNotification(notification:)), name: NSNotification.Name(rawValue: UserCell.notificationName), object: nil)
+        
+        
+        loadIndicator.startAnimating()
+        loadIndicator.hidesWhenStopped = true
+        
     }
 
+    
+    @objc func onNotification(notification:Notification){
+        
+        if let image = notification.userInfo?["image"] as? UIImage{
+            imageProfile.image = image
+        }else{
+            if let name = notification.userInfo?["name"] as? String{
+                nameLabel.text = name
+            }
+        }
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
@@ -30,5 +53,11 @@ class UserCell: UITableViewCell {
     func populate(name: String, image: UIImage){
           self.nameLabel.text = name
           self.imageProfile.image = image
+          self.loadIndicator.stopAnimating()
       }
+    
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
 }

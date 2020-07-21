@@ -13,7 +13,7 @@ class ChangeLAnguageViewController: SelectLanguageViewController {
     var stateController: StateController!
 
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.isHidden = false
+        self.navigationController?.navigationBar.isHidden = true
     }
     
     override func viewDidLoad() {
@@ -23,33 +23,81 @@ class ChangeLAnguageViewController: SelectLanguageViewController {
         
     }
 
-
-    @objc override func addPost(_ sender: Any){
-        if viewState == .learningLanguagesSection{
-            user.learningLanguage?.removeAll()
-            fluentlyLanguages.forEach { (lan) in
-                user.fluentLanguage.append(lan.rawValue)
+//
+//    @objc override func addPost(_ sender: Any){
+//        if viewState == .learningLanguagesSection{
+//            user.learningLanguage?.removeAll()
+//            fluentlyLanguages.forEach { (lan) in
+//                user.fluentLanguage.append(lan.rawValue)
+//            }
+//            learningLanguages.forEach { (lan) in
+//                user.learningLanguage?.append(lan.rawValue)
+//            }
+//            didComplete()
+//        }else{
+//            viewState = .learningLanguagesSection
+//            instructionLabel.text = "Select the languages you are learning:"
+//            languagesTableView.reloadData()
+//            nextB.title = "Done"
+//        }
+//    }
+//
+//    @objc override func cancelAction(_ sender: Any){
+//        if viewState == .fluentlyLanguagesSection{
+//            self.navigationController?.popViewController(animated: true)
+//        }else{
+//            viewState = .fluentlyLanguagesSection
+//            instructionLabel.text = "Select the languages you are able to help other people:"
+//            fluentlyLanguages.removeAll()
+//            languagesTableView.reloadData()
+//        }
+//    }
+    
+    
+    @IBAction override func addLanguage(_ sender: Any) {
+        
+        if viewState == .fluentlyLanguagesSection{
+            
+            user.fluentLanguage.removeAll()
+            if let selectedIndex = languagesTableView.indexPathsForSelectedRows{
+                for index in selectedIndex{
+                    user.fluentLanguage.append(Languages.languages[index.row].rawValue)
+                }
             }
-            learningLanguages.forEach { (lan) in
-                user.learningLanguage?.append(lan.rawValue)
-            }
+            
             didComplete()
         }else{
-            viewState = .learningLanguagesSection
-            instructionLabel.text = "Select the languages you are learning:"
+            
+            user.learningLanguage?.removeAll()
+            if let selectedIndex = languagesTableView.indexPathsForSelectedRows{
+                for index in selectedIndex{
+                    user.learningLanguage?.append(Languages.languages[index.row].rawValue)
+                }
+            }
+            
+            
+            viewState = .fluentlyLanguagesSection
+            instructionLabel.text = "Select the languages you are able to help someone else:"
             languagesTableView.reloadData()
-            nextB.title = "Done"
+            pageDelegate?.goNextPage(fowardTo: .selectLanguageTeaching)
+            setupView()
+            
+            
         }
     }
     
-    @objc override func cancelAction(_ sender: Any){
-        if viewState == .fluentlyLanguagesSection{
-            self.navigationController?.popViewController(animated: true)
+    @IBAction override func backButton(_ sender: Any) {
+        
+        if viewState == .learningLanguagesSection{
+            //router?.cancelUserCreation()
+             self.navigationController?.popViewController(animated: true)
         }else{
-            viewState = .fluentlyLanguagesSection
-            instructionLabel.text = "Select the languages you are able to help other people:"
+            viewState = .learningLanguagesSection
+            instructionLabel.text = "Select the languages you are learning:"
             fluentlyLanguages.removeAll()
             languagesTableView.reloadData()
+            pageDelegate?.goNextPage(fowardTo: .selectLanguageLearning)
+            setupView()
         }
     }
     

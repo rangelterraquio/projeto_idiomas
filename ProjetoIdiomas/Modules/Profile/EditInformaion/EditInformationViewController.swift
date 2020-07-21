@@ -53,7 +53,7 @@ class EditInformationViewController: UIViewController {
 
         
         
-        manegeButton = UIBarButtonItem(barButtonSystemItem: .close, target: self, action: #selector(manegeAccount))
+        manegeButton = UIBarButtonItem(image: UIImage(named: "exitIcon"), style: .plain, target: self, action: #selector(manegeAccount))
         self.navigationItem.setRightBarButton(manegeButton, animated: true)
         manegeButton.isEnabled = true
         
@@ -76,6 +76,7 @@ class EditInformationViewController: UIViewController {
         stateController.cameraHandler.imagePickedBlock = { image in
             self.image = image
             self.stateController.saveImage(userID: self.user.id, image: image)
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: UserCell.notificationName), object: nil, userInfo:["image": image])
         }
         
     }
@@ -88,6 +89,8 @@ class EditInformationViewController: UIViewController {
                 self.textFieldName.becomeFirstResponder()
                 self.labelName.isHidden = true
                
+            }else{
+                self.showAlertError(error: "I can change the name only once.", title: "Operation not allowed")
             }
         }
        
@@ -209,6 +212,8 @@ extension EditInformationViewController: UITextFieldDelegate{
             self.stateController.updateUserName(newName: self.textFieldName.text ?? self.user.name, user: self.user)
             self.labelName.text = self.textFieldName.text
             self.labelName.isHidden = false
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: UserCell.notificationName), object: nil, userInfo:["name": self.labelName.text! as String])
             
         }
         
