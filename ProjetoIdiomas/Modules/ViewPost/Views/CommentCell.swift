@@ -12,7 +12,7 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var authorName: UILabel!
     
     @IBOutlet weak var imageIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var commentText: UILabel!
+    @IBOutlet weak var commentText: UITextView!
     @IBOutlet weak var commentIndicator: UIActivityIndicatorView!
     @IBOutlet weak var imageProfile: UIImageView!
     @IBOutlet weak var upVoteLabel: UILabel!
@@ -28,6 +28,11 @@ class CommentCell: UITableViewCell {
         commentIndicator.startAnimating()
         commentIndicator.hidesWhenStopped = true
         imageIndicator.hidesWhenStopped = true
+        
+        imageProfile.translatesAutoresizingMaskIntoConstraints = false
+        imageProfile.layer.cornerRadius = 15
+        imageProfile.layer.masksToBounds = true
+        imageProfile.contentMode = .scaleAspectFill
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

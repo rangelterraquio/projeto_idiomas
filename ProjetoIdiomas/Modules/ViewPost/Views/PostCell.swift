@@ -17,7 +17,8 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var imageLoadIndicator: UIActivityIndicatorView!
     @IBOutlet weak var downVoteLabel: UILabel!
     @IBOutlet weak var upVoteLabel: UILabel!
-    @IBOutlet weak var postText: UILabel!
+    @IBOutlet weak var postText: UITextView!
+    @IBOutlet weak var backgroundCell: UIView!
     
     var onReuse: () -> () = {}
     var upvoted: (Int32) -> () = {_ in}
@@ -65,13 +66,18 @@ class PostCell: UITableViewCell {
     
     
     
-    func populate(post: Post){
+    func populate(post: Post, viewSection: SectionSelected?){
             self.postText.text = post.message
             self.authorName.text = post.author.name
             self.postTitle.text = post.title
             self.downVoteLabel.text = "\(post.downvote)"
             self.upVoteLabel.text = "\(post.upvote)"
             self.postLoadIndicator.stopAnimating()
+        
+            guard let section = viewSection else {return}
+            
+            self.backgroundCell.backgroundColor = section == SectionSelected.learningSection ? SectionColor.learning.color : SectionColor.teaching.color 
+        
     }
     
     func populateImage(image: UIImage){

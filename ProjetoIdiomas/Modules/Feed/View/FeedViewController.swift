@@ -191,6 +191,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
         }else{
             return 300
         }
+        
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {

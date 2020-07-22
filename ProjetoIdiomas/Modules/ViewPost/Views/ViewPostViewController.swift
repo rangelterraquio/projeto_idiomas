@@ -37,12 +37,17 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     weak var feedVC: FeedViewController? = nil
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
+    
+    override func viewWillAppear(_ animated: Bool) {
+         postTableView.estimatedRowHeight = 300
+        postTableView.rowHeight = UITableView.automaticDimension
+        self.navigationController?.navigationBar.isHidden = false
+        self.navigationItem.title = "Post"
+        self.navigationController?.navigationBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
+        postTableView.separatorStyle = .none
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.isHidden = false
-        //navigationController?.setNavigationBarHidden(false, animated: true)
-
-        self.navigationItem.title = "Post"
         
         let postCell = UINib(nibName: "PostCell", bundle: nil)
         
@@ -122,7 +127,7 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
         guard let post = post else{return UITableViewCell()}
         if indexPath.row == 0 {
             if let postCell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell{
-                postCell.populate(post: post)
+                postCell.populate(post: post, viewSection: feedVC?.section)
                 if let image = imageAuthor{
                     postCell.populateImage(image: image)
                 }
@@ -172,7 +177,7 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
            ///aqui eu faço a requisição de mais posts, tenho que testar dps
            if indexPath.row == lastVisibleIndexPath-1, !comments.isEmpty {
 //               presenter?.updateFeed(in: [.english], from: comments.last!.publicationDate)
-            guard let num = comments.last?.upvote else{return}
+//            guard let num = comments.last?.upvote else{return}
 //            presenter?.updateFeed(from: post, startingBy: num)
            }
            
@@ -180,11 +185,12 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0{
-            return 300
-        }else{
-            return 200
-        }
+//        if indexPath.row == 0{
+//            return 300
+//        }else{
+//            return 200
+//        }
+        return UITableView.automaticDimension
     }
     
     private func setupCommentCell(with comment:String) {
@@ -210,6 +216,17 @@ extension ViewPostViewController: UITextFieldDelegate{
     }
     
     
+    func textFieldTextDidChange(textField: UITextField) {
+        UIView.animate(withDuration: 0.3) {
+            textField.sizeToFit()
+            self.view.layoutIfNeeded()
+        }
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+           textField.resignFirstResponder()
+           return true
+    }
+    
     
     @objc func keyboardNotification(notification: NSNotification) {
         if let userInfo = notification.userInfo {
@@ -224,7 +241,7 @@ extension ViewPostViewController: UITextFieldDelegate{
                 self.sendButtonYAnchor.constant = 0.0
             } else {
                 self.keyboardHeightLayoutConstraint.constant = endFrame?.size.height ?? 0.0
-                self.sendButtonYAnchor.constant = endFrame?.size.height ?? 0.0
+                self.sendButtonYAnchor.constant = (endFrame?.size.height ?? 0.0)  * 0.8
             }
             UIView.animate(withDuration: duration,
                                        delay: TimeInterval(0),
@@ -235,3 +252,7 @@ extension ViewPostViewController: UITextFieldDelegate{
     }
     
 }
+
+
+
+
