@@ -15,6 +15,7 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     
    
     
+    @IBOutlet weak var postNotexistLabel: UILabel!
     @IBOutlet weak var sendButtonYAnchor: NSLayoutConstraint!
     
     @IBOutlet weak var postTableView: UITableView!
@@ -25,6 +26,7 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
             if let tableView = postTableView{
                 presenter?.updateFeed(from: post!, startingBy: 0)
                 tableView.reloadData()
+                postNotexistLabel.isHidden = true
             }
         }
     }
@@ -68,6 +70,9 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
         
         if let post = post{
             presenter?.updateFeed(from: post, startingBy: 0)
+            postNotexistLabel.isHidden = true
+        }else{
+            postNotexistLabel.isHidden = false
         }
     
     }

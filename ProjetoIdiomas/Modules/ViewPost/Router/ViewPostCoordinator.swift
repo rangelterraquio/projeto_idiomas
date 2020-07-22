@@ -110,7 +110,7 @@ class ViewPostCoordinator: Coordinator {
 ////            }
 //            
 //        }
-    func start(postID: String){
+    func start(postID: String,completio:  @escaping (UIViewController)-> ()){
         let vc = ViewPostViewController(nibName: "ViewPostViewController", bundle: nil)
         let interator = ViewPostInterator(stateController: stateManeger)
         let presenter = ViewPostPresenter()
@@ -127,25 +127,77 @@ class ViewPostCoordinator: Coordinator {
                              UIImage(named: "blankProfile")!
                         }
                     }
+                    
+                    
+                    presenter.interator = interator
+                    presenter.view = vc
+                    interator.presenter = presenter
+                    presenter.router = self
+                    vc.presenter = presenter
+                    
+                    completio(vc)
+//                    vc.modalPresentationStyle = .overCurrentContext
+//                    if let oldVc = self.tabBarController.selectedViewController{
+//                        oldVc.navigationController?.pushViewController(vc, animated: true)
+//                    }
+                    
+//                    if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
+//                        oldVc.definesPresentationContext = true
+//
+//                        oldVc.pushViewController(vc, animated: true)
+//                    }
 
                 }
             }
         }
-        presenter.interator = interator
-        presenter.view = vc
-        interator.presenter = presenter
-        presenter.router = self
-        vc.presenter = presenter
         
-       
-        vc.modalPresentationStyle = .overCurrentContext
-        if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
-            oldVc.definesPresentationContext = true
-            
-            oldVc.pushViewController(vc, animated: true)
-        }
         
     }
+    
+    
+    func start(postID: String){
+            let vc = ViewPostViewController(nibName: "ViewPostViewController", bundle: nil)
+            let interator = ViewPostInterator(stateController: stateManeger)
+            let presenter = ViewPostPresenter()
+            
+            stateManeger.fetchPostBy(id: postID) { (document) in
+                if let doc = document{
+                    if let post = Post(dictionary: doc){
+                        vc.post = post
+                        self.stateManeger.imageLoader.loadImgage(url: post.author.photoURL) { (result) in
+                            do{
+                                let image = try result.get()
+                                vc.imageAuthor = image
+                            }catch{
+                                 UIImage(named: "blankProfile")!
+                            }
+                        }
+                        
+                        
+                        presenter.interator = interator
+                        presenter.view = vc
+                        interator.presenter = presenter
+                        presenter.router = self
+                        vc.presenter = presenter
+                        
+                       
+    //                    vc.modalPresentationStyle = .overCurrentContext
+    //                    if let oldVc = self.tabBarController.selectedViewController{
+    //                        oldVc.navigationController?.pushViewController(vc, animated: true)
+    //                    }
+                        
+                        if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
+                            oldVc.definesPresentationContext = true
+    
+                            oldVc.pushViewController(vc, animated: true)
+                        }
+
+                    }
+                }
+            }
+            
+            
+        }
     
     
 }

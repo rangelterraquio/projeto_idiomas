@@ -11,6 +11,9 @@ import FirebaseFirestore
 import FirebaseStorage
 class ViewController: UIViewController {
 
+    override func viewWillAppear(_ animated: Bool) {
+        self.tabBarController?.tabBar.isHidden = true
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -26,7 +29,7 @@ class ViewController: UIViewController {
 //        Storage.
 //
 //        
-        let db = Firestore.firestore()
+//        let db = Firestore.firestore()
 //        let id: String
 //        let title: String?
 //        let message: String?
@@ -52,9 +55,9 @@ class ViewController: UIViewController {
 //        
       //  db.collection("Posts").addDocument(data: post2.dictionary)
 
-        
-        let storageRef = StoregeAPI()
-        if let image = UIImage(named: "photo2"){
+//
+//        let storageRef = StoregeAPI()
+//        if let image = UIImage(named: "photo2"){
 
 //
 //            storageRef.saveImage(userID: "photo2", image: image)
@@ -63,7 +66,7 @@ class ViewController: UIViewController {
         
     }
 
-    @IBAction func goToFeed(_ sender: Any) {
+func goToFeed(_ sender: Any) {
         
 //        let stateController = StateController(storage: StoregeAPI())
 //        let interator = FeedInterator(stateController: stateController)
@@ -74,31 +77,31 @@ class ViewController: UIViewController {
 //        vc.presenter = presenter
 //        vc.modalPresentationStyle = .fullScreen
 //        presenter.view = vc
-        let textInterator = TextFieldInterator()
+//        let textInterator = TextFieldInterator()
 ////        let interator = SignUpInterator(textInterator: textInterator)
 //        let presenter = SignUpPresenter()
 //        presenter.interator = interator
 //        interator.presenter = presenter
         
 //        let vc = SignUpViewController(nibName: "SignUpViewController", bundle: nil)
-        let vc = SelectLanguageViewController(nibName: "SelectLanguageViewController", bundle: nil)
-//        let vc = CreatePostViewController(nibName: "CreatePostViewController", bundle: nil)
-//        let postPresente = CreatePostPresenter()
-//        let postInterator = CreatePostInterator(stateController: StateController(storage: StoregeAPI()))
-//        postPresente.interator = postInterator
-//        postPresente.view = vc
-//        vc.presenter = postPresente
-//        postInterator.presenter = postPresente
-        vc.modalPresentationStyle = .fullScreen //modo de apresentação
-//        presenter.view = vc
-//        vc.presenter = presenter
-        
-//        let modal = UIModalPresentationStyle.fullScreen
-        self.present(vc, animated: true, completion: nil)
-        
+//        let vc = SelectLanguageViewController(nibName: "SelectLanguageViewController", bundle: nil)
+////        let vc = CreatePostViewController(nibName: "CreatePostViewController", bundle: nil)
+////        let postPresente = CreatePostPresenter()
+////        let postInterator = CreatePostInterator(stateController: StateController(storage: StoregeAPI()))
+////        postPresente.interator = postInterator
+////        postPresente.view = vc
+////        vc.presenter = postPresente
+////        postInterator.presenter = postPresente
+//        vc.modalPresentationStyle = .fullScreen //modo de apresentação
+////        presenter.view = vc
+////        vc.presenter = presenter
+//
+////        let modal = UIModalPresentationStyle.fullScreen
+//        self.present(vc, animated: true, completion: nil)
+//
 
         
-    }
+    
     
 }
 

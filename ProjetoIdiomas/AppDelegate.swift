@@ -18,11 +18,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     static let NOTIFICATION_URL = ""
     static var rootNC: UITabBarController!
     static var sharedCoordinator: AppCoordinator?
- 
+    var appCoordinator: AppCoordinator!
+//    var notificationUserInfo
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-       
+        
     
 //        let windowScene:UIWindowScene = application.s as! UIWindowScene;
 //        let window = UIWindow(windowScene: windowScene)
@@ -34,9 +35,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppDelegate.rootNC.hidesBottomBarWhenPushed = false
 //        AppDelegate.rootNC.isNavigationBarHidden = true
     
-        let navigationController = UINavigationController()
+//        let navigationController = UINavigationController()
            // Initialise the first coordinator with the main navigation controller
-        let appCoordinator = AppCoordinator(tabBarController: tab)
+        appCoordinator = AppCoordinator(tabBarController: tab)
         AppDelegate.sharedCoordinator = appCoordinator
            // The start method will actually display the main view
         
@@ -59,42 +60,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let pushManager = PushNotificationManager(userID: Auth.auth().currentUser?.uid, coordinator: AppDelegate.sharedCoordinator)
         pushManager.registerForPushNotifications()
         appCoordinator.pushNotificationManeger = pushManager
-        
-        if let notificationOption = launchOptions?[.remoteNotification]{
-            if let notification = notificationOption as? [String: AnyObject],
-              let aps = notification["userInfo"] as? [AnyHashable: Any] {
-              
-              // 2if
-                if let id = aps["category"] as? String{
-                    PushNotificationManager.flag = false
-                    appCoordinator.showViewPostInDetails(postID: id)
-                }
-              
-              
-            }
-        }else{
-            if  PushNotificationManager.flag{
-//                let controller = appCoordinator.showFeed()
-//                let controoler2 = appCoordinator.showCreatePost()
-//                controller!.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
-//                controller!.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
-//                let controllers = [controller!, controoler2].map { (viewController) -> UINavigationController in
-//                    UINavigationController(rootViewController: viewController)
-//                       }
+        appCoordinator.start()
+//        if let notificationOption = launchOptions?[.remoteNotification]{
+//            if let notification = notificationOption as? [String: AnyObject],
+//              let aps = notification["userInfo"] as? [AnyHashable: Any] {
 //
-//                navigationController.viewControllers = [controller!, controoler2]
-//                tab.navigationController
-//                tab.viewControllers = [controller!, controoler2]//controllers
-                appCoordinator.start()
-            }
-           
-
-        }
+//              // 2if
+//                if let id = aps["category"] as? String{
+////                    PushNotificationManager.flag = false
+//                   // appCoordinator.start()
+////                    appCoordinator.showViewPostInDetails(postID: id)
+//                }
+//
+//
+//            }
+//        }else{
+//            if  PushNotificationManager.flag{
+////                let controller = appCoordinator.showFeed()
+////                let controoler2 = appCoordinator.showCreatePost()
+////                controller!.tabBarItem = UITabBarItem(tabBarSystemItem: .more, tag: 0)
+////                controller!.tabBarItem = UITabBarItem(tabBarSystemItem: .history, tag: 1)
+////                let controllers = [controller!, controoler2].map { (viewController) -> UINavigationController in
+////                    UINavigationController(rootViewController: viewController)
+////                       }
+////
+////                navigationController.viewControllers = [controller!, controoler2]
+////                tab.navigationController
+////                tab.viewControllers = [controller!, controoler2]//controllers
+////                appCoordinator.start()
+//            }
+//
+//
+//        }
         UIApplication.shared.applicationIconBadgeNumber = 0
 
         
         
         return true
+    }
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any]) {
+//        if let id = userInfo["category"] as? String{
+//            PushNotificationManager.flag = false
+//           // appCoordinator.start()
+//            appCoordinator.showViewPostInDetails(postID: id)
+//        }
+        
+//        if let aps = userInfo["userInfo"] as? [AnyHashable: Any] {
+//
+//            // 2if
+//            if let id = aps["category"] as? String{
+//                PushNotificationManager.flag = false
+//                // appCoordinator.start()
+//                appCoordinator.showViewPostInDetails(postID: id)
+//            }
+//
+//
+//        }else{
+//            appCoordinator.start()
+//        }
     }
 
     // MARK: UISceneSession Lifecycle
@@ -141,10 +164,20 @@ extension AppDelegate: UNUserNotificationCenterDelegate{
     
     
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        let response = response.notification.request.content.body
-        
-        print("A notificaçao ")
-        print("Conteudo da notificacao \(response)")
+        let response = response.notification.request.content.userInfo
+       
+          if let aps = response["userInfo"] as? [AnyHashable: Any] {
+          
+          // 2if
+            if let id = aps["category"] as? String{
+                PushNotificationManager.flag = false
+               // appCoordinator.start()
+                appCoordinator.showViewPostInDetails(postID: id)
+            }
+          
+          
+        }
+
     }
     
     

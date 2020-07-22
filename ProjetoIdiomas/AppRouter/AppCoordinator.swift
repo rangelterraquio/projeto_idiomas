@@ -28,7 +28,10 @@ final class AppCoordinator: Coordinator{
     
     
     func start(){
+        
+        
         if signUpAPI.userHasAValidSession(){
+            addLoadScreen()
             storage.fetchUser { user,Error in
                 self.setupTabBar(user: user!)
                 self.user = user!
@@ -43,7 +46,12 @@ final class AppCoordinator: Coordinator{
     }
     
     
-    
+    private func addLoadScreen(){
+        let loadScreen = LoadingScreen(frame: CGRect(origin:UIScreen.main.bounds.origin, size: UIScreen.main.bounds.size))
+        let vcTemp = ViewController()
+        vcTemp.view.addSubview(loadScreen)
+        self.tabBarController.viewControllers = [vcTemp]
+    }
     private func setupTabBar(user: User){
         
         
@@ -73,6 +81,11 @@ final class AppCoordinator: Coordinator{
             tabBarController.tabBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
 
             
+            if PushNotificationManager.flag{
+                showViewPostInDetails(postID: PushNotificationManager.postID!) { (vc) in
+                    feedControler.navigationController?.pushViewController(vc, animated: true)
+                }
+            }
         }
         
         
@@ -143,15 +156,22 @@ final class AppCoordinator: Coordinator{
         childCoordinators.append(coordinator)
         
     }
-    func showViewPostInDetails(postID: String){
-        storage.fetchUser {_,_ in}
+    func showViewPostInDetails(postID: String,completio: @escaping (UIViewController)->()){
+//        storage.fetchUser {_,_ in}
          let coordinator = ViewPostCoordinator(stateController: stateManeger, tabBarController: tabBarController)
         coordinator.delegate = self
-        coordinator.start(postID: postID)
-        childCoordinators.append(coordinator)
         
+        childCoordinators.append(coordinator)
+        coordinator.start(postID: postID, completio: completio)
     }
     
+    func showViewPostInDetails(postID: String){
+        let coordinator = ViewPostCoordinator(stateController: stateManeger, tabBarController: tabBarController)
+        coordinator.delegate = self
+        
+        childCoordinators.append(coordinator)
+        coordinator.start(postID: postID)
+    }
     func showActivities(user: User) -> UIViewController{
         let coordinator = ViewActivitiesCoordinator(stateController: stateManeger, tabBarController: tabBarController)
         coordinator.delegate = self

@@ -17,7 +17,8 @@ import UserNotifications
 public class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotificationCenterDelegate {
     let userID: String?
     var coordinator: AppCoordinator?
-    static var flag = true
+    static var flag = false
+    static var postID: String? = nil
     init(userID: String?,coordinator: AppCoordinator?) {
         self.userID = userID
         self.coordinator = coordinator
@@ -78,9 +79,15 @@ public class PushNotificationManager: NSObject, MessagingDelegate, UNUserNotific
     public func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         
         let userInfo = response.notification.request.content.categoryIdentifier
-         coordinator?.showViewPostInDetails(postID: userInfo)
-//
-
+        
+        
+        if UIApplication.shared.applicationState == .inactive{
+             coordinator?.showViewPostInDetails(postID: userInfo)
+        }else{
+            PushNotificationManager.postID = userInfo
+            PushNotificationManager.flag = true
+        }
+        
     }
 }
 
