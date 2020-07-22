@@ -19,7 +19,7 @@ class CreatePostInterator: CreatePostPresenterToInterator{
     }
     
     func postIsValid(title: String, text: String, language: Languages?) -> Bool {
-        if title.isEmpty || text.count < 20 || language == nil {
+        if title.isEmpty || text == "What are you thinking?" || text == "" || language == nil {
             return false
         }
         return true

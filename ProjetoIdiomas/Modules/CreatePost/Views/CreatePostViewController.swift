@@ -79,7 +79,7 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
         languagesTableView.delegate = self
         languagesTableView.dataSource = self
         languagesTableView.separatorStyle = .none
-        languagesTableView.backgroundColor = UIColor(red: 246/255, green: 243/255, blue: 251/255, alpha: 1.0)
+        languagesTableView.backgroundColor = .clear//UIColor(red: 246/255, green: 243/255, blue: 251/255, alpha: 1.0)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -91,6 +91,11 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
         postTitle.endEditing(true)
         if let index = selectedIndexPath{
             languagesTableView.deselectRow(at: index, animated: false)
+            let cell = languagesTableView.cellForRow(at: index)
+            cell?.backgroundColor = SectionColor.commonAreas.color
+        }
+        if viewState == .expand{
+            animateSelectLanguageView()
         }
     }
     
@@ -145,9 +150,9 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
     @IBAction func didSelect(_ sender: Any) {
         animateSelectLanguageView()
     }
-    func updateDoneStatus() {
+    func updateDoneStatus(isValid: Bool) {
         nextButton.style = .done
-        nextButton.isEnabled = true
+        nextButton.isEnabled = isValid
     }
     
     func showAlertError(error msg: String) {
@@ -191,17 +196,24 @@ extension CreatePostViewController: UITextViewDelegate{
         
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
-        textView.text = nil
+        
+        if textView.text == "What are you thinking?"{
+            textView.text = nil
+        }
         textView.textColor = .black
     }
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty{
-            textView.text = "What is yout doubt?"
+            textView.text = "What are you thinking?"
             textView.textColor = .lightGray
         }
+        presenter.validatePost(title: postTitle.text ?? "", text: textView.text, language: languagePost)
+
     }
     
     func textViewShouldEndEditing(_ textView: UITextView) -> Bool {
+        
+        presenter.validatePost(title: postTitle.text ?? "", text: textView.text, language: languagePost)
         return true
     }
     
@@ -280,7 +292,7 @@ extension CreatePostViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = SectionColor.commonAreas.color
+        cell.backgroundColor = .clear//SectionColor.commonAreas.color
     }
     
     public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -291,11 +303,14 @@ extension CreatePostViewController: UITableViewDelegate, UITableViewDataSource{
         let language = Languages.languages[indexPath.row]
         languagePost = language
         selectedIndexPath = indexPath
+        let cell = tableView.cellForRow(at: indexPath)
+        cell?.backgroundColor = SectionColor.commonAreas.color
+        
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
-        cell?.backgroundColor = UIColor(red: 246/255, green: 243/255, blue: 251/255, alpha: 1.0)
+        cell?.backgroundColor = .clear // SectionColor.commonAreas.color//UIColor(red: 246/255, green: 243/255, blue: 251/255, alpha: 1.0)
     }
     func animateSelectLanguageView(){
         if viewState == .moving {return}

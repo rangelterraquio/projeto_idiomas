@@ -19,7 +19,7 @@ public protocol CreatePostInteratorToPresenter: class{
 
 public protocol CreatePostPresenterToView: class{
     
-    func updateDoneStatus() -> Void
+    func updateDoneStatus(isValid: Bool) -> Void
     func showAlertError(error msg: String) -> Void
     func postCreated() -> Void
 }

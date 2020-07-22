@@ -19,9 +19,8 @@ class CreatePostPresenter: CreatePostViewToPresenter {
     }
        
     func validatePost(title: String, text: String, language: Languages?) {
-        if interator.postIsValid(title: title, text: text, language: language){
-            view.updateDoneStatus()
-        }
+        let isValid =  interator.postIsValid(title: title, text: text, language: language)
+         view.updateDoneStatus(isValid: isValid)
    }
        
 }

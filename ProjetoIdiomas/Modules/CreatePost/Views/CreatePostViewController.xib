@@ -88,7 +88,7 @@
                         </imageView>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Jn8-rz-5fq">
                             <rect key="frame" x="20" y="85" width="374" height="277"/>
-                            <color key="backgroundColor" red="0.96484893559999996" green="0.95237892869999996" blue="0.98431903119999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" red="0.47843137254901957" green="0.32941176470588235" blue="0.76078431372549016" alpha="0.18263056506849315" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="277" id="IXU-bG-tS1"/>
                             </constraints>
