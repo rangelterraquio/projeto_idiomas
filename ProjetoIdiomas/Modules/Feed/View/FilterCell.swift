@@ -11,7 +11,7 @@ import UIKit
 class FilterCell: UITableViewCell {
   
     var teachingSelect: () -> () = {}
-    var section: SectionSelected = .teachingSection
+    var section: SectionSelected = .learningSection
     var learningSelect: () -> () = {}
     @IBOutlet weak var learningButton: UIButton!
     @IBOutlet weak var teachingButton: UIButton!

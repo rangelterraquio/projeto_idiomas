@@ -115,7 +115,9 @@ public class SelectLanguageViewController: UIViewController,OnBoardingPage {
                   }
                   learningLanguages.forEach { (lan) in
                       user.learningLanguage?.append(lan.rawValue)
-                  }
+                    }
+                let loadScreen = LoadingScreen(frame: CGRect(origin: self.view.frame.origin, size: self.view.frame.size))
+                self.view.addSubview(loadScreen)
                   router?.didSuccessfullyCreated(user: user)
               }else{
                 viewState = .fluentlyLanguagesSection

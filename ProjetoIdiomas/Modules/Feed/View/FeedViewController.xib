@@ -15,7 +15,9 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedViewController" customModule="ProjetoIdiomas" customModuleProvider="target">
             <connections>
                 <outlet property="errorLabel" destination="sU3-Bk-uHA" id="NV9-7H-Y54"/>
+                <outlet property="feedLoadingIndicator" destination="jbu-ui-SSA" id="GRv-i7-L2g"/>
                 <outlet property="feedTableView" destination="jEE-PN-Flq" id="Nzn-Uw-ntC"/>
+                <outlet property="newPostsButton" destination="Ae0-9Q-iEO" id="hCF-1x-roo"/>
                 <outlet property="view" destination="iN0-l3-epB" id="1PR-OX-rKO"/>
             </connections>
         </placeholder>
@@ -34,17 +36,41 @@
                     <color key="textColor" red="0.094928743070000002" green="0.12389321690000001" blue="0.28689186459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="jbu-ui-SSA">
+                    <rect key="frame" x="188.5" y="379.5" width="37" height="37"/>
+                </activityIndicatorView>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ae0-9Q-iEO">
+                    <rect key="frame" x="164" y="124" width="86" height="30"/>
+                    <color key="backgroundColor" red="0.47843137250000001" green="0.3294117647" blue="0.76078431369999999" alpha="0.39589576199999998" colorSpace="custom" customColorSpace="displayP3"/>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="13"/>
+                    <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <state key="normal" title="New Posts"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="13"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="newPostAdded:" destination="-1" eventType="touchUpInside" id="OW8-aK-jNF"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <color key="tintColor" red="0.1190174893" green="0.1341283023" blue="0.43139755730000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstItem="jEE-PN-Flq" firstAttribute="top" secondItem="Ae0-9Q-iEO" secondAttribute="bottom" constant="-110" id="6RP-lz-AVT"/>
                 <constraint firstItem="sU3-Bk-uHA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="48" id="6ua-5D-IXp"/>
+                <constraint firstItem="Ae0-9Q-iEO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="78x-aa-FbD"/>
+                <constraint firstItem="Ae0-9Q-iEO" firstAttribute="width" secondItem="jEE-PN-Flq" secondAttribute="width" multiplier="0.207729" id="Ep7-mG-wLH"/>
                 <constraint firstItem="sU3-Bk-uHA" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.768116" id="IaG-3R-0V1"/>
                 <constraint firstItem="sU3-Bk-uHA" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="296" id="MtN-ZU-iSY"/>
+                <constraint firstItem="Ae0-9Q-iEO" firstAttribute="height" secondItem="jEE-PN-Flq" secondAttribute="height" multiplier="0.0352113" id="RL9-Ij-s3f"/>
                 <constraint firstItem="jEE-PN-Flq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="UeJ-bv-fEz"/>
+                <constraint firstItem="jbu-ui-SSA" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" constant="-50" id="fUi-Tv-DRq"/>
                 <constraint firstAttribute="bottom" secondItem="jEE-PN-Flq" secondAttribute="bottom" id="hHU-FD-hif"/>
                 <constraint firstItem="jEE-PN-Flq" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="kGP-bH-bTj"/>
                 <constraint firstItem="jEE-PN-Flq" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="ocg-0h-Doj"/>
+                <constraint firstItem="jbu-ui-SSA" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="smu-FH-9sl"/>
                 <constraint firstItem="sU3-Bk-uHA" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.143973" id="wne-d7-wrW"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

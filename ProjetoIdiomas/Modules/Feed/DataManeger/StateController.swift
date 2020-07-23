@@ -15,7 +15,7 @@ public class StateController{
     var imageLoader: ImageLoader!
     let notificationSender = PushNotificationSender()
     let cameraHandler = CamereHandler()
-    
+    var isFirstSnapShot = true
     var user: User?{
         didSet{
             StoregeAPI.currentUser = user
@@ -116,6 +116,43 @@ public class StateController{
         }
 
     }
+    
+      func addNewPostsListener(updateStatus: @escaping ([Post])->()) -> ListenerRegistration{
+            return storage.db.collection("Posts").addSnapshotListener { (snap, error) in
+                if error != nil {
+                    return
+                }else{
+                    var posts = [Post]()
+                    
+                    snap?.documentChanges.forEach { diff in
+                        if (diff.type == .added) {
+                            if let p = Post(dictionary: diff.document){
+                                posts.append(p)
+                            }
+                            
+                        }
+                    }
+                    if !self.isFirstSnapShot{
+                         updateStatus(posts)
+                    }else{
+                        self.isFirstSnapShot = false
+                    }
+                   
+//                    var num = 1
+//                    snap?.documents.forEach({ (doc) in
+//                        if let notif = Notifaction(dictionary: doc){
+//                            if !notif.isViewed{
+//                                activitiesVC.tabBarItem.badgeColor = .red
+//                                activitiesVC.tabBarItem.badgeValue = "\(num)"
+//                                num+=1
+//                            }
+//                        }
+//                    })
+                    
+                }
+            }
+
+        }
     
     
     func fetchUserPosts(from date: Date, completion: @escaping ([QueryDocumentSnapshot]?) -> ()){

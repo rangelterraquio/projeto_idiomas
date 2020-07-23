@@ -15,26 +15,35 @@ public class FeedInterator: FeedPresenterToInterator{
     
     
    
-    var posts: [Post] = [Post](){
-        didSet{
-            
-            if posts.isEmpty{
-                presenter?.fecthPostsFailed()
-            }else{
-                
-                presenter?.fechedPosts(posts: posts)
-            }
-        }
-    }
+    var posts: [Post] = [Post]()//{
+//        didSet{
+//
+//            if !posts.isEmpty{
+//                presenter?.fecthPostsFailed(fetchedAll: false)
+//            }else{
+//
+//                presenter?.fechedPosts(posts: posts)
+//            }
+//        }
+//    }
     var profiles: [User]?
     var stateController: StateController!
-     var presenter: FeedInteratorToPresenter? = nil
+    var presenter: FeedInteratorToPresenter? = nil
+    
+  
+    var listener: ListenerRegistration!
     init(stateController: StateController) {
         self.stateController = stateController
         
-        
+       
     }
     
+    func addListener(){
+        let updateStatus: ([Post])->() = {posts in
+            self.presenter?.newPostAdded(posts: posts)
+        }
+        listener = stateController.addNewPostsListener(updateStatus: updateStatus)
+    }
     
     public func fechePosts(in languages: [Languages],from date: Date) {
         
@@ -49,6 +58,17 @@ public class FeedInterator: FeedPresenterToInterator{
                 }
             }
             self.posts = data
+            
+            if self.posts.isEmpty{
+                self.presenter?.fecthPostsFailed(fetchedAll: true)
+            }else{
+                if self.posts.count < 50{
+                    self.presenter?.fecthPostsFailed(fetchedAll: true)
+                }else{
+                    self.presenter?.fecthPostsFailed(fetchedAll: false)
+                }
+                self.presenter?.fechedPosts(posts: self.posts, languages: languages)
+            }
         }
 
     }
@@ -64,6 +84,10 @@ public class FeedInterator: FeedPresenterToInterator{
     
     public func requestUpdateVotes<T : DocumentSerializable >(from: String, inDocument: T, with comment: Comment?) {
         stateController.updateVotes(from: from, inDocument: inDocument, with: comment)
+    }
+    
+    deinit {
+        listener.remove()
     }
     
 }

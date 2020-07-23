@@ -123,7 +123,7 @@ class UserPostsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
-          //  removePost(post: posts[indexPath.row])
+            removePost(post: posts[indexPath.row])
             posts.remove(at: indexPath.row)
             tableView.deleteRows(at: [indexPath], with: .fade)
           //  tableView.reloadData()
@@ -164,14 +164,17 @@ class UserPostsViewController: UITableViewController {
             var data: [Post] = [Post]()
             
             for snap in snapshot!{
-                
                 if let post = Post(dictionary: snap){
                     data.append(post)
                 }
             }
-            if data.count > self.posts.count{
-                 self.posts = data
-            }else{
+//
+//            if data.count > self.posts.count{
+//                 self.posts = data
+//            }else{
+//                self.posts.append(contentsOf: data)
+//            }
+            if !data.isEmpty{
                 self.posts.append(contentsOf: data)
             }
         }

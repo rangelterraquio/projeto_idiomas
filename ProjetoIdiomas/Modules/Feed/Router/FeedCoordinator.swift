@@ -39,7 +39,7 @@ class FeedCoordinator: Coordinator {
         vc.modalPresentationStyle = .fullScreen
         presenter.view = vc
         presenter.router = self
-        
+        interator.addListener()
         return vc
         
     }

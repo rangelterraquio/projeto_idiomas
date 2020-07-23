@@ -58,7 +58,6 @@ public class SignUpAPI: NSObject{
     
     func userHasAValidSession() -> Bool{
         return Auth.auth().currentUser != nil
-    
     }
     
     func verifyIfUserAlreadyExist(id: String, completion: @escaping (Bool) -> Void){

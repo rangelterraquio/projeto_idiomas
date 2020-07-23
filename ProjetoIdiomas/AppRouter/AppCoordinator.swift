@@ -58,7 +58,7 @@ final class AppCoordinator: Coordinator{
         
         if let feedControler = showFeed(){
             feedControler.tabBarItem = UITabBarItem(title: "Feed", image: UIImage(named: "feedIcon"), tag: 0)
-            
+            (feedControler as! FeedViewController).user = user
             let activitiesVC =  showCreatePost()//showActivities(user: user)
             
             activitiesVC.tabBarItem = UITabBarItem(title: "Add Post", image: UIImage(named: "addPost"), tag: 1)//UITabBarItem(tabBarSystemItem: .history, tag: 1)

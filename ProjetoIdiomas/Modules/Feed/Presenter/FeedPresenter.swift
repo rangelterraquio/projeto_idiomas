@@ -57,19 +57,33 @@ public class FeedPresenter : FeedViewToPresenter{
 
 
 extension FeedPresenter: FeedInteratorToPresenter{
+    
+    
     public func fetchedImageProfile(image: UIImage) {
         print("")
     }
     
-    public func fechedPosts(posts: [Post]) {
+    public func fechedPosts(posts: [Post],languages: [Languages]) {
         //aqui eu devo configurar o dado (exemplo: ordenar) para mandar a view apresentar
-        
-        view?.showPosts(posts: posts)
+        var newPosts = [Post]()
+        posts.forEach { (post) in
+            
+            languages.forEach { (lang) in
+                if lang.rawValue == post.language{
+                    newPosts.append(post)
+                }
+            }
+        }
+        view?.showPosts(posts: newPosts)
     }
     
-    public func fecthPostsFailed() {
+    public func newPostAdded(posts: [Post]) {
+        view?.updateViewWith(posts: posts)
+    }
+    
+    public func fecthPostsFailed(fetchedAll: Bool) {
         //aqui eu falo pra view que deu error em carregar os dados e mostrar uma msg de erroo
-        view?.showError()
+        view?.showError(fetchedAll: fetchedAll)
     }
     
    

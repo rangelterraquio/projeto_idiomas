@@ -10,9 +10,10 @@ import Foundation
 import UIKit
 
 public protocol FeedInteratorToPresenter: class {
-    func fechedPosts(posts: [Post])
-    func fecthPostsFailed()
+    func fechedPosts(posts: [Post],languages: [Languages])
+    func fecthPostsFailed(fetchedAll: Bool)
     func fetchedImageProfile(image: UIImage)
+    func newPostAdded(posts: [Post])
 }
 public protocol FeedPresenterToInterator: class {
     func fechePosts(in languages: [Languages], from date: Date)
@@ -23,7 +24,8 @@ public protocol FeedPresenterToInterator: class {
 }
 public protocol FeedPresenterToView: class{
     func showPosts(posts: [Post])
-    func showError()
+    func showError(fetchedAll: Bool)
+    func updateViewWith(posts: [Post])
 }
 
  protocol FeedViewToPresenter: class{

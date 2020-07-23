@@ -34,17 +34,19 @@ public class StoregeAPI{
         
         let documentRef = db.collection("Posts")
         
-        
+        var idiomas = [String]()
         for language in languages{
+            idiomas.append(language.rawValue)
+           
+        }
+        
+        documentRef.order(by: "publicationDate", descending: true).start(at: [date]).limit(to: 50).getDocuments { (querySnapshot, error) in
             
-            documentRef.order(by: "publicationDate", descending: true).start(at: [date]).whereField("language", isEqualTo: language.rawValue).limit(to: num).getDocuments { (querySnapshot, error) in
+            if error != nil {
+                print("Tratar error")
+            }else{
+                completion(querySnapshot?.documents)
                 
-                if error != nil {
-                    print("Tratar error")
-                }else{
-                  completion(querySnapshot?.documents)
-
-                }
             }
         }
         
@@ -567,7 +569,10 @@ extension StoregeAPI{
                         batch.commit()
                         self.deleteUser(user: user, batch: self.db.batch()) { (completed) in
                             if completed{
-                                completion(.none)
+                                Auth.auth().currentUser?.delete(completion: { (_) in
+                                    completion(.none)
+                                })
+                                
                             }
                         }
                     }
