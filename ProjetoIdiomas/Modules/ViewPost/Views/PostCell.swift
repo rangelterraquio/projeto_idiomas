@@ -67,16 +67,16 @@ class PostCell: UITableViewCell {
     
     
     func populate(post: Post, viewSection: SectionSelected?){
-            self.postText.text = post.message
-            self.authorName.text = post.author.name
-            self.postTitle.text = post.title
-            self.downVoteLabel.text = "\(post.downvote)"
-            self.upVoteLabel.text = "\(post.upvote)"
-            self.postLoadIndicator.stopAnimating()
+         self.postText.text = post.message
+         self.authorName.text = post.author.name
+         self.postTitle.text = post.title
+         self.downVoteLabel.text = "\(post.downvote)"
+         self.upVoteLabel.text = "\(post.upvote)"
+         self.postLoadIndicator.stopAnimating()
         
-            guard let section = viewSection else {return}
-            
-            self.backgroundCell.backgroundColor = section == SectionSelected.learningSection ? SectionColor.learning.color : SectionColor.teaching.color 
+         guard let section = viewSection else {return}
+         
+         self.backgroundCell.backgroundColor = section == SectionSelected.learningSection ? SectionColor.learning.color : SectionColor.teaching.color
         
     }
     

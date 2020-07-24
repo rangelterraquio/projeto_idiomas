@@ -63,6 +63,11 @@ class ViewPostInterator: ViewPostPresenterToInterator {
             }
             self.comments = data
             
+            if self.comments.count < 20{
+                self.presenter?.fetchedAll(true)
+            }else{
+                self.presenter?.fetchedAll(false)
+            }
         }
     }
     

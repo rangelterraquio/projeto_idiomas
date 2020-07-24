@@ -52,12 +52,11 @@ class ViewPostPresenter: ViewPostViewToPresenter{
 }
 
 extension ViewPostPresenter: ViewPostInteratorToPresenter{
-    
-    
-    
-    
-    
-    
+  
+    func fetchedAll(_ isFetched: Bool) {
+        view?.fetchedAll(isFetched)
+    }
+
     func fetchCommentSuccessefull(comments: [Comment]) {
         view?.showComments(comments: comments)
     }
@@ -65,6 +64,7 @@ extension ViewPostPresenter: ViewPostInteratorToPresenter{
     func fetcheCommentFailed(error msg: String) {
         ///no futuro posso tratar algum erro aqui
         print("Post sem comentários")
+        view?.showComments(comments: [Comment]())
     }
     
     func createCommentSuccessefull(comment: Comment) {

@@ -10,11 +10,7 @@ import UIKit
 
 class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     
-    
-    
-    
-   
-    
+    @IBOutlet weak var labelNoComments: UILabel!
     @IBOutlet weak var postNotexistLabel: UILabel!
     @IBOutlet weak var sendButtonYAnchor: NSLayoutConstraint!
     
@@ -27,6 +23,8 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
                 presenter?.updateFeed(from: post!, startingBy: 0)
                 tableView.reloadData()
                 postNotexistLabel.isHidden = true
+                commentsLoadIndicator.isHidden = false
+                commentsLoadIndicator.startAnimating()
             }
         }
     }
@@ -36,10 +34,13 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
 
     var imageAuthor: UIImage?
     
+    @IBOutlet weak var commentsLoadIndicator: UIActivityIndicatorView!
     weak var feedVC: FeedViewController? = nil
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
     
+    
+    var fetchedAll = false
     override func viewWillAppear(_ animated: Bool) {
          postTableView.estimatedRowHeight = 300
         postTableView.rowHeight = UITableView.automaticDimension
@@ -111,14 +112,27 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     
     func commentCreated(comment: Comment) {
         comments.append(comment)
+        labelNoComments.isHidden = true
         postTableView.reloadData()
     }
     
     func showComments(comments: [Comment]) {
+        if comments.isEmpty{
+            commentsLoadIndicator.isHidden = comments.isEmpty
+            labelNoComments.isHidden = false
+            return
+        }
+        labelNoComments.isHidden = true
         self.comments = comments
         postTableView.reloadData()
-        
+        commentsLoadIndicator.stopAnimating()
+        commentsLoadIndicator.isHidden = !comments.isEmpty
     }
+    
+    func fetchedAll(_ isFetched: Bool) {
+        self.fetchedAll = isFetched
+    }
+       
     
 }
 
@@ -176,16 +190,18 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-            let lastVisibleIndexPath = tableView.numberOfRows(inSection: 0)
-               print(lastVisibleIndexPath)
-           
-           ///aqui eu faço a requisição de mais posts, tenho que testar dps
-           if indexPath.row == lastVisibleIndexPath-1, !comments.isEmpty {
-//               presenter?.updateFeed(in: [.english], from: comments.last!.publicationDate)
-//            guard let num = comments.last?.upvote else{return}
-//            presenter?.updateFeed(from: post, startingBy: num)
-           }
-           
+        let lastVisibleIndexPath = tableView.numberOfRows(inSection: 0)
+        print(lastVisibleIndexPath)
+        
+        ///aqui eu faço a requisição de mais posts, tenho que testar dps
+        if indexPath.row == lastVisibleIndexPath-1, !comments.isEmpty {
+            if !fetchedAll{
+                guard let num = comments.last?.upvote else{return}
+                print("krai krai")
+                presenter?.updateFeed(from: post!, startingBy: num)
+            }
+        }
+        
        }
     
     

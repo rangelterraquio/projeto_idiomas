@@ -17,6 +17,7 @@ public protocol ViewPostInteratorToPresenter: class{
     func fetchCommentSuccessefull(comments: [Comment])-> Void
     func fetcheCommentFailed(error msg: String) -> Void
     func commentValidated(isValid: Bool)-> Void
+    func fetchedAll(_ isFetched:Bool)
 }
 
 public protocol ViewPostPresenterToView: class{
@@ -24,7 +25,8 @@ public protocol ViewPostPresenterToView: class{
     func commentCreated(comment: Comment) -> Void
     func commentValidated(isValid: Bool)-> Void
     func showAlertError(error msg: String) -> Void
-    func showComments(comments: [Comment])-> Void 
+    func showComments(comments: [Comment])-> Void
+    func fetchedAll(_ isFetched:Bool)-> Void
 }
 public protocol ViewPostPresenterToInterator: class{
    func requestImage(from url: String?, completion: @escaping (Result<UIImage, CustomError>) -> Void) -> UUID?

@@ -219,6 +219,7 @@ extension CreatePostViewController: UITextViewDelegate{
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
+            presenter.validatePost(title: postTitle.text ?? "", text: textView.text, language: languagePost)
             textView.resignFirstResponder()
             return false
         }
@@ -305,7 +306,7 @@ extension CreatePostViewController: UITableViewDelegate, UITableViewDataSource{
         selectedIndexPath = indexPath
         let cell = tableView.cellForRow(at: indexPath)
         cell?.backgroundColor = SectionColor.commonAreas.color
-        
+        presenter.validatePost(title: postTitle.text ?? "", text: textPost.text, language: languagePost)
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {

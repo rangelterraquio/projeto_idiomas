@@ -33,6 +33,41 @@ class SignInEmailPasswordViewController: UIViewController {
         presenter?.resetPassword(from: emailTextField.text)
     }
     
+    func showAlertToResetPassword(){
+        let alert = UIAlertController(title: "Reset Password", message: "Put your email for we send a reset email", preferredStyle: .alert)
+        
+        var textEmail: UITextField?
+        
+        let resetAction = UIAlertAction(title: "Send", style: .default) { (login) in
+            
+            if let email = textEmail?.text {
+                self.presenter?.resetPassword(from: email)
+            } else {
+                print("No password")
+            }
+        }
+
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
+            print("Cancel")
+        }
+        
+        alert.addTextField { (passwordTextField) in
+            textEmail = passwordTextField
+            textEmail?.isSecureTextEntry = true
+            textEmail?.placeholder = "Enter your email"
+        }
+        
+        
+        alert.addAction(resetAction)
+        alert.addAction(cancelAction)
+                           
+        self.present(alert, animated: true, completion: nil)
+        
+        
+    }
+    
+    
 }
 
 extension SignInEmailPasswordViewController: SignInEmailPasswordPresenterToView{
