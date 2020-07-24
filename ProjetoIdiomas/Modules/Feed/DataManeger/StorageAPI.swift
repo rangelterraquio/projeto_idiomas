@@ -100,10 +100,10 @@ public class StoregeAPI{
     }
     
     
-    func fetchActivities(completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
+    func fetchActivities(from date: Date,completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
         
         guard let user = StoregeAPI.currentUser else{return}
-        let documentRef = db.collection("Users").document(user.id).collection("Notifications")
+        let documentRef = db.collection("Users").document(user.id).collection("Notifications").order(by: "date", descending: true).start(at: [date]).limit(to: 20)
 
         documentRef.getDocuments { (snapshot, error) in
             if error != nil {

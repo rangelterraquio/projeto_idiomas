@@ -21,7 +21,7 @@ class LanguageCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
       super.setSelected(selected, animated: animated)
         if selected{
-            self.backgroundColor = SectionColor.commonAreas.color//UIColor(red: 122/255, green: 84/255, blue: 194/255, alpha: 0.07)
+            self.backgroundColor = .clear//UIColor(red: 122/255, green: 84/255, blue: 194/255, alpha: 0.07)
         }else{
             self.backgroundColor = .white
         }

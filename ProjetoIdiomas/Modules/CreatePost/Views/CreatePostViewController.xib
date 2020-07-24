@@ -33,7 +33,7 @@
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="es5-mt-EUu">
                     <rect key="frame" x="15" y="74" width="384" height="60"/>
-                    <color key="backgroundColor" red="0.47843137254901957" green="0.32941176470588235" blue="0.76078431372549016" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" red="0.58039215686274503" green="0.67450980392156867" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="displayP3"/>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="15"/>
@@ -56,7 +56,7 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oUh-R1-4ml" userLabel="BackgrounfLanguage">
                             <rect key="frame" x="15" y="0.0" width="384" height="73"/>
-                            <color key="backgroundColor" red="0.47843137254901957" green="0.32941176470588235" blue="0.76078431372549016" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" red="0.58039215686274503" green="0.67450980392156867" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="displayP3"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                     <integer key="value" value="15"/>
@@ -65,7 +65,7 @@
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZyZ-2o-5Th">
                             <rect key="frame" x="30" y="15" width="160" height="40"/>
-                            <color key="backgroundColor" red="0.58039215690000001" green="0.67450980390000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" red="0.53166824580000005" green="0.43410599230000002" blue="0.78826981780000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="160" id="Gqk-ho-byq"/>
                                 <constraint firstAttribute="height" constant="40" id="jEB-FF-dL3"/>
@@ -135,7 +135,7 @@
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCG-vQ-ufp" userLabel="backgroundPost">
                             <rect key="frame" x="15" y="15" width="384" height="645"/>
-                            <color key="backgroundColor" red="0.47843137254901957" green="0.32941176470588235" blue="0.76078431372549016" alpha="0.18137307363013699" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="backgroundColor" red="0.58039215686274503" green="0.67450980392156867" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="displayP3"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                     <integer key="value" value="15"/>

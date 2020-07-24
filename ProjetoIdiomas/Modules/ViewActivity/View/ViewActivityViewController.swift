@@ -18,10 +18,12 @@ class ViewActivityViewController: UIViewController {
     
     @IBOutlet weak var emptyNotificationsLabel: UILabel!
     
+    var fetchedAll = false
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = "Notifications"
-        presenter?.updateActivities()
+        presenter?.updateActivities(from: Date())
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,7 +46,7 @@ class ViewActivityViewController: UIViewController {
     }
     
     @objc func reloadFeed(){
-        presenter?.updateActivities()
+        presenter?.updateActivities(from: Date())
     }
     
     override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
@@ -103,6 +105,22 @@ extension ViewActivityViewController: UITableViewDelegate, UITableViewDataSource
     }
     
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+         let lastVisibleIndexPath = tableView.numberOfRows(inSection: 0)
+            print(lastVisibleIndexPath)
+        
+        ///aqui eu faço a requisição de mais posts, tenho que testar dps
+        if indexPath.row == lastVisibleIndexPath-1, !activities.isEmpty {
+            print("Entrou na func rangel")
+            if !fetchedAll{
+                presenter?.updateActivities(from: activities.last!.date)
+            }
+           
+        }
+        
+    }
+    
+    
     
 }
 
@@ -118,6 +136,10 @@ extension ViewActivityViewController: ViewActivitiesPresenterToView{
     func showAlertError(error msg: String) {
         self.emptyNotificationsLabel.isHidden = !activities.isEmpty
         self.activitiesTableView.refreshControl?.endRefreshing()
+    }
+    
+    func fetchedAll(_ isFetched: Bool){
+        self.fetchedAll = isFetched
     }
     
     

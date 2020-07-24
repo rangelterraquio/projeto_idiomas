@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 class ViewActivitiesPresenter: ViewActivitiesViewToPresenter{
-   
+    
      var interator: ViewActivitiesPresenterToInterator? = nil
     
     var view: ViewActivitiesPresenterToView? = nil
@@ -24,8 +24,8 @@ class ViewActivitiesPresenter: ViewActivitiesViewToPresenter{
         interator?.cancelImageRequest(uuid: token)
     }
     
-    func updateActivities() {
-        interator?.fectchActivities()
+    func updateActivities(from date: Date) {
+        interator?.fectchActivities(from: date)
     }
     
     func goToPost(activity: Notifaction) {
@@ -44,6 +44,10 @@ class ViewActivitiesPresenter: ViewActivitiesViewToPresenter{
 }
 
 extension ViewActivitiesPresenter: ViewActivitiesInteratorToPresenter{
+    func fetchedAll(_ isFetched: Bool) {
+        view?.fetchedAll(isFetched)
+    }
+    
     func activitiesFetched(activities: [Notifaction]) -> Void{
         view?.activitiesFetched(activities: activities)
     }

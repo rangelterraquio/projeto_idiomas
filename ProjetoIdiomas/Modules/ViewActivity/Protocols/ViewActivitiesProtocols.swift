@@ -14,19 +14,20 @@ public protocol ViewActivitiesInteratorToPresenter: class{
     
     func activitiesFetched(activities: [Notifaction]) -> Void
     func fetcheActivitiesFailed(error msg: String) -> Void
- 
+     func fetchedAll(_ isFetched: Bool)
 }
 
 public protocol ViewActivitiesPresenterToView: class{
     
     func activitiesFetched(activities: [Notifaction]) -> Void
     func showAlertError(error msg: String) -> Void
+    func fetchedAll(_ isFetched: Bool)
     
 }
 public protocol ViewActivitiesPresenterToInterator: class{
    func requestImage(from url: String?, completion: @escaping (Result<UIImage, CustomError>) -> Void) -> UUID?
    func cancelImageRequest(uuid token: UUID)
-   func fectchActivities() -> Void
+   func fectchActivities(from date: Date) -> Void
    func updateAcitivityStatus(activity: Notifaction)
 
 }
@@ -34,7 +35,7 @@ public protocol ViewActivitiesPresenterToInterator: class{
 public protocol ViewActivitiesViewToPresenter: class {
     func requestProfileImage(from url: String?, completion:  @escaping  (Result<UIImage, CustomError>) -> Void) -> UUID?
     func cancelImageRequest(uuid token: UUID)
-    func updateActivities()
+    func updateActivities(from date: Date)
     func goToPost(activity: Notifaction)
     func finishedViewNotication()
 

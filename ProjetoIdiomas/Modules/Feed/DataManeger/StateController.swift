@@ -43,8 +43,8 @@ public class StateController{
     }
     
     
-    func fetchActivites(completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
-        storage.fetchActivities(completion: completion)
+    func fetchActivites(from date: Date, completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
+        storage.fetchActivities(from: date, completion: completion)
     }
     
     func createPost(title: String, text: String, language: Languages,completion: @escaping (Result<Void, CustomError>) -> Void){

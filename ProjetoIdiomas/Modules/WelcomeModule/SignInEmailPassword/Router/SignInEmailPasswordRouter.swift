@@ -27,15 +27,15 @@ public class SignInEmailPasswordCoordinator: Coordinator{
         }
         
         func start() -> Void{
-//            let vc = SignInEmailPasswordViewController(nibName: "SignInEmailPasswordViewController", bundle: nil)
-//            let interator = SignInEmailPasswordInterator(signUpAPI: signUpAPI, storage: storage)
-//            let presenter = SignInEmailPasswordPresenter()
-//            presenter.interator = interator
-//            presenter.view = vc
-//            vc.presenter = presenter
-//            presenter.router = self
-//            interator.presenter = presenter
-           let vc = PageViewController()
+            let vc = SignInEmailPasswordViewController(nibName: "SignInEmailPasswordViewController", bundle: nil)
+            let interator = SignInEmailPasswordInterator(signUpAPI: signUpAPI, storage: storage)
+            let presenter = SignInEmailPasswordPresenter()
+            presenter.interator = interator
+            presenter.view = vc
+            vc.presenter = presenter
+            presenter.router = self
+            interator.presenter = presenter
+//           let vc = PageViewController()
             vc.modalPresentationStyle = .overCurrentContext
             if let oldVc = tabBarController.viewControllers?.first as? UINavigationController{
                 oldVc.definesPresentationContext = true

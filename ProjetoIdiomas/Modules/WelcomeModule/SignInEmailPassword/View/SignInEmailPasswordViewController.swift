@@ -14,7 +14,7 @@ class SignInEmailPasswordViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     
     var presenter: SignInEmailPasswordPresenter? = nil
-    
+    var loadScreen: LoadingScreen?
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationController?.navigationBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 109/255, alpha: 1.0)
@@ -26,6 +26,8 @@ class SignInEmailPasswordViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     @IBAction func logIn(_ sender: Any) {
+        loadScreen = LoadingScreen(frame: CGRect(origin: self.view.frame.origin, size: self.view.frame.size))
+        self.view.addSubview(loadScreen!)
         presenter?.validateUser(email: emailTextField.text, password: passwordTextField.text)
     }
     
@@ -78,6 +80,11 @@ extension SignInEmailPasswordViewController: SignInEmailPasswordPresenterToView{
     
     
     func showError(error msg: String) {
+        if let loadV = loadScreen{
+            if let _ = loadV.superview{
+                loadV.removeFromSuperview()
+            }
+        }
         self.showAlertError(error: msg, title: "Operation Failed")
     }
 }

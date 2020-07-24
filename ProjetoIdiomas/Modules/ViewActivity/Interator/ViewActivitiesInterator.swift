@@ -41,8 +41,8 @@ public class ViewActivitiesInterator:ViewActivitiesPresenterToInterator{
         stateController.imageLoader.cancelLoadRequest(uuid: token)
     }
     
-    public func fectchActivities() {
-        stateController.fetchActivites { (snapDocuments) in
+    public func fectchActivities(from date: Date) {
+        stateController.fetchActivites(from: date) { (snapDocuments) in
             
             var data: [Notifaction] = [Notifaction]()
                 
@@ -53,7 +53,13 @@ public class ViewActivitiesInterator:ViewActivitiesPresenterToInterator{
                     }
                 }
                 self.activiteis = data
+            
+            if self.activiteis.count < 20{
+                self.presenter?.fetchedAll(true)
+            }else{
+                self.presenter?.fetchedAll(false)
             }
+        }
     
     }
     

@@ -71,7 +71,7 @@ class FeedViewController: UIViewController {
         
         feedTableView.separatorColor = .clear
         feedTableView.separatorStyle = .none
-
+        feedTableView.allowsSelection = false
         newPostsButton.isHidden = true
 //        let refresh = UIRefreshControl()
 //        refresh.addTarget(self, action: #selector(self.retriveData), for: .valueChanged)
@@ -145,6 +145,8 @@ extension FeedViewController: FeedPresenterToView{
         }else{
             languages = languagesLearning
         }
+        
+        if languages == nil {return}
         posts.forEach { (post) in
             
             languages.forEach { (lang) in
@@ -167,9 +169,10 @@ extension FeedViewController: FeedPresenterToView{
             self.feedTableView.refreshControl?.endRefreshing()
             self.posts.append(contentsOf: posts)
             self.feedTableView.reloadData()
+            
         }
         
-        feedLoadingIndicator.isHidden = !posts.isEmpty
+       feedLoadingIndicator.isHidden = true
         errorLabel.isHidden = !posts.isEmpty
     }
     

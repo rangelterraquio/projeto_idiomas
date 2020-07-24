@@ -263,10 +263,12 @@ extension CreatePostViewController: UITextFieldDelegate{
     
     func textFieldDidEndEditing(_ textField: UITextField) {
 //        textField.resignFirstResponder()
+         presenter.validatePost(title: postTitle.text ?? "", text: textPost.text, language: languagePost)
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
+        presenter.validatePost(title: postTitle.text ?? "", text: textPost.text, language: languagePost)
         return true
     }
 }
