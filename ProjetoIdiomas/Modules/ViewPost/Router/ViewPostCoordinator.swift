@@ -172,26 +172,19 @@ class ViewPostCoordinator: Coordinator {
                                  UIImage(named: "blankProfile")!
                             }
                         }
-                        
-                        
-                        presenter.interator = interator
-                        presenter.view = vc
-                        interator.presenter = presenter
-                        presenter.router = self
-                        vc.presenter = presenter
-                        
-                       
-    //                    vc.modalPresentationStyle = .overCurrentContext
-    //                    if let oldVc = self.tabBarController.selectedViewController{
-    //                        oldVc.navigationController?.pushViewController(vc, animated: true)
-    //                    }
-                        
-                        if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
-                            oldVc.definesPresentationContext = true
-    
-                            oldVc.pushViewController(vc, animated: true)
-                        }
+              
+                    }
 
+                    presenter.interator = interator
+                    presenter.view = vc
+                    interator.presenter = presenter
+                    presenter.router = self
+                    vc.presenter = presenter
+                    
+                    if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
+                        oldVc.definesPresentationContext = true
+                        
+                        oldVc.pushViewController(vc, animated: true)
                     }
                 }
             }

@@ -42,7 +42,7 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     
     var fetchedAll = false
     override func viewWillAppear(_ animated: Bool) {
-         postTableView.estimatedRowHeight = 300
+        postTableView.estimatedRowHeight = 300
         postTableView.rowHeight = UITableView.automaticDimension
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = "Post"
@@ -74,6 +74,10 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
             postNotexistLabel.isHidden = true
         }else{
             postNotexistLabel.isHidden = false
+            commentTextField.isHidden = true
+            commentButton.isHidden = true
+            commentsLoadIndicator.isHidden = true
+            
         }
     
     }

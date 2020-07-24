@@ -97,7 +97,7 @@ extension Post : DocumentSerializable{
     
     
     public init?(dictionary document: DocumentSnapshot) {
-        let snap = document.data()!
+        guard let snap = document.data() else {return nil}
             guard let title = snap["title"] as? String,
                 let message = snap["message"] as? String,
                 let publicationDate = snap["publicationDate"] as? Timestamp,
