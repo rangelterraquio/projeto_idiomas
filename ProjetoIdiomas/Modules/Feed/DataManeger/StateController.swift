@@ -108,6 +108,10 @@ public class StateController{
                             activitiesVC.tabBarItem.badgeColor = .red
                             activitiesVC.tabBarItem.badgeValue = "\(num)"
                             num+=1
+                        }else{
+                            if let num = Int(activitiesVC.tabBarItem.badgeValue ?? "0"), num == 0{
+                                activitiesVC.tabBarItem.badgeValue = nil
+                            }
                         }
                     }
                 })

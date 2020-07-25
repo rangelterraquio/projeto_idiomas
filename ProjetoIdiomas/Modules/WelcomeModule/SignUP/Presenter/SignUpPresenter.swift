@@ -34,6 +34,10 @@ class SignUpPresenter: SignUpViewToPresenter {
 
 
 extension SignUpPresenter: SignUpInteratorToPresenter{
+    func updateViewWithLoading() {
+        view?.updateViewWithLoading()
+    }
+    
     func userAlreadyExist() {
         router?.userAlreadyUser()
     }

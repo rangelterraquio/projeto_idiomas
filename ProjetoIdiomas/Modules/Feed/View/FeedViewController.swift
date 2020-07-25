@@ -167,6 +167,12 @@ extension FeedViewController: FeedPresenterToView{
             self.feedLoadingIndicator.stopAnimating()
             self.feedLoadingIndicator.isHidden = true
             self.feedTableView.refreshControl?.endRefreshing()
+            
+            
+            
+            
+            
+            
             self.posts.append(contentsOf: posts)
             self.feedTableView.reloadData()
             

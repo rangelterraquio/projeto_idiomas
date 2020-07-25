@@ -60,7 +60,7 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
         postTableView.register(commentCell, forCellReuseIdentifier: "CommentCell")
         postTableView.delegate = self
         postTableView.dataSource = self
-        
+        postTableView.allowsSelection = false
         
         commentTextField.delegate = self
         
@@ -238,6 +238,7 @@ extension ViewPostViewController: UITextFieldDelegate{
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         presenter?.validadeComment(text: textField.text)
+        self.labelNoComments.isHidden = true
     }
     
     
@@ -266,7 +267,7 @@ extension ViewPostViewController: UITextFieldDelegate{
                 self.sendButtonYAnchor.constant = 0.0
             } else {
                 self.keyboardHeightLayoutConstraint.constant = endFrame?.size.height ?? 0.0
-                self.sendButtonYAnchor.constant = (endFrame?.size.height ?? 0.0)  * 0.8
+                self.sendButtonYAnchor.constant = (endFrame?.size.height ?? 0.0)  * 0.9
             }
             UIView.animate(withDuration: duration,
                                        delay: TimeInterval(0),

@@ -34,6 +34,8 @@ public class SignUpAPI: NSObject{
     var signWithGoogleSuccessful: (FirebaseAuth.User) -> () = {_ in}
     var signWithGoogleFailed: (String) -> () = {_ in}
     
+    var interatorDelegade: SignUpAPIDelegate? = nil
+    
     public override init() {
         super.init()
         setupGoogleSignIn()
@@ -155,6 +157,7 @@ extension SignUpAPI:  ASAuthorizationControllerDelegate{
     
     func appleSignInCalled(from view: UIViewController){
         let provider = ASAuthorizationAppleIDProvider()
+        
         let request = provider.createRequest()
        
         request.requestedScopes = [.fullName, .email]
@@ -211,6 +214,8 @@ extension SignUpAPI:  ASAuthorizationControllerDelegate{
         
     public func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
             
+        interatorDelegade?.didAuthoriztion()
+        
             if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
                 // use the user credential / data to do stuff here ...
                 UserDefaults.standard.set(appleIDCredential.user, forKey: "appleAuthorizedUserIdKey")
@@ -332,6 +337,8 @@ extension SignUpAPI: GIDSignInDelegate {
             return
         }
         
+        
+        self.interatorDelegade?.didAuthoriztion()
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)

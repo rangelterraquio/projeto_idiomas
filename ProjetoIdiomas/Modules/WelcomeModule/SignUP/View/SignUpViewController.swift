@@ -43,6 +43,9 @@ class SignUpViewController: UIViewController {
         
         self.tabBarController?.tabBar.isHidden = true
         
+        emailTextField.delegate = self
+        nameTextField.delegate = self
+        passwordTextField.delegate = self
         setupSIWAButton()
         setupGoogleSignIn()
 //        setupButtons()
@@ -72,6 +75,11 @@ class SignUpViewController: UIViewController {
 
 
 extension SignUpViewController: SignUpPresenterToView{
+    func updateViewWithLoading() {
+        loadScreen = LoadingScreen(frame: CGRect(origin: self.view.frame.origin, size: self.view.frame.size))
+        self.view.addSubview(loadScreen)
+    }
+    
     
     
     func showAlertError(error msg: String) {
@@ -93,6 +101,12 @@ extension SignUpViewController: SignUpPresenterToView{
     
     
     
+}
+extension SignUpViewController: UITextFieldDelegate{
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }
 
 
@@ -143,8 +157,7 @@ extension SignUpViewController: ASAuthorizationControllerPresentationContextProv
     //quando o usuario deslogou vai ser chamada essa funça quando ele entrar
     @objc func appleIDStateDidRevoked(){
         // Make sure user signed in with Apple
-//        if
-//            let providerId = currentUser?.providerData.first?.providerID,
+//        if let providerId = currentUser?.providerData.first?.providerID,
 //            providerId == "apple.com" {
 //            signOut()
 //        }

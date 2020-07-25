@@ -41,6 +41,8 @@ class UserPostsViewController: UITableViewController {
         self.tableView.register(cellXib, forCellReuseIdentifier: "feedCell")
         self.fetchPosts(from: Date())
         self.tableView.separatorStyle = .none
+        self.tableView.allowsSelection = false
+
     }
 
     // MARK: - Table view data source

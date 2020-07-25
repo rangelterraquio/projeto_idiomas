@@ -9,7 +9,13 @@
 import Foundation
 import FirebaseAuth
 
-public class SignUpInterator{
+
+protocol SignUpAPIDelegate {
+    func didAuthoriztion() -> Void
+}
+public class SignUpInterator: SignUpAPIDelegate{
+    
+    
 
     enum State {
         case valid
@@ -23,9 +29,11 @@ public class SignUpInterator{
     init(textInterator: TextFieldInterator, signUpAPI: SignUpAPI!) {
         self.textInterator = textInterator
         self.signUpAPI = signUpAPI
+        self.signUpAPI.interatorDelegade = self
+        
         signUpAPI.signWithAppleSuccessful = {[weak self] user in
             print("Login com sucesso , devo peform segue aqui")
-            
+//            self?.presenter?.updateViewWithLoading()
             self?.storageAPI.fetchUser(completion: { (userOptional, error) in
                 if error != nil{
                     self?.presenter?.userAuthenticated(user: self!.createUserFromFireBaseUser(from: user, name: nil))
@@ -43,7 +51,7 @@ public class SignUpInterator{
         
         signUpAPI.signWithGoogleSuccessful = { [weak self] user in
             print("Login com sucesso , devo peform segue aqui")
-            
+//            self?.presenter?.updateViewWithLoading()
             self?.storageAPI.fetchUser(completion: { (userOptional, error) in
                 if error != nil{
                     self?.presenter?.userAuthenticated(user: self!.createUserFromFireBaseUser(from: user, name: nil))
@@ -79,6 +87,10 @@ public class SignUpInterator{
             }
         }
         
+    }
+    
+    func didAuthoriztion() {
+        self.presenter?.updateViewWithLoading()
     }
    
     func validateTextFields(type: InputValidationType, text: String?){

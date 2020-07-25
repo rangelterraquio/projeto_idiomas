@@ -16,6 +16,7 @@ public protocol SignUpInteratorToPresenter: class{
     func userAuthenticationFailed(error msg: String) -> Void
     func validateTextFieldFailed(error msg: String) -> Void
     func validateTextsuccessful() -> Void
+    func updateViewWithLoading() -> Void
 
     
 }
@@ -23,6 +24,7 @@ public protocol SignUpInteratorToPresenter: class{
 public protocol SignUpPresenterToView: class{
     func updateView(text: String) -> Void
     func showAlertError(error msg:String) -> Void
+    func updateViewWithLoading()
 }
 public protocol SignUpPresenterToInterator: class{
     
