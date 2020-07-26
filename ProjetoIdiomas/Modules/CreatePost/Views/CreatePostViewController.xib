@@ -15,8 +15,9 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreatePostViewController" customModule="ProjetoIdiomas" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CreatePostViewController" customModule="Project_Languages" customModuleProvider="target">
             <connections>
+                <outlet property="bottoTextPost" destination="HVd-M2-jbW" id="lAK-Jg-n6O"/>
                 <outlet property="languageSelectedImage" destination="yJ1-7H-Vvm" id="hWV-06-akE"/>
                 <outlet property="languagesTableView" destination="Jn8-rz-5fq" id="qcG-aR-XVL"/>
                 <outlet property="postTitle" destination="LJV-GE-1xN" id="LMD-Ef-qVu"/>
@@ -134,7 +135,7 @@
                     <rect key="frame" x="0.0" y="221" width="414" height="675"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCG-vQ-ufp" userLabel="backgroundPost">
-                            <rect key="frame" x="15" y="15" width="384" height="645"/>
+                            <rect key="frame" x="15" y="15" width="384" height="555"/>
                             <color key="backgroundColor" red="0.58039215686274503" green="0.67450980392156867" blue="1" alpha="0.25" colorSpace="custom" customColorSpace="displayP3"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -143,7 +144,7 @@
                             </userDefinedRuntimeAttributes>
                         </view>
                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="What are you thinking?" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="QKV-NO-AeA">
-                            <rect key="frame" x="35" y="35" width="344" height="610"/>
+                            <rect key="frame" x="35" y="35" width="344" height="510"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="textColor" white="0.0" alpha="0.5839308647260274" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="20"/>
@@ -162,8 +163,8 @@
                         <constraint firstItem="tCG-vQ-ufp" firstAttribute="top" secondItem="4Xh-qq-qUl" secondAttribute="top" constant="15" id="9Gr-uz-ihm"/>
                         <constraint firstAttribute="trailing" secondItem="tCG-vQ-ufp" secondAttribute="trailing" constant="15" id="BE3-G5-TP7"/>
                         <constraint firstAttribute="trailing" secondItem="QKV-NO-AeA" secondAttribute="trailing" constant="35" id="BT3-9L-fia"/>
-                        <constraint firstAttribute="bottom" secondItem="QKV-NO-AeA" secondAttribute="bottom" constant="30" id="HVd-M2-jbW"/>
-                        <constraint firstAttribute="bottom" secondItem="tCG-vQ-ufp" secondAttribute="bottom" constant="15" id="Vgj-hM-fXc"/>
+                        <constraint firstAttribute="bottom" secondItem="QKV-NO-AeA" secondAttribute="bottom" constant="130" id="HVd-M2-jbW"/>
+                        <constraint firstAttribute="bottom" secondItem="tCG-vQ-ufp" secondAttribute="bottom" constant="105" id="Vgj-hM-fXc"/>
                         <constraint firstItem="QKV-NO-AeA" firstAttribute="leading" secondItem="4Xh-qq-qUl" secondAttribute="leading" constant="35" id="ayS-Sg-XWc"/>
                     </constraints>
                 </view>

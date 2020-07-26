@@ -21,6 +21,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var errorLabel: UILabel!
     
+//    @IBOutlet weak var signInButton: GIDSignInButton!
     ///sign with apple button
     let siwaButton = ASAuthorizationAppleIDButton()
     var currentNonce: String?

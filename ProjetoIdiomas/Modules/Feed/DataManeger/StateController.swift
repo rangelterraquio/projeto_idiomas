@@ -131,7 +131,10 @@ public class StateController{
                     snap?.documentChanges.forEach { diff in
                         if (diff.type == .added) {
                             if let p = Post(dictionary: diff.document){
-                                posts.append(p)
+                                if p.author.id != StoregeAPI.currentUser?.id{
+                                    posts.append(p)
+                                }
+                                
                             }
                             
                         }

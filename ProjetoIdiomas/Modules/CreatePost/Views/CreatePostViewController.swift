@@ -33,6 +33,7 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
     @IBOutlet weak var selectLanguageButton: UIButton!
     @IBOutlet weak var languageSelectedImage: UIImageView!
     
+    @IBOutlet weak var bottoTextPost: NSLayoutConstraint!
     lazy var loadingIndicator: UIActivityIndicatorView? = UIActivityIndicatorView(style: .large)
     lazy var blurEffectView: UIVisualEffectView? = UIVisualEffectView()
     var presenter: CreatePostViewToPresenter!
@@ -57,6 +58,12 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = "Create Post"
         self.navigationController?.navigationBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
+        
+//UIResponder.keyboardWillShowNotification
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: NSNotification.Name(rawValue: UIResponder.keyboardFrameEndUserInfoKey), object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: NSNotification.Name(rawValue: UIResponder.keyboardWillShowNotification.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: NSNotification.Name(rawValue: UIResponder.keyboardWillShowNotification.rawValue), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillHide), name: NSNotification.Name(rawValue: UIResponder.keyboardWillHideNotification.rawValue), object: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,6 +80,7 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
         self.navigationItem.setLeftBarButton(cancelButton, animated: true)
         
         
+//        self.textPost.layoutManager.allowsNonContiguousLayout = false
         
         let cellLanguage = UINib(nibName: "LanguageCell", bundle: nil)
         languagesTableView.register(cellLanguage, forCellReuseIdentifier: "LanguageCell")
@@ -153,6 +161,7 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
     func updateDoneStatus(isValid: Bool) {
         nextButton.style = .done
         nextButton.isEnabled = isValid
+        nextButton.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
     }
     
     func showAlertError(error msg: String) {
@@ -187,12 +196,55 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
         blurEffectView?.removeFromSuperview()
         loadingIndicator?.removeFromSuperview()
     }
+    
+
+//    @objc func keyboardWillAppear(_ notification: NSNotification) {
+//
+//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+//               if self.view.frame.origin.y == 0{
+//                   self.view.frame.origin.y -= keyboardSize.height
+//               }
+//           }
+//       }
+//
+//    @objc func keyboardWillDisappear(_ notification: NSNotification) {
+//
+//        if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+//               if self.view.frame.origin.y != 0{
+//                   self.view.frame.origin.y += keyboardSize.height
+//               }
+//           }
+//       }
+    @objc func keyboardWillShow(notification:NSNotification) {
+        adjustView(show: true, notification: notification)
+    }
+
+    @objc func keyboardWillHide(notification:NSNotification) {
+        adjustView(show: false, notification: notification)
+    }
+
+    func adjustView(show:Bool, notification:NSNotification) {
+        let userInfo = notification.userInfo!
+        let keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
+        let animationDurarion = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
+        let changeInHeight = show ? (keyboardFrame.size.height/*or any value as per need*/) + 120 : 130
+        self.bottoTextPost.constant = changeInHeight
+        UIView.animate(withDuration: animationDurarion, animations: { () -> Void in
+            self.view.layoutIfNeeded()
+        })
+
+    }
+    
+    
 }
 
 //MARK: -> TextView
 extension CreatePostViewController: UITextViewDelegate{
     public func textViewDidChange(_ textView: UITextView) {
         presenter.validatePost(title: postTitle.text ?? "", text: textView.text, language: languagePost)
+//        textView.scrollRangeToVisible(NSMakeRange(0, 0))
+       let bottom = NSMakeRange(textView.text.count - 1, 1)
+        textView.scrollRangeToVisible(bottom)
         
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
