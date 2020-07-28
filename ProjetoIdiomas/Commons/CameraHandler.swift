@@ -84,7 +84,7 @@ class CamereHandler: NSObject{
        
     }
     func saveVideoToGallery(video: URL?){
-        if let videoURL = (video as? URL) {
+        if let videoURL = (video) {
             
             UISaveVideoAtPathToSavedPhotosAlbum(videoURL.relativePath, nil, nil, nil)
             

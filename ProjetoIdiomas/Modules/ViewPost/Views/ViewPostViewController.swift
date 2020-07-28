@@ -53,6 +53,8 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
         self.navigationItem.title = "Post"
         self.navigationController?.navigationBar.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
         postTableView.separatorStyle = .none
+        
+        self.hideKeyboardWhenTappedAround()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -371,5 +373,20 @@ extension ViewPostViewController: UITextViewDelegate{
         }
         previousRect = currentRect
         return true
+    }
+}
+
+
+//MARK: -> Dismiss Keyboard
+
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        view.addGestureRecognizer(tap)
+
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

@@ -30,7 +30,7 @@ public class StoregeAPI{
     static var currentUser: User?
     func fechPosts(in languages: [Languages], from date: Date,completion: @escaping ([QueryDocumentSnapshot]?) -> ()){
         
-        let num  = 50/languages.count
+        let num  = 50
         
         let documentRef = db.collection("Posts")
         
@@ -40,7 +40,7 @@ public class StoregeAPI{
            
         }
         
-        documentRef.order(by: "publicationDate", descending: true).start(at: [date]).limit(to: 50).getDocuments { (querySnapshot, error) in
+        documentRef.order(by: "publicationDate", descending: true).start(at: [date]).limit(to: num).getDocuments { (querySnapshot, error) in
             
             if error != nil {
                 print("Tratar error")
@@ -437,7 +437,7 @@ extension StoregeAPI{
                    
                            if let snap = snapshot{
                                for doc in snap.documents{
-                                   batch.updateData(["photoURL" : url], forDocument: doc.reference)
+                                   batch.updateData(["author.photoURL" : url], forDocument: doc.reference)
                                }
                                completion(true)
                            }

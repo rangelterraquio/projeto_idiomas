@@ -100,6 +100,7 @@
 		70AF712824C346180080A3C2 /* TeachingOnBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AF712624C346180080A3C2 /* TeachingOnBoardViewController.xib */; };
 		70AF712A24C355200080A3C2 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AF712924C355200080A3C2 /* PageViewController.swift */; };
 		70AF88DD24C4CFEC002CB888 /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AF88DC24C4CFEC002CB888 /* UnderLineTextField.swift */; };
+		70AFD98824D06259003AA376 /* Oxygen in Resources */ = {isa = PBXBuildFile; fileRef = 70AFD98724D06259003AA376 /* Oxygen */; };
 		70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */; };
 		70B6391E246792B300966A56 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391C246792B300966A56 /* LanguageCell.swift */; };
 		70B6391F246792B300966A56 /* LanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B6391D246792B300966A56 /* LanguageCell.xib */; };
@@ -227,6 +228,7 @@
 		70AF712624C346180080A3C2 /* TeachingOnBoardViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TeachingOnBoardViewController.xib; sourceTree = "<group>"; };
 		70AF712924C355200080A3C2 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		70AF88DC24C4CFEC002CB888 /* UnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
+		70AFD98724D06259003AA376 /* Oxygen */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Oxygen; sourceTree = "<group>"; };
 		70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesProtocols.swift; sourceTree = "<group>"; };
 		70B6391C246792B300966A56 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		70B6391D246792B300966A56 /* LanguageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageCell.xib; sourceTree = "<group>"; };
@@ -592,6 +594,7 @@
 		708E000324C1E3C600F28A75 /* Fontes */ = {
 			isa = PBXGroup;
 			children = (
+				70AFD98724D06259003AA376 /* Oxygen */,
 				708E000B24C1E3EE00F28A75 /* SFCompactDisplay-Black.otf */,
 				708E000724C1E3EE00F28A75 /* SFCompactDisplay-Bold.otf */,
 				708E000524C1E3EE00F28A75 /* SFCompactDisplay-Heavy.otf */,
@@ -1009,6 +1012,7 @@
 				708A29E4248A967D009E93B3 /* UserCell.xib in Resources */,
 				708E001224C1E3EF00F28A75 /* SFCompactDisplay-Regular.otf in Resources */,
 				70FB8B3D24698A900031DBFF /* PostCell.xib in Resources */,
+				70AFD98824D06259003AA376 /* Oxygen in Resources */,
 				708E000E24C1E3EF00F28A75 /* SFCompactDisplay-Heavy.otf in Resources */,
 				708E001124C1E3EF00F28A75 /* SFCompactDisplay-Medium.otf in Resources */,
 				704F87552447CDD500C1C4D4 /* FeedCell.xib in Resources */,

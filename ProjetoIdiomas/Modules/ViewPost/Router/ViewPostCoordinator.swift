@@ -124,7 +124,7 @@ class ViewPostCoordinator: Coordinator {
                             let image = try result.get()
                             vc.imageAuthor = image
                         }catch{
-                             UIImage(named: "blankProfile")!
+                            vc.imageAuthor = UIImage(named: "blankProfile")!
                         }
                     }
                     
@@ -169,7 +169,7 @@ class ViewPostCoordinator: Coordinator {
                                 let image = try result.get()
                                 vc.imageAuthor = image
                             }catch{
-                                 UIImage(named: "blankProfile")!
+                                  vc.imageAuthor = UIImage(named: "blankProfile")!
                             }
                         }
               

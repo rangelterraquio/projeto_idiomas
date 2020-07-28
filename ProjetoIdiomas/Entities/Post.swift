@@ -145,3 +145,8 @@ extension Post : DocumentSerializable{
      }
  }
  */
+extension Post: Equatable{
+    public static func == (lhs: Post, rhs: Post) -> Bool {
+        lhs.id.elementsEqual(rhs.id)
+    }
+}

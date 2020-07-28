@@ -16,6 +16,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUPButton: UIButton!
     @IBOutlet weak var logInButton: UIButton!
     
+    @IBOutlet weak var signGoogle: UIButton!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
@@ -68,6 +69,11 @@ class SignUpViewController: UIViewController {
     }
     
 
+    @IBAction func signInGoogle(_ sender: Any) {
+        GIDSignIn.sharedInstance()?.presentingViewController = self
+//        GIDSignIn.sharedInstance()?.delegate = self
+        GIDSignIn.sharedInstance()?.signIn()
+    }
     @IBAction func singInWithEmail(_ sender: Any) {
         presenter?.signInWithEmail()
     }
@@ -170,7 +176,7 @@ extension SignUpViewController: ASAuthorizationControllerPresentationContextProv
         if let userID = UserDefaults.standard.string(forKey: "appleAuthorizedUserIdKey") {
             
             // Check Apple ID credential state
-            ASAuthorizationAppleIDProvider().getCredentialState(forUserID: userID, completion: { [unowned self]
+            ASAuthorizationAppleIDProvider().getCredentialState(forUserID: userID, completion: {
                 credentialState, error in
                 
                 switch(credentialState) {
@@ -207,19 +213,22 @@ extension SignUpViewController{
         GIDSignIn.sharedInstance()?.presentingViewController = self
 
         /// set this so the button will use auto layout constraint
-        signInGoogleButton.translatesAutoresizingMaskIntoConstraints = false
-        
+//        signInGoogleButton.translatesAutoresizingMaskIntoConstraints = false
+        signGoogle.translatesAutoresizingMaskIntoConstraints = false
+        signGoogle.layer.cornerRadius = 20
         /// add the button to the view controller root view
-        self.view.addSubview(signInGoogleButton)
+//        self.view.addSubview(signInGoogleButton)
 
         /// set constraint
         NSLayoutConstraint.activate([
-            signInGoogleButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.view.centerXAnchor, multiplier: 1),
-            signInGoogleButton.centerYAnchor.constraint(equalTo: siwaButton.bottomAnchor, constant: 30),
+            signGoogle.centerXAnchor.constraint(equalToSystemSpacingAfter: self.view.centerXAnchor, multiplier: 1),
+            signGoogle.centerYAnchor.constraint(equalTo: siwaButton.bottomAnchor, constant: 30),
             
-            signInGoogleButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.724638),// 0.0390625
-            signInGoogleButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.045)
+            signGoogle.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.724638),// 0.0390625
+            signGoogle.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.045)
         ])
+        
+        
     }
     
    

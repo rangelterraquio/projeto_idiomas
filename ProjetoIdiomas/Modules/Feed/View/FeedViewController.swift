@@ -101,6 +101,8 @@ class FeedViewController: UIViewController {
         }
         
         presenter?.updateFeed(in: languagesLearning, from: Date())
+        
+        newPostsButton.isHidden = true
     }
     
     @objc func goToProfile(){
@@ -124,6 +126,14 @@ class FeedViewController: UIViewController {
         newPosts.append(contentsOf: posts)
         posts = newPosts
             
+       var tempVet = [Post]()
+        for i in 0..<posts.count {
+            if !tempVet.contains(posts[i]){
+                tempVet.append(posts[i])
+            }
+        }
+        posts = tempVet
+        
         newPosts.removeAll()
         let indexPath = NSIndexPath(row: 0, section: 0)
         feedTableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: true)
@@ -151,9 +161,9 @@ extension FeedViewController: FeedPresenterToView{
             
             languages.forEach { (lang) in
                 if lang.rawValue == post.language{
-                    newPosts.append(post)
+                        newPosts.append(post)
+                    }
                 }
-            }
         }
         
         if !newPosts.isEmpty{
