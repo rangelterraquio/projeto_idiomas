@@ -12,16 +12,16 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewPostViewController" customModule="ProjetoIdiomas" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewPostViewController" customModule="Project_Languages" customModuleProvider="target">
             <connections>
+                <outlet property="bottomButtonContraint" destination="Nc4-Ak-Cwe" id="rFl-d1-6rf"/>
                 <outlet property="commentButton" destination="y1a-4T-tZ9" id="SVo-6p-yO6"/>
-                <outlet property="commentTextField" destination="dIc-2B-5uP" id="TI2-Aw-CGd"/>
+                <outlet property="commentTextView" destination="AgE-cK-hni" id="CA9-6a-4vC"/>
                 <outlet property="commentsLoadIndicator" destination="sna-GL-kJQ" id="bMa-gb-zOl"/>
-                <outlet property="keyboardHeightLayoutConstraint" destination="yUm-DT-kL8" id="9vc-tu-FPW"/>
-                <outlet property="labelNoComments" destination="Q06-ha-pZC" id="HFU-YG-Ieo"/>
                 <outlet property="postNotexistLabel" destination="Pvy-KQ-zTS" id="jDX-yV-gfZ"/>
                 <outlet property="postTableView" destination="Mfq-5A-Oqc" id="5f3-Bj-FLp"/>
-                <outlet property="sendButtonYAnchor" destination="yUm-DT-kL8" id="niZ-5r-SiP"/>
+                <outlet property="textViewCommentBottom" destination="yU6-wX-nut" id="vtc-C7-pSx"/>
+                <outlet property="textViewHeightComment" destination="1Sd-6r-mpk" id="yTt-aT-mfW"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -34,25 +34,8 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="764"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                 </tableView>
-                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Comment" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dIc-2B-5uP" userLabel="commentTextField">
-                    <rect key="frame" x="20" y="818" width="342" height="34"/>
-                    <color key="tintColor" red="0.094928743070000002" green="0.12389321690000001" blue="0.28689186459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
-                    <textInputTraits key="textInputTraits" enablesReturnKeyAutomatically="YES"/>
-                </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1a-4T-tZ9">
-                    <rect key="frame" x="370" y="818" width="36" height="34"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="36" id="dUP-bB-cP3"/>
-                        <constraint firstAttribute="height" constant="34" id="dxm-jj-PV9"/>
-                    </constraints>
-                    <state key="normal" image="send"/>
-                    <connections>
-                        <action selector="sendComment:" destination="-1" eventType="touchUpInside" id="6QA-2C-iak"/>
-                    </connections>
-                </button>
                 <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This post does not exist anymore." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pvy-KQ-zTS">
-                    <rect key="frame" x="48" y="405" width="318" height="26.5"/>
+                    <rect key="frame" x="48" y="404.5" width="318" height="27"/>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="22"/>
                     <color key="textColor" red="0.094928743070000002" green="0.12389321690000001" blue="0.28689186459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
@@ -60,30 +43,42 @@
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="large" translatesAutoresizingMaskIntoConstraints="NO" id="sna-GL-kJQ">
                     <rect key="frame" x="188.5" y="522" width="37" height="37"/>
                 </activityIndicatorView>
-                <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="There is not comments on this posts yet. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q06-ha-pZC">
-                    <rect key="frame" x="74.5" y="530" width="265.5" height="18"/>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="15"/>
-                    <color key="textColor" red="0.094928743070000002" green="0.12389321690000001" blue="0.28689186459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Comment" translatesAutoresizingMaskIntoConstraints="NO" id="AgE-cK-hni">
+                    <rect key="frame" x="20" y="816" width="342" height="36"/>
+                    <color key="backgroundColor" red="0.97984281030158871" green="0.97060870211909867" blue="0.99646559221490383" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="36" id="1Sd-6r-mpk"/>
+                    </constraints>
+                    <color key="textColor" white="0.0" alpha="0.5" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="17"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="y1a-4T-tZ9">
+                    <rect key="frame" x="370" y="817" width="36" height="34"/>
+                    <state key="normal" image="send"/>
+                    <connections>
+                        <action selector="sendComment:" destination="-1" eventType="touchUpInside" id="6QA-2C-iak"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="Q06-ha-pZC" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="48U-hI-vBq"/>
+                <constraint firstAttribute="bottom" secondItem="sna-GL-kJQ" secondAttribute="bottom" constant="337" id="4Yv-j8-cSB"/>
                 <constraint firstItem="Pvy-KQ-zTS" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" constant="-30" id="9mG-Yn-1Gk"/>
                 <constraint firstItem="Mfq-5A-Oqc" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="Gsr-eb-fP4"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="y1a-4T-tZ9" secondAttribute="trailing" constant="8" id="IRA-91-l1I"/>
-                <constraint firstItem="y1a-4T-tZ9" firstAttribute="top" secondItem="Mfq-5A-Oqc" secondAttribute="bottom" constant="10" id="YGP-Zp-JC7"/>
-                <constraint firstItem="dIc-2B-5uP" firstAttribute="top" secondItem="Mfq-5A-Oqc" secondAttribute="bottom" constant="10" id="bdH-Mo-NvF"/>
-                <constraint firstItem="dIc-2B-5uP" firstAttribute="width" secondItem="Mfq-5A-Oqc" secondAttribute="width" multiplier="0.826087" id="gTk-7e-7qq"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="y1a-4T-tZ9" secondAttribute="bottom" constant="11" id="Nc4-Ak-Cwe"/>
+                <constraint firstItem="y1a-4T-tZ9" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0379464" id="UKC-Ne-GaX"/>
+                <constraint firstItem="AgE-cK-hni" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="WJ9-MF-isf"/>
+                <constraint firstItem="sna-GL-kJQ" firstAttribute="top" secondItem="Pvy-KQ-zTS" secondAttribute="bottom" constant="90.5" id="cc5-Qe-T9d"/>
+                <constraint firstItem="y1a-4T-tZ9" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.0869565" id="d8A-e5-dRB"/>
                 <constraint firstItem="sna-GL-kJQ" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="ktK-m5-v6I"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="y1a-4T-tZ9" secondAttribute="trailing" constant="8" id="oAI-zx-EKx"/>
                 <constraint firstItem="Mfq-5A-Oqc" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="r6w-gg-AJt"/>
                 <constraint firstItem="Pvy-KQ-zTS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="r8q-E0-ijE"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="Mfq-5A-Oqc" secondAttribute="bottom" constant="54" id="rmC-J7-voQ"/>
                 <constraint firstItem="Mfq-5A-Oqc" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="swg-a4-OPU"/>
-                <constraint firstItem="dIc-2B-5uP" firstAttribute="top" secondItem="sna-GL-kJQ" secondAttribute="bottom" constant="259" id="t9i-ei-yZ8"/>
-                <constraint firstItem="dIc-2B-5uP" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="vr2-er-VmO"/>
-                <constraint firstItem="dIc-2B-5uP" firstAttribute="top" secondItem="Q06-ha-pZC" secondAttribute="bottom" constant="270" id="waA-lA-4cs"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dIc-2B-5uP" secondAttribute="bottom" constant="10" id="yUm-DT-kL8"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="AgE-cK-hni" secondAttribute="trailing" constant="52" id="tEa-st-ua6"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AgE-cK-hni" secondAttribute="bottom" constant="10" id="yU6-wX-nut"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="137.68115942028987" y="89.732142857142847"/>

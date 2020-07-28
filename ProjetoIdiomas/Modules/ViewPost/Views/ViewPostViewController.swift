@@ -9,13 +9,17 @@
 import UIKit
 
 class ViewPostViewController: UIViewController, ViewPostPresenterToView {
-    
-    @IBOutlet weak var labelNoComments: UILabel!
+  
     @IBOutlet weak var postNotexistLabel: UILabel!
-    @IBOutlet weak var sendButtonYAnchor: NSLayoutConstraint!
     
+    @IBOutlet weak var textViewCommentBottom: NSLayoutConstraint!
     @IBOutlet weak var postTableView: UITableView!
-    @IBOutlet weak var commentTextField: UITextField!
+    
+    @IBOutlet weak var bottomButtonContraint: NSLayoutConstraint!
+    @IBOutlet weak var commentTextView: UITextView!
+    @IBOutlet weak var textViewHeightComment: NSLayoutConstraint!
+    
+    var previousRect = CGRect(x: 0, y: 7, width: 0, height: 0)
     
     var post: Post?{
         didSet{
@@ -39,6 +43,7 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     @IBOutlet weak var commentButton: UIButton!
     @IBOutlet weak var keyboardHeightLayoutConstraint: NSLayoutConstraint!
     
+  
     
     var fetchedAll = false
     override func viewWillAppear(_ animated: Bool) {
@@ -62,8 +67,12 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
         postTableView.dataSource = self
         postTableView.allowsSelection = false
         
-        commentTextField.delegate = self
-        
+//        commentTextField.delegate = self
+        commentTextView.delegate = self
+        commentTextView.layer.cornerRadius = 10
+        commentTextView.layer.borderWidth = 1.0
+        commentTextView.layer.borderColor = CGColor(srgbRed: 29/255, green: 37/255, blue: 110/255, alpha: 1.0)
+            
         NotificationCenter.default.addObserver(self,
         selector: #selector(self.keyboardNotification(notification:)),
         name: UIResponder.keyboardWillChangeFrameNotification,
@@ -74,10 +83,9 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
             postNotexistLabel.isHidden = true
         }else{
             postNotexistLabel.isHidden = false
-            commentTextField.isHidden = true
             commentButton.isHidden = true
             commentsLoadIndicator.isHidden = true
-            
+            commentTextView.isHidden = true
         }
     
     }
@@ -92,15 +100,22 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     }
     
     @IBAction func sendComment(_ sender: Any) {
-        presenter?.validadeComment(text: commentTextField.text ?? nil)
+        presenter?.validadeComment(text: commentTextView.text ?? nil)
     }
     
     
     func commentValidated(isValid: Bool) {
         if isValid{
             if let post = post{
-                presenter?.createComent(comment: commentTextField.text!, post: post)
-                commentTextField.text = ""
+                presenter?.createComent(comment: commentTextView.text!, post: post)
+                commentTextView.text = "Comment"
+                commentTextView.textColor = UIColor(red: 0, green:0, blue: 0, alpha: 0.5)
+                textViewHeightComment.constant = 36
+                UIView.animate(withDuration: 0.2) {
+                    self.view.layoutIfNeeded()
+                }
+                view.endEditing(true)
+                commentTextView.endEditing(true)
             }
         }
        
@@ -116,21 +131,34 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     
     func commentCreated(comment: Comment) {
         comments.append(comment)
-        labelNoComments.isHidden = true
+//        labelNoComments.isHidden = true
         postTableView.reloadData()
+        let indexPath = IndexPath(row: 1, section: 0)
+        if let cell = postTableView.cellForRow(at: indexPath) as? CommentCell{
+            cell.noCommentsLabel.isHidden = true
+        }
     }
     
     func showComments(comments: [Comment]) {
         if comments.isEmpty{
             commentsLoadIndicator.isHidden = comments.isEmpty
-            labelNoComments.isHidden = false
+//            labelNoComments.isHidden = false
+            let indexPath = IndexPath(row: 1, section: 0)
+            if let cell = postTableView.cellForRow(at: indexPath) as? CommentCell{
+                cell.noCommentsLabel.isHidden = false
+            }
             return
         }
-        labelNoComments.isHidden = true
+//        labelNoComments.isHidden = true
         self.comments = comments
         postTableView.reloadData()
         commentsLoadIndicator.stopAnimating()
         commentsLoadIndicator.isHidden = !comments.isEmpty
+        
+        let indexPath = IndexPath(row: 1, section: 0)
+        if let cell = postTableView.cellForRow(at: indexPath) as? CommentCell{
+            cell.noCommentsLabel.isHidden = true
+        }
     }
     
     func fetchedAll(_ isFetched: Bool) {
@@ -143,7 +171,7 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
 
 extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        comments.count + 1
+        return comments.isEmpty ? 2 : 1 + comments.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -166,6 +194,11 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
             }
         }else{
             if let commentCell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as? CommentCell{
+                
+                if comments.isEmpty {
+                    commentCell.populanteWithNoComments()
+                    return commentCell
+                }
                 let comment = comments[indexPath.row-1]
                 commentCell.poulate(from: comment)
                     
@@ -238,7 +271,7 @@ extension ViewPostViewController: UITextFieldDelegate{
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         presenter?.validadeComment(text: textField.text)
-        self.labelNoComments.isHidden = true
+//        self.labelNoComments.isHidden = true
     }
     
     
@@ -263,12 +296,20 @@ extension ViewPostViewController: UITextFieldDelegate{
             let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
             let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
             if endFrameY >= UIScreen.main.bounds.size.height {
-                self.keyboardHeightLayoutConstraint.constant = 0.0
-                self.sendButtonYAnchor.constant = 0.0
+//                self.keyboardHeightLayoutConstraint.constant = 0.0
+//                self.sendButtonYAnchor.constant = 0.0
+                self.textViewCommentBottom.constant = 10.0
+                self.bottomButtonContraint.constant = 11
+                self.textViewHeightComment.constant = 36
             } else {
-                self.keyboardHeightLayoutConstraint.constant = endFrame?.size.height ?? 0.0
-                self.sendButtonYAnchor.constant = (endFrame?.size.height ?? 0.0)  * 0.9
+//                self.keyboardHeightLayoutConstraint.constant = endFrame?.size.height ?? 0.0
+//                self.sendButtonYAnchor.constant = (endFrame?.size.height ?? 0.0)  * 0.9
+//                self.textViewHeightComment.constant = 2
+                self.textViewCommentBottom.constant = 10 + (endFrame?.size.height ?? 0.0) * 0.8
+                 self.bottomButtonContraint.constant = 11 + (endFrame?.size.height ?? 0.0) * 0.8
             }
+            
+//            self.textViewCommentBottom.constant = (endFrame?.size.height ?? 0.0)
             UIView.animate(withDuration: duration,
                                        delay: TimeInterval(0),
                                        options: animationCurve,
@@ -282,3 +323,53 @@ extension ViewPostViewController: UITextFieldDelegate{
 
 
 
+extension ViewPostViewController: UITextViewDelegate{
+   
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        textView.textColor = UIColor(red: 0, green: 0, blue: 0, alpha: 1.0)
+        textView.text = ""
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+     
+        let pos = textView.endOfDocument
+        let currentRect =  textView.caretRect(for: pos)
+        if(currentRect.origin.y > previousRect.origin.y){
+            if self.textViewHeightComment.constant > (36*2){return}
+            self.textViewHeightComment.constant += 15
+            UIView.animate(withDuration: 0.5) {
+                self.view.layoutIfNeeded()
+            }
+
+
+        }
+        previousRect = currentRect
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" && (textView.text.isEmpty || textView.text == "Comment"){
+            textView.resignFirstResponder()
+            commentTextView.text = "Comment"
+            commentTextView.textColor = UIColor(red: 0, green:0, blue: 0, alpha: 0.5)
+            return false
+        }
+        
+        let pos = textView.endOfDocument
+        let currentRect =  textView.caretRect(for: pos)
+        
+        print("Current \(currentRect.origin.y )")
+        print("Previous \( previousRect.origin.y)")
+        if(currentRect.origin.y > previousRect.origin.y){
+            if self.textViewHeightComment.constant > (36*2){return true}
+            self.textViewHeightComment.constant += 15
+            UIView.animate(withDuration: 0.5) {
+                self.view.layoutIfNeeded()
+            }
+
+
+        }
+        previousRect = currentRect
+        return true
+    }
+}

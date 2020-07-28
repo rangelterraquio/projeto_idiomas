@@ -18,6 +18,8 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var upVoteLabel: UILabel!
     @IBOutlet weak var downVoteLabel: UILabel!
     
+    @IBOutlet weak var backgroundCell: UIView!
+    @IBOutlet weak var noCommentsLabel: UILabel!
     var onReuse: () -> () = {}
     var upvoted: () -> () = {}
     var downVoted: () -> () = {}
@@ -61,6 +63,26 @@ class CommentCell: UITableViewCell {
         commentText.text = comment.commentText
         upVoteLabel.text = "\(comment.upvote)"
         downVoteLabel.text = "\(comment.downvote)"
+        commentIndicator.stopAnimating()
+        backgroundCell.isHidden = false
+        authorName.isHidden = false
+        commentText.isHidden = false
+        upVoteLabel.isHidden = false
+        downVoteLabel.isHidden = false
+        commentText.isHidden = false
+        noCommentsLabel.isHidden = true
+        backgroundCell.isHidden = false
+        commentIndicator.stopAnimating()
+        
+    }
+    func populanteWithNoComments(){
+        authorName.isHidden = true
+        commentText.isHidden = true
+        upVoteLabel.isHidden = true
+        downVoteLabel.isHidden = true
+        commentText.isHidden = true
+        noCommentsLabel.isHidden = false
+        backgroundCell.isHidden = true
         commentIndicator.stopAnimating()
         
     }
