@@ -194,6 +194,7 @@ extension ReautheticationScreenViewController: ReautheticationDelegate{
             case .operationFailed:
                 self.showAlertError(error: "Something goes wrong", title: "Operation Failed")
             case .none:
+                self.signUpAPI.reAutheticationDelegate = nil
                 self.delegate?.deleteAccount()
             default:
                 print("")
