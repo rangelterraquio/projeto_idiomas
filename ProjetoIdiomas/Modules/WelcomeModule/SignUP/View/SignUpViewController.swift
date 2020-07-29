@@ -37,6 +37,7 @@ class SignUpViewController: UIViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(appleIDStateDidRevoked), name: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil)
         self.navigationController?.navigationBar.isHidden = true
+        self.hideKeyboardWhenTappedAround()
 
     }
     

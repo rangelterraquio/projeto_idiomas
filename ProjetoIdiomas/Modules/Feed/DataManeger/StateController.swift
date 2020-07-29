@@ -139,7 +139,7 @@ public class StateController{
                             
                         }
                     }
-                    if !self.isFirstSnapShot{
+                    if !self.isFirstSnapShot, !posts.isEmpty{
                          updateStatus(posts)
                     }else{
                         self.isFirstSnapShot = false

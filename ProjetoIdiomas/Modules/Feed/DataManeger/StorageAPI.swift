@@ -569,7 +569,12 @@ extension StoregeAPI{
                         batch.commit()
                         self.deleteUser(user: user, batch: self.db.batch()) { (completed) in
                             if completed{
-                                Auth.auth().currentUser?.delete(completion: { (_) in
+                            
+                                Auth.auth().currentUser?.reauthenticate(with: <#T##AuthCredential#>, completion: <#T##AuthDataResultCallback?##AuthDataResultCallback?##(AuthDataResult?, Error?) -> Void#>)
+                                
+                                Auth.auth().currentUser?.delete(completion: { (error) in
+                                    
+                                    
                                     completion(.none)
                                 })
                                 

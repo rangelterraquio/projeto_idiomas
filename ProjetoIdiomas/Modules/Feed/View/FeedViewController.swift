@@ -126,14 +126,17 @@ class FeedViewController: UIViewController {
         newPosts.append(contentsOf: posts)
         posts = newPosts
             
-       var tempVet = [Post]()
-        for i in 0..<posts.count {
-            if !tempVet.contains(posts[i]){
-                tempVet.append(posts[i])
-            }
-        }
-        posts = tempVet
-        
+//       var tempVet = [Post]()
+//        for i in 0..<posts.count {
+//            if !tempVet.contains(posts[i]){
+//                tempVet.append(posts[i])
+//            }
+//        }
+//
+//
+//
+//        posts = tempVet
+//
         newPosts.removeAll()
         let indexPath = NSIndexPath(row: 0, section: 0)
         feedTableView.scrollToRow(at: indexPath as IndexPath, at: .top, animated: true)
@@ -161,9 +164,12 @@ extension FeedViewController: FeedPresenterToView{
             
             languages.forEach { (lang) in
                 if lang.rawValue == post.language{
+                    if !self.posts.contains(post){
                         newPosts.append(post)
                     }
+                        
                 }
+            }
         }
         
         if !newPosts.isEmpty{
@@ -174,16 +180,19 @@ extension FeedViewController: FeedPresenterToView{
     
     func showPosts(posts: [Post]) {
         if !posts.isEmpty{
+            newPostsButton.isHidden = true
+            newPosts.removeAll()
+            self.posts.append(contentsOf: posts)
+//            var tempVet = [Post]()
+//            for i in 0..<self.posts.count {
+//                if !tempVet.contains(self.posts[i]){
+//                    tempVet.append(self.posts[i])
+//                }
+//            }
+//            self.posts = tempVet
             self.feedLoadingIndicator.stopAnimating()
             self.feedLoadingIndicator.isHidden = true
             self.feedTableView.refreshControl?.endRefreshing()
-            
-            
-            
-            
-            
-            
-            self.posts.append(contentsOf: posts)
             self.feedTableView.reloadData()
             
         }

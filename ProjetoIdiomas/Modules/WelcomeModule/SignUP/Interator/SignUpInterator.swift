@@ -200,6 +200,6 @@ public enum TextFieldsErrorsMsg: String {
     case nameIsTooLong      = "Name is too long."
     case emailInvalid       = "Email invalid."
     case emailIsEmpty       = "Email can not be empty."
-    case passwordInvalid    = "Password invalid."
+    case passwordInvalid    = "Password invalid, It must have at minimum 8 letters with numbers,symbols and uppercase."
     case passwordIsEmpty = "Password can not be empty."
 }

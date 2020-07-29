@@ -101,6 +101,8 @@
 		70AF712A24C355200080A3C2 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AF712924C355200080A3C2 /* PageViewController.swift */; };
 		70AF88DD24C4CFEC002CB888 /* UnderLineTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AF88DC24C4CFEC002CB888 /* UnderLineTextField.swift */; };
 		70AFD98824D06259003AA376 /* Oxygen in Resources */ = {isa = PBXBuildFile; fileRef = 70AFD98724D06259003AA376 /* Oxygen */; };
+		70AFD98B24D114E8003AA376 /* ReautheticationScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AFD98924D114E8003AA376 /* ReautheticationScreenViewController.swift */; };
+		70AFD98C24D114E8003AA376 /* ReautheticationScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AFD98A24D114E8003AA376 /* ReautheticationScreenViewController.xib */; };
 		70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */; };
 		70B6391E246792B300966A56 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391C246792B300966A56 /* LanguageCell.swift */; };
 		70B6391F246792B300966A56 /* LanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B6391D246792B300966A56 /* LanguageCell.xib */; };
@@ -229,6 +231,8 @@
 		70AF712924C355200080A3C2 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		70AF88DC24C4CFEC002CB888 /* UnderLineTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderLineTextField.swift; sourceTree = "<group>"; };
 		70AFD98724D06259003AA376 /* Oxygen */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Oxygen; sourceTree = "<group>"; };
+		70AFD98924D114E8003AA376 /* ReautheticationScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReautheticationScreenViewController.swift; sourceTree = "<group>"; };
+		70AFD98A24D114E8003AA376 /* ReautheticationScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReautheticationScreenViewController.xib; sourceTree = "<group>"; };
 		70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesProtocols.swift; sourceTree = "<group>"; };
 		70B6391C246792B300966A56 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		70B6391D246792B300966A56 /* LanguageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageCell.xib; sourceTree = "<group>"; };
@@ -289,6 +293,8 @@
 			children = (
 				701F3FA724BD24BB00A1CC78 /* ChangeLAnguageViewController.swift */,
 				701F3FA824BD24BB00A1CC78 /* ChangeLAnguageViewController.xib */,
+				70AFD98924D114E8003AA376 /* ReautheticationScreenViewController.swift */,
+				70AFD98A24D114E8003AA376 /* ReautheticationScreenViewController.xib */,
 			);
 			path = ChangeLanguages;
 			sourceTree = "<group>";
@@ -1036,6 +1042,7 @@
 				709FB20324BE07970010AFDC /* SignInEmailPasswordViewController.xib in Resources */,
 				70698CFD2468DDC800D2D744 /* ViewPostViewController.xib in Resources */,
 				708E001424C1E3EF00F28A75 /* SFCompactDisplay-Black.otf in Resources */,
+				70AFD98C24D114E8003AA376 /* ReautheticationScreenViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1134,6 +1141,7 @@
 				707F384C2445226200DCEBE6 /* AppDelegate.swift in Sources */,
 				701F3FAD24BD349C00A1CC78 /* Extension-UIViewController.swift in Sources */,
 				70C1A06D244D4963008F31DB /* InputValidationServiceAPI.swift in Sources */,
+				70AFD98B24D114E8003AA376 /* ReautheticationScreenViewController.swift in Sources */,
 				70698CFC2468DDC800D2D744 /* ViewPostViewController.swift in Sources */,
 				704F87542447CDD500C1C4D4 /* FeedCell.swift in Sources */,
 				7084A807247FF3EF0077284D /* AppCoordinator.swift in Sources */,
@@ -1335,7 +1343,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ProjetoIdiomas/ProjetoIdiomas.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 536JJFH3JQ;
 				INFOPLIST_FILE = ProjetoIdiomas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1356,7 +1364,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ProjetoIdiomas/ProjetoIdiomas.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_TEAM = 536JJFH3JQ;
 				INFOPLIST_FILE = ProjetoIdiomas/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

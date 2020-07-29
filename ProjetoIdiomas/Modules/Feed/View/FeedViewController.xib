@@ -12,7 +12,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedViewController" customModule="ProjetoIdiomas" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FeedViewController" customModule="Project_Languages" customModuleProvider="target">
             <connections>
                 <outlet property="errorLabel" destination="sU3-Bk-uHA" id="NV9-7H-Y54"/>
                 <outlet property="feedLoadingIndicator" destination="jbu-ui-SSA" id="GRv-i7-L2g"/>
@@ -40,11 +40,13 @@
                     <rect key="frame" x="188.5" y="379.5" width="37" height="37"/>
                 </activityIndicatorView>
                 <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ae0-9Q-iEO">
-                    <rect key="frame" x="164" y="124" width="86" height="30"/>
-                    <color key="backgroundColor" red="0.47843137250000001" green="0.3294117647" blue="0.76078431369999999" alpha="0.39589576199999998" colorSpace="custom" customColorSpace="displayP3"/>
+                    <rect key="frame" x="164" y="94" width="86" height="30"/>
+                    <color key="backgroundColor" red="0.47843137250000001" green="0.3294117647" blue="0.76078431369999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="13"/>
                     <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <state key="normal" title="New Posts"/>
+                    <state key="normal" title="New Posts">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
                     <userDefinedRuntimeAttributes>
                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                             <integer key="value" value="13"/>
@@ -58,7 +60,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <color key="tintColor" red="0.1190174893" green="0.1341283023" blue="0.43139755730000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="jEE-PN-Flq" firstAttribute="top" secondItem="Ae0-9Q-iEO" secondAttribute="bottom" constant="-110" id="6RP-lz-AVT"/>
+                <constraint firstItem="jEE-PN-Flq" firstAttribute="top" secondItem="Ae0-9Q-iEO" secondAttribute="bottom" constant="-80" id="6RP-lz-AVT"/>
                 <constraint firstItem="sU3-Bk-uHA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="48" id="6ua-5D-IXp"/>
                 <constraint firstItem="Ae0-9Q-iEO" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="78x-aa-FbD"/>
                 <constraint firstItem="Ae0-9Q-iEO" firstAttribute="width" secondItem="jEE-PN-Flq" secondAttribute="width" multiplier="0.207729" id="Ep7-mG-wLH"/>
