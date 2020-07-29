@@ -103,6 +103,7 @@
 		70AFD98824D06259003AA376 /* Oxygen in Resources */ = {isa = PBXBuildFile; fileRef = 70AFD98724D06259003AA376 /* Oxygen */; };
 		70AFD98B24D114E8003AA376 /* ReautheticationScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AFD98924D114E8003AA376 /* ReautheticationScreenViewController.swift */; };
 		70AFD98C24D114E8003AA376 /* ReautheticationScreenViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70AFD98A24D114E8003AA376 /* ReautheticationScreenViewController.xib */; };
+		70AFFE1824D1B9B400A5C525 /* ReAutheticationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70AFFE1724D1B9B400A5C525 /* ReAutheticationCoordinator.swift */; };
 		70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */; };
 		70B6391E246792B300966A56 /* LanguageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B6391C246792B300966A56 /* LanguageCell.swift */; };
 		70B6391F246792B300966A56 /* LanguageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 70B6391D246792B300966A56 /* LanguageCell.xib */; };
@@ -233,6 +234,7 @@
 		70AFD98724D06259003AA376 /* Oxygen */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Oxygen; sourceTree = "<group>"; };
 		70AFD98924D114E8003AA376 /* ReautheticationScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReautheticationScreenViewController.swift; sourceTree = "<group>"; };
 		70AFD98A24D114E8003AA376 /* ReautheticationScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReautheticationScreenViewController.xib; sourceTree = "<group>"; };
+		70AFFE1724D1B9B400A5C525 /* ReAutheticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReAutheticationCoordinator.swift; sourceTree = "<group>"; };
 		70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesProtocols.swift; sourceTree = "<group>"; };
 		70B6391C246792B300966A56 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		70B6391D246792B300966A56 /* LanguageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageCell.xib; sourceTree = "<group>"; };
@@ -554,6 +556,7 @@
 			isa = PBXGroup;
 			children = (
 				708A29E9248A9E56009E93B3 /* ProfileCoordinator.swift */,
+				70AFFE1724D1B9B400A5C525 /* ReAutheticationCoordinator.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -1182,6 +1185,7 @@
 				70698CF72468C3C000D2D744 /* Error.swift in Sources */,
 				70698CE6246854B700D2D744 /* CreatePostViewController.swift in Sources */,
 				7084A80B24800A350077284D /* SelectLanguagesCoordinator.swift in Sources */,
+				70AFFE1824D1B9B400A5C525 /* ReAutheticationCoordinator.swift in Sources */,
 				70E8495B24BE307600FD3250 /* SignInEmailPasswordPresenter.swift in Sources */,
 				708A29F5248B2D24009E93B3 /* CameraHandler.swift in Sources */,
 				70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */,

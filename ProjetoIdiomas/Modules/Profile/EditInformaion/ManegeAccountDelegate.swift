@@ -12,4 +12,5 @@ import Foundation
 public protocol ManegeAccountDelegate: class{
     func signOut()
     func deleteAccount()
+    func reauthetication()
 }

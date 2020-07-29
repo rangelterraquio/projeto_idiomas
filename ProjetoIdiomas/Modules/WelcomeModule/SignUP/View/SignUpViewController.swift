@@ -140,7 +140,7 @@ extension SignUpViewController: ASAuthorizationControllerPresentationContextProv
             siwaButton.centerXAnchor.constraint(equalToSystemSpacingAfter: self.view.centerXAnchor, multiplier: 1),
             siwaButton.centerYAnchor.constraint(equalTo: signUPButton.bottomAnchor, constant: 30),
             
-            siwaButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.724638),// 0.0390625
+            siwaButton.widthAnchor.constraint(equalTo: self.view.widthAnchor, multiplier: 0.724638),
             siwaButton.heightAnchor.constraint(equalTo: self.view.heightAnchor, multiplier: 0.045)
 //            siwaButton.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50.0),
 //            siwaButton.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50.0),

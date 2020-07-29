@@ -127,7 +127,7 @@ class EditInformationViewController: UIViewController {
        
         
         let action2 = UIAlertAction(title: "Delete Account", style: .destructive) { (_) in
-            self.deleteAccount()
+            self.manegeAccountelegate?.reauthetication()
         }
            
         let action3 = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
@@ -144,22 +144,27 @@ class EditInformationViewController: UIViewController {
     
     
     private func deleteAccount(){
-        self.view.addSubview(loadIndicator)
-        loadIndicator.startAnimating()
-        stateController.deleteUserAccount { (error) in
-            DispatchQueue.main.async {
-                self.loadIndicator.stopAnimating()
-                self.loadIndicator.removeFromSuperview()
-            }
-            switch error{
-            case .internetError:
-                self.showAlertError(error: "Verify your internet connection", title: "Operation failed")
-            case .operationFailed:
-                self.showAlertError(error: "Something went wrong, try it again!", title: "Operation failed")
-            case .none:
-                self.manegeAccountelegate?.deleteAccount()
-            }
-        }
+        
+        
+        
+        
+//        self.view.addSubview(loadIndicator)
+//        loadIndicator.startAnimating()
+//        self.manegeAccountelegate?.deleteAccount()
+//        stateController.deleteUserAccount { (error) in
+//            DispatchQueue.main.async {
+//                self.loadIndicator.stopAnimating()
+//                self.loadIndicator.removeFromSuperview()
+//            }
+//            switch error{
+//            case .internetError:
+//                self.showAlertError(error: "Verify your internet connection", title: "Operation failed")
+//            case .operationFailed:
+//                self.showAlertError(error: "Something went wrong, try it again!", title: "Operation failed")
+//            case .none:
+//                self.manegeAccountelegate?.deleteAccount()
+//            }
+//        }
     }
 
 }

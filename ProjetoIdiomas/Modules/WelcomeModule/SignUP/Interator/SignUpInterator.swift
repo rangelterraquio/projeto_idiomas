@@ -55,6 +55,7 @@ public class SignUpInterator: SignUpAPIDelegate{
             self?.storageAPI.fetchUser(completion: { (userOptional, error) in
                 if error != nil{
                     self?.presenter?.userAuthenticated(user: self!.createUserFromFireBaseUser(from: user, name: nil))
+                    
                 }else if let _  = userOptional{
                     self?.presenter?.userAlreadyExist()
                 }
@@ -158,8 +159,6 @@ extension SignUpInterator: SignUpPresenterToInterator{
                             self.presenter?.userAlreadyExist()
                         }
                     })
-               
-               
             }
         }
         

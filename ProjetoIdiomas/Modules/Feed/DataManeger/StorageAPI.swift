@@ -548,7 +548,7 @@ extension StoregeAPI{
 
 //MARK: -> Delete User data
 extension StoregeAPI{
-    func deleteUserAccount(completion: @escaping (CustomError?)->()){
+    func deleteUserAccount(crendentials: AuthCredential,completion: @escaping (CustomError?)->()){
         guard let user = StoregeAPI.currentUser else{
             completion(.operationFailed)
             return
@@ -569,13 +569,15 @@ extension StoregeAPI{
                         batch.commit()
                         self.deleteUser(user: user, batch: self.db.batch()) { (completed) in
                             if completed{
-                            
-                                Auth.auth().currentUser?.reauthenticate(with: <#T##AuthCredential#>, completion: <#T##AuthDataResultCallback?##AuthDataResultCallback?##(AuthDataResult?, Error?) -> Void#>)
                                 
-                                Auth.auth().currentUser?.delete(completion: { (error) in
-                                    
-                                    
-                                    completion(.none)
+                                Auth.auth().currentUser?.reauthenticate(with: crendentials, completion: { (_, error) in
+                                    if let _ = error{
+                                        completion(.operationFailed)
+                                    }else{
+                                        Auth.auth().currentUser?.delete(completion: { (error) in
+                                            completion(.none)
+                                        })
+                                    }
                                 })
                                 
                             }

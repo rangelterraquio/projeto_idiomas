@@ -186,6 +186,13 @@ final class AppCoordinator: Coordinator{
          coordinator.start(user: user, notificationManeger: pushNotificationManeger)
      }
     
+    func showReauthetication(){
+        let coordinator = ReAutheticationCoordinator(stateController: stateManeger, signUpAPI: signUpAPI, tabBarController: tabBarController)
+        coordinator.manegeAccountelegate = self
+        childCoordinators.append(coordinator)
+        coordinator.start()
+    }
+    
     func showEditInfoView(user: User, image: UIImage?){
         let vc = EditInformationViewController(nibName: "EditInformationViewController", bundle: nil)
         vc.stateController = stateManeger
@@ -451,6 +458,10 @@ extension AppCoordinator: ProfileDelegate{
 
 //MARK: -> Manege Account Delegate
 extension AppCoordinator: ManegeAccountDelegate{
+    func reauthetication() {
+        showReauthetication()
+    }
+    
     func signOut() {
         signUpAPI.signOut()
         start()

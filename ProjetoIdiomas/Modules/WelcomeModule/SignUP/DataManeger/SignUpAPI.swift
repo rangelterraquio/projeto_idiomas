@@ -21,6 +21,10 @@ public enum CompletinResult<Value> {
 public enum Completion<Value> {
     case result(Bool)
 }
+
+public protocol ReautheticationDelegate: class{
+    func didAuthetication(crendentials: AuthCredential?)
+}
 public class SignUpAPI: NSObject{
     
     var currentNonce: String?
@@ -35,6 +39,7 @@ public class SignUpAPI: NSObject{
     var signWithGoogleFailed: (String) -> () = {_ in}
     
     var interatorDelegade: SignUpAPIDelegate? = nil
+    var reAutheticationDelegate: ReautheticationDelegate? = nil
     
     public override init() {
         super.init()
@@ -105,7 +110,17 @@ public class SignUpAPI: NSObject{
                 completion(.failure(AuthErrorCode(rawValue: error.code)!))
             }else{
                 if let user = resultData?.user{
-                    completion(.success(user))
+                    
+                    
+                    if let delegate = self.reAutheticationDelegate{
+                        let credantial = EmailAuthProvider.credential(withEmail: email, password: password)
+                       
+
+                        delegate.didAuthetication(crendentials: credantial)
+                    }else{
+                        completion(.success(user))
+                    }
+                    
                 }
             }
         }
@@ -242,6 +257,15 @@ extension SignUpAPI:  ASAuthorizationControllerDelegate{
                 let firebaseCredential = OAuthProvider.credential(withProviderID: "apple.com",
                                                                   idToken: idTokenString,
                                                                   rawNonce: nonce)
+                
+                
+                if let delegate = reAutheticationDelegate{
+                    delegate.didAuthetication(crendentials: firebaseCredential)
+                    return
+                }
+                
+                
+                
                 Auth.auth().signIn(with: firebaseCredential) { (authResult, error) in
                     // Do something after Firebase sign in completed
 
@@ -342,6 +366,14 @@ extension SignUpAPI: GIDSignInDelegate {
         guard let authentication = user.authentication else { return }
         let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
                                                        accessToken: authentication.accessToken)
+        
+        
+        if let delegate = reAutheticationDelegate{
+            delegate.didAuthetication(crendentials: credential)
+            return
+        }
+                     
+                     
         
         Auth.auth().signIn(with: credential) { (authResult, error) in
             if let error = error{

@@ -8,6 +8,8 @@
 
 import Foundation
 import FirebaseFirestore
+import GoogleSignIn
+import FirebaseAuth
 
 public class StateController{
     
@@ -170,8 +172,8 @@ public class StateController{
         storage.removePost(post: post)
     }
     
-    func deleteUserAccount(completion: @escaping (CustomError?)->()){
-        storage.deleteUserAccount(completion: completion)
+    func deleteUserAccount(crendentials: AuthCredential, completion: @escaping (CustomError?)->()){
+        storage.deleteUserAccount(crendentials: crendentials,completion: completion)
     }
     
     func updateUserName(newName: String, user: User){
