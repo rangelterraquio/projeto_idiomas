@@ -14,6 +14,9 @@ public enum PageOnBoarding{
     case selectLanguageLearning
     case teachingOnBoard
     case selectLanguageTeaching
+    case onBoard01
+    case onBoard02
+    
 
     var vc: UIViewController {
         switch self {
@@ -25,20 +28,29 @@ public enum PageOnBoarding{
             return TeachingOnBoardViewController(nibName: "TeachingOnBoardViewController", bundle: nil)
         case .selectLanguageTeaching:
             return SelectLanguageViewController(nibName: "SelectLanguageViewController", bundle: nil)
+        case .onBoard01:
+            return OnBoardViewController(nibName: "OnBoardViewController", bundle: nil)
+        case .onBoard02:
+            return OnBoardViewController(nibName: "OnBoardViewController", bundle: nil)
         }
     }
 
     var index: Int {
           switch self {
-          case .learningOnBoard:
+          case .onBoard01:
               return 0
-          case .selectLanguageLearning:
-              return 1
-          case .teachingOnBoard:
+          case .onBoard02:
+            return 1
+          case .learningOnBoard:
               return 2
-          case .selectLanguageTeaching:
+          case .selectLanguageLearning:
               return 3
-          }
+          case .teachingOnBoard:
+              return 4
+          case .selectLanguageTeaching:
+              return 5
+          
+        }
       }
 }
 //
@@ -91,13 +103,19 @@ public enum PageOnBoarding{
         private var selectLanguageLearning: SelectLanguageViewController!
         private var teachingOnBoard: TeachingOnBoardViewController!
         private var selectLanguageTeaching: SelectLanguageViewController!
+        private var onBoard01: OnBoardViewController!
+        private var onBoard02: OnBoardViewController!
         
-        init(user: User, learningOnBoard: LearningOnBoardViewController,selectLanguageVC: SelectLanguageViewController,teachingOnBoard: TeachingOnBoardViewController) {
+        init(user: User, learningOnBoard: LearningOnBoardViewController,selectLanguageVC: SelectLanguageViewController,teachingOnBoard: TeachingOnBoardViewController, onBoard: OnBoardViewController) {
             self.user = user
             self.learningOnBoard = learningOnBoard
             self.selectLanguageLearning = selectLanguageVC
             self.selectLanguageTeaching = selectLanguageVC
             self.teachingOnBoard = teachingOnBoard
+            self.onBoard01 = onBoard
+            let onBoard02 = OnBoardViewController(nibName: "OnBoardViewController", bundle: nil)
+            onBoard02.pageDelegate = onBoard.pageDelegate
+            self.onBoard02 = onBoard02
         }
         
         
@@ -113,6 +131,12 @@ public enum PageOnBoarding{
             case .selectLanguageTeaching:
                 selectLanguageTeaching.viewState = .fluentlyLanguagesSection
                 return selectLanguageTeaching
+            case .onBoard01:
+                onBoard01.onBoardStep = .onBoard01
+                return onBoard01
+            case .onBoard02:
+                onBoard02.onBoardStep = .onBoard02
+                return onBoard02
             }
         }
         
@@ -141,7 +165,7 @@ class PageViewController: UIViewController {
         self.addChild(pageView)
         self.view.addSubview(pageView.view)
         pageView.didMove(toParent: self)
-        pageView.setViewControllers([pageModel.getVC(by: .learningOnBoard) as UIViewController], direction: .forward, animated: true, completion: nil)
+        pageView.setViewControllers([pageModel.getVC(by: .onBoard01) as UIViewController], direction: .forward, animated: true, completion: nil)
     
     }
     

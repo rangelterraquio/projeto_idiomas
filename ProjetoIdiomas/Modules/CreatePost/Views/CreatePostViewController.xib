@@ -51,6 +51,9 @@
                         </userDefinedRuntimeAttribute>
                         <userDefinedRuntimeAttribute type="string" keyPath="placeHolderText" value="Post Title"/>
                     </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="titleDidChange:" destination="-1" eventType="editingChanged" id="4Nu-6m-xoH"/>
+                    </connections>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zTz-OC-SZe" userLabel="languageView">
                     <rect key="frame" x="0.0" y="149" width="414" height="73"/>

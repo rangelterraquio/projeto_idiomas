@@ -54,6 +54,19 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
     var selectedIndexPath: IndexPath?
     var viewState: SelectLanguageViewState = .colapsed
     
+    
+    var isPostValid = false{
+        didSet{
+            if isPostValid{
+                nextButton.style = .done
+                nextButton.isEnabled = true
+                nextButton.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
+            }else{
+                 nextButton.isEnabled = false
+            }
+        }
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
         self.navigationItem.title = "Create Post"
@@ -150,18 +163,22 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
 //
 //        }
         
-        
+        view.endEditing(true)
         animateSelectLanguageView()
         
+    }
+    @IBAction func titleDidChange(_ sender: Any) {
+        presenter.validatePost(title: postTitle.text ?? "", text: textPost.text, language: languagePost)
     }
     
     @IBAction func didSelect(_ sender: Any) {
         animateSelectLanguageView()
     }
     func updateDoneStatus(isValid: Bool) {
-        nextButton.style = .done
-        nextButton.isEnabled = isValid
-        nextButton.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
+//        nextButton.style = .done
+//        nextButton.isEnabled = isValid
+//        nextButton.tintColor = UIColor(red: 29/255, green: 37/255, blue: 100/255, alpha: 1.0)
+        isPostValid = isValid
     }
     
     func showAlertError(error msg: String) {
@@ -233,6 +250,11 @@ extension CreatePostViewController: UITextViewDelegate{
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         
+        if viewState == .expand{
+            animateSelectLanguageView()
+        }
+        
+        
         if textView.text == "What are you thinking?"{
             textView.text = nil
         }
@@ -301,6 +323,8 @@ extension CreatePostViewController: UITextFieldDelegate{
 //        textField.resignFirstResponder()
          presenter.validatePost(title: postTitle.text ?? "", text: textPost.text, language: languagePost)
     }
+    
+    
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()

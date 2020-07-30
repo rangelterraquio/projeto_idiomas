@@ -195,15 +195,27 @@ public class StoregeAPI{
     func createUser(user: User, completion: @escaping (Result<Void, CustomError>) -> Void){
         
         
-       
-        db.collection("Users").document(user.id).setData(user.dictionary) { (error) in
-            if error != nil{
-                completion(.failure(.operationFailed))
+        db.collection("Users").document(user.id).getDocument { (document, error) in
+            
+            if error != nil || document?.data() == nil{
+                
+                
+                self.db.collection("Users").document(user.id).setData(user.dictionary) { (error) in
+                    if error != nil{
+                        completion(.failure(.operationFailed))
+                    }else{
+                        StoregeAPI.currentUser = user
+                        completion(.success(Void()))
+                    }
+                }
+                
             }else{
                 StoregeAPI.currentUser = user
                 completion(.success(Void()))
             }
         }
+       
+        
 
     }
     

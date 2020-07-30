@@ -24,6 +24,9 @@ final class AppCoordinator: Coordinator{
         self.tabBarController = tabBarController
 //        signUpAPI.signOut()
         stateManeger = StateController(storage:storage)
+        
+        UserDefaults.standard.register(defaults: ["viewOnBoard":false])
+//         UserDefaults.standard.set(false, forKey: "viewOnBoard")
     }
     
     
@@ -33,8 +36,26 @@ final class AppCoordinator: Coordinator{
         if signUpAPI.userHasAValidSession(){
             addLoadScreen()
             storage.fetchUser { user,Error in
-                self.setupTabBar(user: user!)
-                self.user = user!
+                
+                if let use = user{
+                    
+                    if !UserDefaults.standard.bool(forKey: "viewOnBoard"){
+                        let coo = self.showOnBoardforUserAutheticated()
+                        let vc = self.showAuthentication()
+                        let nav = UINavigationController(rootViewController: vc)
+                        self.tabBarController.viewControllers = [nav]
+                        self.coordinatorDidAuthenticate(coordinator: coo, user: use)
+                        UserDefaults.standard.set(true, forKey: "viewOnBoard")
+                    }else{
+                        self.setupTabBar(user: use)
+                    }
+                    self.user = use
+                }else{
+                    let vc = self.showAuthentication()
+                    let nav = UINavigationController(rootViewController: vc)
+                    self.tabBarController.viewControllers = [nav]
+                }
+                
             }
             
         }else{
@@ -116,6 +137,14 @@ final class AppCoordinator: Coordinator{
          return signUpCoordinator.start()
     }
     
+    
+    func showOnBoardforUserAutheticated() -> SignUpCoordinator{
+           let signUpCoordinator = SignUpCoordinator(signUpAPI: signUpAPI, tabBarController: tabBarController)
+           signUpCoordinator.delegate = self
+           childCoordinators.append(signUpCoordinator)//adiciono no childrem para o appcoordinator nao ser desalocado
+           
+            return signUpCoordinator
+       }
     func showOnBoard(with user: User, state: ViewState, languagesVC: SelectLanguageViewController?){
         let vc = state == .learningLanguagesSection ? LearningOnBoardViewController(nibName: "LearningOnBoardViewController", bundle: nil) : TeachingOnBoardViewController(nibName: "TeachingOnBoardViewController", bundle: nil)
         vc.user = user
@@ -262,7 +291,11 @@ extension AppCoordinator: AuthenticationCoordinatorDelegate{
         let selectLanguage = coordinator.stat(user: user)
         childCoordinators.append(coordinator)
         selectLanguage.pageDelegate = pageViewController
-        let pageModel = PageOnBoardingModel(user: user, learningOnBoard: learnOnBoard, selectLanguageVC: selectLanguage, teachingOnBoard: teachOnBoard)
+        
+        let onBoard = OnBoardViewController(nibName: "OnBoardViewController", bundle: nil)
+        onBoard.pageDelegate = pageViewController
+        
+        let pageModel = PageOnBoardingModel(user: user, learningOnBoard: learnOnBoard, selectLanguageVC: selectLanguage, teachingOnBoard: teachOnBoard, onBoard: onBoard)
         
         pageViewController.pageModel = pageModel
         
@@ -322,8 +355,14 @@ extension AppCoordinator: SelectLanguagesCoordinatorDelegate{
         stateManeger.createUser(user: user) { (result) in
             switch result{
             case .success(_):
+                
+
+                if !UserDefaults.standard.bool(forKey: "viewOnBoard"){
+                    UserDefaults.standard.set(true, forKey: "viewOnBoard")
+                }
                 self.stateManeger.user = user
                 self.start()
+               
             case .failure(_):
                 fatalError("Deu mt ruim cusão")
             }

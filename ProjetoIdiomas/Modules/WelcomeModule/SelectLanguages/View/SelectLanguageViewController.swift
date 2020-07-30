@@ -61,6 +61,19 @@ public class SelectLanguageViewController: UIViewController,OnBoardingPage {
     override public func viewWillAppear(_ animated: Bool) {
         setupView()
         self.navigationController?.navigationBar.isHidden = false
+        
+        if viewState == .learningLanguagesSection{
+            learningLanguages.removeAll()
+        }else{
+            fluentlyLanguages.removeAll()
+        }
+        
+        
+        nextButton.isEnabled = !user.fluentLanguage.isEmpty
+        nextButton.alpha = !user.fluentLanguage.isEmpty ? 1.0 : 0.6
+        
+        
+        
     }
     
     public override func viewDidLoad() {
@@ -82,7 +95,7 @@ public class SelectLanguageViewController: UIViewController,OnBoardingPage {
         nextB = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(addPost))
         self.navigationItem.setRightBarButton(nextB, animated: true)
         nextB.title = "Next"
-        nextB.isEnabled = false
+//        nextB.isEnabled = false
 
         
         cancelB = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelAction))
@@ -102,6 +115,7 @@ public class SelectLanguageViewController: UIViewController,OnBoardingPage {
         if viewState == .fluentlyLanguagesSection{
             nextButton.setTitle("Done", for: .normal)
             backgroundImage.image = UIImage(named: "fundoOnboard2")
+            nextButton.isEnabled = !user.fluentLanguage.isEmpty
         }else{
             nextButton.setTitle("Next", for: .normal)
             backgroundImage.image = UIImage(named: "fundoOnboard1")
@@ -258,9 +272,13 @@ extension SelectLanguageViewController: UITableViewDelegate,UITableViewDataSourc
     }
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if viewState == .fluentlyLanguagesSection{
-            fluentlyLanguages.append(languages[indexPath.row])
+            if !fluentlyLanguages.contains(languages[indexPath.row]){
+                fluentlyLanguages.append(languages[indexPath.row])
+            }
         }else{
-            learningLanguages.append(languages[indexPath.row])
+            if !learningLanguages.contains(languages[indexPath.row]){
+                 learningLanguages.append(languages[indexPath.row])
+            }
         }
     }
     
