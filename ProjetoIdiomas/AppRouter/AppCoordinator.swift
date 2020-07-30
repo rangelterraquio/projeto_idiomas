@@ -18,13 +18,17 @@ final class AppCoordinator: Coordinator{
     fileprivate var stateManeger: StateController!
     fileprivate let signUpAPI = SignUpAPI()
     fileprivate var user: User!
-    var pushNotificationManeger: PushNotificationManager!
+    var pushNotificationManeger: PushNotificationManager!{
+        didSet{
+              stateManeger.notificationManeger = pushNotificationManeger
+        }
+    }
     
     init(tabBarController: UITabBarController) {
         self.tabBarController = tabBarController
 //        signUpAPI.signOut()
         stateManeger = StateController(storage:storage)
-        
+      
         UserDefaults.standard.register(defaults: ["viewOnBoard":false])
 //         UserDefaults.standard.set(false, forKey: "viewOnBoard")
     }
@@ -202,6 +206,8 @@ final class AppCoordinator: Coordinator{
         coordinator.start(postID: postID)
     }
     func showActivities(user: User) -> UIViewController{
+        
+        
         let coordinator = ViewActivitiesCoordinator(stateController: stateManeger, tabBarController: tabBarController)
         coordinator.delegate = self
         childCoordinators.append(coordinator)
@@ -361,6 +367,7 @@ extension AppCoordinator: SelectLanguagesCoordinatorDelegate{
                     UserDefaults.standard.set(true, forKey: "viewOnBoard")
                 }
                 self.stateManeger.user = user
+                self.user = user
                 self.start()
                
             case .failure(_):

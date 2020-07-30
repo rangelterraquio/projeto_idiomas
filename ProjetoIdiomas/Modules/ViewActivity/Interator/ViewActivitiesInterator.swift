@@ -11,6 +11,8 @@ import UIKit
 
 
 public class ViewActivitiesInterator:ViewActivitiesPresenterToInterator{
+  
+    
     
     
     
@@ -68,7 +70,9 @@ public class ViewActivitiesInterator:ViewActivitiesPresenterToInterator{
         stateController.upadteActivityStatus(id: activity.id)
     }
     
-    
+    public func requestPermissionForNotification() {
+        stateController.requestPermissionForNotification()
+    }
     
     
 }

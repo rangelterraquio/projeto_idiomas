@@ -29,6 +29,7 @@ public protocol ViewActivitiesPresenterToInterator: class{
    func cancelImageRequest(uuid token: UUID)
    func fectchActivities(from date: Date) -> Void
    func updateAcitivityStatus(activity: Notifaction)
+   func requestPermissionForNotification()
 
 }
 
@@ -38,6 +39,7 @@ public protocol ViewActivitiesViewToPresenter: class {
     func updateActivities(from date: Date)
     func goToPost(activity: Notifaction)
     func finishedViewNotication()
+    func requestPermissionForNotification()
 
 }
 

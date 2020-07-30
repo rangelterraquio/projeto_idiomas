@@ -150,11 +150,18 @@ extension SignUpViewController: ASAuthorizationControllerPresentationContextProv
         ])
 
         /// the function that will be executed when user tap the button
-        siwaButton.addTarget(self, action: #selector(appleSignInTapped), for: .touchUpInside)
+        siwaButton.addTarget(self, action: #selector(appleSignInTapped), for: .allEvents)
+        
+        siwaButton.isEnabled = true
+        
     }
     
     
     @objc func appleSignInTapped(){
+        
+        
+        print("sign in with apple")
+        
         presenter?.authenticateWithApple(with: self)
     }
     

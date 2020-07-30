@@ -54,7 +54,7 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
     var selectedIndexPath: IndexPath?
     var viewState: SelectLanguageViewState = .colapsed
     
-    
+    var constTextViewBottom: CGFloat = 10000
     var isPostValid = false{
         didSet{
             if isPostValid{
@@ -217,7 +217,9 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
 
 
     @objc func keyboardWillShow(notification:NSNotification) {
-        adjustView(show: true, notification: notification)
+        if bottoTextPost.constant < constTextViewBottom{
+            adjustView(show: true, notification: notification)
+        }
     }
 
     @objc func keyboardWillHide(notification:NSNotification) {
@@ -229,6 +231,9 @@ class CreatePostViewController: UIViewController, CreatePostPresenterToView {
         let keyboardFrame:CGRect = (userInfo[UIResponder.keyboardFrameBeginUserInfoKey] as! NSValue).cgRectValue
         let animationDurarion = userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as! TimeInterval
         let changeInHeight = show ? (keyboardFrame.size.height/*or any value as per need*/) + 120 : 130
+        
+        print("Change In height \(changeInHeight)")
+        constTextViewBottom = show ? changeInHeight : 10000
         self.bottoTextPost.constant = changeInHeight
         UIView.animate(withDuration: animationDurarion, animations: { () -> Void in
             self.view.layoutIfNeeded()
@@ -250,6 +255,11 @@ extension CreatePostViewController: UITextViewDelegate{
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
         
+        
+////        NSNotification.Name(rawValue: "StartedEditPostText")
+//        let keyboardHeight = UIKEyb
+//
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "StartedEditPostText"), object: nil, userInfo:[UIResponder.keyboardFrameBeginUserInfoKey: frame])
         if viewState == .expand{
             animateSelectLanguageView()
         }

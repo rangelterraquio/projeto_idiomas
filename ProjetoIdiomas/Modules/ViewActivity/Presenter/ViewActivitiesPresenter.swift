@@ -10,6 +10,8 @@ import Foundation
 import UIKit
 class ViewActivitiesPresenter: ViewActivitiesViewToPresenter{
     
+    
+    
      var interator: ViewActivitiesPresenterToInterator? = nil
     
     var view: ViewActivitiesPresenterToView? = nil
@@ -37,7 +39,9 @@ class ViewActivitiesPresenter: ViewActivitiesViewToPresenter{
         router?.finishedViewNotication()
     }
    
-    
+    func requestPermissionForNotification() {
+        interator?.requestPermissionForNotification()
+    }
     
     
     

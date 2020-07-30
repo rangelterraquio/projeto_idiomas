@@ -119,7 +119,7 @@ class ViewPostCoordinator: Coordinator {
             if let doc = document{
                 if let post = Post(dictionary: doc){
                     vc.post = post
-                    self.stateManeger.imageLoader.loadImgage(url: post.author.photoURL) { (result) in
+                   let _ = self.stateManeger.imageLoader.loadImgage(url: post.author.photoURL) { (result) in
                         do{
                             let image = try result.get()
                             vc.imageAuthor = image
@@ -164,7 +164,7 @@ class ViewPostCoordinator: Coordinator {
                 if let doc = document{
                     if let post = Post(dictionary: doc){
                         vc.post = post
-                        self.stateManeger.imageLoader.loadImgage(url: post.author.photoURL) { (result) in
+                        let _ = self.stateManeger.imageLoader.loadImgage(url: post.author.photoURL) { (result) in
                             do{
                                 let image = try result.get()
                                 vc.imageAuthor = image

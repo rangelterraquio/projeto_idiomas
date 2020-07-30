@@ -43,6 +43,9 @@ class ViewActivityViewController: UIViewController {
         activitiesTableView.refreshControl = refresh
         
         activitiesTableView.separatorStyle = .none
+        
+        
+        presenter?.requestPermissionForNotification()
     }
     
     @objc func reloadFeed(){

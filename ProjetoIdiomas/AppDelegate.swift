@@ -58,7 +58,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 
         let pushManager = PushNotificationManager(userID: Auth.auth().currentUser?.uid, coordinator: AppDelegate.sharedCoordinator)
-        pushManager.registerForPushNotifications()
+//        pushManager.registerForPushNotifications()
         appCoordinator.pushNotificationManeger = pushManager
         appCoordinator.start()
 //        if let notificationOption = launchOptions?[.remoteNotification]{

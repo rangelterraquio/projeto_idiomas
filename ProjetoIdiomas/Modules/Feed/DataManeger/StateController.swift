@@ -16,6 +16,7 @@ public class StateController{
     private var storage: StoregeAPI!
     var imageLoader: ImageLoader!
     let notificationSender = PushNotificationSender()
+    var notificationManeger: PushNotificationManager?
     let cameraHandler = CamereHandler()
     var isFirstSnapShot = true
     var user: User?{
@@ -178,5 +179,9 @@ public class StateController{
     
     func updateUserName(newName: String, user: User){
         storage.updateUserName(newName: newName, user: user)
+    }
+    
+    func requestPermissionForNotification() {
+        notificationManeger?.registerForPushNotifications()
     }
 }
