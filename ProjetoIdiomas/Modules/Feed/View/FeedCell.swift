@@ -55,6 +55,9 @@ class FeedCell: UITableViewCell {
         
     }
     @IBAction func upVoteButton(_ sender: Any) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
+
         upvoted()
         ///atualizo label dos numeros
         if let tex = upVoteLabel.text, let num = Int16(tex){

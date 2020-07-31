@@ -154,6 +154,7 @@ extension SignUpInterator: SignUpPresenterToInterator{
                     self.storageAPI.fetchUser(completion: { (userOptional, error) in
                         print("Aeeee deu bom")
                         if error != nil{
+                            
                             self.presenter?.userAuthenticated(user: self.createUserFromFireBaseUser(from: user,name: name))
                         }else if let _  = userOptional{
                             self.presenter?.userAlreadyExist()
@@ -188,6 +189,7 @@ extension SignUpInterator: SignUpPresenterToInterator{
     }
    
     func createUserFromFireBaseUser(from user: FirebaseAuth.User, name: String?) -> User{
+        
         let newUser = User(id: user.uid, name:name ?? user.displayName!, photoURL: nil, score: 0, rating: 0, fluentLanguage: [String](), learningLanguage: [String](), idPosts: [String](), idCommentedPosts: [String](), fcmToken: PushNotificationManager.token ?? "dasnda")
         return newUser
     }

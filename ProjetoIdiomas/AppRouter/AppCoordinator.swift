@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import AuthenticationServices
+
 public class Coordinator: NSObject {}
 
 final class AppCoordinator: Coordinator{
@@ -34,9 +36,33 @@ final class AppCoordinator: Coordinator{
     }
     
     
+    func revokeAppSignin(){
+        if let userID = UserDefaults.standard.string(forKey: "appleAuthorizedUserIdKey") {
+            
+            // Check Apple ID credential state
+            ASAuthorizationAppleIDProvider().getCredentialState(forUserID: userID, completion: { [unowned self]
+                credentialState, error in
+                
+                switch(credentialState) {
+                case .authorized:
+                    break
+                case .notFound,
+                     .transferred,
+                     .revoked:
+                    // Perform sign out
+                    self.signOut()
+                    break
+                @unknown default:
+                    break
+                }
+            })
+        }
+    }
+    
+    
     func start(){
         
-        
+        revokeAppSignin()
         if signUpAPI.userHasAValidSession(){
             addLoadScreen()
             storage.fetchUser { user,Error in

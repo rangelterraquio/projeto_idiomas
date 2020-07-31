@@ -25,19 +25,12 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onBoard1" translatesAutoresizingMaskIntoConstraints="NO" id="BOx-hP-Lcj">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="onBoard1" translatesAutoresizingMaskIntoConstraints="NO" id="BOx-hP-Lcj">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Do you want to learn any language?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEU-FM-Hz9">
-                    <rect key="frame" x="38" y="308" width="338" height="79"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="30"/>
-                    <color key="textColor" red="0.1137254902" green="0.1450980392" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaL-L4-RpE">
-                    <rect key="frame" x="107" y="466" width="200" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaL-L4-RpE">
+                    <rect key="frame" x="107" y="556" width="200" height="40"/>
                     <color key="backgroundColor" red="0.43529411759999997" green="0.36078431370000003" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="22"/>
                     <state key="normal" title="Yeah!">
@@ -52,13 +45,23 @@
                         <action selector="tappedOnButton:" destination="-1" eventType="touchUpInside" id="chz-oi-sDJ"/>
                     </connections>
                 </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want to learn any language?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEU-FM-Hz9">
+                    <rect key="frame" x="38" y="308" width="338" height="112"/>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="30"/>
+                    <color key="textColor" red="0.1137254902" green="0.1450980392" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="BOx-hP-Lcj" secondAttribute="trailing" id="Vh6-VP-bdV"/>
-                <constraint firstAttribute="bottom" secondItem="BOx-hP-Lcj" secondAttribute="bottom" id="YgW-yB-XkB"/>
-                <constraint firstItem="BOx-hP-Lcj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="aJp-xO-hdj"/>
-                <constraint firstItem="BOx-hP-Lcj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="gmY-i4-cUp"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="QaL-L4-RpE" secondAttribute="bottom" constant="266" id="3N6-hk-C94"/>
+                <constraint firstItem="eEU-FM-Hz9" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.816425" id="4vb-Ac-cAG"/>
+                <constraint firstItem="eEU-FM-Hz9" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.125" id="68U-Tr-Jjf"/>
+                <constraint firstItem="eEU-FM-Hz9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="264" id="DDe-wj-icy"/>
+                <constraint firstItem="QaL-L4-RpE" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.483092" id="PLd-Sx-dbS"/>
+                <constraint firstItem="QaL-L4-RpE" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0446429" id="R2A-Rp-TWy"/>
+                <constraint firstItem="QaL-L4-RpE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Yyf-3d-AXt"/>
+                <constraint firstItem="eEU-FM-Hz9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="la9-Bh-X3E"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="101.44927536231884" y="100.44642857142857"/>

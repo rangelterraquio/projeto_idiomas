@@ -24,7 +24,7 @@ class SignUpViewController: UIViewController {
     
 //    @IBOutlet weak var signInButton: GIDSignInButton!
     ///sign with apple button
-    let siwaButton = ASAuthorizationAppleIDButton()
+    let siwaButton = ASAuthorizationAppleIDButton(type: .signUp, style: .black)
     var currentNonce: String?
     
     var signInGoogleButton = GIDSignInButton()
@@ -35,7 +35,7 @@ class SignUpViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(appleIDStateDidRevoked), name: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil)
+      
         self.navigationController?.navigationBar.isHidden = true
         self.hideKeyboardWhenTappedAround()
 
@@ -52,6 +52,10 @@ class SignUpViewController: UIViewController {
         setupSIWAButton()
         setupGoogleSignIn()
 //        setupButtons()
+        
+        
+     
+    
        
     }
     
@@ -132,6 +136,7 @@ extension SignUpViewController: ASAuthorizationControllerPresentationContextProv
         /// set this so the button will use auto layout constraint
         siwaButton.translatesAutoresizingMaskIntoConstraints = false
         siwaButton.cornerRadius = 20
+        
         /// add the button to the view controller root view
         self.view.addSubview(siwaButton)
 
@@ -150,7 +155,7 @@ extension SignUpViewController: ASAuthorizationControllerPresentationContextProv
         ])
 
         /// the function that will be executed when user tap the button
-        siwaButton.addTarget(self, action: #selector(appleSignInTapped), for: .allEvents)
+        siwaButton.addTarget(self, action: #selector(appleSignInTapped), for: .touchDown)
         
         siwaButton.isEnabled = true
         

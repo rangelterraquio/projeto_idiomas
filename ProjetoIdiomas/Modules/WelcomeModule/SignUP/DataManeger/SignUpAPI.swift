@@ -44,6 +44,8 @@ public class SignUpAPI: NSObject{
     public override init() {
         super.init()
         setupGoogleSignIn()
+        
+          NotificationCenter.default.addObserver(self, selector: #selector(appleIDStateDidRevoked), name: ASAuthorizationAppleIDProvider.credentialRevokedNotification, object: nil)
     }
     
     
@@ -92,6 +94,15 @@ public class SignUpAPI: NSObject{
             print(error.localizedDescription)
         }
        
+    }
+    
+    @objc func appleIDStateDidRevoked(_ notification: Notification) {
+        // Make sure user signed in with Apple
+        if
+            let providerId = Auth.auth().currentUser?.providerData.first?.providerID,
+            providerId == "apple.com" {
+            signOut()
+        }
     }
     
     
@@ -231,6 +242,20 @@ extension SignUpAPI:  ASAuthorizationControllerDelegate{
             
         interatorDelegade?.didAuthoriztion()
         
+        guard let appleIDCredentials = authorization.credential as? ASAuthorizationAppleIDCredential else { return }
+        var userName: String?
+//        let userIdentifier = appleIDCredentials.user
+//        let fullName = appleIDCredentials.fullName?.givenName
+        
+        if let fullname = appleIDCredentials.fullName?.givenName{
+            userName = fullname
+        }else if let email = appleIDCredentials.email{
+            userName = email
+        }else{
+            userName = ""
+        }
+       
+        
             if let appleIDCredential = authorization.credential as? ASAuthorizationAppleIDCredential {
                 // use the user credential / data to do stuff here ...
                 UserDefaults.standard.set(appleIDCredential.user, forKey: "appleAuthorizedUserIdKey")
@@ -276,16 +301,14 @@ extension SignUpAPI:  ASAuthorizationControllerDelegate{
                         
                         // Mak a request to set user's display name on Firebase
                         let changeRequest = authResult?.user.createProfileChangeRequest()
-                        changeRequest?.displayName = appleIDCredential.fullName?.givenName
+                        changeRequest?.displayName = userName
                         changeRequest?.commitChanges(completion: { (error) in
 
                             if let error = error {
                                 print(error.localizedDescription)
                             } else {
-                               
                                 ///logion sucesseful
                                 self.signWithAppleSuccessful(authResult!.user)
-                                
                             }
                         })
                     
@@ -344,6 +367,8 @@ extension SignUpAPI{
         
         return hashString
     }
+    
+    
     
 }
 

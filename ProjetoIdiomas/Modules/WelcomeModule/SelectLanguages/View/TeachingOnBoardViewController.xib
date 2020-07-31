@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -15,7 +15,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TeachingOnBoardViewController" customModule="ProjetoIdiomas" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TeachingOnBoardViewController" customModule="Project_Languages" customModuleProvider="target">
             <connections>
                 <outlet property="view" destination="FOn-ib-RCj" id="QVM-Cs-Au9"/>
             </connections>
@@ -28,16 +28,14 @@
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onBoard2" translatesAutoresizingMaskIntoConstraints="NO" id="itE-Ma-D0L">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="What about to teach a language you already know?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8h-tW-T97">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What about to teach a language you already know?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o8h-tW-T97">
                     <rect key="frame" x="38" y="308" width="338" height="120"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="30"/>
                     <color key="textColor" red="0.1137254902" green="0.1450980392" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBk-G6-OMR">
-                    <rect key="frame" x="107" y="466" width="200" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TBk-G6-OMR">
+                    <rect key="frame" x="107" y="556" width="200" height="40"/>
                     <color key="backgroundColor" red="0.43529411759999997" green="0.36078431370000003" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="22"/>
                     <state key="normal" title="Sure!">
@@ -55,10 +53,18 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="itE-Ma-D0L" firstAttribute="leading" secondItem="FOn-ib-RCj" secondAttribute="leading" id="NFk-iD-zSQ"/>
-                <constraint firstAttribute="trailing" secondItem="itE-Ma-D0L" secondAttribute="trailing" id="YDF-xM-hpK"/>
-                <constraint firstAttribute="bottom" secondItem="itE-Ma-D0L" secondAttribute="bottom" id="b6K-0R-H45"/>
-                <constraint firstItem="itE-Ma-D0L" firstAttribute="top" secondItem="FOn-ib-RCj" secondAttribute="top" id="ljM-rJ-EAT"/>
+                <constraint firstItem="itE-Ma-D0L" firstAttribute="width" secondItem="FOn-ib-RCj" secondAttribute="width" id="3J6-QE-Shh"/>
+                <constraint firstItem="K2L-0z-3Yl" firstAttribute="bottom" secondItem="TBk-G6-OMR" secondAttribute="bottom" constant="266" id="B9E-6n-ikk"/>
+                <constraint firstItem="TBk-G6-OMR" firstAttribute="height" secondItem="FOn-ib-RCj" secondAttribute="height" multiplier="0.0446429" id="Hpe-uU-Db2"/>
+                <constraint firstItem="TBk-G6-OMR" firstAttribute="width" secondItem="FOn-ib-RCj" secondAttribute="width" multiplier="0.483092" id="Kiw-W0-YP2"/>
+                <constraint firstItem="o8h-tW-T97" firstAttribute="top" secondItem="K2L-0z-3Yl" secondAttribute="top" constant="264" id="MyG-In-xgo"/>
+                <constraint firstItem="itE-Ma-D0L" firstAttribute="centerX" secondItem="FOn-ib-RCj" secondAttribute="centerX" id="RzX-PP-1po"/>
+                <constraint firstItem="o8h-tW-T97" firstAttribute="width" secondItem="FOn-ib-RCj" secondAttribute="width" multiplier="0.816425" id="bUR-hp-2Ly"/>
+                <constraint firstItem="o8h-tW-T97" firstAttribute="centerX" secondItem="FOn-ib-RCj" secondAttribute="centerX" id="hNT-SX-0hh"/>
+                <constraint firstItem="TBk-G6-OMR" firstAttribute="centerX" secondItem="FOn-ib-RCj" secondAttribute="centerX" id="iYd-dY-kWZ"/>
+                <constraint firstItem="o8h-tW-T97" firstAttribute="height" secondItem="FOn-ib-RCj" secondAttribute="height" multiplier="0.133929" id="qOY-e5-QhU"/>
+                <constraint firstItem="itE-Ma-D0L" firstAttribute="centerY" secondItem="FOn-ib-RCj" secondAttribute="centerY" id="ucq-vM-EwZ"/>
+                <constraint firstItem="itE-Ma-D0L" firstAttribute="height" secondItem="FOn-ib-RCj" secondAttribute="height" id="ueA-vl-eL9"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="K2L-0z-3Yl"/>
             <point key="canvasLocation" x="101.44927536231884" y="100.44642857142857"/>

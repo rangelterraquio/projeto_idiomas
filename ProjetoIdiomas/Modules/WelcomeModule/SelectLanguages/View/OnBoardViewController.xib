@@ -28,18 +28,16 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="OnBoardparte1" translatesAutoresizingMaskIntoConstraints="NO" id="imc-gq-lvl">
-                    <rect key="frame" x="0.0" y="-10" width="414" height="906"/>
+                    <rect key="frame" x="0.0" y="-5" width="414" height="906"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Here we have a whole community available for you ask anything." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDe-aQ-oe7">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Here we have a whole community available for you ask anything." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fDe-aQ-oe7">
                     <rect key="frame" x="38" y="308" width="338" height="171"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="30"/>
                     <color key="textColor" red="0.1137254902" green="0.1450980392" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJC-de-Rfl">
-                    <rect key="frame" x="107" y="531" width="200" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vJC-de-Rfl">
+                    <rect key="frame" x="107" y="550" width="200" height="40"/>
                     <color key="backgroundColor" red="0.43529411759999997" green="0.36078431370000003" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="22"/>
                     <state key="normal" title="Next">
@@ -57,10 +55,20 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
+                <constraint firstItem="imc-gq-lvl" firstAttribute="height" secondItem="Cya-ko-aoO" secondAttribute="height" multiplier="1.01116" id="0HR-cX-hye"/>
+                <constraint firstItem="vJC-de-Rfl" firstAttribute="height" secondItem="Cya-ko-aoO" secondAttribute="height" multiplier="0.0446429" id="GaF-V9-Y8m"/>
+                <constraint firstItem="fDe-aQ-oe7" firstAttribute="top" secondItem="qRg-9k-fDR" secondAttribute="top" constant="264" id="IrN-lX-tfL"/>
+                <constraint firstItem="fDe-aQ-oe7" firstAttribute="height" secondItem="Cya-ko-aoO" secondAttribute="height" multiplier="0.190848" id="LT0-Ph-zDe"/>
                 <constraint firstAttribute="trailing" secondItem="imc-gq-lvl" secondAttribute="trailing" id="O5S-d1-Lk8"/>
-                <constraint firstItem="imc-gq-lvl" firstAttribute="top" secondItem="Cya-ko-aoO" secondAttribute="top" constant="-10" id="YH6-uk-vjQ"/>
-                <constraint firstAttribute="bottom" secondItem="imc-gq-lvl" secondAttribute="bottom" id="gNe-Xp-xee"/>
+                <constraint firstItem="fDe-aQ-oe7" firstAttribute="width" secondItem="Cya-ko-aoO" secondAttribute="width" multiplier="0.816425" id="Un7-XJ-hxI"/>
+                <constraint firstItem="vJC-de-Rfl" firstAttribute="top" secondItem="fDe-aQ-oe7" secondAttribute="top" constant="242" id="ZcA-bo-0Ks"/>
+                <constraint firstItem="vJC-de-Rfl" firstAttribute="width" secondItem="Cya-ko-aoO" secondAttribute="width" multiplier="0.483092" id="b7U-dk-3kj"/>
+                <constraint firstItem="imc-gq-lvl" firstAttribute="width" secondItem="Cya-ko-aoO" secondAttribute="width" id="c5w-Aa-cee"/>
+                <constraint firstItem="vJC-de-Rfl" firstAttribute="centerX" secondItem="Cya-ko-aoO" secondAttribute="centerX" id="efs-TR-xEi"/>
                 <constraint firstItem="imc-gq-lvl" firstAttribute="leading" secondItem="Cya-ko-aoO" secondAttribute="leading" id="n2z-IA-zPw"/>
+                <constraint firstItem="fDe-aQ-oe7" firstAttribute="centerX" secondItem="Cya-ko-aoO" secondAttribute="centerX" id="nCD-21-akf"/>
+                <constraint firstItem="imc-gq-lvl" firstAttribute="centerX" secondItem="Cya-ko-aoO" secondAttribute="centerX" id="tu1-tT-Rn5"/>
+                <constraint firstItem="imc-gq-lvl" firstAttribute="centerY" secondItem="Cya-ko-aoO" secondAttribute="centerY" id="uV4-7O-Yta"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="qRg-9k-fDR"/>
             <point key="canvasLocation" x="101.44927536231884" y="100.44642857142857"/>

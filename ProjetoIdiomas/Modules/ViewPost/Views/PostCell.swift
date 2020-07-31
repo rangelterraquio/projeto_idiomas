@@ -56,7 +56,8 @@ class PostCell: UITableViewCell {
         }
     }
     @IBAction func upVote(_ sender: Any) {
-       
+       let generator = UIImpactFeedbackGenerator(style: .light)
+       generator.impactOccurred()
         ///atualizo label dos numeros
         if let tex = upVoteLabel.text, let num = Int32(tex){
             upVoteLabel.text = "\(num + 1)"

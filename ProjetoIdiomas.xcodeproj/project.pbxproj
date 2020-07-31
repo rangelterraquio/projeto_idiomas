@@ -239,6 +239,7 @@
 		70AFD98924D114E8003AA376 /* ReautheticationScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReautheticationScreenViewController.swift; sourceTree = "<group>"; };
 		70AFD98A24D114E8003AA376 /* ReautheticationScreenViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReautheticationScreenViewController.xib; sourceTree = "<group>"; };
 		70AFFE1724D1B9B400A5C525 /* ReAutheticationCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReAutheticationCoordinator.swift; sourceTree = "<group>"; };
+		70B05C3624D3AE710087B03F /* Project LanguagesRelease.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Project LanguagesRelease.entitlements"; sourceTree = "<group>"; };
 		70B6391A24678F9600966A56 /* SelectLanguagesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLanguagesProtocols.swift; sourceTree = "<group>"; };
 		70B6391C246792B300966A56 /* LanguageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LanguageCell.swift; sourceTree = "<group>"; };
 		70B6391D246792B300966A56 /* LanguageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LanguageCell.xib; sourceTree = "<group>"; };
@@ -416,6 +417,7 @@
 		707F384A2445226200DCEBE6 /* ProjetoIdiomas */ = {
 			isa = PBXGroup;
 			children = (
+				70B05C3624D3AE710087B03F /* Project LanguagesRelease.entitlements */,
 				708E000324C1E3C600F28A75 /* Fontes */,
 				701F3FAB24BD347A00A1CC78 /* Extensions */,
 				70FABC612482A7DF00825EC9 /* Commons */,
@@ -1374,7 +1376,7 @@
 			baseConfigurationReference = BCA2DBB3DE4935D89AAFEB56 /* Pods-ProjetoIdiomas.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ProjetoIdiomas/ProjetoIdiomas.entitlements;
+				CODE_SIGN_ENTITLEMENTS = "ProjetoIdiomas/Project LanguagesRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = 536JJFH3JQ;
