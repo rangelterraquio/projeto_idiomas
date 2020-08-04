@@ -20,6 +20,7 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var postText: UITextView!
     @IBOutlet weak var backgroundCell: UIView!
     
+    @IBOutlet weak var reactionButton: UIButton!
     var onReuse: () -> () = {}
     var upvoted: (Int32) -> () = {_ in}
     var downVoted: (Int32) -> () = {_ in}
@@ -27,6 +28,9 @@ class PostCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        reactionButton.setImage(UIImage(named: "likedIcon"), for: .disabled)
+        reactionButton.setImage(UIImage(named: "Icon awesome-arrow-alt-circle-up-1"), for: .normal)
+        
         
         // Initialization code
         imageLoadIndicator.startAnimating()
@@ -63,6 +67,8 @@ class PostCell: UITableViewCell {
             upVoteLabel.text = "\(num + 1)"
              upvoted(num + 1)
         }
+        
+         reactionButton.isEnabled = false
     }
     
     
@@ -78,6 +84,8 @@ class PostCell: UITableViewCell {
          guard let section = viewSection else {return}
          
          self.backgroundCell.backgroundColor = section == SectionSelected.learningSection ? SectionColor.learning.color : SectionColor.teaching.color
+        
+         reactionButton.isEnabled = !post.isLiked
         
     }
     

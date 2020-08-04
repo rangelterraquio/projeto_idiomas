@@ -65,8 +65,8 @@ class UserPostsViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
       if let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell") as? FeedCell{
-           let post = posts[indexPath.row]
-           print(post.publicationDate)
+           var post = posts[indexPath.row]
+            post.isLiked = verifyLikedPost(id: post.id)
            cell.populate(post: post)
            
         let uuid = stateController.imageLoader.loadImgage(url: post.author.photoURL, completion: { (result) in
@@ -85,7 +85,10 @@ class UserPostsViewController: UITableViewController {
            }
            
            
-           cell.upvoted = { self.stateController.updateVotes(from: "upvote", inDocument: post, with: nil)}
+           cell.upvoted = {
+            FeedViewController.user.postsLiked.append(post.id)
+            self.posts[indexPath.row-1].upvote += 1
+            self.stateController.updateVotes(from: "upvote", inDocument: post, with: nil)}
            cell.downVoted = {self.stateController.updateVotes(from: "downvote", inDocument: post, with: nil)}
            return cell
        }
@@ -134,6 +137,9 @@ class UserPostsViewController: UITableViewController {
         }    
     }
     
+    func verifyLikedPost(id: String)->Bool{
+        return FeedViewController.user.postsLiked.contains(id)
+    }
 
     /*
     // Override to support rearranging the table view.

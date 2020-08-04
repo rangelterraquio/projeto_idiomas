@@ -177,7 +177,8 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let post = post else{return UITableViewCell()}
+        guard var post = post else{return UITableViewCell()}
+         post.isLiked = verifyLikedDocument(id: post.id)
         if indexPath.row == 0 {
             if let postCell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell{
                 postCell.populate(post: post, viewSection: feedVC?.section)
@@ -185,8 +186,10 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
                     postCell.populateImage(image: image)
                 }
                 postCell.upvoted = { num in
+                    FeedViewController.user.postsLiked.append(post.id)
                     self.presenter?.updateVotes(from: "upvote", inDocument: post, with: nil)
                     self.feedVC?.updateVotesView(VoteType.upVote,num)
+                    self.post?.upvote += 1
                 }
                 postCell.downVoted = { num in
                     self.feedVC?.updateVotesView(VoteType.upVote,num)
@@ -201,7 +204,8 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
                     commentCell.populanteWithNoComments()
                     return commentCell
                 }
-                let comment = comments[indexPath.row-1]
+                var comment = comments[indexPath.row-1]
+                 comment.isLiked = verifyLikedDocument(id: comment.id)
                 commentCell.poulate(from: comment)
                     
                 let uuid = presenter?.requestProfileImage(from: comment.authorPhotoURL, completion: { result in
@@ -219,7 +223,11 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
                     }
                 }
                 
-                commentCell.upvoted = {self.presenter?.updateVotes(from: "upvote", inDocument: post, with: comment)}
+                commentCell.upvoted = {
+                    self.presenter?.updateVotes(from: "upvote", inDocument: post, with: comment)
+                    FeedViewController.user.postsLiked.append(comment.id)
+                    self.comments[indexPath.row-1].upvote += 1
+                }
                 commentCell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: post, with: comment)}
                 return commentCell
             
@@ -258,6 +266,10 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
         
         
         
+    }
+    
+    func verifyLikedDocument(id: String)->Bool{
+        return FeedViewController.user.postsLiked.contains(id)
     }
     
     

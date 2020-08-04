@@ -36,6 +36,7 @@ public struct Post {
     var upvote: Int32 // 10 joao
     var downvote: Int32 // 35
     let publicationDate: Date
+    var isLiked = false
 //    var comments: [Comment]
     
     

@@ -34,7 +34,7 @@ class FeedViewController: UIViewController {
     var updateVotesView: (VoteType, Int32) -> () = {_, _ in}
     var profileButton: UIBarButtonItem!
     
-    var user: User!
+    static var user: User!
     
     var languagesTeaching:[Languages]!
     var languagesLearning:[Languages]!
@@ -58,7 +58,6 @@ class FeedViewController: UIViewController {
    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.navigationController?.navigationBar.isHidden = true
         ///setup tableView
         let cellXib = UINib.init(nibName: "FeedCell", bundle: nil)
@@ -92,11 +91,11 @@ class FeedViewController: UIViewController {
         
 
                    
-        languagesTeaching = user.fluentLanguage.map { (lang) -> Languages in
+        languagesTeaching = FeedViewController.user.fluentLanguage.map { (lang) -> Languages in
             return Languages(rawValue: lang)!
         }
         
-        languagesLearning = user.learningLanguage!.map { (lang) -> Languages in
+        languagesLearning = FeedViewController.user.learningLanguage!.map { (lang) -> Languages in
             return Languages(rawValue: lang)!
         }
         
@@ -237,8 +236,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "feedCell") as? FeedCell{
             if indexPath.row == 0 || indexPath.row > posts.count {return UITableViewCell()}
-            let post = posts[indexPath.row-1] ///subtraio 1 por causa da celula statica
-            print(post.publicationDate)
+            var post = posts[indexPath.row-1] ///subtraio 1 por causa da celula statica
+            post.isLiked = verifyLikedPost(id: post.id)
+            
             cell.populate(post: post, section: section)
             
             let uuid = presenter?.requestProfileImage(from: post.author.photoURL, completion: { (result) in
@@ -257,7 +257,15 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
             }
             
             
-            cell.upvoted = { self.presenter?.updateVotes(from: "upvote", inDocument: post, with: nil)}
+            cell.upvoted = {
+                
+                self.presenter?.updateVotes(from: "upvote", inDocument: post, with: nil)
+                FeedViewController.user.postsLiked.append(post.id)
+                
+                self.posts[indexPath.row-1].upvote += 1
+                
+                
+            }
             cell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: post, with: nil)}
             cell.readMoreClicked = {self.didReadMoreAction(cell: cell, index: indexPath.row)}
             return cell
@@ -332,7 +340,9 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
         presenter?.goToViewPostDetails(post: post, imageProfile: cell.userPictureView.image, vc: self)
     }
     
-    
+    func verifyLikedPost(id: String)->Bool{
+        return FeedViewController.user.postsLiked.contains(id)
+    }
     
 }
 

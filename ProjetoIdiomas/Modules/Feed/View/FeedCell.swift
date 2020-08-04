@@ -28,7 +28,7 @@ class FeedCell: UITableViewCell {
     var upvoted: () -> () = {}
     var downVoted: () -> () = {}
     var readMoreClicked: () -> () = {}
-
+    var isLiked = false
     
 //    override func viewWillLayoutSubviews() {
 //          sampleLabel.sizeToFit()
@@ -39,6 +39,8 @@ class FeedCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        reactionButton.setImage(UIImage(named: "likedIcon"), for: .disabled)
+        reactionButton.setImage(UIImage(named: "Icon awesome-arrow-alt-circle-up-1"), for: .normal)
         profilePicIndicator.startAnimating()
         feedIndicator.startAnimating()
         feedIndicator.hidesWhenStopped = true
@@ -55,6 +57,8 @@ class FeedCell: UITableViewCell {
         
     }
     @IBAction func upVoteButton(_ sender: Any) {
+        
+     
         let generator = UIImpactFeedbackGenerator(style: .light)
         generator.impactOccurred()
 
@@ -63,6 +67,7 @@ class FeedCell: UITableViewCell {
         if let tex = upVoteLabel.text, let num = Int16(tex){
             upVoteLabel.text = "\(num + 1)"
         }
+        reactionButton.isEnabled = false
         
     }
     
@@ -95,11 +100,8 @@ class FeedCell: UITableViewCell {
         }
         
         
-//        if let photoURL = post.author.photoURL{
-//            self.userPictureView.loadImagefromURL(from: photoURL) {
-//                self.profilePicIndicator.stopAnimating()
-//            }
-//        }
+        reactionButton.isEnabled = !post.isLiked
+        
     }
     
     func populate(post: Post, section: SectionSelected){
@@ -112,7 +114,9 @@ class FeedCell: UITableViewCell {
             if let imageName =  Languages.init(rawValue: post.language)?.name{
                 self.languageImage.image = UIImage(named: imageName)
             }
-                
+            
+            reactionButton.isEnabled = !post.isLiked
+        
             if section == .learningSection{
                 backgroundCell.backgroundColor = SectionColor.learning.color
             }else {

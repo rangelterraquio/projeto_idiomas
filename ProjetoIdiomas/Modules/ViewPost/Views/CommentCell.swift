@@ -18,6 +18,7 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var upVoteLabel: UILabel!
     @IBOutlet weak var downVoteLabel: UILabel!
     
+    @IBOutlet weak var reactionButton: UIButton!
     @IBOutlet weak var backgroundCell: UIView!
     @IBOutlet weak var noCommentsLabel: UILabel!
     var onReuse: () -> () = {}
@@ -27,6 +28,9 @@ class CommentCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        
+        reactionButton.setImage(UIImage(named: "likedIcon"), for: .disabled)
+        reactionButton.setImage(UIImage(named: "Icon awesome-arrow-alt-circle-up-1"), for: .normal)
         commentIndicator.startAnimating()
         commentIndicator.hidesWhenStopped = true
         imageIndicator.hidesWhenStopped = true
@@ -43,11 +47,15 @@ class CommentCell: UITableViewCell {
         // Configure the view for the selected state
     }
     @IBAction func upVote(_ sender: Any) {
+        let generator = UIImpactFeedbackGenerator(style: .light)
+        generator.impactOccurred()
         upvoted()
         ///atualizo label dos numeros
         if let tex = upVoteLabel.text, let num = Int32(tex){
             upVoteLabel.text = "\(num + 1)"
         }
+        
+        reactionButton.isEnabled = false
     }
     
     @IBAction func downVote(_ sender: Any) {
@@ -73,6 +81,8 @@ class CommentCell: UITableViewCell {
         noCommentsLabel.isHidden = true
         backgroundCell.isHidden = false
         commentIndicator.stopAnimating()
+        
+         reactionButton.isEnabled = !comment.isLiked
         
     }
     func populanteWithNoComments(){

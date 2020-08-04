@@ -146,6 +146,7 @@
                 <outlet property="imageIndicator" destination="Foe-Kw-JrA" id="xC7-zn-86t"/>
                 <outlet property="imageProfile" destination="kLk-n0-Mgm" id="woH-Dd-4cO"/>
                 <outlet property="noCommentsLabel" destination="OOV-T7-yla" id="N5Q-N2-84i"/>
+                <outlet property="reactionButton" destination="Jmj-xi-DEG" id="l9V-5e-NjO"/>
                 <outlet property="upVoteLabel" destination="mBR-lC-MJS" id="Gda-eF-E6i"/>
             </connections>
             <point key="canvasLocation" x="200.00000000000003" y="155.69196428571428"/>

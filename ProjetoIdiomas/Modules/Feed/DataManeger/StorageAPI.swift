@@ -248,14 +248,16 @@ public class StoregeAPI{
     }
     
     func updateVotes<T : DocumentSerializable >(from voteType: String, inDocument: T, with comment: Comment?){
-       
+       var id = ""
         let documentRef = db.collection("Posts").document(inDocument.id)
         var newDoc: DocumentReference?
        if let comment = comment{
            let auxDoc = documentRef.collection("Comments").document(comment.id)
             newDoc = auxDoc
+            id = comment.id
        }else{
             newDoc = documentRef
+            id = inDocument.id
         }
         
         
@@ -289,11 +291,21 @@ public class StoregeAPI{
             if let error = error {
                 print("Transaction failed: \(error)")
             } else {
+                self.updateUserLiked(documentID: id)
                 print("Transaction successfully committed!")
             }
         }
         
         
+        
+    }
+    
+    private func updateUserLiked(documentID: String){
+        guard var user = StoregeAPI.currentUser else{ return}
+        user.postsLiked.append(documentID)
+        
+         let documentRef = db.collection("Users").document(user.id)
+        documentRef.setData(["postsLiked":user.postsLiked], merge: true)
         
     }
     

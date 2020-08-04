@@ -19,7 +19,7 @@ public struct Comment{
     var commentText: String
     public var id: String
     var fcmToken: String
-
+    var isLiked = false
     
     var dictionary : [String : Any]{
         return [

@@ -175,7 +175,7 @@ A few dominant architectures are … MVC, MVVM-C, and VIPER. Every pattern offer
                 <outlet property="postText" destination="ZsH-Db-0am" id="bqA-uF-roX"/>
                 <outlet property="postTitleLabel" destination="bDw-oC-aO0" id="BMT-Tx-ssj"/>
                 <outlet property="profilePicIndicator" destination="eFt-6D-7qc" id="VMK-jS-Ahn"/>
-                <outlet property="reactionButton" destination="hUs-Cy-mrW" id="m4f-Xt-du5"/>
+                <outlet property="reactionButton" destination="AQX-Df-h5H" id="5vv-3j-zOh"/>
                 <outlet property="upVoteLabel" destination="0lf-XE-b10" id="epG-fI-PcS"/>
                 <outlet property="userNameLabel" destination="4sm-Fr-TSn" id="2At-wR-ml9"/>
                 <outlet property="userPictureView" destination="A1m-l4-rmp" id="QuY-ye-IuP"/>
