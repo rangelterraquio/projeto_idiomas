@@ -155,7 +155,7 @@ public class StoregeAPI{
         }
         guard let user = StoregeAPI.currentUser else {return}
         
-        let newPost = Post(id: UUID().uuidString, title: title, message: text, language: language.rawValue, upvote: 0, downvote: 0, publicationDate: Date(), author: user)
+        let newPost = Post(id: UUID().uuidString, title: title, message: text, language: language.rawValue, upvote: 0, downvote: 0, publicationDate: Date(), author: user, reported: 0)
         
         db.collection("Posts").addDocument(data: newPost.dictionary) { (error) in
             if error != nil{
@@ -176,7 +176,7 @@ public class StoregeAPI{
         guard let user = StoregeAPI.currentUser else {return}
 
         
-        let comment = Comment(authorId: user.id, upvote: 0, downvote: 0, commentText: text, id: UUID().uuidString, authorName: user.name, authorPhotoURL: user.photoURL, fcmToken: user.fcmToken)
+        let comment = Comment(authorId: user.id, upvote: 0, downvote: 0, commentText: text, id: UUID().uuidString, authorName: user.name, authorPhotoURL: user.photoURL, fcmToken: user.fcmToken, reported: 0)
         
         db.collection("Posts").document(post.id).collection("Comments").addDocument(data: comment.dictionary) { (error) in
             if error != nil{
@@ -314,7 +314,11 @@ public class StoregeAPI{
         let documentRef = db.collection("Posts")
         documentRef.document(post.id).delete()
     }
-
+    
+    func removeComment(comment: Comment, inPost: Post){
+        let documentRef = db.collection("Posts").document(inPost.id).collection("Comments").document(comment.id)
+        documentRef.delete()
+    }
    
     func fetchUser(completion: @escaping (User?, CustomError?)->()){
         if let user = Auth.auth().currentUser {
@@ -373,6 +377,48 @@ public class StoregeAPI{
             
         }
     
+    
+    func reportPost(post: Post){
+        var reportedTimes = post.reported
+        reportedTimes+=1
+        if reportedTimes == 5{
+            self.removePost(post: post)
+             FeedViewController.user.reportedIDs.removeAll(where: {$0 == post.id})
+             StoregeAPI.currentUser?.reportedIDs.removeAll(where: {$0 == post.id})
+        }else{
+            let documentRef = db.collection("Posts").document(post.id)
+            
+            documentRef.setData(["reported": reportedTimes], merge: true)
+            
+            FeedViewController.user.reportedIDs.append(post.id)
+            StoregeAPI.currentUser?.reportedIDs.append(post.id)
+        }
+        
+        let docRef2 = db.collection("Users").document(FeedViewController.user.id)
+        
+        docRef2.setData(["reportedIDs":FeedViewController.user.reportedIDs], merge: true)
+    }
+    
+    func reportComment(comment: Comment, inPost: Post){
+        var reportedTimes = comment.reported
+        reportedTimes+=1
+        
+        
+        if reportedTimes == 3{
+            self.removeComment(comment: comment, inPost: inPost)
+            FeedViewController.user.reportedIDs.removeAll(where: {$0 == comment.id})
+            StoregeAPI.currentUser?.reportedIDs.removeAll(where: {$0 == comment.id})
+        }else{
+            let documentRef = db.collection("Posts").document(inPost.id).collection("Comments").document(comment.id)
+            documentRef.setData(["reported": reportedTimes], merge: true)
+            FeedViewController.user.reportedIDs.append(comment.id)
+            StoregeAPI.currentUser?.reportedIDs.append(comment.id)
+        }
+        
+        let docRef2 = db.collection("Users").document(FeedViewController.user.id)
+        
+        docRef2.setData(["reportedIDs":FeedViewController.user.reportedIDs], merge: true)
+    }
     
     }
     

@@ -396,8 +396,19 @@ extension AppCoordinator: SelectLanguagesCoordinatorDelegate{
                 self.user = user
                 self.start()
                
-            case .failure(_):
-                fatalError("Deu mt ruim cusão")
+            case .failure(let error):
+                if let vc = self.showAuthentication() as? SignUpViewController{
+                    let nav = UINavigationController(rootViewController: vc)
+                    vc.isError = true
+                    vc.errorMSG = error.localizedDescription
+                    self.tabBarController.viewControllers = [nav]
+                }else{
+                    let vc = self.showAuthentication()
+                    let nav = UINavigationController(rootViewController: vc)
+                    self.tabBarController.viewControllers = [nav]
+                }
+             
+//                fatalError("Deu mt ruim cusão")
             }
         }
     }

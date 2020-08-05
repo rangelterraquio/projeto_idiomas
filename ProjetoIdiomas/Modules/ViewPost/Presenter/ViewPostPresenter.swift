@@ -9,12 +9,7 @@
 import Foundation
 import UIKit
 class ViewPostPresenter: ViewPostViewToPresenter{
-    
-    
-    
-    
-    
-    
+  
     
     var router: ViewPostPresenterToRouter? = nil
     var interator: ViewPostPresenterToInterator? = nil
@@ -48,6 +43,17 @@ class ViewPostPresenter: ViewPostViewToPresenter{
     func updateFeed(from post: Post, startingBy votesNum: Int32) {
         interator?.fetchCommments(in: post, startingBy: votesNum)
     }
+    
+    func reportPost(post: Post) {
+        interator?.reportPost(post: post)
+    }
+      
+      func reportComment(comment: Comment, inPost: Post) {
+        interator?.reportComment(comment: comment, inPost: inPost)
+      }
+      
+      
+      
     
 }
 

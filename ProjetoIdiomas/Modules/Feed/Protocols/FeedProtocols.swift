@@ -20,6 +20,7 @@ public protocol FeedPresenterToInterator: class {
     func requestImage(from url: String?, completion: @escaping (Result<UIImage, CustomError>) -> Void) -> UUID?
     func cancelImageRequest(uuid token: UUID)
     func requestUpdateVotes<T: DocumentSerializable>(from: String, inDocument: T, with comment: Comment?)
+    func reportPost(post: Post)
 
 }
 public protocol FeedPresenterToView: class{
@@ -36,6 +37,7 @@ public protocol FeedPresenterToView: class{
     func goToAddPostView()
     func goToViewPostDetails(post: Post,imageProfile: UIImage?,vc: FeedViewController?)
     func goToProfile()
+    func reportPost(post: Post)
 }
 
  protocol FeedPresenterToRouter{

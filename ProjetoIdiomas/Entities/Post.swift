@@ -37,6 +37,8 @@ public struct Post {
     var downvote: Int32 // 35
     let publicationDate: Date
     var isLiked = false
+    var isReported = false
+    var reported: Int
 //    var comments: [Comment]
     
     
@@ -49,13 +51,14 @@ public struct Post {
                 "upvote": upvote,
                 "downvote": downvote,
                 "author" : author.dictionary,
+                "reported" : reported
 //                "comments": comments
         ]
     }
     
     
 
-    init(id: String, title: String, message: String, language: String, upvote: Int32, downvote: Int32, publicationDate: Date, author: User) {
+    init(id: String, title: String, message: String, language: String, upvote: Int32, downvote: Int32, publicationDate: Date, author: User, reported: Int) {
            self.title = title
            self.message = message
            self.publicationDate = publicationDate
@@ -64,6 +67,7 @@ public struct Post {
            self.downvote = downvote
            self.id = id
            self.author = author
+           self.reported = reported
 //           self.comments = comments
        }
        
@@ -93,7 +97,7 @@ extension Post : DocumentSerializable{
 //                }
 //            }
 //        }
-        self.init(id: snapshot.documentID, title: title, message: message, language: language, upvote: upvote, downvote: downvote, publicationDate: publicationDate.dateValue(),author: author)
+        self.init(id: snapshot.documentID, title: title, message: message, language: language, upvote: upvote, downvote: downvote, publicationDate: publicationDate.dateValue(),author: author, reported: snap["reported"] as? Int ?? 0)
         }
     
     
@@ -116,7 +120,7 @@ extension Post : DocumentSerializable{
     //                }
     //            }
     //        }
-            self.init(id: document.documentID, title: title, message: message, language: language, upvote: upvote, downvote: downvote, publicationDate: publicationDate.dateValue(),author: author)
+            self.init(id: document.documentID, title: title, message: message, language: language, upvote: upvote, downvote: downvote, publicationDate: publicationDate.dateValue(),author: author, reported: snap["reported"] as? Int ?? 0)
             }
 
 }

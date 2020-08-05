@@ -39,14 +39,14 @@ class ReautheticationScreenViewController: UIViewController {
     @IBAction func logIn(_ sender: Any) {
         
         guard let email = emailTextField.text, let password = passwordEmailTextField.text else {
-            self.showAlertError(error: "email or password invalid", title: "Operation Failed")
+            self.showAlert(error: "email or password invalid", title: "Operation Failed")
             return
         }
         updateViewWithLoading()
         signUpAPI.signWithEmail(email: email, password: password) { (result) in
             switch result{
             case .failure(let errorCode):
-                self.showAlertError(error: errorCode.errorMessage, title: "Operation Failed")
+                self.showAlert(error: errorCode.errorMessage, title: "Operation Failed")
             case .success(_):
                 self.delegate?.deleteAccount()
             }
@@ -183,7 +183,7 @@ extension ReautheticationScreenViewController: ReautheticationDelegate{
     
     func didAuthetication(crendentials: AuthCredential?) {
         guard let cred = crendentials else {
-            self.showAlertError(error: "Something goes wrong", title: "Operation Failed")
+            self.showAlert(error: "Something goes wrong", title: "Operation Failed")
             return
         }
         stateController.deleteUserAccount(crendentials: cred) { (result) in
@@ -192,7 +192,7 @@ extension ReautheticationScreenViewController: ReautheticationDelegate{
             }
             switch result{
             case .operationFailed:
-                self.showAlertError(error: "Something goes wrong", title: "Operation Failed")
+                self.showAlert(error: "Something goes wrong", title: "Operation Failed")
             case .none:
                 self.signUpAPI.reAutheticationDelegate = nil
                 self.delegate?.deleteAccount()

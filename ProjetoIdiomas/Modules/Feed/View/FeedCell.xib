@@ -74,16 +74,30 @@ A few dominant architectures are … MVC, MVVM-C, and VIPER. Every pattern offer
                                 <color key="textColor" red="0.1137254902" green="0.1450980392" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0El-nS-uiK">
+                                <rect key="frame" x="15" y="228" width="20" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="Rbu-aB-9y5"/>
+                                    <constraint firstAttribute="height" constant="22" id="fX4-El-4g8"/>
+                                </constraints>
+                                <color key="tintColor" red="0.53166824580000005" green="0.43410599230000002" blue="0.78826981780000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="info.circle" catalog="system"/>
+                                <connections>
+                                    <action selector="reportButtonDidTap:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="iww-Mq-sKV"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.58039215690000001" green="0.67450980390000004" blue="1" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="Dmu-YJ-Q09" firstAttribute="height" secondItem="AS0-4x-qvA" secondAttribute="height" multiplier="0.103333" constant="3.1000900000000016" id="0k7-nT-z2N"/>
                             <constraint firstAttribute="trailingMargin" secondItem="0lf-XE-b10" secondAttribute="trailing" constant="43" id="1pB-1t-d2d"/>
+                            <constraint firstItem="0El-nS-uiK" firstAttribute="leading" secondItem="AS0-4x-qvA" secondAttribute="leading" constant="15" id="1zb-li-3cS"/>
                             <constraint firstAttribute="trailing" secondItem="A1m-l4-rmp" secondAttribute="trailing" constant="15" id="2Sf-gL-doF"/>
                             <constraint firstItem="A1m-l4-rmp" firstAttribute="height" secondItem="AS0-4x-qvA" secondAttribute="height" multiplier="0.177778" id="3z5-Aw-8np"/>
                             <constraint firstItem="0lf-XE-b10" firstAttribute="height" secondItem="AS0-4x-qvA" secondAttribute="height" multiplier="0.07" constant="2.0999999999999979" id="7BU-YZ-TeT"/>
                             <constraint firstItem="Dmu-YJ-Q09" firstAttribute="centerY" secondItem="AQX-Df-h5H" secondAttribute="centerY" id="9mz-s3-0tw"/>
                             <constraint firstItem="ZsH-Db-0am" firstAttribute="width" secondItem="AS0-4x-qvA" secondAttribute="width" multiplier="0.903382" constant="7.1013120000000072" id="ByS-Ud-ish"/>
+                            <constraint firstAttribute="bottom" secondItem="0El-nS-uiK" secondAttribute="bottom" constant="20" id="FwS-Hp-PMd"/>
                             <constraint firstItem="ZsH-Db-0am" firstAttribute="leading" secondItem="AS0-4x-qvA" secondAttribute="leading" constant="15" id="IMb-s4-qAx"/>
                             <constraint firstItem="0lf-XE-b10" firstAttribute="top" secondItem="AQX-Df-h5H" secondAttribute="top" constant="3" id="KhR-Nt-9xP"/>
                             <constraint firstItem="wKJ-tG-eyd" firstAttribute="width" secondItem="AS0-4x-qvA" secondAttribute="width" multiplier="0.241546" constant="27.246335999999999" id="LGw-Gu-GUX"/>
@@ -114,26 +128,9 @@ A few dominant architectures are … MVC, MVVM-C, and VIPER. Every pattern offer
                         <color key="textColor" red="0.43529411759999997" green="0.36078431370000003" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hUs-Cy-mrW">
-                        <rect key="frame" x="16" y="251.5" width="25" height="25"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <state key="normal" image="Icon awesome-arrow-alt-circle-up"/>
-                        <connections>
-                            <action selector="downVoteButton:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="SSc-Rb-IsV"/>
-                        </connections>
-                    </button>
                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="rZh-aN-H7h">
                         <rect key="frame" x="197" y="140" width="20" height="20"/>
                     </activityIndicatorView>
-                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q9r-h5-fuH">
-                        <rect key="frame" x="49" y="290" width="27" height="18"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="27" id="mlF-au-Aev"/>
-                        </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titulo" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bDw-oC-aO0">
                         <rect key="frame" x="30" y="30" width="290" height="24"/>
                         <fontDescription key="fontDescription" name="SFCompactDisplay-Bold" family="SF Compact Display" pointSize="20"/>
@@ -147,21 +144,14 @@ A few dominant architectures are … MVC, MVVM-C, and VIPER. Every pattern offer
                     <constraint firstItem="bDw-oC-aO0" firstAttribute="leading" secondItem="AS0-4x-qvA" secondAttribute="leading" constant="15" id="J0H-jl-clI"/>
                     <constraint firstItem="4sm-Fr-TSn" firstAttribute="top" secondItem="bDw-oC-aO0" secondAttribute="bottom" constant="2" id="NvB-DF-RsL"/>
                     <constraint firstAttribute="bottom" secondItem="AS0-4x-qvA" secondAttribute="bottom" constant="15" id="PBi-xI-awz"/>
-                    <constraint firstItem="Q9r-h5-fuH" firstAttribute="top" secondItem="AS0-4x-qvA" secondAttribute="bottom" constant="5" id="aMJ-V4-qbd"/>
                     <constraint firstItem="bDw-oC-aO0" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.08" id="bkG-cE-fzB"/>
                     <constraint firstItem="AS0-4x-qvA" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="cJp-qL-EFJ"/>
-                    <constraint firstItem="Q9r-h5-fuH" firstAttribute="centerY" secondItem="hUs-Cy-mrW" secondAttribute="centerY" constant="35" id="dgB-LY-eEw"/>
                     <constraint firstItem="rZh-aN-H7h" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="e3P-ZX-iBZ"/>
                     <constraint firstItem="4sm-Fr-TSn" firstAttribute="leading" secondItem="AS0-4x-qvA" secondAttribute="leading" constant="15" id="eq2-oJ-hgt"/>
                     <constraint firstAttribute="trailing" secondItem="AS0-4x-qvA" secondAttribute="trailing" constant="15" id="iRg-7n-WuH"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="hUs-Cy-mrW" secondAttribute="bottom" constant="12.5" id="k5Y-Vz-dvk"/>
                     <constraint firstItem="4sm-Fr-TSn" firstAttribute="height" secondItem="H2p-sc-9uM" secondAttribute="height" multiplier="0.0533333" id="kbh-vj-7Es"/>
-                    <constraint firstItem="Q9r-h5-fuH" firstAttribute="leading" secondItem="hUs-Cy-mrW" secondAttribute="trailing" constant="8" id="lQ8-83-y9a"/>
                     <constraint firstItem="rZh-aN-H7h" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="m42-zd-aj0"/>
-                    <constraint firstItem="hUs-Cy-mrW" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-4" id="n8k-A7-ZOI"/>
                     <constraint firstItem="AS0-4x-qvA" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="pgM-ed-0uN"/>
-                    <constraint firstItem="Q9r-h5-fuH" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="49" id="qBX-xd-B1C"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="Q9r-h5-fuH" secondAttribute="bottom" constant="-19" id="ujh-hB-6iy"/>
                     <constraint firstItem="bDw-oC-aO0" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.756039" constant="-23.000146000000029" id="yPi-Xf-5zi"/>
                 </constraints>
             </tableViewCellContentView>
@@ -169,13 +159,13 @@ A few dominant architectures are … MVC, MVVM-C, and VIPER. Every pattern offer
             <connections>
                 <outlet property="backgroundCell" destination="AS0-4x-qvA" id="8Xz-aZ-ITB"/>
                 <outlet property="commentButton" destination="wKJ-tG-eyd" id="6FJ-PN-Daw"/>
-                <outlet property="downVoteLabel" destination="Q9r-h5-fuH" id="1Sq-pk-HlS"/>
                 <outlet property="feedIndicator" destination="rZh-aN-H7h" id="Eog-Uy-FEw"/>
                 <outlet property="languageImage" destination="Dmu-YJ-Q09" id="VeM-wj-lBb"/>
                 <outlet property="postText" destination="ZsH-Db-0am" id="bqA-uF-roX"/>
                 <outlet property="postTitleLabel" destination="bDw-oC-aO0" id="BMT-Tx-ssj"/>
                 <outlet property="profilePicIndicator" destination="eFt-6D-7qc" id="VMK-jS-Ahn"/>
                 <outlet property="reactionButton" destination="AQX-Df-h5H" id="5vv-3j-zOh"/>
+                <outlet property="reportButton" destination="0El-nS-uiK" id="leN-oO-jAZ"/>
                 <outlet property="upVoteLabel" destination="0lf-XE-b10" id="epG-fI-PcS"/>
                 <outlet property="userNameLabel" destination="4sm-Fr-TSn" id="2At-wR-ml9"/>
                 <outlet property="userPictureView" destination="A1m-l4-rmp" id="QuY-ye-IuP"/>
@@ -185,8 +175,8 @@ A few dominant architectures are … MVC, MVVM-C, and VIPER. Every pattern offer
     </objects>
     <resources>
         <image name="English" width="256" height="256"/>
-        <image name="Icon awesome-arrow-alt-circle-up" width="51.5" height="51.5"/>
         <image name="Icon awesome-arrow-alt-circle-up-1" width="26" height="26"/>
         <image name="blankProfile" width="640" height="640"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

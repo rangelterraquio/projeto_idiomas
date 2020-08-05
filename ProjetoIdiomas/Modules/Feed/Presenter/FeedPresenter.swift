@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public class FeedPresenter : FeedViewToPresenter{
-    
+   
 
     
     
@@ -51,6 +51,12 @@ public class FeedPresenter : FeedViewToPresenter{
     func goToProfile() {
         router?.goToProfile()
     }
+    
+    func reportPost(post: Post) {
+        interator?.reportPost(post: post)
+    }
+       
+       
 
              
 }

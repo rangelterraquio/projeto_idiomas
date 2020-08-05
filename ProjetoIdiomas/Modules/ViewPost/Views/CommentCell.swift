@@ -24,6 +24,7 @@ class CommentCell: UITableViewCell {
     var onReuse: () -> () = {}
     var upvoted: () -> () = {}
     var downVoted: () -> () = {}
+    var reportClicked: () -> () = {}
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -39,6 +40,20 @@ class CommentCell: UITableViewCell {
         imageProfile.layer.cornerRadius = 15
         imageProfile.layer.masksToBounds = true
         imageProfile.contentMode = .scaleAspectFill
+        
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(didTapAtComment))
+        self.addGestureRecognizer(tap)
+        self.backgroundCell.addGestureRecognizer(tap)
+        self.authorName.addGestureRecognizer(tap)
+        self.commentText.addGestureRecognizer(tap)
+        self.backgroundView?.addGestureRecognizer(tap)
+        
+        
+    }
+    
+    @objc func didTapAtComment(sender: Any){
+        reportClicked()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -82,8 +97,10 @@ class CommentCell: UITableViewCell {
         backgroundCell.isHidden = false
         commentIndicator.stopAnimating()
         
-         reactionButton.isEnabled = !comment.isLiked
+        reactionButton.isEnabled = !comment.isLiked
         
+        
+        ablityUserInteraction(enable: !comment.isReported)
     }
     func populanteWithNoComments(){
         authorName.isHidden = true
@@ -94,7 +111,8 @@ class CommentCell: UITableViewCell {
         noCommentsLabel.isHidden = false
         backgroundCell.isHidden = true
         commentIndicator.stopAnimating()
-        
+     
+        ablityUserInteraction(enable: false)
     }
     
     
@@ -105,6 +123,13 @@ class CommentCell: UITableViewCell {
         }
     }
     
+    func ablityUserInteraction(enable: Bool){
+        self.backgroundCell.isUserInteractionEnabled = enable
+        self.isUserInteractionEnabled = enable
+        self.authorName.isUserInteractionEnabled = enable
+        self.commentText.isUserInteractionEnabled = enable
+        self.backgroundView?.isUserInteractionEnabled = enable
+    }
     
     override func prepareForReuse() {
         super.prepareForReuse()

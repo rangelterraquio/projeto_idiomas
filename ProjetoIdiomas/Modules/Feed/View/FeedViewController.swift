@@ -205,6 +205,16 @@ extension FeedViewController: FeedPresenterToView{
         print("Não deve buscar mais posts")
     }
     
+    
+    func reportPost(id: String, index: IndexPath){
+        if let cell = feedTableView.cellForRow(at: index) as? FeedCell{
+            cell.reportButton.isHidden = true
+            self.showAlert(error: "Thank you for your feedback, our team will analyze this post.", title: "Reported")
+            presenter?.reportPost(post: posts[index.row-1])
+            posts[index.row-1].isReported = true
+        }
+        
+    }
 }
 
 extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
@@ -238,7 +248,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
             if indexPath.row == 0 || indexPath.row > posts.count {return UITableViewCell()}
             var post = posts[indexPath.row-1] ///subtraio 1 por causa da celula statica
             post.isLiked = verifyLikedPost(id: post.id)
-            
+            post.isReported = verifyReportedDocuments(id: post.id)
             cell.populate(post: post, section: section)
             
             let uuid = presenter?.requestProfileImage(from: post.author.photoURL, completion: { (result) in
@@ -266,8 +276,11 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
                 
                 
             }
-            cell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: post, with: nil)}
             cell.readMoreClicked = {self.didReadMoreAction(cell: cell, index: indexPath.row)}
+            
+            cell.reportClicked = { self.showReportAlest {
+                self.reportPost(id: post.id, index: indexPath)
+                }}
             return cell
         }
         
@@ -324,7 +337,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     func didReadMoreAction(cell: FeedCell, index: Int){
      //   guard let cell =  tableView.cellForRow(at: indexPath) as?  FeedCell else {return}
         var post = posts[index-1]
-        post.downvote = Int32(cell.downVoteLabel.text!)!
+//        post.downvote = Int32(cell.downVoteLabel.text!)!
         post.upvote = Int32(cell.upVoteLabel.text!)!
         
         updateVotesView = {voteType, num in
@@ -333,7 +346,7 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
                 cell.upVoteLabel.text = "\(num)"
             }else{
                 post.downvote = num
-                cell.downVoteLabel.text = "\(num)"
+//                cell.downVoteLabel.text = "\(num)"
             }
             self.feedTableView.reloadData()
         }
@@ -342,6 +355,10 @@ extension FeedViewController: UITableViewDelegate, UITableViewDataSource{
     
     func verifyLikedPost(id: String)->Bool{
         return FeedViewController.user.postsLiked.contains(id)
+    }
+    
+    func verifyReportedDocuments(id: String)->Bool{
+           return FeedViewController.user.reportedIDs.contains(id)
     }
     
 }

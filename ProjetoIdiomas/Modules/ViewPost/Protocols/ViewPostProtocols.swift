@@ -35,6 +35,8 @@ public protocol ViewPostPresenterToInterator: class{
    func createComent(comment: String, post: Post) -> Void
    func validadeComment(text: String?) ->Void
    func fetchCommments(in post: Post, startingBy num: Int32)
+   func reportPost(post: Post)
+   func reportComment(comment: Comment, inPost: Post)
 }
 
 public protocol ViewPostViewToPresenter: class {
@@ -45,6 +47,8 @@ public protocol ViewPostViewToPresenter: class {
     func updateVotes<T: DocumentSerializable>(from: String, inDocument: T, with comment: Comment?)
     func finishViewPostSession()
     func updateFeed(from post: Post, startingBy votesNum: Int32)
+    func reportPost(post: Post)
+    func reportComment(comment: Comment, inPost: Post)
 }
 
 

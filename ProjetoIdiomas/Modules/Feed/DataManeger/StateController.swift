@@ -184,4 +184,16 @@ public class StateController{
     func requestPermissionForNotification() {
         notificationManeger?.registerForPushNotifications()
     }
+    
+    func reportPost(post: Post){
+        storage.reportPost(post: post)
+    }
+    
+   
+    func reportComment(comment: Comment, inPost: Post) {
+        storage.reportComment(comment: comment, inPost: inPost)
+    }
+      
+      
+      
 }

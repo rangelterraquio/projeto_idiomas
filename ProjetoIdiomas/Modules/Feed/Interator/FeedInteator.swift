@@ -86,6 +86,11 @@ public class FeedInterator: FeedPresenterToInterator{
         stateController.updateVotes(from: from, inDocument: inDocument, with: comment)
     }
     
+    
+    public func reportPost(post: Post) {
+        stateController.reportPost(post: post)
+    }
+    
     deinit {
         listener.remove()
     }

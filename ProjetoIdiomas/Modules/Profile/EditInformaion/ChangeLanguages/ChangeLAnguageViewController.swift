@@ -108,7 +108,7 @@ class ChangeLAnguageViewController: SelectLanguageViewController {
             if completed{
                 self.navigationController?.popViewController(animated: true)
             }else{
-                self.showAlertError(error: "Try again, something went wrong", title: "Operation Failed")
+                self.showAlert(error: "Try again, something went wrong", title: "Operation Failed")
             }
         }
     }

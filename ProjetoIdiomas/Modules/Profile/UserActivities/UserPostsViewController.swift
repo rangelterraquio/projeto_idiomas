@@ -98,7 +98,7 @@ class UserPostsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell =  tableView.cellForRow(at: indexPath) as?  FeedCell else {return}
         var post = posts[indexPath.row]
-        post.downvote = Int32(cell.downVoteLabel.text!)!
+//        post.downvote = Int32(cell.downVoteLabel.text!)!
         post.upvote = Int32(cell.upVoteLabel.text!)!
         
         delegate?.chooseViewPostDetails(post: post, imageProfile: cell.userPictureView.image, vc: self)

@@ -41,6 +41,9 @@ class SignUpViewController: UIViewController {
 
     }
     
+    var isError = false
+    var errorMSG = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,7 +57,9 @@ class SignUpViewController: UIViewController {
 //        setupButtons()
         
         
-     
+        if isError{
+            showAlertError(error: errorMSG)
+        }
     
        
     }
@@ -98,7 +103,7 @@ extension SignUpViewController: SignUpPresenterToView{
         if let lScreen = loadScreen{
             lScreen.removeFromSuperview()
         }
-        self.showAlertError(error: msg, title: "Operation Failed")
+        self.showAlert(error: msg, title: "Operation Failed")
     }
     
     func updateView(text: String) {

@@ -20,11 +20,12 @@ class PostCell: UITableViewCell {
     @IBOutlet weak var postText: UITextView!
     @IBOutlet weak var backgroundCell: UIView!
     
+    @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var reactionButton: UIButton!
     var onReuse: () -> () = {}
     var upvoted: (Int32) -> () = {_ in}
     var downVoted: (Int32) -> () = {_ in}
-
+    var reportClicked: () -> () = {}
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -72,6 +73,9 @@ class PostCell: UITableViewCell {
     }
     
     
+    @IBAction func didTapReport(_ sender: Any) {
+          reportClicked()
+    }
     
     func populate(post: Post, viewSection: SectionSelected?){
          self.postText.text = post.message
@@ -86,6 +90,7 @@ class PostCell: UITableViewCell {
          self.backgroundCell.backgroundColor = section == SectionSelected.learningSection ? SectionColor.learning.color : SectionColor.teaching.color
         
          reactionButton.isEnabled = !post.isLiked
+        reportButton.isHidden = post.isReported
         
     }
     

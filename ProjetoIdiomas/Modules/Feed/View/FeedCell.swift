@@ -18,16 +18,17 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var reactionButton: UIButton!
     
     @IBOutlet weak var upVoteLabel: UILabel!
-    @IBOutlet weak var downVoteLabel: UILabel!
     @IBOutlet weak var feedIndicator: UIActivityIndicatorView!
     @IBOutlet weak var languageImage: UIImageView!
     @IBOutlet weak var profilePicIndicator: UIActivityIndicatorView!
     
+    @IBOutlet weak var reportButton: UIButton!
     @IBOutlet weak var backgroundCell: UIView!
     var onReuse: () -> () = {}
     var upvoted: () -> () = {}
     var downVoted: () -> () = {}
     var readMoreClicked: () -> () = {}
+    var reportClicked: () -> () = {}
     var isLiked = false
     
 //    override func viewWillLayoutSubviews() {
@@ -71,13 +72,13 @@ class FeedCell: UITableViewCell {
         
     }
     
-    @IBAction func downVoteButton(_ sender: Any) {
-        downVoted()
-        ///atualizo label dos numeros
-        if let tex = downVoteLabel.text, let num = Int16(tex){
-            downVoteLabel.text = "\(num + 1)"
-        }
-    }
+//    @IBAction func downVoteButton(_ sender: Any) {
+//        downVoted()
+//        ///atualizo label dos numeros
+//        if let tex = downVoteLabel.text, let num = Int16(tex){
+//            downVoteLabel.text = "\(num + 1)"
+//        }
+//    }
     @IBAction func didTapReadMore(_ sender: Any) {
         readMoreClicked()
     }
@@ -87,19 +88,22 @@ class FeedCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
+    @IBAction func reportButtonDidTap(_ sender: Any) {
+        reportClicked()
+    }
     
     func populate(post: Post){
         self.postText.text = post.message
         self.userNameLabel.text = post.author.name
         self.postTitleLabel.text = post.title
-        self.downVoteLabel.text = "\(post.downvote)"
+//        self.downVoteLabel.text = "\(post.downvote)"
         self.upVoteLabel.text = "\(post.upvote)"
         self.feedIndicator.stopAnimating()
         if let imageName =  Languages.init(rawValue: post.language)?.name{
             self.languageImage.image = UIImage(named: imageName)
         }
         
-        
+        reportButton.isHidden = post.isReported
         reactionButton.isEnabled = !post.isLiked
         
     }
@@ -108,7 +112,7 @@ class FeedCell: UITableViewCell {
             self.postText.text = post.message
             self.userNameLabel.text = post.author.name
             self.postTitleLabel.text = post.title
-            self.downVoteLabel.text = "\(post.downvote)"
+//            self.downVoteLabel.text = "\(post.downvote)"
             self.upVoteLabel.text = "\(post.upvote)"
             self.feedIndicator.stopAnimating()
             if let imageName =  Languages.init(rawValue: post.language)?.name{
@@ -116,8 +120,9 @@ class FeedCell: UITableViewCell {
             }
             
             reactionButton.isEnabled = !post.isLiked
-        
-            if section == .learningSection{
+            reportButton.isHidden = post.isReported
+            
+        if section == .learningSection{
                 backgroundCell.backgroundColor = SectionColor.learning.color
             }else {
                 backgroundCell.backgroundColor = SectionColor.teaching.color

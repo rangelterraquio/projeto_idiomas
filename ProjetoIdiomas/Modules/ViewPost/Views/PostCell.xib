@@ -106,6 +106,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e59-FL-qj8">
+                                <rect key="frame" x="13" y="293" width="20" height="22"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="22" id="BDD-0E-DbR"/>
+                                    <constraint firstAttribute="width" constant="20" id="awP-zL-l5V"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="grn-0u-fq4"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="22" id="hUV-AG-clY"/>
+                                </constraints>
+                                <color key="tintColor" red="0.53166824580000005" green="0.43410599230000002" blue="0.78826981780000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" image="info.circle" catalog="system"/>
+                                <connections>
+                                    <action selector="didTapReport:" destination="msz-O3-UR8" eventType="touchUpInside" id="cOw-yx-kpj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.47843137250000001" green="0.3294117647" blue="0.76078431369999999" alpha="0.17999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -123,7 +137,9 @@
                             <constraint firstItem="bpf-5B-mPc" firstAttribute="top" secondItem="WBG-XU-gbf" secondAttribute="top" constant="15" id="nLV-uw-L8S"/>
                             <constraint firstAttribute="trailing" secondItem="Pak-O6-oks" secondAttribute="trailing" constant="13" id="qxI-6f-KXt"/>
                             <constraint firstAttribute="bottom" secondItem="SMG-Rb-22j" secondAttribute="bottom" constant="45" id="rBk-QB-2OJ"/>
+                            <constraint firstAttribute="bottom" secondItem="e59-FL-qj8" secondAttribute="bottom" constant="12" id="tnf-Gq-52q"/>
                             <constraint firstItem="SMG-Rb-22j" firstAttribute="leading" secondItem="WBG-XU-gbf" secondAttribute="leading" constant="13" id="zAd-70-EWD"/>
+                            <constraint firstItem="e59-FL-qj8" firstAttribute="leading" secondItem="WBG-XU-gbf" secondAttribute="leading" constant="13" id="zgJ-Tj-RZ7"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -150,6 +166,7 @@
                 <outlet property="postTitle" destination="xzT-NU-obl" id="fVD-Ye-j8x"/>
                 <outlet property="profileImageView" destination="bpf-5B-mPc" id="wFV-UX-ln8"/>
                 <outlet property="reactionButton" destination="0D8-dn-lJ6" id="ASr-ah-HHW"/>
+                <outlet property="reportButton" destination="e59-FL-qj8" id="n4L-3a-7Rs"/>
                 <outlet property="upVoteLabel" destination="Sgb-9d-4KG" id="Xg5-DB-ntu"/>
             </connections>
             <point key="canvasLocation" x="131.8840579710145" y="213.95089285714286"/>
@@ -158,5 +175,6 @@
     <resources>
         <image name="Icon awesome-arrow-alt-circle-up" width="51.5" height="51.5"/>
         <image name="Icon awesome-arrow-alt-circle-up-1" width="26" height="26"/>
+        <image name="info.circle" catalog="system" width="128" height="121"/>
     </resources>
 </document>

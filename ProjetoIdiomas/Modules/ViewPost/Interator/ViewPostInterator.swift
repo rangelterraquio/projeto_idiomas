@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 class ViewPostInterator: ViewPostPresenterToInterator {
-   
+    
     var stateController: StateController!
     var presenter: ViewPostInteratorToPresenter? = nil
     
@@ -89,5 +89,15 @@ class ViewPostInterator: ViewPostPresenterToInterator {
         
         presenter?.commentValidated(isValid: !(text?.isEmpty ?? true) )
     }
+    
+    
+    func reportPost(post: Post) {
+        self.stateController.reportPost(post: post)
+    }
+     
+     func reportComment(comment: Comment, inPost: Post) {
+         self.stateController.reportComment(comment: comment, inPost: inPost)
+     }
+     
     
 }

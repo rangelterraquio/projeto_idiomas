@@ -21,6 +21,7 @@ public struct User{
     var idCommentedPosts: [String]?
     var fcmToken: String
     var postsLiked: [String]
+    var reportedIDs: [String]
     var dictionary : [String : Any]{
         return [
             "id" : id,
@@ -33,7 +34,8 @@ public struct User{
             "idPosts" : idPosts as Any,
             "idCommentedPosts" : idCommentedPosts as Any,
             "fcmToken" : fcmToken,
-            "postsLiked" : postsLiked
+            "postsLiked" : postsLiked,
+            "reportedIDs" : reportedIDs
         ]
     }
 }
@@ -47,13 +49,13 @@ extension User: DocumentSerializable{
                 let fcmToken = snap["fcmToken"] as? String,
                 let id =  snap["id"] as? String,
                 let fluentLanguage = snap["fluentLanguage"] as? [String] else {return nil}
-            self.init(id: id, name: name, photoURL: snap["photoURL"] as? String, score: snap["score"] as? Int16, rating: snap["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: snap["learningLanguage"] as? [String], idPosts: snap["idPosts"] as? [String], idCommentedPosts: snap["idCommentedPosts"] as? [String], fcmToken: fcmToken, postsLiked: snap["postsLiked"] as? [String] ?? [String]())
+            self.init(id: id, name: name, photoURL: snap["photoURL"] as? String, score: snap["score"] as? Int16, rating: snap["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: snap["learningLanguage"] as? [String], idPosts: snap["idPosts"] as? [String], idCommentedPosts: snap["idCommentedPosts"] as? [String], fcmToken: fcmToken, postsLiked: snap["postsLiked"] as? [String] ?? [String](), reportedIDs:  snap["reportedIDs"] as? [String] ?? [String]())
         }else{
             guard let name = data["name"] as? String,
                let fcmToken = data["fcmToken"] as? String,
                  let id = data["id"] as? String,
                let fluentLanguage = data["fluentLanguage"] as? [String] else {return nil}
-            self.init(id: id, name: name, photoURL: data["photoURL"] as? String, score: data["score"] as? Int16, rating: data["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: data["learningLanguage"] as? [String], idPosts: data["idPosts"] as? [String], idCommentedPosts: data["idCommentedPosts"] as? [String], fcmToken: fcmToken, postsLiked: data["postsLiked"] as? [String] ?? [String]())
+            self.init(id: id, name: name, photoURL: data["photoURL"] as? String, score: data["score"] as? Int16, rating: data["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: data["learningLanguage"] as? [String], idPosts: data["idPosts"] as? [String], idCommentedPosts: data["idCommentedPosts"] as? [String], fcmToken: fcmToken, postsLiked: data["postsLiked"] as? [String] ?? [String](), reportedIDs:  data["reportedIDs"] as? [String] ?? [String]())
         }
         
         
@@ -68,12 +70,12 @@ extension User: DocumentSerializable{
                 guard let name = snap["name"] as? String,
                     let fcmToken = snap["fcmToken"] as? String,
                     let fluentLanguage = snap["fluentLanguage"] as? [String] else {return nil}
-                self.init(id: snapshot.documentID, name: name, photoURL: snap["photoURL"] as? String, score: snap["score"] as? Int16, rating: snap["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: snap["learningLanguage"] as? [String], idPosts: snap["idPosts"] as? [String], idCommentedPosts: snap["idCommentedPosts"] as? [String], fcmToken: fcmToken, postsLiked: snap["postsLiked"] as? [String] ?? [String]())
+                self.init(id: snapshot.documentID, name: name, photoURL: snap["photoURL"] as? String, score: snap["score"] as? Int16, rating: snap["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: snap["learningLanguage"] as? [String], idPosts: snap["idPosts"] as? [String], idCommentedPosts: snap["idCommentedPosts"] as? [String], fcmToken: fcmToken, postsLiked: snap["postsLiked"] as? [String] ?? [String](), reportedIDs:  snap["reportedIDs"] as? [String] ?? [String]())
             }else{
                 guard let name = data["name"] as? String,
                    let fcmToken = data["fcmToken"] as? String,
                    let fluentLanguage = data["fluentLanguage"] as? [String] else {return nil}
-                self.init(id: snapshot.documentID, name: name, photoURL: data["photoURL"] as? String, score: data["score"] as? Int16, rating: data["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: data["learningLanguage"] as? [String], idPosts: data["idPosts"] as? [String], idCommentedPosts: data["idCommentedPosts"] as? [String], fcmToken: fcmToken, postsLiked: data["postsLiked"] as? [String] ?? [String]())
+                self.init(id: snapshot.documentID, name: name, photoURL: data["photoURL"] as? String, score: data["score"] as? Int16, rating: data["rating"] as? Int16, fluentLanguage: fluentLanguage, learningLanguage: data["learningLanguage"] as? [String], idPosts: data["idPosts"] as? [String], idCommentedPosts: data["idCommentedPosts"] as? [String], fcmToken: fcmToken, postsLiked: data["postsLiked"] as? [String] ?? [String](), reportedIDs:  data["reportedIDs"] as? [String] ?? [String]())
             }
             
             

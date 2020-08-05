@@ -19,8 +19,9 @@ public struct Comment{
     var commentText: String
     public var id: String
     var fcmToken: String
+    var reported: Int
     var isLiked = false
-    
+     var isReported = false
     var dictionary : [String : Any]{
         return [
             "id" : id as String,
@@ -30,11 +31,12 @@ public struct Comment{
             "commentText" : commentText as String,
             "authorName" : authorName as String,
             "fcmToken" : fcmToken as String,
-            "authorPhotoURL" : authorPhotoURL as? String
+            "authorPhotoURL" : authorPhotoURL,
+            "reported" : reported
         ]
     }
     
-    init(authorId: String,upvote: Int32, downvote: Int32, commentText: String, id: String, authorName: String, authorPhotoURL: String?,fcmToken: String){
+    init(authorId: String,upvote: Int32, downvote: Int32, commentText: String, id: String, authorName: String, authorPhotoURL: String?,fcmToken: String,reported: Int){
         self.authorId = authorId
         self.upvote = upvote
         self.downvote = downvote
@@ -43,6 +45,7 @@ public struct Comment{
         self.authorPhotoURL = authorPhotoURL
         self.id = id
         self.fcmToken = fcmToken
+        self.reported = reported
     }
 }
 extension Comment: DocumentSerializable{
@@ -63,7 +66,7 @@ extension Comment: DocumentSerializable{
             let fcmToken = snap["fcmToken"] as? String
             else{return nil}
             let authorPhotoURL = snap["authorPhotoURL"] as? String
-        self.init(authorId: authorId, upvote: upvote, downvote: downvote, commentText: commentText, id: snapshot.documentID,authorName: authorName, authorPhotoURL: authorPhotoURL, fcmToken: fcmToken)
+        self.init(authorId: authorId, upvote: upvote, downvote: downvote, commentText: commentText, id: snapshot.documentID,authorName: authorName, authorPhotoURL: authorPhotoURL, fcmToken: fcmToken, reported: snap["reported"] as? Int ?? 0)
     }
     
     

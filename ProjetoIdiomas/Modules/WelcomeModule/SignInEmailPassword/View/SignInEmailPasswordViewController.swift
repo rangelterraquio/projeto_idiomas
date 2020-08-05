@@ -75,7 +75,7 @@ class SignInEmailPasswordViewController: UIViewController {
 extension SignInEmailPasswordViewController: SignInEmailPasswordPresenterToView{
     
     func didSuccessfullyresetPasswordSent() {
-        self.showAlertError(error: "An message was sent to your email to restart", title: "Email Sent")
+        self.showAlert(error: "An message was sent to your email to restart", title: "Email Sent")
     }
     
     
@@ -85,6 +85,6 @@ extension SignInEmailPasswordViewController: SignInEmailPasswordPresenterToView{
                 loadV.removeFromSuperview()
             }
         }
-        self.showAlertError(error: msg, title: "Operation Failed")
+        self.showAlert(error: msg, title: "Operation Failed")
     }
 }

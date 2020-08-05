@@ -90,7 +90,7 @@ class EditInformationViewController: UIViewController {
                 self.labelName.isHidden = true
                
             }else{
-                self.showAlertError(error: "I can change the name only once.", title: "Operation not allowed")
+                self.showAlert(error: "I can change the name only once.", title: "Operation not allowed")
             }
         }
        

@@ -89,7 +89,6 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
             commentsLoadIndicator.isHidden = true
             commentTextView.isHidden = true
         }
-    
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -168,6 +167,26 @@ class ViewPostViewController: UIViewController, ViewPostPresenterToView {
     }
        
     
+      func reportPost(id: String, index: IndexPath){
+        if let cell = self.postTableView.cellForRow(at: index) as? PostCell,let p = post{
+              cell.reportButton.isHidden = true
+              self.showAlert(error: "Thank you for your feedback, our team will analyze this post.", title: "Reported")
+             presenter?.reportPost(post: p)
+             post?.isReported = true
+          }
+          
+      }
+    
+    func reportComment(index: IndexPath){
+        if let cell = self.postTableView.cellForRow(at: index) as? CommentCell,let p = post{
+            cell.ablityUserInteraction(enable: false)
+            self.showAlert(error: "Thank you for your feedback, our team will analyze this comment.", title: "Reported")
+            presenter?.reportComment(comment: comments[index.row-1], inPost: p)
+            comments[index.row-1].isReported = true
+        }
+        
+    }
+    
 }
 
 
@@ -179,6 +198,7 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard var post = post else{return UITableViewCell()}
          post.isLiked = verifyLikedDocument(id: post.id)
+         post.isReported = verifyReportedDocuments(id: post.id)
         if indexPath.row == 0 {
             if let postCell = tableView.dequeueReusableCell(withIdentifier: "PostCell") as? PostCell{
                 postCell.populate(post: post, viewSection: feedVC?.section)
@@ -195,6 +215,10 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
                     self.feedVC?.updateVotesView(VoteType.upVote,num)
                     self.presenter?.updateVotes(from: "downvote", inDocument: post, with: nil)
                 }
+                
+                postCell.reportClicked = { self.showReportAlest {
+                self.reportPost(id: post.id, index: indexPath)
+                }}
                 return postCell
             }
         }else{
@@ -205,7 +229,8 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
                     return commentCell
                 }
                 var comment = comments[indexPath.row-1]
-                 comment.isLiked = verifyLikedDocument(id: comment.id)
+                comment.isLiked = verifyLikedDocument(id: comment.id)
+                comment.isReported = verifyReportedDocuments(id: comment.id)
                 commentCell.poulate(from: comment)
                     
                 let uuid = presenter?.requestProfileImage(from: comment.authorPhotoURL, completion: { result in
@@ -229,6 +254,10 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
                     self.comments[indexPath.row-1].upvote += 1
                 }
                 commentCell.downVoted = {self.presenter?.updateVotes(from: "downvote", inDocument: post, with: comment)}
+                
+                commentCell.reportClicked = { self.showReportAlest {
+                    self.reportComment(index: indexPath)
+                    }}
                 return commentCell
             
             }
@@ -273,6 +302,9 @@ extension ViewPostViewController: UITableViewDelegate,UITableViewDataSource{
     }
     
     
+    func verifyReportedDocuments(id: String)->Bool{
+           return FeedViewController.user.reportedIDs.contains(id)
+    }
     
     
 }
