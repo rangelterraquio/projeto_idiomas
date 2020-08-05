@@ -39,6 +39,7 @@ public protocol SignUpViewToPresenter: class {
     func validateTextFields(name: String?, email: String?, password: String?)
     func authenticateWithApple(with view: UIViewController)
     func signInWithEmail()
+    func goToTerms()
 }
 
 public protocol SignUpRouterToPresenter{
@@ -46,4 +47,5 @@ public protocol SignUpRouterToPresenter{
     func chooseSignInWithEmail()
     func showErrorAlert(error: String)
     func userAlreadyUser()
+    func goToTerms()
 }

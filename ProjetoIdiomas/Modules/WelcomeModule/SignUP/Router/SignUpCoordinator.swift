@@ -15,6 +15,7 @@ protocol AuthenticationCoordinatorDelegate:class {
     func coordinatorDidAuthenticate(coordinator: SignUpCoordinator, user: User)
     func coordinatorDidAuthenticateWithUser(coordinator: Coordinator)
     func didChooseSignWithEmail()
+    func goToTerms()
 }
 
 class SignUpCoordinator: Coordinator {
@@ -52,6 +53,10 @@ class SignUpCoordinator: Coordinator {
 }
 
 extension SignUpCoordinator: SignUpRouterToPresenter{
+    func goToTerms() {
+        delegate?.goToTerms()
+    }
+    
     func userAlreadyUser() {
         delegate?.coordinatorDidAuthenticateWithUser(coordinator: self)
     }

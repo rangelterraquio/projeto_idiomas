@@ -199,6 +199,16 @@ final class AppCoordinator: Coordinator{
         coordinator.start()
         childCoordinators.append(coordinator)
     }
+    
+    func showTermsAndPrivacy(){
+        let vc = TermAndPrivacyViewController(nibName: "TermAndPrivacyViewController", bundle: nil)
+        vc.modalPresentationStyle = .overCurrentContext
+        if let oldVc = self.tabBarController.selectedViewController as? UINavigationController{
+            oldVc.definesPresentationContext = true
+            
+            oldVc.pushViewController(vc, animated: true)
+        }
+    }
     func showCreatePost() -> UIViewController{
         let coordinator = CreatePostCoordinator(stateController: stateManeger, tabBarController: tabBarController)
         coordinator.delegate = self
@@ -297,6 +307,10 @@ final class AppCoordinator: Coordinator{
 
 //MARK: -> Authetication Delegate
 extension AppCoordinator: AuthenticationCoordinatorDelegate{
+    func goToTerms() {
+        showTermsAndPrivacy()
+    }
+    
     func didChooseSignWithEmail() {
         showSignInWithEmail()
     }

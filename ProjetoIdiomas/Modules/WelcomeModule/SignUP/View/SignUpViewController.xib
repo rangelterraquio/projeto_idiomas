@@ -81,7 +81,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="szp-PO-9gw">
-                    <rect key="frame" x="52.666666666666657" y="726.33333333333337" width="271.66666666666674" height="36.666666666666629"/>
+                    <rect key="frame" x="52.666666666666657" y="681.33333333333337" width="271.66666666666674" height="36.666666666666629"/>
                     <color key="backgroundColor" red="0.43529411764705883" green="0.36078431372549019" blue="0.71372549019607845" alpha="1" colorSpace="calibratedRGB"/>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="15"/>
                     <state key="normal" title="Log In">
@@ -119,6 +119,16 @@
                     <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="deviceRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fX-mG-RGk">
+                    <rect key="frame" x="131" y="742" width="113" height="30"/>
+                    <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="15"/>
+                    <state key="normal" title="Privacy &amp; Terms">
+                        <color key="titleColor" red="0.094928743070000002" green="0.12389321690000001" blue="0.28689186459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="tapTermsAndPrivacy:" destination="-1" eventType="touchUpInside" id="bXr-e9-Zio"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
@@ -143,20 +153,24 @@
                 <constraint firstItem="Kop-Kn-ej0" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.0966184" constant="198.7681" id="SQd-gO-BUB"/>
                 <constraint firstItem="Kop-Kn-ej0" firstAttribute="leading" secondItem="dC7-6l-8Wv" secondAttribute="trailing" constant="-78" id="Sfw-er-hGU"/>
                 <constraint firstItem="eVB-RZ-eLh" firstAttribute="top" secondItem="dC7-6l-8Wv" secondAttribute="bottom" constant="8" id="VAR-zd-8Ao"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="szp-PO-9gw" secondAttribute="bottom" constant="15" id="ViA-KK-TBV"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="szp-PO-9gw" secondAttribute="bottom" constant="60" id="ViA-KK-TBV"/>
                 <constraint firstItem="szp-PO-9gw" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.724638" id="XHi-PS-hMd"/>
                 <constraint firstItem="W5H-dv-KrN" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0234375" id="akS-he-4rU"/>
                 <constraint firstItem="p0E-Le-6Cz" firstAttribute="centerX" secondItem="oQ2-7f-hhX" secondAttribute="centerX" id="avW-ZQ-ZrJ"/>
                 <constraint firstItem="eVB-RZ-eLh" firstAttribute="centerX" secondItem="fnl-2z-Ty3" secondAttribute="centerX" id="bA4-Do-p2v"/>
                 <constraint firstItem="Kop-Kn-ej0" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0234375" constant="44.96875" id="e9f-R6-dwI"/>
+                <constraint firstItem="6fX-mG-RGk" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="gK6-ot-8aF"/>
                 <constraint firstItem="p0E-Le-6Cz" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.626667" id="iVg-dY-93a"/>
+                <constraint firstItem="6fX-mG-RGk" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.301333" id="jor-zb-fKP"/>
                 <constraint firstItem="QG3-SV-Hqb" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.045" id="mxf-qp-9ij"/>
                 <constraint firstItem="dC7-6l-8Wv" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="81" id="pMq-iK-9cb"/>
                 <constraint firstItem="eVB-RZ-eLh" firstAttribute="top" secondItem="Kop-Kn-ej0" secondAttribute="bottom" constant="34" id="t29-Ms-g2W"/>
                 <constraint firstItem="szp-PO-9gw" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.045" id="vWU-gG-SSy"/>
                 <constraint firstItem="i83-li-EDm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="81" id="vkW-Ls-7G5"/>
                 <constraint firstItem="QG3-SV-Hqb" firstAttribute="top" secondItem="oQ2-7f-hhX" secondAttribute="bottom" constant="32" id="vwv-C2-9EF"/>
+                <constraint firstAttribute="bottom" secondItem="6fX-mG-RGk" secondAttribute="bottom" constant="40" id="xBi-Er-iJE"/>
                 <constraint firstItem="oQ2-7f-hhX" firstAttribute="top" secondItem="i83-li-EDm" secondAttribute="bottom" constant="8" id="xXo-3n-TSC"/>
+                <constraint firstItem="6fX-mG-RGk" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0369458" id="xnb-t5-dii"/>
                 <constraint firstItem="i83-li-EDm" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.173913" constant="184.00001800000001" id="ypt-Y0-4vI"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

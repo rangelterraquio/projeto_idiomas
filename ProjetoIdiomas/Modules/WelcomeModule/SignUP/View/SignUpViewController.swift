@@ -60,6 +60,8 @@ class SignUpViewController: UIViewController {
         if isError{
             showAlertError(error: errorMSG)
         }
+        
+        UserDefaults.standard.register(defaults: ["AcceptedTerms": false])
     
        
     }
@@ -72,20 +74,55 @@ class SignUpViewController: UIViewController {
     }
 
     @IBAction func signUp(_ sender: Any) {
-        loadScreen = LoadingScreen(frame: CGRect(origin: self.view.frame.origin, size: self.view.frame.size))
-        self.view.addSubview(loadScreen)
-        errorLabel.isHidden = true
-        presenter?.validateTextFields(name: nameTextField.text, email: emailTextField.text, password: passwordTextField.text)
+        let accepted  = UserDefaults.standard.bool(forKey: "AcceptedTerms")
+        
+        if !accepted{
+            self.confirmTerms {[weak self] in
+                self?.loadScreen = LoadingScreen(frame: CGRect(origin: self!.view.frame.origin, size: self!.view.frame.size))
+                self!.view.addSubview(self!.loadScreen)
+                self?.errorLabel.isHidden = true
+                self?.presenter?.validateTextFields(name: self?.nameTextField.text, email: self?.emailTextField.text, password: self?.passwordTextField.text)
+            }
+        }else{
+            loadScreen = LoadingScreen(frame: CGRect(origin: view.frame.origin, size: view.frame.size))
+            view.addSubview(loadScreen)
+            errorLabel.isHidden = true
+            presenter?.validateTextFields(name: nameTextField.text, email: emailTextField.text, password: passwordTextField.text)
+        }
+       
     }
     
 
     @IBAction func signInGoogle(_ sender: Any) {
         GIDSignIn.sharedInstance()?.presentingViewController = self
 //        GIDSignIn.sharedInstance()?.delegate = self
-        GIDSignIn.sharedInstance()?.signIn()
+        let accepted  = UserDefaults.standard.bool(forKey: "AcceptedTerms")
+        
+        if !accepted{
+            self.confirmTerms {
+                GIDSignIn.sharedInstance()?.signIn()
+            }
+        }else{
+            GIDSignIn.sharedInstance()?.signIn()
+        }
+        
     }
     @IBAction func singInWithEmail(_ sender: Any) {
-        presenter?.signInWithEmail()
+        
+        let accepted  = UserDefaults.standard.bool(forKey: "AcceptedTerms")
+               
+        if !accepted{
+            self.confirmTerms { [weak self] in
+                self?.presenter?.signInWithEmail()
+            }
+        }else{
+            presenter?.signInWithEmail()
+        }
+       
+       
+    }
+    @IBAction func tapTermsAndPrivacy(_ sender: Any) {
+        presenter?.goToTerms()
     }
 }
 
@@ -115,7 +152,18 @@ extension SignUpViewController: SignUpPresenterToView{
     }
     
     
-    
+    func confirmTerms(compleption: @escaping () -> ()){
+        let title = "Privacy & Terms"
+        let msg = "By continuing, you are declaring that you agree to the terms of use and privacy. Do you want to continue??"
+        let alert = UIAlertController(title: title, message: msg, preferredStyle: .alert)
+        alert.isSpringLoaded = true
+        alert.addAction(UIAlertAction(title: "Continue", style: .default, handler: { (_) in
+            compleption()
+        }))
+        
+        alert.addAction(UIAlertAction(title: "No", style: .cancel, handler: nil))
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
 }
@@ -169,10 +217,17 @@ extension SignUpViewController: ASAuthorizationControllerPresentationContextProv
     
     @objc func appleSignInTapped(){
         
+         let accepted  = UserDefaults.standard.bool(forKey: "AcceptedTerms")
+                      
+        if !accepted{
+            self.confirmTerms { [weak self] in
+                self?.presenter?.authenticateWithApple(with: self!)
+            }
+        }else{
+            presenter?.authenticateWithApple(with: self)
+        }
         
-        print("sign in with apple")
-        
-        presenter?.authenticateWithApple(with: self)
+       
     }
     
     

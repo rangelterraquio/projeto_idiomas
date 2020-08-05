@@ -91,6 +91,8 @@
 		708E001424C1E3EF00F28A75 /* SFCompactDisplay-Black.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708E000B24C1E3EE00F28A75 /* SFCompactDisplay-Black.otf */; };
 		708E001524C1E3EF00F28A75 /* SFCompactDisplay-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 708E000C24C1E3EF00F28A75 /* SFCompactDisplay-Semibold.otf */; };
 		70918CC824C0AF4C005B4749 /* LoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70918CC724C0AF4C005B4749 /* LoadingScreen.swift */; };
+		709D2C4F24DAF31D00E7DD3D /* TermAndPrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709D2C4D24DAF31D00E7DD3D /* TermAndPrivacyViewController.swift */; };
+		709D2C5024DAF31D00E7DD3D /* TermAndPrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709D2C4E24DAF31D00E7DD3D /* TermAndPrivacyViewController.xib */; };
 		709E7B482485FA2600274D33 /* ViewActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709E7B462485FA2600274D33 /* ViewActivityViewController.swift */; };
 		709E7B492485FA2600274D33 /* ViewActivityViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 709E7B472485FA2600274D33 /* ViewActivityViewController.xib */; };
 		709FB1FE24BDF7750010AFDC /* ManegeAccountDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 709FB1FD24BDF7740010AFDC /* ManegeAccountDelegate.swift */; };
@@ -224,6 +226,8 @@
 		708E000B24C1E3EE00F28A75 /* SFCompactDisplay-Black.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Black.otf"; sourceTree = "<group>"; };
 		708E000C24C1E3EF00F28A75 /* SFCompactDisplay-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFCompactDisplay-Semibold.otf"; sourceTree = "<group>"; };
 		70918CC724C0AF4C005B4749 /* LoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingScreen.swift; sourceTree = "<group>"; };
+		709D2C4D24DAF31D00E7DD3D /* TermAndPrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermAndPrivacyViewController.swift; sourceTree = "<group>"; };
+		709D2C4E24DAF31D00E7DD3D /* TermAndPrivacyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermAndPrivacyViewController.xib; sourceTree = "<group>"; };
 		709E7B462485FA2600274D33 /* ViewActivityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivityViewController.swift; sourceTree = "<group>"; };
 		709E7B472485FA2600274D33 /* ViewActivityViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ViewActivityViewController.xib; sourceTree = "<group>"; };
 		709FB1FD24BDF7740010AFDC /* ManegeAccountDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManegeAccountDelegate.swift; sourceTree = "<group>"; };
@@ -786,6 +790,8 @@
 			children = (
 				70C1A05D244D2D02008F31DB /* SignUpViewController.swift */,
 				70C1A05E244D2D02008F31DB /* SignUpViewController.xib */,
+				709D2C4D24DAF31D00E7DD3D /* TermAndPrivacyViewController.swift */,
+				709D2C4E24DAF31D00E7DD3D /* TermAndPrivacyViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1024,6 +1030,7 @@
 				701F3FAA24BD24BB00A1CC78 /* ChangeLAnguageViewController.xib in Resources */,
 				708AC21E249CFDD3002E460C /* UserPostsViewController.xib in Resources */,
 				707F386824452DD800DCEBE6 /* FeedViewController.xib in Resources */,
+				709D2C5024DAF31D00E7DD3D /* TermAndPrivacyViewController.xib in Resources */,
 				707F38552445226400DCEBE6 /* Assets.xcassets in Resources */,
 				708E001524C1E3EF00F28A75 /* SFCompactDisplay-Semibold.otf in Resources */,
 				708A29E4248A967D009E93B3 /* UserCell.xib in Resources */,
@@ -1197,6 +1204,7 @@
 				7084A80B24800A350077284D /* SelectLanguagesCoordinator.swift in Sources */,
 				70AFFE1824D1B9B400A5C525 /* ReAutheticationCoordinator.swift in Sources */,
 				70E8495B24BE307600FD3250 /* SignInEmailPasswordPresenter.swift in Sources */,
+				709D2C4F24DAF31D00E7DD3D /* TermAndPrivacyViewController.swift in Sources */,
 				708A29F5248B2D24009E93B3 /* CameraHandler.swift in Sources */,
 				70B6391B24678F9600966A56 /* SelectLanguagesProtocols.swift in Sources */,
 				70EE70FB2487E28000A9BDDE /* TabNavigationController.swift in Sources */,

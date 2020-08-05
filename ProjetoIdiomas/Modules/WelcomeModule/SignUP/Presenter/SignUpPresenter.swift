@@ -11,6 +11,7 @@ import UIKit
 class SignUpPresenter: SignUpViewToPresenter {
     
     
+    
     var interator: SignUpPresenterToInterator? = nil
     var view: SignUpPresenterToView? = nil
     var router: SignUpRouterToPresenter? = nil
@@ -30,6 +31,10 @@ class SignUpPresenter: SignUpViewToPresenter {
         router?.chooseSignInWithEmail()
     }
 
+    func goToTerms() {
+        router?.goToTerms()
+    }
+    
 }
 
 
