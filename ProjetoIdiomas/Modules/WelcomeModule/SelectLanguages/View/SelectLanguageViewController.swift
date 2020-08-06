@@ -50,7 +50,7 @@ public class SelectLanguageViewController: UIViewController,OnBoardingPage {
     var router: SelectLanguagesToPresenter? = nil
     var user: User!
     
-    
+    let screenHeight = UIScreen.main.bounds.height
     var nextB: UIBarButtonItem!
     var cancelB: UIBarButtonItem!
     
@@ -113,12 +113,14 @@ public class SelectLanguageViewController: UIViewController,OnBoardingPage {
     func setupView(){
         nextButton.alpha = 0.6
         if viewState == .fluentlyLanguagesSection{
+            let imageName = screenHeight != 736 ? "fundoOnboard2" : "fundoOnboard2-iphone8"
             nextButton.setTitle("Done", for: .normal)
-            backgroundImage.image = UIImage(named: "fundoOnboard2")
+            backgroundImage.image = UIImage(named: imageName)
             nextButton.isEnabled = !user.fluentLanguage.isEmpty
         }else{
+            let imageName = screenHeight != 736 ? "fundoOnboard1" : "fundoOnboard1-iphone8"
             nextButton.setTitle("Next", for: .normal)
-            backgroundImage.image = UIImage(named: "fundoOnboard1")
+            backgroundImage.image = UIImage(named: imageName)
         }
     }
     

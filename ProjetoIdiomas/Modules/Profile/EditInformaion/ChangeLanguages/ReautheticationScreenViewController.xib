@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReautheticationScreenViewController" customModule="Project_Languages" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundImage" destination="AZv-4E-jeA" id="VbT-5E-PV7"/>
                 <outlet property="emailTextField" destination="OAA-pb-f5y" id="Kx8-QO-77d"/>
                 <outlet property="logInButton" destination="yaR-6V-vHb" id="NXp-yv-tsf"/>
                 <outlet property="passwordEmailTextField" destination="Yv4-fb-bBK" id="pLd-N9-aCr"/>

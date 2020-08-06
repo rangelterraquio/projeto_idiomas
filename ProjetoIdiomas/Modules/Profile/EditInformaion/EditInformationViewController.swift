@@ -64,7 +64,7 @@ class EditInformationViewController: UIViewController {
         self.labelName.text = user.name
         
         imageProfile.translatesAutoresizingMaskIntoConstraints = false
-        imageProfile.layer.cornerRadius = 90
+        imageProfile.layer.cornerRadius = 90//UIScreen.main.bounds.height != 736 ? 90 : 60
         imageProfile.layer.masksToBounds = true
         imageProfile.contentMode = .scaleAspectFill
     }

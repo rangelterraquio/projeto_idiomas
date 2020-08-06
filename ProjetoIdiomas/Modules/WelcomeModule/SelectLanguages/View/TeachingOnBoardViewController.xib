@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TeachingOnBoardViewController" customModule="Project_Languages" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundImage" destination="itE-Ma-D0L" id="Lv4-68-TP4"/>
                 <outlet property="view" destination="FOn-ib-RCj" id="QVM-Cs-Au9"/>
             </connections>
         </placeholder>
@@ -54,17 +55,17 @@
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstItem="itE-Ma-D0L" firstAttribute="width" secondItem="FOn-ib-RCj" secondAttribute="width" id="3J6-QE-Shh"/>
-                <constraint firstItem="K2L-0z-3Yl" firstAttribute="bottom" secondItem="TBk-G6-OMR" secondAttribute="bottom" constant="266" id="B9E-6n-ikk"/>
-                <constraint firstItem="TBk-G6-OMR" firstAttribute="height" secondItem="FOn-ib-RCj" secondAttribute="height" multiplier="0.0446429" id="Hpe-uU-Db2"/>
-                <constraint firstItem="TBk-G6-OMR" firstAttribute="width" secondItem="FOn-ib-RCj" secondAttribute="width" multiplier="0.483092" id="Kiw-W0-YP2"/>
+                <constraint firstItem="TBk-G6-OMR" firstAttribute="centerX" secondItem="FOn-ib-RCj" secondAttribute="centerX" id="L9L-yL-HB5"/>
                 <constraint firstItem="o8h-tW-T97" firstAttribute="top" secondItem="K2L-0z-3Yl" secondAttribute="top" constant="264" id="MyG-In-xgo"/>
                 <constraint firstItem="itE-Ma-D0L" firstAttribute="centerX" secondItem="FOn-ib-RCj" secondAttribute="centerX" id="RzX-PP-1po"/>
                 <constraint firstItem="o8h-tW-T97" firstAttribute="width" secondItem="FOn-ib-RCj" secondAttribute="width" multiplier="0.816425" id="bUR-hp-2Ly"/>
                 <constraint firstItem="o8h-tW-T97" firstAttribute="centerX" secondItem="FOn-ib-RCj" secondAttribute="centerX" id="hNT-SX-0hh"/>
-                <constraint firstItem="TBk-G6-OMR" firstAttribute="centerX" secondItem="FOn-ib-RCj" secondAttribute="centerX" id="iYd-dY-kWZ"/>
+                <constraint firstItem="TBk-G6-OMR" firstAttribute="top" secondItem="o8h-tW-T97" secondAttribute="bottom" constant="128" id="j9V-35-tyw"/>
                 <constraint firstItem="o8h-tW-T97" firstAttribute="height" secondItem="FOn-ib-RCj" secondAttribute="height" multiplier="0.133929" id="qOY-e5-QhU"/>
                 <constraint firstItem="itE-Ma-D0L" firstAttribute="centerY" secondItem="FOn-ib-RCj" secondAttribute="centerY" id="ucq-vM-EwZ"/>
                 <constraint firstItem="itE-Ma-D0L" firstAttribute="height" secondItem="FOn-ib-RCj" secondAttribute="height" id="ueA-vl-eL9"/>
+                <constraint firstItem="TBk-G6-OMR" firstAttribute="width" secondItem="itE-Ma-D0L" secondAttribute="width" multiplier="0.483092" id="v8h-KN-mPV"/>
+                <constraint firstItem="TBk-G6-OMR" firstAttribute="height" secondItem="itE-Ma-D0L" secondAttribute="height" multiplier="0.0446429" id="xb8-rV-cCA"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="K2L-0z-3Yl"/>
             <point key="canvasLocation" x="101.44927536231884" y="100.44642857142857"/>

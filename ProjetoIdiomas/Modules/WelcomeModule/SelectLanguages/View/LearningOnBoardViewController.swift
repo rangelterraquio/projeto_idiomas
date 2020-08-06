@@ -10,15 +10,20 @@ import UIKit
 
 class LearningOnBoardViewController: UIViewController,OnBoardingPage {
     
+    @IBOutlet weak var backgroundImage: UIImageView!
     
     var pageDelegate: WalkThroughOnBoardDelegate?
     var user: User!
     var languagesVC: SelectLanguageViewController!
     weak var delegate: OnBoardCoordinatorDelegate? = nil
+    
+    let screenHeight = UIScreen.main.bounds.height
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        let imageName = screenHeight != 736 ? "onBoard1" : "onBoard1-iphone8"
+        backgroundImage.image = UIImage(named: imageName)
     }
 
     @IBAction func tappedOnButton(_ sender: Any) {

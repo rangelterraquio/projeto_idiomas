@@ -120,7 +120,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6fX-mG-RGk">
-                    <rect key="frame" x="131" y="742" width="113" height="30"/>
+                    <rect key="frame" x="131" y="752" width="113" height="30"/>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Regular" family="SF Compact Display" pointSize="15"/>
                     <state key="normal" title="Privacy &amp; Terms">
                         <color key="titleColor" red="0.094928743070000002" green="0.12389321690000001" blue="0.28689186459999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -168,7 +168,7 @@
                 <constraint firstItem="szp-PO-9gw" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.045" id="vWU-gG-SSy"/>
                 <constraint firstItem="i83-li-EDm" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="81" id="vkW-Ls-7G5"/>
                 <constraint firstItem="QG3-SV-Hqb" firstAttribute="top" secondItem="oQ2-7f-hhX" secondAttribute="bottom" constant="32" id="vwv-C2-9EF"/>
-                <constraint firstAttribute="bottom" secondItem="6fX-mG-RGk" secondAttribute="bottom" constant="40" id="xBi-Er-iJE"/>
+                <constraint firstAttribute="bottom" secondItem="6fX-mG-RGk" secondAttribute="bottom" constant="30" id="xBi-Er-iJE"/>
                 <constraint firstItem="oQ2-7f-hhX" firstAttribute="top" secondItem="i83-li-EDm" secondAttribute="bottom" constant="8" id="xXo-3n-TSC"/>
                 <constraint firstItem="6fX-mG-RGk" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0369458" id="xnb-t5-dii"/>
                 <constraint firstItem="i83-li-EDm" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.173913" constant="184.00001800000001" id="ypt-Y0-4vI"/>

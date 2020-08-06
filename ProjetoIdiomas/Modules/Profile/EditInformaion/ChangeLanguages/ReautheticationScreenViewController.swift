@@ -25,6 +25,7 @@ class ReautheticationScreenViewController: UIViewController {
     var signUpAPI: SignUpAPI!
     var delegate: ReAutheticationRouterDelegate? = nil
     
+    @IBOutlet weak var backgroundImage: UIImageView!
     var loadScreen: LoadingScreen!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,11 @@ class ReautheticationScreenViewController: UIViewController {
         passwordEmailTextField.delegate = self
         setupSIWAButton()
         setupGoogleSignIn()
+        
+        
+        
+        let imageName = UIScreen.main.bounds.height != 736 ?  "fundoInicio": "fundoOnboard2-iphone8"
+        backgroundImage.image = UIImage(named: imageName)
     }
 
 

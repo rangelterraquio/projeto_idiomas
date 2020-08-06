@@ -389,7 +389,7 @@ extension CreatePostViewController: UITableViewDelegate, UITableViewDataSource{
         if viewState == .moving {return}
         
         if viewState == .colapsed{
-            selectLanguageHeightConstraint.constant = 400
+            selectLanguageHeightConstraint.constant = 420
             UIView.animate(withDuration: 0.7, animations: {
                 self.view.layoutIfNeeded()
                 self.viewState = .moving
@@ -397,7 +397,7 @@ extension CreatePostViewController: UITableViewDelegate, UITableViewDataSource{
                 self.viewState = .expand
             }
         }else{
-            selectLanguageHeightConstraint.constant = 0
+            selectLanguageHeightConstraint.constant = 73
             UIView.animate(withDuration: 0.7, animations: {
                 self.view.layoutIfNeeded()
                 self.viewState = .moving

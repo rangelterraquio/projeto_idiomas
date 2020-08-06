@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LearningOnBoardViewController" customModule="Project_Languages" customModuleProvider="target">
             <connections>
+                <outlet property="backgroundImage" destination="BOx-hP-Lcj" id="xZx-6x-ZBT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -25,9 +26,8 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="onBoard1" translatesAutoresizingMaskIntoConstraints="NO" id="BOx-hP-Lcj">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onBoard1" translatesAutoresizingMaskIntoConstraints="NO" id="BOx-hP-Lcj">
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 </imageView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QaL-L4-RpE">
                     <rect key="frame" x="107" y="556" width="200" height="40"/>
@@ -46,7 +46,7 @@
                     </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you want to learn any language?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eEU-FM-Hz9">
-                    <rect key="frame" x="38" y="308" width="338" height="112"/>
+                    <rect key="frame" x="38" y="368" width="338" height="112"/>
                     <fontDescription key="fontDescription" name="SFCompactDisplay-Semibold" family="SF Compact Display" pointSize="30"/>
                     <color key="textColor" red="0.1137254902" green="0.1450980392" blue="0.42745098040000001" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -54,13 +54,17 @@
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="QaL-L4-RpE" secondAttribute="bottom" constant="266" id="3N6-hk-C94"/>
                 <constraint firstItem="eEU-FM-Hz9" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.816425" id="4vb-Ac-cAG"/>
                 <constraint firstItem="eEU-FM-Hz9" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.125" id="68U-Tr-Jjf"/>
-                <constraint firstItem="eEU-FM-Hz9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="264" id="DDe-wj-icy"/>
-                <constraint firstItem="QaL-L4-RpE" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" multiplier="0.483092" id="PLd-Sx-dbS"/>
-                <constraint firstItem="QaL-L4-RpE" firstAttribute="height" secondItem="i5M-Pr-FkT" secondAttribute="height" multiplier="0.0446429" id="R2A-Rp-TWy"/>
-                <constraint firstItem="QaL-L4-RpE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Yyf-3d-AXt"/>
+                <constraint firstItem="BOx-hP-Lcj" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="B1W-So-bqP"/>
+                <constraint firstItem="BOx-hP-Lcj" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Cfk-Gq-1ai"/>
+                <constraint firstItem="eEU-FM-Hz9" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="324" id="DDe-wj-icy"/>
+                <constraint firstItem="QaL-L4-RpE" firstAttribute="width" secondItem="BOx-hP-Lcj" secondAttribute="width" multiplier="0.483092" id="Mff-ln-Zpk"/>
+                <constraint firstItem="QaL-L4-RpE" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="MzW-p6-X8e"/>
+                <constraint firstItem="QaL-L4-RpE" firstAttribute="height" secondItem="BOx-hP-Lcj" secondAttribute="height" multiplier="0.0446429" id="RGV-V3-7uc"/>
+                <constraint firstAttribute="bottom" secondItem="BOx-hP-Lcj" secondAttribute="bottom" id="UbO-iY-iOF"/>
+                <constraint firstItem="QaL-L4-RpE" firstAttribute="top" secondItem="eEU-FM-Hz9" secondAttribute="bottom" constant="76" id="cxG-Hg-GIu"/>
+                <constraint firstItem="BOx-hP-Lcj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="iGj-YL-JIr"/>
                 <constraint firstItem="eEU-FM-Hz9" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="la9-Bh-X3E"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
