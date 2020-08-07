@@ -31,7 +31,7 @@ public struct Comment{
             "commentText" : commentText as String,
             "authorName" : authorName as String,
             "fcmToken" : fcmToken as String,
-            "authorPhotoURL" : authorPhotoURL,
+            "authorPhotoURL" : authorPhotoURL as Any,
             "reported" : reported
         ]
     }

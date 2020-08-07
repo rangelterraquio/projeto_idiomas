@@ -49,6 +49,8 @@ public class SignInEmailPasswordInterator: SignInEmailPasswordPresenterToInterat
                 self.storage.fetchUser { (user, error) in
                     if let user = user, error == nil{
                         self.presenter?.didSuccessfullyLogin(user: user)
+                    }else{
+                         self.presenter?.userAuthenticationFailed(error: "Something goes wrong, try it again later")
                     }
                 }
             }

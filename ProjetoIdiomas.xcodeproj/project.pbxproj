@@ -171,7 +171,7 @@
 		7075F5282489D4F800851F28 /* ViewActivitiesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivitiesProtocols.swift; sourceTree = "<group>"; };
 		7075F52A2489DC2800851F28 /* ViewActivitiesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivitiesPresenter.swift; sourceTree = "<group>"; };
 		7075F52C2489DF9A00851F28 /* ViewActivitiesInterator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewActivitiesInterator.swift; sourceTree = "<group>"; };
-		707F38482445226200DCEBE6 /* Project Languages.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project Languages.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		707F38482445226200DCEBE6 /* GoAskMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoAskMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		707F384B2445226200DCEBE6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		707F384D2445226200DCEBE6 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		707F384F2445226200DCEBE6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -413,7 +413,7 @@
 		707F38492445226200DCEBE6 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				707F38482445226200DCEBE6 /* Project Languages.app */,
+				707F38482445226200DCEBE6 /* GoAskMe.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -980,7 +980,7 @@
 			);
 			name = ProjetoIdiomas;
 			productName = ProjetoIdiomas;
-			productReference = 707F38482445226200DCEBE6 /* Project Languages.app */;
+			productReference = 707F38482445226200DCEBE6 /* GoAskMe.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1365,17 +1365,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = ProjetoIdiomas/ProjetoIdiomas.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 536JJFH3JQ;
 				INFOPLIST_FILE = ProjetoIdiomas/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = rangel.ProjetoIdiomas;
-				PRODUCT_NAME = "Project Languages";
+				PRODUCT_NAME = GoAskMe;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1386,17 +1387,18 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "ProjetoIdiomas/Project LanguagesRelease.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 7;
+				CURRENT_PROJECT_VERSION = 8;
 				DEVELOPMENT_TEAM = 536JJFH3JQ;
 				INFOPLIST_FILE = ProjetoIdiomas/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = rangel.ProjetoIdiomas;
-				PRODUCT_NAME = "Project Languages";
+				PRODUCT_NAME = GoAskMe;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -373,7 +373,7 @@ extension AppCoordinator: OnBoardCoordinatorDelegate{
     func showSelectLanguages(user: User) {
        let coordinator = SelectLanguagesCoordinator(user: user, tabBarController: tabBarController)
        coordinator.delegate = self
-       coordinator.stat(user: user)
+       let _ = coordinator.stat(user: user)
        childCoordinators.append(coordinator)
     }
     
@@ -386,7 +386,7 @@ extension AppCoordinator: OnBoardCoordinatorDelegate{
 //        }
         let coordinator = SelectLanguagesCoordinator(user: user, tabBarController: tabBarController)
         coordinator.delegate = self
-        coordinator.stat(user: user)
+        let _ = coordinator.stat(user: user)
         childCoordinators.append(coordinator)
     }
     
@@ -482,7 +482,7 @@ extension AppCoordinator: FeedCoordinatorDelegate{
   
     
     func chooseCreatePostView() {
-        showCreatePost()
+        let _ = showCreatePost()
     }
     
     func chooseViewPostDetails(post: Post,imageProfile: UIImage?, vc: UIViewController?) {
@@ -501,12 +501,12 @@ extension AppCoordinator: ViewPostDelegate{
         childCoordinators.forEach { (coordinator) in
             DispatchQueue.main.async {
                 if let coo = coordinator as? FeedCoordinator{
-                    coo.start()
+                    let _ = coo.start()
                     return
                 }
             }
         }
-        showFeed()
+        let _ = showFeed()
     }
 }
 

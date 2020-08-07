@@ -24,7 +24,7 @@ public struct Notifaction{
             "authorID" : authorID as String,
             "msg" : msg as String,
             "date" : date as Date,
-            "authorImageURL" : authorImageURL as? String?,
+            "authorImageURL" : authorImageURL as Any,
             "isViewed" : isViewed as Bool
         ]
     }
